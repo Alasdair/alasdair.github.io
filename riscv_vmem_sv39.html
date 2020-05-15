@@ -48,7 +48,7 @@ function&nbsp;walk39(vaddr,&nbsp;ac,&nbsp;priv,&nbsp;mxr,&nbsp;do_sum,&nbsp;ptb,
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span>&nbsp;else&nbsp;<span style="background-color: #60FF60">{&nbsp;/*&nbsp;leaf&nbsp;PTE&nbsp;*/<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;match&nbsp;checkPTEPermission(ac,&nbsp;priv,&nbsp;mxr,&nbsp;do_sum,&nbsp;pattr,&nbsp;ext_pte,&nbsp;ext_ptw)&nbsp;{<br>
-	&nbsp;&nbsp;&nbsp;&nbsp;PTE_Check_Failure(ext_ptw)&nbsp;=&gt;&nbsp;<span style="background-color: #40FF40">{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PTE_Check_Failure(ext_ptw)&nbsp;=&gt;&nbsp;<span style="background-color: #40FF40">{<br>
 /*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(&quot;walk39:&nbsp;pte&nbsp;permission&nbsp;check&nbsp;failure&quot;);&nbsp;*/<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PTW_Failure(PTW_No_Permission(),&nbsp;ext_ptw)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span>,<br>
@@ -169,7 +169,7 @@ function&nbsp;translate39(asid,&nbsp;ptb,&nbsp;vAddr,&nbsp;ac,&nbsp;priv,&nbsp;m
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TR_Failure(PTW_PTE_Update(),&nbsp;ext_ptw)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span>&nbsp;else&nbsp;<span style="background-color: #FFc0c0">{<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w_pte&nbsp;:&nbsp;SV39_PTE&nbsp;=&nbsp;update_BITS(pte,&nbsp;pbits.bits());<br>
-		w_pte&nbsp;:&nbsp;SV39_PTE&nbsp;=&nbsp;update_Ext(w_pte,&nbsp;ext);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;w_pte&nbsp;:&nbsp;SV39_PTE&nbsp;=&nbsp;update_Ext(w_pte,&nbsp;ext);<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;match&nbsp;mem_write_value(EXTZ(pteAddr),&nbsp;8,&nbsp;w_pte.bits(),&nbsp;false,&nbsp;false,&nbsp;false)&nbsp;{<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MemValue(_)&nbsp;=&gt;&nbsp;<span style="background-color: #FFa0a0">{<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;add_to_TLB39(asid,&nbsp;vAddr,&nbsp;pAddr,&nbsp;w_pte,&nbsp;pteAddr,&nbsp;level,&nbsp;global);<br>
