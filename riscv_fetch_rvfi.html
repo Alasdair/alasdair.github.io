@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>riscv_fetch_rvfi</title></head>
+<body>
+<code style="display: block">
+function&nbsp;fetch()&nbsp;-&gt;&nbsp;FetchResult&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;rvfi_exec-&gt;rvfi_order()&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;minstret;<br>
+&nbsp;&nbsp;rvfi_exec-&gt;rvfi_pc_rdata()&nbsp;=&nbsp;EXTZ(get_arch_pc());<br>
+<br>
+&nbsp;&nbsp;/*&nbsp;First&nbsp;allow&nbsp;extensions&nbsp;to&nbsp;check&nbsp;pc&nbsp;*/<br>
+&nbsp;&nbsp;match&nbsp;ext_fetch_check_pc(PC,&nbsp;PC)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Ext_FetchAddr_Error(e)&nbsp;&nbsp;&nbsp;=&gt;&nbsp;F_Ext_Error(e),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Ext_FetchAddr_OK(use_pc)&nbsp;=&gt;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;then&nbsp;check&nbsp;PC&nbsp;alignment&nbsp;*/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;&nbsp;&nbsp;(use_pc[0]&nbsp;!=&nbsp;bitzero&nbsp;|&nbsp;(use_pc[1]&nbsp;!=&nbsp;bitzero&nbsp;&&nbsp;(~&nbsp;(haveRVC()))))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then&nbsp;F_Error(E_Fetch_Addr_Align(),&nbsp;PC)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;i&nbsp;=&nbsp;rvfi_instruction.rvfi_insn();<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rvfi_exec-&gt;rvfi_insn()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;EXTZ(i);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;TODO:&nbsp;should&nbsp;we&nbsp;write&nbsp;these&nbsp;even&nbsp;if&nbsp;they're&nbsp;not&nbsp;really&nbsp;registers?&nbsp;*/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rvfi_exec-&gt;rvfi_rs1_data()&nbsp;=&nbsp;EXTZ(X(i[19&nbsp;..&nbsp;15]));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rvfi_exec-&gt;rvfi_rs2_data()&nbsp;=&nbsp;EXTZ(X(i[24&nbsp;..&nbsp;20]));<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rvfi_exec-&gt;rvfi_rs1_addr()&nbsp;=&nbsp;sail_zero_extend(i[19&nbsp;..&nbsp;15],8);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rvfi_exec-&gt;rvfi_rs2_addr()&nbsp;=&nbsp;sail_zero_extend(i[24&nbsp;..&nbsp;20],8);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;&nbsp;&nbsp;(i[1&nbsp;..&nbsp;0]&nbsp;!=&nbsp;0b11)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then&nbsp;F_RVC(i[15&nbsp;..&nbsp;0])<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;fetch&nbsp;PC&nbsp;check&nbsp;for&nbsp;the&nbsp;next&nbsp;instruction&nbsp;granule&nbsp;*/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PC_hi&nbsp;:&nbsp;xlenbits&nbsp;=&nbsp;PC&nbsp;+&nbsp;2;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;match&nbsp;ext_fetch_check_pc(PC,&nbsp;PC_hi)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ext_FetchAddr_Error(e)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;F_Ext_Error(e),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ext_FetchAddr_OK(use_pc_hi)&nbsp;=&gt;&nbsp;F_Base(i)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;}<br>
+}<br>
+</code>
+</body>
+</html>

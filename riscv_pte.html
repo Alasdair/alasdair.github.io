@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>riscv_pte</title></head>
+<body>
+<code style="display: block">
+/*&nbsp;PTE&nbsp;attributes,&nbsp;permission&nbsp;checks&nbsp;and&nbsp;updates&nbsp;*/<br>
+<br>
+type&nbsp;pteAttribs&nbsp;=&nbsp;bits(8)<br>
+<br>
+/*&nbsp;Reserved&nbsp;PTE&nbsp;bits&nbsp;could&nbsp;be&nbsp;used&nbsp;by&nbsp;extensions&nbsp;on&nbsp;RV64.&nbsp;&nbsp;There&nbsp;are<br>
+&nbsp;*&nbsp;no&nbsp;such&nbsp;available&nbsp;bits&nbsp;on&nbsp;RV32,&nbsp;so&nbsp;these&nbsp;bits&nbsp;will&nbsp;be&nbsp;zeros&nbsp;on&nbsp;RV32.<br>
+&nbsp;*/<br>
+type&nbsp;extPte&nbsp;=&nbsp;bits(10)<br>
+<br>
+bitfield&nbsp;PTE_Bits&nbsp;:&nbsp;pteAttribs&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;D&nbsp;:&nbsp;7,<br>
+&nbsp;&nbsp;A&nbsp;:&nbsp;6,<br>
+&nbsp;&nbsp;G&nbsp;:&nbsp;5,<br>
+&nbsp;&nbsp;U&nbsp;:&nbsp;4,<br>
+&nbsp;&nbsp;X&nbsp;:&nbsp;3,<br>
+&nbsp;&nbsp;W&nbsp;:&nbsp;2,<br>
+&nbsp;&nbsp;R&nbsp;:&nbsp;1,<br>
+&nbsp;&nbsp;V&nbsp;:&nbsp;0<br>
+}<br>
+<br>
+function&nbsp;isPTEPtr(p&nbsp;:&nbsp;pteAttribs,&nbsp;ext&nbsp;:&nbsp;extPte)&nbsp;-&gt;&nbsp;bool&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+&nbsp;&nbsp;let&nbsp;a&nbsp;=&nbsp;Mk_PTE_Bits(p);<br>
+&nbsp;&nbsp;a.R()&nbsp;==&nbsp;0b0&nbsp;&&nbsp;a.W()&nbsp;==&nbsp;0b0&nbsp;&&nbsp;a.X()&nbsp;==&nbsp;0b0<br>
+}</span><br>
+<br>
+function&nbsp;isInvalidPTE(p&nbsp;:&nbsp;pteAttribs,&nbsp;ext&nbsp;:&nbsp;extPte)&nbsp;-&gt;&nbsp;bool&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+&nbsp;&nbsp;let&nbsp;a&nbsp;=&nbsp;Mk_PTE_Bits(p);<br>
+&nbsp;&nbsp;a.V()&nbsp;==&nbsp;0b0&nbsp;|&nbsp;(a.W()&nbsp;==&nbsp;0b1&nbsp;&&nbsp;a.R()&nbsp;==&nbsp;0b0)<br>
+}</span><br>
+<br>
+union&nbsp;PTE_Check&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;PTE_Check_Success&nbsp;:&nbsp;ext_ptw,<br>
+&nbsp;&nbsp;PTE_Check_Failure&nbsp;:&nbsp;ext_ptw<br>
+}<br>
+<br>
+function&nbsp;to_pte_check(b&nbsp;:&nbsp;bool)&nbsp;-&gt;&nbsp;PTE_Check&nbsp;=<br>
+&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">if&nbsp;b&nbsp;then&nbsp;<span style="background-color: hsl(120, 85%, 75%)">PTE_Check_Success(())</span>&nbsp;else&nbsp;<span style="background-color: hsl(120, 85%, 75%)">PTE_Check_Failure(())</span></span><br>
+<br>
+/*&nbsp;For&nbsp;extensions:&nbsp;this&nbsp;function&nbsp;gets&nbsp;the&nbsp;extension-available&nbsp;bits&nbsp;of&nbsp;the&nbsp;PTE&nbsp;in&nbsp;extPte,<br>
+&nbsp;*&nbsp;and&nbsp;the&nbsp;accumulated&nbsp;information&nbsp;of&nbsp;the&nbsp;page-table-walk&nbsp;in&nbsp;ext_ptw.&nbsp;&nbsp;It&nbsp;should&nbsp;return<br>
+&nbsp;*&nbsp;the&nbsp;updated&nbsp;ext_ptw&nbsp;in&nbsp;both&nbsp;the&nbsp;success&nbsp;and&nbsp;failure&nbsp;cases.<br>
+&nbsp;*/<br>
+function&nbsp;checkPTEPermission(ac&nbsp;:&nbsp;AccessType(ext_access_type),&nbsp;priv&nbsp;:&nbsp;Privilege,&nbsp;mxr&nbsp;:&nbsp;bool,&nbsp;do_sum&nbsp;:&nbsp;bool,&nbsp;p&nbsp;:&nbsp;PTE_Bits,&nbsp;ext&nbsp;:&nbsp;extPte,&nbsp;ext_ptw&nbsp;:&nbsp;ext_ptw)&nbsp;-&gt;&nbsp;PTE_Check&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+&nbsp;&nbsp;match&nbsp;(ac,&nbsp;priv)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(Read(Data),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">to_pte_check(p.U()&nbsp;==&nbsp;0b1&nbsp;&&nbsp;(p.R()&nbsp;==&nbsp;0b1&nbsp;|&nbsp;(p.X()&nbsp;==&nbsp;0b1&nbsp;&&nbsp;mxr)))</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(Write(Data),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">to_pte_check(p.U()&nbsp;==&nbsp;0b1&nbsp;&&nbsp;p.W()&nbsp;==&nbsp;0b1)</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(ReadWrite(Data),&nbsp;User)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">to_pte_check(p.U()&nbsp;==&nbsp;0b1&nbsp;&&nbsp;p.W()&nbsp;==&nbsp;0b1&nbsp;&&nbsp;(p.R()&nbsp;==&nbsp;0b1&nbsp;|&nbsp;(p.X()&nbsp;==&nbsp;0b1&nbsp;&&nbsp;mxr)))</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(Execute(),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">to_pte_check(p.U()&nbsp;==&nbsp;0b1&nbsp;&&nbsp;p.X()&nbsp;==&nbsp;0b1)</span>,<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(Read(Data),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supervisor)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">to_pte_check((p.U()&nbsp;==&nbsp;0b0&nbsp;|&nbsp;do_sum)&nbsp;&&nbsp;(p.R()&nbsp;==&nbsp;0b1&nbsp;|&nbsp;(p.X()&nbsp;==&nbsp;0b1&nbsp;&&nbsp;mxr)))</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(Write(Data),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supervisor)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">to_pte_check((p.U()&nbsp;==&nbsp;0b0&nbsp;|&nbsp;do_sum)&nbsp;&&nbsp;p.W()&nbsp;==&nbsp;0b1)</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(ReadWrite(Data),&nbsp;Supervisor)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">to_pte_check((p.U()&nbsp;==&nbsp;0b0&nbsp;|&nbsp;do_sum)&nbsp;&&nbsp;p.W()&nbsp;==&nbsp;0b1&nbsp;&&nbsp;(p.R()&nbsp;==&nbsp;0b1&nbsp;|&nbsp;(p.X()&nbsp;==&nbsp;0b1&nbsp;&&nbsp;mxr)))</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(Execute(),&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supervisor)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">to_pte_check(p.U()&nbsp;==&nbsp;0b0&nbsp;&&nbsp;p.X()&nbsp;==&nbsp;0b1)</span>,<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(_,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Machine)&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">internal_error(&quot;m-mode&nbsp;mem&nbsp;perm&nbsp;check&quot;)</span><br>
+&nbsp;&nbsp;}<br>
+}</span><br>
+<br>
+function&nbsp;update_PTE_Bits(p&nbsp;:&nbsp;PTE_Bits,&nbsp;a&nbsp;:&nbsp;AccessType(ext_access_type),&nbsp;ext&nbsp;:&nbsp;extPte)&nbsp;-&gt;&nbsp;option((PTE_Bits,&nbsp;extPte))&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+&nbsp;&nbsp;let&nbsp;update_d&nbsp;=&nbsp;(a&nbsp;==&nbsp;Write(Data)&nbsp;|&nbsp;a&nbsp;==&nbsp;ReadWrite(Data))&nbsp;&&nbsp;p.D()&nbsp;==&nbsp;0b0;&nbsp;//&nbsp;dirty-bit<br>
+&nbsp;&nbsp;let&nbsp;update_a&nbsp;=&nbsp;p.A()&nbsp;==&nbsp;0b0;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;accessed-bit<br>
+&nbsp;&nbsp;if&nbsp;update_d&nbsp;|&nbsp;update_a&nbsp;then&nbsp;<span style="background-color: hsl(120, 85%, 75%)">{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;np&nbsp;=&nbsp;update_A(p,&nbsp;0b1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;np&nbsp;=&nbsp;if&nbsp;update_d&nbsp;then&nbsp;<span style="background-color: hsl(120, 85%, 70%)">update_D(np,&nbsp;0b1)</span>&nbsp;else&nbsp;<span style="background-color: hsl(120, 85%, 70%)">np</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Some(np,&nbsp;ext)<br>
+&nbsp;&nbsp;}</span>&nbsp;else&nbsp;<span style="background-color: hsl(120, 85%, 75%)">None()</span><br>
+}</span><br>
+</code>
+</body>
+</html>

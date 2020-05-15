@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>riscv_next_control</title></head>
+<body>
+<code style="display: block">
+/*&nbsp;Functional&nbsp;specification&nbsp;for&nbsp;the&nbsp;'N'&nbsp;user-level&nbsp;interrupts&nbsp;standard&nbsp;extension.&nbsp;*/<br>
+<br>
+function&nbsp;clause&nbsp;<span style="background-color: hsl(120, 85%, 80%)">ext_is_CSR_defined(0x000,&nbsp;_)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">haveUsrMode()</span></span>&nbsp;//&nbsp;ustatus<br>
+function&nbsp;clause&nbsp;ext_is_CSR_defined(0x004,&nbsp;_)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">haveUsrMode()</span>&nbsp;//&nbsp;uie<br>
+function&nbsp;clause&nbsp;ext_is_CSR_defined(0x005,&nbsp;_)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">haveUsrMode()</span>&nbsp;//&nbsp;utvec<br>
+function&nbsp;clause&nbsp;ext_is_CSR_defined(0x040,&nbsp;_)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">haveUsrMode()</span>&nbsp;//&nbsp;uscratch<br>
+function&nbsp;clause&nbsp;ext_is_CSR_defined(0x041,&nbsp;_)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">haveUsrMode()</span>&nbsp;//&nbsp;uepc<br>
+function&nbsp;clause&nbsp;ext_is_CSR_defined(0x042,&nbsp;_)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">haveUsrMode()</span>&nbsp;//&nbsp;ucause<br>
+function&nbsp;clause&nbsp;ext_is_CSR_defined(0x043,&nbsp;_)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">haveUsrMode()</span>&nbsp;//&nbsp;utval<br>
+function&nbsp;clause&nbsp;ext_is_CSR_defined(0x044,&nbsp;_)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">haveUsrMode()</span>&nbsp;//&nbsp;uip<br>
+<br>
+function&nbsp;clause&nbsp;<span style="background-color: hsl(120, 85%, 80%)">ext_read_CSR(0x000)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">Some(lower_sstatus(lower_mstatus(mstatus)).bits())</span></span><br>
+function&nbsp;clause&nbsp;ext_read_CSR(0x004)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">Some(lower_sie(lower_mie(mie,&nbsp;mideleg),&nbsp;sideleg).bits())</span><br>
+function&nbsp;clause&nbsp;ext_read_CSR(0x005)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">Some(get_utvec())</span><br>
+function&nbsp;clause&nbsp;ext_read_CSR(0x040)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">Some(uscratch)</span><br>
+function&nbsp;clause&nbsp;ext_read_CSR(0x041)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">Some(get_xret_target(User)&nbsp;&&nbsp;pc_alignment_mask())</span><br>
+function&nbsp;clause&nbsp;ext_read_CSR(0x042)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">Some(ucause.bits())</span><br>
+function&nbsp;clause&nbsp;ext_read_CSR(0x043)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">Some(utval)</span><br>
+function&nbsp;clause&nbsp;ext_read_CSR(0x044)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">Some(lower_sip(lower_mip(mip,&nbsp;mideleg),&nbsp;sideleg).bits())</span><br>
+<br>
+function&nbsp;clause&nbsp;<span style="background-color: hsl(120, 85%, 80%)">ext_write_CSR(0x000,&nbsp;value)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;mstatus&nbsp;=&nbsp;legalize_ustatus(mstatus,&nbsp;value);&nbsp;Some(mstatus.bits())&nbsp;}</span></span><br>
+function&nbsp;clause&nbsp;ext_write_CSR(0x004,&nbsp;value)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;let&nbsp;sie&nbsp;=&nbsp;legalize_uie(lower_mie(mie,&nbsp;mideleg),&nbsp;sideleg,&nbsp;value);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mie&nbsp;=&nbsp;lift_sie(mie,&nbsp;mideleg,&nbsp;sie);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Some(mie.bits())&nbsp;}</span><br>
+function&nbsp;clause&nbsp;ext_write_CSR(0x005,&nbsp;value)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;Some(set_utvec(value))&nbsp;}</span><br>
+function&nbsp;clause&nbsp;ext_write_CSR(0x040,&nbsp;value)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;uscratch&nbsp;=&nbsp;value;&nbsp;Some(uscratch)&nbsp;}</span><br>
+function&nbsp;clause&nbsp;ext_write_CSR(0x041,&nbsp;value)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;Some(set_xret_target(User,&nbsp;value))&nbsp;}</span><br>
+function&nbsp;clause&nbsp;ext_write_CSR(0x042,&nbsp;value)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;ucause-&gt;bits()&nbsp;=&nbsp;value;&nbsp;Some(ucause.bits())&nbsp;}</span><br>
+function&nbsp;clause&nbsp;ext_write_CSR(0x043,&nbsp;value)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;utval&nbsp;=&nbsp;value;&nbsp;Some(utval)&nbsp;}</span><br>
+function&nbsp;clause&nbsp;ext_write_CSR(0x044,&nbsp;value)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;let&nbsp;sip&nbsp;=&nbsp;legalize_uip(lower_mip(mip,&nbsp;mideleg),&nbsp;sideleg,&nbsp;value);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mip&nbsp;=&nbsp;lift_sip(mip,&nbsp;mideleg,&nbsp;sip);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Some(mip.bits())&nbsp;}</span><br>
+</code>
+</body>
+</html>

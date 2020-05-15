@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>riscv_step_rvfi</title></head>
+<body>
+<code style="display: block">
+/*&nbsp;Step&nbsp;hooks&nbsp;for&nbsp;rvfi.&nbsp;*/<br>
+<br>
+function&nbsp;ext_fetch_hook(f&nbsp;:&nbsp;FetchResult)&nbsp;-&gt;&nbsp;FetchResult&nbsp;=&nbsp;f<br>
+<br>
+function&nbsp;ext_pre_step_hook()&nbsp;&nbsp;-&gt;&nbsp;unit&nbsp;=&nbsp;()<br>
+<br>
+function&nbsp;ext_post_step_hook()&nbsp;-&gt;&nbsp;unit&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;/*&nbsp;record&nbsp;the&nbsp;next&nbsp;pc&nbsp;*/<br>
+&nbsp;&nbsp;rvfi_exec-&gt;rvfi_pc_wdata()&nbsp;=&nbsp;EXTZ(get_arch_pc())<br>
+}<br>
+<br>
+val&nbsp;ext_init&nbsp;:&nbsp;unit&nbsp;-&gt;&nbsp;unit&nbsp;effect&nbsp;{wreg}<br>
+function&nbsp;ext_init()&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;init_base_regs();<br>
+&nbsp;&nbsp;init_fdext_regs();<br>
+&nbsp;&nbsp;/*&nbsp;these&nbsp;are&nbsp;here&nbsp;so&nbsp;that&nbsp;the&nbsp;C&nbsp;backend&nbsp;doesn't&nbsp;prune&nbsp;them&nbsp;out.&nbsp;*/<br>
+&nbsp;&nbsp;rvfi_set_instr_packet(0x0000000000000000);<br>
+&nbsp;&nbsp;print_bits(&quot;&quot;,&nbsp;rvfi_get_cmd());<br>
+&nbsp;&nbsp;//&nbsp;let&nbsp;_&nbsp;=&nbsp;rvfi_step(0);<br>
+&nbsp;&nbsp;rvfi_zero_exec_packet();<br>
+&nbsp;&nbsp;rvfi_halt_exec_packet();<br>
+&nbsp;&nbsp;let&nbsp;_&nbsp;=&nbsp;rvfi_get_exec_packet();<br>
+&nbsp;&nbsp;ext_rvfi_init();<br>
+&nbsp;&nbsp;()<br>
+}<br>
+</code>
+</body>
+</html>

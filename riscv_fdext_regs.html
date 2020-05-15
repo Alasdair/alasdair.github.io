@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>riscv_fdext_regs</title></head>
+<body>
+<code style="display: block">
+/*&nbsp;****************************************************************&nbsp;*/<br>
+/*&nbsp;Floating&nbsp;point&nbsp;register&nbsp;file&nbsp;and&nbsp;accessors&nbsp;for&nbsp;F,&nbsp;D&nbsp;extensions&nbsp;&nbsp;&nbsp;*/<br>
+/*&nbsp;Floating&nbsp;point&nbsp;CSR&nbsp;and&nbsp;accessors&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br>
+/*&nbsp;****************************************************************&nbsp;*/<br>
+<br>
+/*&nbsp;Original&nbsp;version&nbsp;written&nbsp;by&nbsp;Rishiyur&nbsp;S.&nbsp;Nikhil,&nbsp;Sept-Oct&nbsp;2019&nbsp;&nbsp;&nbsp;&nbsp;*/<br>
+<br>
+/*&nbsp;****************************************************************&nbsp;*/<br>
+/*&nbsp;Floating&nbsp;point&nbsp;register&nbsp;file&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br>
+<br>
+register&nbsp;fs&nbsp;:&nbsp;vector(32,&nbsp;dec,&nbsp;fregtype)<br>
+<br>
+register&nbsp;f0&nbsp;&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f1&nbsp;&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f2&nbsp;&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f3&nbsp;&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f4&nbsp;&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f5&nbsp;&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f6&nbsp;&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f7&nbsp;&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f8&nbsp;&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f9&nbsp;&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f10&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f11&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f12&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f13&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f14&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f15&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f16&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f17&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f18&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f19&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f20&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f21&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f22&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f23&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f24&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f25&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f26&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f27&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f28&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f29&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f30&nbsp;:&nbsp;fregtype<br>
+register&nbsp;f31&nbsp;:&nbsp;fregtype<br>
+<br>
+function&nbsp;dirty_fd_context()&nbsp;-&gt;&nbsp;unit&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+&nbsp;&nbsp;mstatus-&gt;FS()&nbsp;=&nbsp;extStatus_to_bits(Dirty);<br>
+&nbsp;&nbsp;mstatus-&gt;SD()&nbsp;=&nbsp;0b1<br>
+}</span><br>
+<br>
+val&nbsp;rF&nbsp;:&nbsp;forall&nbsp;'n,&nbsp;0&nbsp;&lt;=&nbsp;'n&nbsp;&lt;&nbsp;32.&nbsp;regno('n)&nbsp;-&gt;&nbsp;flenbits&nbsp;effect&nbsp;{rreg,&nbsp;escape}<br>
+function&nbsp;rF&nbsp;r&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+&nbsp;&nbsp;let&nbsp;v&nbsp;:&nbsp;fregtype&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;match&nbsp;r&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">f0</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">f1</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">f2</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">f3</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">f4</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f5</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f6</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f7</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f8</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f9</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">f10</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f11</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;12&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f12</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f13</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f14</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f15</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f16</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;17&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f17</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;18&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f18</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;19&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f19</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;20&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f20</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;21&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f21</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;22&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f22</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;23&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f23</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;24&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f24</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;25&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f25</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;26&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f26</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;27&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f27</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f28</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;29&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f29</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;30&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f30</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;31&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f31</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{assert(false,&nbsp;&quot;invalid&nbsp;floating&nbsp;point&nbsp;register&nbsp;number&quot;);&nbsp;zero_freg}</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;};<br>
+&nbsp;&nbsp;fregval_from_freg(v)<br>
+}</span><br>
+<br>
+val&nbsp;wF&nbsp;:&nbsp;forall&nbsp;'n,&nbsp;0&nbsp;&lt;=&nbsp;'n&nbsp;&lt;&nbsp;32.&nbsp;(regno('n),&nbsp;flenbits)&nbsp;-&gt;&nbsp;unit&nbsp;effect&nbsp;{wreg,&nbsp;escape}<br>
+function&nbsp;wF&nbsp;(r,&nbsp;in_v)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+&nbsp;&nbsp;let&nbsp;v&nbsp;=&nbsp;fregval_into_freg(in_v);<br>
+&nbsp;&nbsp;match&nbsp;r&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">f0&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">f1&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">f2&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">f3&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">f4&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f5&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f6&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f7&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f8&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f9&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;10&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">f10&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;11&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f11&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;12&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f12&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;13&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f13&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;14&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f14&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;15&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f15&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f16&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;17&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f17&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;18&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f18&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;19&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f19&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;20&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f20&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;21&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f21&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;22&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f22&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;23&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f23&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;24&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f24&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;25&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f25&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;26&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f26&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;27&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f27&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;28&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f28&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;29&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f29&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;30&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f30&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;31&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">f31&nbsp;=&nbsp;v</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;_&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">assert(false,&nbsp;&quot;invalid&nbsp;floating&nbsp;point&nbsp;register&nbsp;number&quot;)</span><br>
+&nbsp;&nbsp;};<br>
+<br>
+&nbsp;&nbsp;dirty_fd_context();<br>
+<br>
+&nbsp;&nbsp;if&nbsp;&nbsp;&nbsp;get_config_print_reg()<br>
+&nbsp;&nbsp;then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;TODO:&nbsp;will&nbsp;only&nbsp;print&nbsp;bits;&nbsp;should&nbsp;we&nbsp;print&nbsp;in&nbsp;floating&nbsp;point&nbsp;format?&nbsp;*/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">print_reg(&quot;f&quot;&nbsp;^&nbsp;string_of_int(r)&nbsp;^&nbsp;&quot;&nbsp;&lt;-&nbsp;&quot;&nbsp;^&nbsp;FRegStr(v))</span><span style="background-color: hsl(0, 85%, 80%)">&#171;Invisible branch not taken here&#187</span>;<br>
+}</span><br>
+<br>
+function&nbsp;rF_bits(i:&nbsp;bits(5))&nbsp;-&gt;&nbsp;flenbits&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">rF(unsigned(i))</span><br>
+<br>
+function&nbsp;wF_bits(i:&nbsp;bits(5),&nbsp;data:&nbsp;flenbits)&nbsp;-&gt;&nbsp;unit&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+&nbsp;&nbsp;wF(unsigned(i))&nbsp;=&nbsp;data<br>
+}</span><br>
+<br>
+overload&nbsp;F&nbsp;=&nbsp;{rF_bits,&nbsp;wF_bits,&nbsp;rF,&nbsp;wF}<br>
+<br>
+/*&nbsp;register&nbsp;names&nbsp;*/<br>
+<br>
+val&nbsp;freg_name_abi&nbsp;:&nbsp;regidx&nbsp;&lt;-&gt;&nbsp;string<br>
+<br>
+mapping&nbsp;freg_name_abi&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b00000&nbsp;&lt;-&gt;&nbsp;&quot;ft0&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b00001&nbsp;&lt;-&gt;&nbsp;&quot;ft1&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b00010&nbsp;&lt;-&gt;&nbsp;&quot;ft2&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b00011&nbsp;&lt;-&gt;&nbsp;&quot;ft3&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b00100&nbsp;&lt;-&gt;&nbsp;&quot;ft4&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b00101&nbsp;&lt;-&gt;&nbsp;&quot;ft5&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b00110&nbsp;&lt;-&gt;&nbsp;&quot;ft6&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b00111&nbsp;&lt;-&gt;&nbsp;&quot;ft7&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b01000&nbsp;&lt;-&gt;&nbsp;&quot;fs0&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b01001&nbsp;&lt;-&gt;&nbsp;&quot;fs1&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b01010&nbsp;&lt;-&gt;&nbsp;&quot;fa0&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b01011&nbsp;&lt;-&gt;&nbsp;&quot;fa1&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b01100&nbsp;&lt;-&gt;&nbsp;&quot;fa2&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b01101&nbsp;&lt;-&gt;&nbsp;&quot;fa3&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b01110&nbsp;&lt;-&gt;&nbsp;&quot;fa4&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b01111&nbsp;&lt;-&gt;&nbsp;&quot;fa5&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b10000&nbsp;&lt;-&gt;&nbsp;&quot;fa6&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b10001&nbsp;&lt;-&gt;&nbsp;&quot;fa7&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b10010&nbsp;&lt;-&gt;&nbsp;&quot;fs2&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b10011&nbsp;&lt;-&gt;&nbsp;&quot;fs3&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b10100&nbsp;&lt;-&gt;&nbsp;&quot;fs4&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b10101&nbsp;&lt;-&gt;&nbsp;&quot;fs5&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b10110&nbsp;&lt;-&gt;&nbsp;&quot;fs6&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b10111&nbsp;&lt;-&gt;&nbsp;&quot;fs7&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b11000&nbsp;&lt;-&gt;&nbsp;&quot;fs8&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b11001&nbsp;&lt;-&gt;&nbsp;&quot;fs9&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b11010&nbsp;&lt;-&gt;&nbsp;&quot;fs10&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b11011&nbsp;&lt;-&gt;&nbsp;&quot;fs11&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b11100&nbsp;&lt;-&gt;&nbsp;&quot;ft8&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b11101&nbsp;&lt;-&gt;&nbsp;&quot;ft9&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b11110&nbsp;&lt;-&gt;&nbsp;&quot;ft10&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b11111&nbsp;&lt;-&gt;&nbsp;&quot;ft11&quot;<br>
+}<br>
+<br>
+overload&nbsp;to_str&nbsp;=&nbsp;{freg_name_abi}<br>
+<br>
+/*&nbsp;mappings&nbsp;for&nbsp;assembly&nbsp;*/<br>
+<br>
+val&nbsp;freg_name&nbsp;:&nbsp;bits(5)&nbsp;&lt;-&gt;&nbsp;string<br>
+mapping&nbsp;freg_name&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b00000&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;ft0&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b00001&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;ft1&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b00010&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;ft2&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b00011&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;ft3&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b00100&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;ft4&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b00101&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;ft5&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b00110&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;ft6&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b00111&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;ft7&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b01000&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;fs0&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b01001&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;fs1&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b01010&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;fa0&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b01011&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;fa1&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b01100&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;fa2&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b01101&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;fa3&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b01110&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;fa4&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b01111&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;fa5&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b10000&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;fa6&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b10001&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;fa7&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b10010&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;fs2&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b10011&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;fs3&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b10100&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;fs4&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b10101&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;fs5&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b10110&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;fs6&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b10111&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;fs7&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b11000&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;fs8&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b11001&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;fs9&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b11010&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;fs10&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b11011&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;fs11&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b11100&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;ft8&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b11101&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;ft9&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b11110&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;ft10&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b11111&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;ft11&quot;</span><br>
+}<br>
+<br>
+val&nbsp;init_fdext_regs&nbsp;:&nbsp;unit&nbsp;-&gt;&nbsp;unit&nbsp;effect&nbsp;{wreg}<br>
+function&nbsp;init_fdext_regs&nbsp;()&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;f0&nbsp;&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f1&nbsp;&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f2&nbsp;&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f3&nbsp;&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f4&nbsp;&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f5&nbsp;&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f6&nbsp;&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f7&nbsp;&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f8&nbsp;&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f9&nbsp;&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f10&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f11&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f12&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f13&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f14&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f15&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f16&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f17&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f18&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f19&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f20&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f21&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f22&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f23&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f24&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f25&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f26&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f27&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f28&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f29&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f30&nbsp;=&nbsp;zero_freg;<br>
+&nbsp;&nbsp;f31&nbsp;=&nbsp;zero_freg<br>
+}<br>
+<br>
+/*&nbsp;****************************************************************&nbsp;*/<br>
+/*&nbsp;Floating&nbsp;Point&nbsp;CSR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br>
+/*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fflags&nbsp;&nbsp;&nbsp;&nbsp;address&nbsp;0x001&nbsp;&nbsp;&nbsp;&nbsp;same&nbsp;as&nbsp;fcrs&nbsp;[4..0]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br>
+/*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;frm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;address&nbsp;0x002&nbsp;&nbsp;&nbsp;&nbsp;same&nbsp;as&nbsp;fcrs&nbsp;[7..5]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br>
+/*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fcsr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;address&nbsp;0x003&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br>
+<br>
+<br>
+bitfield&nbsp;Fcsr&nbsp;:&nbsp;bits(32)&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;FRM&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;7&nbsp;..&nbsp;5,<br>
+&nbsp;&nbsp;FFLAGS&nbsp;:&nbsp;4&nbsp;..&nbsp;0,<br>
+}<br>
+<br>
+register&nbsp;fcsr&nbsp;:&nbsp;Fcsr<br>
+<br>
+val&nbsp;ext_write_fcsr&nbsp;:&nbsp;(bits(3),&nbsp;bits(5))&nbsp;-&gt;&nbsp;unit&nbsp;effect&nbsp;{rreg,&nbsp;wreg}<br>
+function&nbsp;ext_write_fcsr&nbsp;(frm,&nbsp;fflags)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+&nbsp;&nbsp;fcsr-&gt;FRM()&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;frm;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;Note:&nbsp;frm&nbsp;can&nbsp;be&nbsp;an&nbsp;illegal&nbsp;value,&nbsp;101,&nbsp;110,&nbsp;111&nbsp;*/<br>
+&nbsp;&nbsp;fcsr-&gt;FFLAGS()&nbsp;=&nbsp;fflags;<br>
+&nbsp;&nbsp;update_softfloat_fflags(fflags);<br>
+&nbsp;&nbsp;dirty_fd_context();<br>
+}</span><br>
+<br>
+/*&nbsp;called&nbsp;for&nbsp;softfloat&nbsp;paths&nbsp;(softfloat&nbsp;flags&nbsp;are&nbsp;consistent)&nbsp;*/<br>
+val&nbsp;write_fflags&nbsp;:&nbsp;(bits(5))&nbsp;-&gt;&nbsp;unit&nbsp;effect&nbsp;{rreg,&nbsp;wreg}<br>
+function&nbsp;write_fflags(fflags)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+&nbsp;&nbsp;if&nbsp;&nbsp;&nbsp;fcsr.FFLAGS()&nbsp;!=&nbsp;fflags<br>
+&nbsp;&nbsp;then&nbsp;<span style="background-color: hsl(120, 85%, 75%)">dirty_fd_context()</span>;<br>
+&nbsp;&nbsp;fcsr-&gt;FFLAGS()&nbsp;=&nbsp;fflags;<br>
+}</span><br>
+<br>
+/*&nbsp;called&nbsp;for&nbsp;non-softfloat&nbsp;paths&nbsp;(softfloat&nbsp;flags&nbsp;need&nbsp;updating)&nbsp;*/<br>
+val&nbsp;accrue_fflags&nbsp;:&nbsp;(bits(5))&nbsp;-&gt;&nbsp;unit&nbsp;effect&nbsp;{rreg,&nbsp;wreg}<br>
+function&nbsp;accrue_fflags(flags)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+&nbsp;&nbsp;let&nbsp;f&nbsp;=&nbsp;fcsr.FFLAGS()&nbsp;|&nbsp;flags;<br>
+&nbsp;&nbsp;if&nbsp;&nbsp;fcsr.FFLAGS()&nbsp;!=&nbsp;f<br>
+&nbsp;&nbsp;then&nbsp;<span style="background-color: hsl(120, 85%, 75%)">{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;fcsr-&gt;FFLAGS()&nbsp;=&nbsp;f;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;update_softfloat_fflags(f);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dirty_fd_context();<br>
+&nbsp;&nbsp;}</span><br>
+}</span><br>
+</code>
+</body>
+</html>
