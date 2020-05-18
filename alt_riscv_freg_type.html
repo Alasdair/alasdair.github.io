@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>riscv_freg_type</title></head>
+<body>
+<h1>riscv_freg_type.sail (3/3) 100%</h1>
+<code style="display: block">
+/*&nbsp;Definitions&nbsp;for&nbsp;floating&nbsp;point&nbsp;registers&nbsp;(F&nbsp;and&nbsp;D&nbsp;extensions)&nbsp;*/<br>
+<br>
+/*&nbsp;default&nbsp;register&nbsp;type&nbsp;*/<br>
+type&nbsp;fregtype&nbsp;=&nbsp;flenbits<br>
+<br>
+/*&nbsp;default&nbsp;zero&nbsp;register&nbsp;*/<br>
+let&nbsp;zero_freg&nbsp;:&nbsp;fregtype&nbsp;=&nbsp;EXTZ(0x0)<br>
+<br>
+/*&nbsp;default&nbsp;register&nbsp;printer&nbsp;*/<br>
+val&nbsp;FRegStr&nbsp;:&nbsp;fregtype&nbsp;-&gt;&nbsp;string<br>
+function&nbsp;FRegStr(r)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">BitStr(r)</span><br>
+<br>
+/*&nbsp;conversions&nbsp;*/<br>
+<br>
+val&nbsp;fregval_from_freg&nbsp;:&nbsp;fregtype&nbsp;-&gt;&nbsp;flenbits<br>
+function&nbsp;fregval_from_freg(r)&nbsp;=&nbsp;r<br>
+<br>
+val&nbsp;fregval_into_freg&nbsp;:&nbsp;flenbits&nbsp;-&gt;&nbsp;fregtype<br>
+function&nbsp;fregval_into_freg(v)&nbsp;=&nbsp;v<br>
+<br>
+<br>
+/*&nbsp;Rounding&nbsp;Mode<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Rounding&nbsp;modes&nbsp;occur&nbsp;as&nbsp;a&nbsp;3-bit&nbsp;field&nbsp;in&nbsp;F,D&nbsp;instructions,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;also&nbsp;as&nbsp;a&nbsp;3-bit&nbsp;'frm'&nbsp;field&nbsp;in&nbsp;the&nbsp;'fcsr'&nbsp;CSR.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;RISC-V&nbsp;uses&nbsp;the&nbsp;following&nbsp;IEEE-defined&nbsp;rounding&nbsp;modes.<br>
+*/<br>
+<br>
+enum&nbsp;rounding_mode&nbsp;=&nbsp;{RM_RNE,&nbsp;RM_RTZ,&nbsp;RM_RDN,&nbsp;RM_RUP,&nbsp;RM_RMM,&nbsp;RM_DYN}<br>
+<br>
+enum&nbsp;f_madd_op_S&nbsp;=&nbsp;{FMADD_S,&nbsp;FMSUB_S,&nbsp;FNMSUB_S,&nbsp;FNMADD_S}<br>
+<br>
+enum&nbsp;f_bin_rm_op_S&nbsp;=&nbsp;{FADD_S,&nbsp;FSUB_S,&nbsp;FMUL_S,&nbsp;FDIV_S}<br>
+<br>
+enum&nbsp;f_un_rm_op_S&nbsp;=&nbsp;{FSQRT_S,&nbsp;FCVT_W_S,&nbsp;FCVT_WU_S,&nbsp;FCVT_S_W,&nbsp;FCVT_S_WU,&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;RV32&nbsp;and&nbsp;RV64<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FCVT_L_S,&nbsp;FCVT_LU_S,&nbsp;FCVT_S_L,&nbsp;FCVT_S_LU}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;RV64&nbsp;only<br>
+<br>
+enum&nbsp;f_un_op_S&nbsp;=&nbsp;{FCLASS_S,&nbsp;FMV_X_W,&nbsp;FMV_W_X}&nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;RV32&nbsp;and&nbsp;RV64&nbsp;*/<br>
+<br>
+enum&nbsp;f_bin_op_S&nbsp;=&nbsp;{FSGNJ_S,&nbsp;FSGNJN_S,&nbsp;FSGNJX_S,&nbsp;FMIN_S,&nbsp;FMAX_S,&nbsp;FEQ_S,&nbsp;FLT_S,&nbsp;FLE_S}<br>
+<br>
+enum&nbsp;f_madd_op_D&nbsp;=&nbsp;{FMADD_D,&nbsp;FMSUB_D,&nbsp;FNMSUB_D,&nbsp;FNMADD_D}<br>
+<br>
+enum&nbsp;f_bin_rm_op_D&nbsp;=&nbsp;{FADD_D,&nbsp;FSUB_D,&nbsp;FMUL_D,&nbsp;FDIV_D}<br>
+<br>
+enum&nbsp;f_un_rm_op_D&nbsp;=&nbsp;{FSQRT_D,&nbsp;FCVT_W_D,&nbsp;FCVT_WU_D,&nbsp;FCVT_D_W,&nbsp;FCVT_D_WU,&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;RV32&nbsp;and&nbsp;RV64<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FCVT_S_D,&nbsp;FCVT_D_S,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FCVT_L_D,&nbsp;FCVT_LU_D,&nbsp;FCVT_D_L,&nbsp;FCVT_D_LU}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;RV64&nbsp;only<br>
+<br>
+enum&nbsp;f_bin_op_D&nbsp;=&nbsp;{FSGNJ_D,&nbsp;FSGNJN_D,&nbsp;FSGNJX_D,&nbsp;FMIN_D,&nbsp;FMAX_D,&nbsp;FEQ_D,&nbsp;FLT_D,&nbsp;FLE_D}<br>
+<br>
+enum&nbsp;f_un_op_D&nbsp;=&nbsp;{FCLASS_D,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;RV32&nbsp;and&nbsp;RV64&nbsp;*/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FMV_X_D,&nbsp;FMV_D_X}&nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;RV64&nbsp;only&nbsp;*/<br>
+</code>
+</body>
+</html>

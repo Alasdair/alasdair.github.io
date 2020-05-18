@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>riscv_addr_checks_common</title></head>
+<body>
+<h1>riscv_addr_checks_common.sail (0/0) -</h1>
+<code style="display: block">
+/*&nbsp;Extensions&nbsp;may&nbsp;wish&nbsp;to&nbsp;interpose&nbsp;on&nbsp;fetch,&nbsp;control&nbsp;transfer,&nbsp;and&nbsp;data<br>
+&nbsp;*&nbsp;addresses&nbsp;used&nbsp;to&nbsp;access&nbsp;memory&nbsp;and&nbsp;perhaps&nbsp;modify&nbsp;them.&nbsp;&nbsp;This&nbsp;file<br>
+&nbsp;*&nbsp;defines&nbsp;the&nbsp;return&nbsp;values&nbsp;used&nbsp;by&nbsp;functions&nbsp;that&nbsp;perform&nbsp;this&nbsp;interposition.<br>
+&nbsp;*<br>
+&nbsp;*&nbsp;The&nbsp;model&nbsp;defines&nbsp;defaults&nbsp;for&nbsp;these&nbsp;functions&nbsp;in&nbsp;riscv_addr_checks.sail;<br>
+&nbsp;*&nbsp;extensions&nbsp;would&nbsp;need&nbsp;to&nbsp;define&nbsp;their&nbsp;own&nbsp;functions&nbsp;to&nbsp;override&nbsp;them.<br>
+&nbsp;*/<br>
+<br>
+union&nbsp;Ext_FetchAddr_Check&nbsp;('a&nbsp;:&nbsp;Type)&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;Ext_FetchAddr_OK&nbsp;&nbsp;:&nbsp;xlenbits,&nbsp;&nbsp;/*&nbsp;PC&nbsp;value&nbsp;to&nbsp;use&nbsp;for&nbsp;the&nbsp;actual&nbsp;fetch&nbsp;*/<br>
+&nbsp;&nbsp;Ext_FetchAddr_Error&nbsp;:&nbsp;'a<br>
+}<br>
+<br>
+union&nbsp;Ext_ControlAddr_Check&nbsp;('a&nbsp;:&nbsp;Type)&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;Ext_ControlAddr_OK&nbsp;:&nbsp;xlenbits,&nbsp;/*&nbsp;PC&nbsp;value&nbsp;to&nbsp;use&nbsp;for&nbsp;the&nbsp;target&nbsp;of&nbsp;the&nbsp;control&nbsp;operation&nbsp;*/<br>
+&nbsp;&nbsp;Ext_ControlAddr_Error&nbsp;:&nbsp;'a<br>
+}<br>
+<br>
+union&nbsp;Ext_DataAddr_Check&nbsp;('a&nbsp;:&nbsp;Type)&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;Ext_DataAddr_OK&nbsp;:&nbsp;xlenbits,&nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;Address&nbsp;to&nbsp;use&nbsp;for&nbsp;the&nbsp;data&nbsp;access&nbsp;*/<br>
+&nbsp;&nbsp;Ext_DataAddr_Error&nbsp;:&nbsp;'a<br>
+}<br>
+</code>
+</body>
+</html>

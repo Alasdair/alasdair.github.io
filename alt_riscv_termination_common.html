@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>riscv_termination_common</title></head>
+<body>
+<h1>riscv_termination_common.sail (0/0) -</h1>
+<code style="display: block">
+termination_measure&nbsp;n_leading_spaces&nbsp;s&nbsp;=&nbsp;string_length(s)<br>
+val&nbsp;compressed_measure&nbsp;:&nbsp;ast&nbsp;-&gt;&nbsp;int<br>
+function&nbsp;compressed_measure(instr)&nbsp;=<br>
+&nbsp;&nbsp;match&nbsp;instr&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_ADDI4SPN&nbsp;(rdc,nzimm)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_LW&nbsp;(uimm,rsc,rdc)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_LD&nbsp;(uimm,rsc,rdc)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_SW&nbsp;(uimm,rsc1,rsc2)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_SD&nbsp;(uimm,rsc1,rsc2)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_ADDI&nbsp;(nzi,rsd)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_JAL&nbsp;(imm)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_LI&nbsp;(imm,rd)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_ADDI16SP&nbsp;(imm)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_LUI&nbsp;(imm,rd)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_SRLI&nbsp;(shamt,rsd)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_SRAI&nbsp;(shamt,rsd)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_ANDI&nbsp;(imm,rsd)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_SUB&nbsp;(rsd,rs2)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_XOR&nbsp;(rsd,rs2)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_OR&nbsp;(rsd,rs2)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_AND&nbsp;(rsd,rs2)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_SUBW&nbsp;(rsd,rs2)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_ADDW&nbsp;(rsd,rs2)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_J&nbsp;(imm)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_BEQZ&nbsp;(imm,rs)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_BNEZ&nbsp;(imm,rs)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_SLLI&nbsp;(shamt,rsd)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_LWSP&nbsp;(uimm,rd)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_LDSP&nbsp;(uimm,rd)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_SWSP&nbsp;(uimm,rs2)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_SDSP&nbsp;(uimm,rs2)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_JR&nbsp;(rs1)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_JALR&nbsp;(rs1)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_MV&nbsp;(rd,rs2)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_EBREAK&nbsp;(tt)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;C_ADD&nbsp;(rsd,rs2)&nbsp;=&gt;&nbsp;1,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;_&nbsp;=&gt;&nbsp;0<br>
+&nbsp;&nbsp;}<br>
+termination_measure&nbsp;execute(i)&nbsp;=&nbsp;compressed_measure(i)<br>
+</code>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>riscv_ptw</title></head>
+<body>
+<h1>riscv_ptw.sail (5/10) 50%</h1>
+<code style="display: block">
+/*&nbsp;failure&nbsp;modes&nbsp;for&nbsp;address-translation/page-table-walks&nbsp;*/<br>
+<br>
+union&nbsp;PTW_Error&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;PTW_Access&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;unit,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;physical&nbsp;memory&nbsp;access&nbsp;error&nbsp;for&nbsp;a&nbsp;PTE&nbsp;*/<br>
+&nbsp;&nbsp;PTW_Invalid_PTE&nbsp;&nbsp;&nbsp;:&nbsp;unit,<br>
+&nbsp;&nbsp;PTW_No_Permission&nbsp;:&nbsp;unit,<br>
+&nbsp;&nbsp;PTW_Misaligned&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;unit,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;misaligned&nbsp;superpage&nbsp;*/<br>
+&nbsp;&nbsp;PTW_PTE_Update&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;unit,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;PTE&nbsp;update&nbsp;needed&nbsp;but&nbsp;not&nbsp;enabled&nbsp;*/<br>
+&nbsp;&nbsp;PTW_Ext_Error&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;ext_ptw_error&nbsp;&nbsp;/*&nbsp;parameterized&nbsp;for&nbsp;errors&nbsp;from&nbsp;extensions&nbsp;*/<br>
+}<br>
+<br>
+val&nbsp;ptw_error_to_str&nbsp;:&nbsp;PTW_Error&nbsp;-&gt;&nbsp;string<br>
+function&nbsp;ptw_error_to_str(e)&nbsp;=<br>
+&nbsp;&nbsp;match&nbsp;(e)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;PTW_Access()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;&quot;mem-access-error&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;PTW_Invalid_PTE()&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;&quot;invalid-pte&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;PTW_No_Permission()&nbsp;&nbsp;=&gt;&nbsp;&quot;no-permission&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;PTW_Misaligned()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;&quot;misaligned-superpage&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;PTW_PTE_Update()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;&quot;pte-update-needed&quot;,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;PTW_Ext_Error(e)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;&quot;extension-error&quot;<br>
+&nbsp;&nbsp;}<br>
+<br>
+overload&nbsp;to_str&nbsp;=&nbsp;{ptw_error_to_str}<br>
+<br>
+/*&nbsp;conversion&nbsp;of&nbsp;these&nbsp;translation/PTW&nbsp;failures&nbsp;into&nbsp;architectural&nbsp;exceptions&nbsp;*/<br>
+function&nbsp;translationException(a&nbsp;:&nbsp;AccessType(ext_access_type),&nbsp;f&nbsp;:&nbsp;PTW_Error)&nbsp;-&gt;&nbsp;ExceptionType&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+&nbsp;&nbsp;let&nbsp;e&nbsp;:&nbsp;ExceptionType&nbsp;=<br>
+&nbsp;&nbsp;match&nbsp;(a,&nbsp;f)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(_,&nbsp;PTW_Ext_Error(e))&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">E_Extension(ext_translate_exception(e))</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(ReadWrite(Data),&nbsp;PTW_Access())&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">E_SAMO_Access_Fault()</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(ReadWrite(Data),&nbsp;_)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">E_SAMO_Page_Fault()</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(Read(Data),&nbsp;PTW_Access())&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">E_Load_Access_Fault()</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(Read(Data),&nbsp;_)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">E_Load_Page_Fault()</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(Write(Data),&nbsp;PTW_Access())&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">E_SAMO_Access_Fault()</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(Write(Data),&nbsp;_)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">E_SAMO_Page_Fault()</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(Execute(),&nbsp;PTW_Access())&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">E_Fetch_Access_Fault()</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(Execute(),&nbsp;_)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">E_Fetch_Page_Fault()</span><br>
+&nbsp;&nbsp;}&nbsp;in&nbsp;{<br>
+/*&nbsp;&nbsp;print_mem(&quot;translationException(&quot;&nbsp;^&nbsp;a&nbsp;^&nbsp;&quot;,&nbsp;&quot;&nbsp;^&nbsp;f&nbsp;^&nbsp;&quot;)&nbsp;-&gt;&nbsp;&quot;&nbsp;^&nbsp;e);&nbsp;*/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;e<br>
+&nbsp;&nbsp;}<br>
+}</span><br>
+</code>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>riscv_jalr_rmem</title></head>
+<body>
+<h1>riscv_jalr_rmem.sail (0/0) -</h1>
+<code style="display: block">
+/*&nbsp;The&nbsp;definition&nbsp;for&nbsp;the&nbsp;memory&nbsp;model.&nbsp;*/<br>
+<br>
+function&nbsp;clause&nbsp;execute&nbsp;(RISCV_JALR(imm,&nbsp;rs1,&nbsp;rd))&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;/*&nbsp;FIXME:&nbsp;this&nbsp;does&nbsp;not&nbsp;check&nbsp;for&nbsp;a&nbsp;misaligned&nbsp;target&nbsp;address.&nbsp;See&nbsp;riscv_jalr_seq.sail.&nbsp;*/<br>
+&nbsp;&nbsp;/*&nbsp;write&nbsp;rd&nbsp;before&nbsp;anything&nbsp;else&nbsp;to&nbsp;prevent&nbsp;unintended&nbsp;strength&nbsp;*/<br>
+&nbsp;&nbsp;X(rd)&nbsp;=&nbsp;nextPC;&nbsp;/*&nbsp;compatible&nbsp;with&nbsp;JALR,&nbsp;C.JR&nbsp;and&nbsp;C.JALR&nbsp;*/<br>
+&nbsp;&nbsp;let&nbsp;newPC&nbsp;:&nbsp;xlenbits&nbsp;=&nbsp;X(rs1)&nbsp;+&nbsp;EXTS(imm);<br>
+&nbsp;&nbsp;nextPC&nbsp;=&nbsp;[newPC&nbsp;with&nbsp;0&nbsp;=&nbsp;bitzero];&nbsp;&nbsp;/*&nbsp;Clear&nbsp;newPC[0]&nbsp;*/<br>
+&nbsp;&nbsp;RETIRE_SUCCESS<br>
+}<br>
+</code>
+</body>
+</html>

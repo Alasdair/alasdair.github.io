@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>riscv_fdext_control</title></head>
+<body>
+<h1>riscv_fdext_control.sail (9/9) 100%</h1>
+<code style="display: block">
+/*&nbsp;****************************************************************&nbsp;*/<br>
+/*&nbsp;Floating&nbsp;point&nbsp;register&nbsp;file&nbsp;and&nbsp;accessors&nbsp;for&nbsp;F,&nbsp;D&nbsp;extensions&nbsp;&nbsp;&nbsp;*/<br>
+/*&nbsp;Floating&nbsp;point&nbsp;CSR&nbsp;and&nbsp;accessors&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br>
+/*&nbsp;****************************************************************&nbsp;*/<br>
+<br>
+/*&nbsp;Original&nbsp;version&nbsp;written&nbsp;by&nbsp;Rishiyur&nbsp;S.&nbsp;Nikhil,&nbsp;Sept-Oct&nbsp;2019&nbsp;&nbsp;&nbsp;&nbsp;*/<br>
+<br>
+/*&nbsp;****************************************************************&nbsp;*/<br>
+<br>
+/*&nbsp;val&nbsp;clause&nbsp;ext_is_CSR_defined&nbsp;:&nbsp;(csreg,&nbsp;Privilege)&nbsp;-&gt;&nbsp;bool&nbsp;effect&nbsp;{rreg}&nbsp;*/<br>
+<br>
+function&nbsp;clause&nbsp;ext_is_CSR_defined&nbsp;(0x001,&nbsp;_)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">haveFExt()&nbsp;|&nbsp;haveDExt()</span><br>
+function&nbsp;clause&nbsp;ext_is_CSR_defined&nbsp;(0x002,&nbsp;_)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">haveFExt()&nbsp;|&nbsp;haveDExt()</span><br>
+function&nbsp;clause&nbsp;ext_is_CSR_defined&nbsp;(0x003,&nbsp;_)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">haveFExt()&nbsp;|&nbsp;haveDExt()</span><br>
+<br>
+function&nbsp;clause&nbsp;ext_read_CSR&nbsp;(0x001)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">Some&nbsp;(EXTZ&nbsp;(fcsr.FFLAGS()))</span><br>
+function&nbsp;clause&nbsp;ext_read_CSR&nbsp;(0x002)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">Some&nbsp;(EXTZ&nbsp;(fcsr.FRM()))</span><br>
+function&nbsp;clause&nbsp;ext_read_CSR&nbsp;(0x003)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">Some&nbsp;(EXTZ&nbsp;(fcsr.bits()))</span><br>
+<br>
+function&nbsp;clause&nbsp;ext_write_CSR&nbsp;(0x001,&nbsp;value)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{&nbsp;ext_write_fcsr&nbsp;(fcsr.FRM(),&nbsp;value&nbsp;[4..0]);&nbsp;Some(EXTZ(fcsr.FFLAGS()))&nbsp;}</span><br>
+function&nbsp;clause&nbsp;ext_write_CSR&nbsp;(0x002,&nbsp;value)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{&nbsp;ext_write_fcsr&nbsp;(value&nbsp;[2..0],&nbsp;fcsr.FFLAGS());&nbsp;Some(EXTZ(fcsr.FRM()))&nbsp;}</span><br>
+function&nbsp;clause&nbsp;ext_write_CSR&nbsp;(0x003,&nbsp;value)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{&nbsp;ext_write_fcsr&nbsp;(value&nbsp;[7..5],&nbsp;value&nbsp;[4..0]);&nbsp;Some(EXTZ(fcsr.bits()))&nbsp;}</span><br>
+<br>
+/*&nbsp;****************************************************************&nbsp;*/<br>
+</code>
+</body>
+</html>

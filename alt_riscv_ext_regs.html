@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>riscv_ext_regs</title></head>
+<body>
+<h1>riscv_ext_regs.sail (1/1) 100%</h1>
+<code style="display: block">
+/*&nbsp;This&nbsp;file&nbsp;contains&nbsp;register&nbsp;handling&nbsp;functions&nbsp;that&nbsp;can&nbsp;be<br>
+&nbsp;*&nbsp;overridden&nbsp;by&nbsp;extensions.<br>
+&nbsp;*/<br>
+<br>
+val&nbsp;ext_init_regs&nbsp;:&nbsp;unit&nbsp;-&gt;&nbsp;unit&nbsp;effect&nbsp;{wreg}<br>
+function&nbsp;ext_init_regs&nbsp;()&nbsp;=&nbsp;()<br>
+<br>
+/*!<br>
+This&nbsp;function&nbsp;is&nbsp;called&nbsp;after&nbsp;above&nbsp;when&nbsp;running&nbsp;rvfi&nbsp;and&nbsp;allows&nbsp;the&nbsp;model<br>
+to&nbsp;be&nbsp;initialised&nbsp;differently&nbsp;(e.g.&nbsp;CHERI&nbsp;cap&nbsp;regs&nbsp;are&nbsp;initialised<br>
+to&nbsp;omnipotent&nbsp;instead&nbsp;of&nbsp;null).<br>
+&nbsp;*/<br>
+val&nbsp;ext_rvfi_init&nbsp;:&nbsp;unit&nbsp;-&gt;&nbsp;unit&nbsp;effect&nbsp;{rreg,&nbsp;wreg}<br>
+function&nbsp;ext_rvfi_init&nbsp;()&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;x1&nbsp;=&nbsp;x1&nbsp;//&nbsp;to&nbsp;avoid&nbsp;hook&nbsp;being&nbsp;optimized&nbsp;out<br>
+}<br>
+<br>
+<br>
+/*!<br>
+THIS(csrno,&nbsp;priv,&nbsp;isWrite)&nbsp;allows&nbsp;an&nbsp;extension&nbsp;to&nbsp;block&nbsp;access&nbsp;to&nbsp;csrno,<br>
+at&nbsp;Privilege&nbsp;level&nbsp;priv.&nbsp;It&nbsp;should&nbsp;return&nbsp;true&nbsp;if&nbsp;the&nbsp;access&nbsp;is&nbsp;allowed.<br>
+*/<br>
+val&nbsp;ext_check_CSR&nbsp;:&nbsp;(bits(12),&nbsp;Privilege,&nbsp;bool)&nbsp;-&gt;&nbsp;bool<br>
+function&nbsp;ext_check_CSR&nbsp;(csrno,&nbsp;p,&nbsp;isWrite)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">true</span><br>
+<br>
+/*!<br>
+THIS&nbsp;is&nbsp;called&nbsp;if&nbsp;ext_check_CSR&nbsp;returns&nbsp;false.&nbsp;It&nbsp;should<br>
+cause&nbsp;an&nbsp;appropriate&nbsp;RISCV&nbsp;exception.<br>
+&nbsp;*/<br>
+val&nbsp;ext_check_CSR_fail&nbsp;:&nbsp;unit-&gt;unit<br>
+function&nbsp;ext_check_CSR_fail&nbsp;()&nbsp;=&nbsp;()<br>
+</code>
+</body>
+</html>
