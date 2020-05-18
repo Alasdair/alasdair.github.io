@@ -45,7 +45,7 @@ register&nbsp;float_fflags&nbsp;:&nbsp;bits(64)<br>
 <br>
 /*&nbsp;updater&nbsp;to&nbsp;keep&nbsp;the&nbsp;flags&nbsp;in&nbsp;sync&nbsp;with&nbsp;fcsr.fflags&nbsp;*/<br>
 val&nbsp;update_softfloat_fflags&nbsp;:&nbsp;bits(5)&nbsp;-&gt;&nbsp;unit&nbsp;effect&nbsp;{wreg}<br>
-function&nbsp;update_softfloat_fflags(flags)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;update_softfloat_fflags(flags)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;float_fflags&nbsp;=&nbsp;sail_zero_extend(flags,&nbsp;64);<br>
 }</span><br>
 <br>
@@ -54,56 +54,56 @@ function&nbsp;update_softfloat_fflags(flags)&nbsp;=&nbsp;<span style="background
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f32Add&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f32add&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f32_add&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f32_add&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_S,&nbsp;bits_S)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f32Add&nbsp;:&nbsp;(bits_rm,&nbsp;bits_S,&nbsp;bits_S)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_S)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f32Add&nbsp;(rm,&nbsp;v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f32Add&nbsp;(rm,&nbsp;v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f32Add(rm,&nbsp;v1,&nbsp;v2);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result[31&nbsp;..&nbsp;0])<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f32Sub&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f32sub&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f32_sub&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f32_sub&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_S,&nbsp;bits_S)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f32Sub&nbsp;:&nbsp;(bits_rm,&nbsp;bits_S,&nbsp;bits_S)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_S)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f32Sub&nbsp;(rm,&nbsp;v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f32Sub&nbsp;(rm,&nbsp;v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f32Sub(rm,&nbsp;v1,&nbsp;v2);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result[31&nbsp;..&nbsp;0])<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f32Mul&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f32mul&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f32_mul&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f32_mul&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_S,&nbsp;bits_S)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f32Mul&nbsp;:&nbsp;(bits_rm,&nbsp;bits_S,&nbsp;bits_S)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_S)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f32Mul&nbsp;(rm,&nbsp;v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f32Mul&nbsp;(rm,&nbsp;v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f32Mul(rm,&nbsp;v1,&nbsp;v2);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result[31&nbsp;..&nbsp;0])<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f32Div&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f32div&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f32_div&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f32_div&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_S,&nbsp;bits_S)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f32Div&nbsp;:&nbsp;(bits_rm,&nbsp;bits_S,&nbsp;bits_S)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_S)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f32Div&nbsp;(rm,&nbsp;v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f32Div&nbsp;(rm,&nbsp;v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f32Div(rm,&nbsp;v1,&nbsp;v2);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result[31&nbsp;..&nbsp;0])<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f64Add&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f64add&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f64_add&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f64_add&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_D,&nbsp;bits_D)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f64Add&nbsp;:&nbsp;(bits_rm,&nbsp;bits_D,&nbsp;bits_D)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_D)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f64Add&nbsp;(rm,&nbsp;v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f64Add&nbsp;(rm,&nbsp;v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f64Add(rm,&nbsp;v1,&nbsp;v2);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result)<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f64Sub&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f64sub&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f64_sub&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f64_sub&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_D,&nbsp;bits_D)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f64Sub&nbsp;:&nbsp;(bits_rm,&nbsp;bits_D,&nbsp;bits_D)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_D)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f64Sub&nbsp;(rm,&nbsp;v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f64Sub&nbsp;(rm,&nbsp;v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f64Sub(rm,&nbsp;v1,&nbsp;v2);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result)<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f64Mul&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f64mul&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f64_mul&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f64_mul&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_D,&nbsp;bits_D)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f64Mul&nbsp;:&nbsp;(bits_rm,&nbsp;bits_D,&nbsp;bits_D)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_D)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f64Mul&nbsp;(rm,&nbsp;v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f64Mul&nbsp;(rm,&nbsp;v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f64Mul(rm,&nbsp;v1,&nbsp;v2);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result)<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f64Div&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f64div&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f64_div&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f64_div&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_D,&nbsp;bits_D)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f64Div&nbsp;:&nbsp;(bits_rm,&nbsp;bits_D,&nbsp;bits_D)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_D)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f64Div&nbsp;(rm,&nbsp;v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f64Div&nbsp;(rm,&nbsp;v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f64Div(rm,&nbsp;v1,&nbsp;v2);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result)<br>
 }</span><br>
@@ -113,14 +113,14 @@ function&nbsp;riscv_f64Div&nbsp;(rm,&nbsp;v1,&nbsp;v2)&nbsp;=&nbsp;<span style="
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f32MulAdd&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f32muladd&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f32_muladd&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f32_muladd&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_S,&nbsp;bits_S,&nbsp;bits_S)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f32MulAdd&nbsp;:&nbsp;(bits_rm,&nbsp;bits_S,&nbsp;bits_S,&nbsp;bits_S)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_S)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f32MulAdd&nbsp;(rm,&nbsp;v1,&nbsp;v2,&nbsp;v3)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f32MulAdd&nbsp;(rm,&nbsp;v1,&nbsp;v2,&nbsp;v3)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f32MulAdd(rm,&nbsp;v1,&nbsp;v2,&nbsp;v3);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result[31&nbsp;..&nbsp;0])<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f64MulAdd&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f64muladd&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f64_muladd&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f64_muladd&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_D,&nbsp;bits_D,&nbsp;bits_D)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f64MulAdd&nbsp;:&nbsp;(bits_rm,&nbsp;bits_D,&nbsp;bits_D,&nbsp;bits_D)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_D)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f64MulAdd&nbsp;(rm,&nbsp;v1,&nbsp;v2,&nbsp;v3)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f64MulAdd&nbsp;(rm,&nbsp;v1,&nbsp;v2,&nbsp;v3)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f64MulAdd(rm,&nbsp;v1,&nbsp;v2,&nbsp;v3);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result)<br>
 }</span><br>
@@ -130,14 +130,14 @@ function&nbsp;riscv_f64MulAdd&nbsp;(rm,&nbsp;v1,&nbsp;v2,&nbsp;v3)&nbsp;=&nbsp;<
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f32Sqrt&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f32sqrt&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f32_sqrt&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f32_sqrt&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_S)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f32Sqrt&nbsp;:&nbsp;(bits_rm,&nbsp;bits_S)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_S)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f32Sqrt&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f32Sqrt&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f32Sqrt(rm,&nbsp;v);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result[31&nbsp;..&nbsp;0])<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f64Sqrt&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f64sqrt&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f64_sqrt&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f64_sqrt&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_D)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f64Sqrt&nbsp;:&nbsp;(bits_rm,&nbsp;bits_D)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_D)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f64Sqrt&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f64Sqrt&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f64Sqrt(rm,&nbsp;v);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result)<br>
 }</span><br>
@@ -147,126 +147,126 @@ function&nbsp;riscv_f64Sqrt&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="backgroun
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f32ToI32&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f32toi32&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f32_to_i32&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f32_to_i32&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_S)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f32ToI32&nbsp;:&nbsp;(bits_rm,&nbsp;bits_S)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_W)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f32ToI32&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f32ToI32&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f32ToI32(rm,&nbsp;v);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result[31&nbsp;..&nbsp;0])<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f32ToUi32&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f32toui32&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f32_to_ui32&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f32_to_ui32&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_S)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f32ToUi32&nbsp;:&nbsp;(bits_rm,&nbsp;bits_S)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_WU)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f32ToUi32&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f32ToUi32&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f32ToUi32(rm,&nbsp;v);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result[31&nbsp;..&nbsp;0])<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_i32ToF32&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_i32tof32&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.i32_to_f32&quot;,&nbsp;lem:&nbsp;&quot;softfloat_i32_to_f32&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_W)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_i32ToF32&nbsp;:&nbsp;(bits_rm,&nbsp;bits_W)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_S)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_i32ToF32&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_i32ToF32&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_i32ToF32(rm,&nbsp;v);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result[31&nbsp;..&nbsp;0])<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_ui32ToF32&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_ui32tof32&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.ui32_to_f32&quot;,&nbsp;lem:&nbsp;&quot;softfloat_ui32_to_f32&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_WU)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_ui32ToF32&nbsp;:&nbsp;(bits_rm,&nbsp;bits_WU)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_S)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_ui32ToF32&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_ui32ToF32&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_ui32ToF32(rm,&nbsp;v);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result[31&nbsp;..&nbsp;0])<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f32ToI64&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f32toi64&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f32_to_i64&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f32_to_i64&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_S)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f32ToI64&nbsp;:&nbsp;(bits_rm,&nbsp;bits_S)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_L)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f32ToI64&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f32ToI64&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f32ToI64(rm,&nbsp;v);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result)<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f32ToUi64&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f32toui64&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f32_to_ui64&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f32_to_ui64&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_S)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f32ToUi64&nbsp;:&nbsp;(bits_rm,&nbsp;bits_S)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_LU)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f32ToUi64&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f32ToUi64&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f32ToUi64(rm,&nbsp;v);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result)<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_i64ToF32&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_i64tof32&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.i64_to_f32&quot;,&nbsp;lem:&nbsp;&quot;softfloat_i64_to_f32&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_L)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_i64ToF32&nbsp;:&nbsp;(bits_rm,&nbsp;bits_L)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_S)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_i64ToF32&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_i64ToF32&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_i64ToF32(rm,&nbsp;v);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result[31&nbsp;..&nbsp;0])<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_ui64ToF32&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_ui64tof32&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.ui64_to_f32&quot;,&nbsp;lem:&nbsp;&quot;softfloat_ui64_to_f32&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_L)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_ui64ToF32&nbsp;:&nbsp;(bits_rm,&nbsp;bits_LU)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_S)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_ui64ToF32&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_ui64ToF32&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_ui64ToF32(rm,&nbsp;v);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result[31&nbsp;..&nbsp;0])<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f64ToI32&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f64toi32&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f64_to_i32&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f64_to_i32&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_D)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f64ToI32&nbsp;:&nbsp;(bits_rm,&nbsp;bits_D)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_W)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f64ToI32&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f64ToI32&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f64ToI32(rm,&nbsp;v);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result[31&nbsp;..&nbsp;0])<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f64ToUi32&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f64toui32&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f64_to_ui32&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f64_to_ui32&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_D)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f64ToUi32&nbsp;:&nbsp;(bits_rm,&nbsp;bits_D)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_WU)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f64ToUi32&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f64ToUi32&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f64ToUi32(rm,&nbsp;v);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result[31&nbsp;..&nbsp;0])<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_i32ToF64&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_i32tof64&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.i32_to_f64&quot;,&nbsp;lem:&nbsp;&quot;softfloat_i32_to_f64&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_W)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_i32ToF64&nbsp;:&nbsp;(bits_rm,&nbsp;bits_W)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_D)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_i32ToF64&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_i32ToF64&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_i32ToF64(rm,&nbsp;v);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result)<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_ui32ToF64&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_ui32tof64&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.ui32_to_f64&quot;,&nbsp;lem:&nbsp;&quot;softfloat_ui32_to_f64&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_WU)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_ui32ToF64&nbsp;:&nbsp;(bits_rm,&nbsp;bits_WU)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_D)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_ui32ToF64&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_ui32ToF64&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_ui32ToF64(rm,&nbsp;v);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result)<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f64ToI64&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f64toi64&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f64_to_i64&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f64_to_i64&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_D)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f64ToI64&nbsp;:&nbsp;(bits_rm,&nbsp;bits_D)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_L)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f64ToI64&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f64ToI64&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f64ToI64(rm,&nbsp;v);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result)<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f64ToUi64&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f64toui64&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f64_to_ui64&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f64_to_ui64&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_D)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f64ToUi64&nbsp;:&nbsp;(bits_rm,&nbsp;bits_D)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_LU)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f64ToUi64&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f64ToUi64&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f64ToUi64(rm,&nbsp;v);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result)<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_i64ToF64&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_i64tof64&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.i64_to_f64&quot;,&nbsp;lem:&nbsp;&quot;softfloat_i64_to_f64&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_L)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_i64ToF64&nbsp;:&nbsp;(bits_rm,&nbsp;bits_L)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_D)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_i64ToF64&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_i64ToF64&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_i64ToF64(rm,&nbsp;v);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result)<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_ui64ToF64&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_ui64tof64&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.ui64_to_f64&quot;,&nbsp;lem:&nbsp;&quot;softfloat_ui64_to_f64&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_LU)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_ui64ToF64&nbsp;:&nbsp;(bits_rm,&nbsp;bits_LU)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_D)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_ui64ToF64&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_ui64ToF64&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_ui64ToF64(rm,&nbsp;v);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result)<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f32ToF64&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f32tof64&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f32_to_f64&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f32_to_f64&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_S)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f32ToF64&nbsp;:&nbsp;(bits_rm,&nbsp;bits_S)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_D)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f32ToF64&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f32ToF64&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f32ToF64(rm,&nbsp;v);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result)<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f64ToF32&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f64tof32&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f64_to_f32&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f64_to_f32&quot;}&nbsp;:&nbsp;(bits_rm,&nbsp;bits_D)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f64ToF32&nbsp;:&nbsp;(bits_rm,&nbsp;bits_D)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_S)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f64ToF32&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f64ToF32&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f64ToF32(rm,&nbsp;v);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result[31&nbsp;..&nbsp;0])<br>
 }</span><br>
@@ -276,42 +276,42 @@ function&nbsp;riscv_f64ToF32&nbsp;(rm,&nbsp;v)&nbsp;=&nbsp;<span style="backgrou
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f32Lt&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f32lt&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f32_lt&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f32_lt&quot;}&nbsp;:&nbsp;(bits_S,&nbsp;bits_S)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f32Lt&nbsp;:&nbsp;(bits_S,&nbsp;bits_S)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_WU)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f32Lt&nbsp;(v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f32Lt&nbsp;(v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f32Lt(v1,&nbsp;v2);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result[31&nbsp;..&nbsp;0])<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f32Le&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f32le&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f32_le&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f32_le&quot;}&nbsp;:&nbsp;(bits_S,&nbsp;bits_S)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f32Le&nbsp;:&nbsp;(bits_S,&nbsp;bits_S)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_WU)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f32Le&nbsp;(v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f32Le&nbsp;(v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f32Le(v1,&nbsp;v2);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result[31&nbsp;..&nbsp;0])<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f32Eq&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f32eq&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f32_eq&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f32_eq&quot;}&nbsp;:&nbsp;(bits_S,&nbsp;bits_S)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f32Eq&nbsp;:&nbsp;(bits_S,&nbsp;bits_S)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_WU)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f32Eq&nbsp;(v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f32Eq&nbsp;(v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f32Eq(v1,&nbsp;v2);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result[31&nbsp;..&nbsp;0])<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f64Lt&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f64lt&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f64_lt&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f64_lt&quot;}&nbsp;:&nbsp;(bits_D,&nbsp;bits_D)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f64Lt&nbsp;:&nbsp;(bits_D,&nbsp;bits_D)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_LU)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f64Lt&nbsp;(v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f64Lt&nbsp;(v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f64Lt(v1,&nbsp;v2);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result)<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f64Le&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f64le&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f64_le&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f64_le&quot;}&nbsp;:&nbsp;(bits_D,&nbsp;bits_D)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f64Le&nbsp;:&nbsp;(bits_D,&nbsp;bits_D)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_LU)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f64Le&nbsp;(v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f64Le&nbsp;(v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f64Le(v1,&nbsp;v2);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result)<br>
 }</span><br>
 <br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extern_f64Eq&nbsp;=&nbsp;{c:&nbsp;&quot;softfloat_f64eq&quot;,&nbsp;ocaml:&nbsp;&quot;Softfloat.f64_eq&quot;,&nbsp;lem:&nbsp;&quot;softfloat_f64_eq&quot;}&nbsp;:&nbsp;(bits_D,&nbsp;bits_D)&nbsp;-&gt;&nbsp;unit<br>
 val&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;riscv_f64Eq&nbsp;:&nbsp;(bits_D,&nbsp;bits_D)&nbsp;-&gt;&nbsp;(bits_fflags,&nbsp;bits_LU)&nbsp;effect&nbsp;{rreg}<br>
-function&nbsp;riscv_f64Eq&nbsp;(v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;riscv_f64Eq&nbsp;(v1,&nbsp;v2)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;extern_f64Eq(v1,&nbsp;v2);<br>
 &nbsp;&nbsp;(float_fflags[4&nbsp;..&nbsp;0],&nbsp;float_result)<br>
 }</span><br>

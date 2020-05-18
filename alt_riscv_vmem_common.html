@@ -83,13 +83,13 @@ type&nbsp;pte64&nbsp;&nbsp;&nbsp;=&nbsp;bits(64)<br>
 <br>
 type&nbsp;asid64&nbsp;=&nbsp;bits(16)<br>
 <br>
-function&nbsp;curAsid64(satp&nbsp;:&nbsp;bits(64))&nbsp;-&gt;&nbsp;asid64&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;curAsid64(satp&nbsp;:&nbsp;bits(64))&nbsp;-&gt;&nbsp;asid64&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;let&nbsp;s&nbsp;=&nbsp;Mk_Satp64(satp);<br>
 &nbsp;&nbsp;s.Asid()<br>
 }</span><br>
 <br>
 /*&nbsp;page&nbsp;table&nbsp;base&nbsp;from&nbsp;satp&nbsp;*/<br>
-function&nbsp;curPTB64(satp&nbsp;:&nbsp;bits(64))&nbsp;-&gt;&nbsp;paddr64&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;curPTB64(satp&nbsp;:&nbsp;bits(64))&nbsp;-&gt;&nbsp;paddr64&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;let&nbsp;s&nbsp;=&nbsp;Mk_Satp64(satp);<br>
 &nbsp;&nbsp;shiftl(EXTZ(s.PPN()),&nbsp;PAGESIZE_BITS)<br>
 }</span><br>

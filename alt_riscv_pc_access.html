@@ -21,12 +21,12 @@ val&nbsp;get_next_pc&nbsp;:&nbsp;unit&nbsp;-&gt;&nbsp;xlenbits&nbsp;effect&nbsp;
 function&nbsp;get_next_pc()&nbsp;=&nbsp;nextPC<br>
 <br>
 val&nbsp;set_next_pc&nbsp;:&nbsp;xlenbits&nbsp;-&gt;&nbsp;unit&nbsp;effect&nbsp;{wreg}<br>
-function&nbsp;set_next_pc(pc)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;set_next_pc(pc)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;nextPC&nbsp;=&nbsp;pc<br>
 }</span><br>
 <br>
 val&nbsp;tick_pc&nbsp;:&nbsp;unit&nbsp;-&gt;&nbsp;unit&nbsp;effect&nbsp;{rreg,&nbsp;wreg}<br>
-function&nbsp;tick_pc()&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;tick_pc()&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;PC&nbsp;=&nbsp;nextPC<br>
 }</span><br>
 </code>

@@ -31,15 +31,15 @@ function&nbsp;ext_translate_exception(e&nbsp;:&nbsp;ext_ptw_error)&nbsp;-&gt;&nb
 <br>
 /*&nbsp;Default&nbsp;conversion&nbsp;of&nbsp;extension&nbsp;exceptions&nbsp;to&nbsp;bits&nbsp;*/<br>
 val&nbsp;ext_exc_type_to_bits&nbsp;:&nbsp;ext_exc_type&nbsp;-&gt;&nbsp;exc_code<br>
-function&nbsp;ext_exc_type_to_bits(e)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">0x18</span>&nbsp;/*&nbsp;First&nbsp;code&nbsp;for&nbsp;a&nbsp;custom&nbsp;extension&nbsp;*/<br>
+function&nbsp;ext_exc_type_to_bits(e)&nbsp;=&nbsp;<span style="background-color: hsl(50, 85%, 80%)">0x18</span>&nbsp;/*&nbsp;First&nbsp;code&nbsp;for&nbsp;a&nbsp;custom&nbsp;extension&nbsp;*/<br>
 <br>
 /*&nbsp;Default&nbsp;conversion&nbsp;of&nbsp;extension&nbsp;exceptions&nbsp;to&nbsp;integers&nbsp;*/<br>
 val&nbsp;num_of_ext_exc_type&nbsp;:&nbsp;ext_exc_type&nbsp;-&gt;&nbsp;{'n,&nbsp;(0&nbsp;&lt;=&nbsp;'n&nbsp;&lt;&nbsp;xlen).&nbsp;int('n)}<br>
-function&nbsp;num_of_ext_exc_type(e)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">24</span>&nbsp;/*&nbsp;First&nbsp;code&nbsp;for&nbsp;a&nbsp;custom&nbsp;extension&nbsp;*/<br>
+function&nbsp;num_of_ext_exc_type(e)&nbsp;=&nbsp;<span style="background-color: hsl(50, 85%, 80%)">24</span>&nbsp;/*&nbsp;First&nbsp;code&nbsp;for&nbsp;a&nbsp;custom&nbsp;extension&nbsp;*/<br>
 <br>
 /*&nbsp;Default&nbsp;conversion&nbsp;of&nbsp;extension&nbsp;exceptions&nbsp;to&nbsp;strings&nbsp;*/<br>
 val&nbsp;ext_exc_type_to_str&nbsp;:&nbsp;ext_exc_type&nbsp;-&gt;&nbsp;string<br>
-function&nbsp;ext_exc_type_to_str(e)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;extension-exception&quot;</span><br>
+function&nbsp;ext_exc_type_to_str(e)&nbsp;=&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;extension-exception&quot;</span><br>
 </code>
 </body>
 </html>

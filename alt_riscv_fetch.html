@@ -10,42 +10,42 @@
 &nbsp;*&nbsp;to&nbsp;check&nbsp;PC&nbsp;validity&nbsp;*before*&nbsp;standard&nbsp;fetch&nbsp;processing&nbsp;checks.<br>
 &nbsp;*/<br>
 <br>
-function&nbsp;isRVC(h&nbsp;:&nbsp;half)&nbsp;-&gt;&nbsp;bool&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">~&nbsp;(h[1&nbsp;..&nbsp;0]&nbsp;==&nbsp;0b11)</span><br>
+function&nbsp;isRVC(h&nbsp;:&nbsp;half)&nbsp;-&gt;&nbsp;bool&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">~&nbsp;(h[1&nbsp;..&nbsp;0]&nbsp;==&nbsp;0b11)</span><br>
 <br>
 val&nbsp;fetch&nbsp;:&nbsp;unit&nbsp;-&gt;&nbsp;FetchResult&nbsp;effect&nbsp;{escape,&nbsp;rmem,&nbsp;rmemt,&nbsp;rreg,&nbsp;wmv,&nbsp;wmvt,&nbsp;wreg}<br>
 function&nbsp;fetch()&nbsp;-&gt;&nbsp;FetchResult&nbsp;=<br>
 &nbsp;&nbsp;/*&nbsp;fetch&nbsp;PC&nbsp;check&nbsp;for&nbsp;extensions:&nbsp;extensions&nbsp;return&nbsp;a&nbsp;transformed&nbsp;PC&nbsp;to&nbsp;fetch,<br>
 &nbsp;&nbsp;&nbsp;*&nbsp;but&nbsp;any&nbsp;exceptions&nbsp;use&nbsp;the&nbsp;untransformed&nbsp;PC.<br>
 &nbsp;&nbsp;&nbsp;*/<br>
-&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">match&nbsp;ext_fetch_check_pc(PC,&nbsp;PC)&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Ext_FetchAddr_Error(e)&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">F_Ext_Error(e)</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Ext_FetchAddr_OK(use_pc)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">{<br>
+&nbsp;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">match&nbsp;ext_fetch_check_pc(PC,&nbsp;PC)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Ext_FetchAddr_Error(e)&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">F_Ext_Error(e)</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Ext_FetchAddr_OK(use_pc)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">{<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;&nbsp;&nbsp;(use_pc[0]&nbsp;!=&nbsp;bitzero&nbsp;|&nbsp;(use_pc[1]&nbsp;!=&nbsp;bitzero&nbsp;&&nbsp;(~&nbsp;(haveRVC()))))<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then&nbsp;<span style="background-color: hsl(0, 85%, 80%)">F_Error(E_Fetch_Addr_Align(),&nbsp;PC)</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;<span style="background-color: hsl(120, 85%, 70%)">match&nbsp;translateAddr(use_pc,&nbsp;Execute())&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TR_Failure(e,&nbsp;_)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 65%)">F_Error(e,&nbsp;PC)</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TR_Address(ppclo,&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 65%)">{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then&nbsp;<span style="background-color: hsl(50, 85%, 80%)">F_Error(E_Fetch_Addr_Align(),&nbsp;PC)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;<span style="background-color: hsl(220, 85%, 70%)">match&nbsp;translateAddr(use_pc,&nbsp;Execute())&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TR_Failure(e,&nbsp;_)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 65%)">F_Error(e,&nbsp;PC)</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TR_Address(ppclo,&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 65%)">{<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;split&nbsp;instruction&nbsp;fetch&nbsp;into&nbsp;16-bit&nbsp;granules&nbsp;to&nbsp;handle&nbsp;RVC,&nbsp;as<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;well&nbsp;as&nbsp;to&nbsp;generate&nbsp;precise&nbsp;fault&nbsp;addresses&nbsp;in&nbsp;any&nbsp;fetch<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;exceptions.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;match&nbsp;mem_read(Execute(),&nbsp;ppclo,&nbsp;2,&nbsp;false,&nbsp;false,&nbsp;false)&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MemException(e)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 60%)">F_Error(e,&nbsp;PC)</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MemValue(ilo)&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 60%)">{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MemException(e)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 60%)">F_Error(e,&nbsp;PC)</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MemValue(ilo)&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 60%)">{<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;&nbsp;&nbsp;isRVC(ilo)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then&nbsp;<span style="background-color: hsl(120, 85%, 55%)">F_RVC(ilo)</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;<span style="background-color: hsl(120, 85%, 55%)">{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then&nbsp;<span style="background-color: hsl(220, 85%, 55%)">F_RVC(ilo)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;<span style="background-color: hsl(220, 85%, 55%)">{<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;fetch&nbsp;PC&nbsp;check&nbsp;for&nbsp;the&nbsp;next&nbsp;instruction&nbsp;granule&nbsp;*/<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PC_hi&nbsp;:&nbsp;xlenbits&nbsp;=&nbsp;PC&nbsp;+&nbsp;2;<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;match&nbsp;ext_fetch_check_pc(PC,&nbsp;PC_hi)&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ext_FetchAddr_Error(e)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">F_Ext_Error(e)</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ext_FetchAddr_OK(use_pc_hi)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 50%)">{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ext_FetchAddr_Error(e)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">F_Ext_Error(e)</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ext_FetchAddr_OK(use_pc_hi)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 50%)">{<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;match&nbsp;translateAddr(use_pc_hi,&nbsp;Execute())&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TR_Failure(e,&nbsp;_)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 45%)">F_Error(e,&nbsp;PC_hi)</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TR_Address(ppchi,&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 45%)">{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TR_Failure(e,&nbsp;_)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 45%)">F_Error(e,&nbsp;PC_hi)</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TR_Address(ppchi,&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 45%)">{<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;match&nbsp;mem_read(Execute(),&nbsp;ppchi,&nbsp;2,&nbsp;false,&nbsp;false,&nbsp;false)&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MemException(e)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">F_Error(e,&nbsp;PC_hi)</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MemValue(ihi)&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 40%)">F_Base(append(ihi,&nbsp;ilo))</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MemException(e)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">F_Error(e,&nbsp;PC_hi)</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MemValue(ihi)&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 40%)">F_Base(append(ihi,&nbsp;ilo))</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>

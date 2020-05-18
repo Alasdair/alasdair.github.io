@@ -15,20 +15,20 @@ bitfield&nbsp;Ustatus&nbsp;:&nbsp;xlenbits&nbsp;=&nbsp;{<br>
 }<br>
 <br>
 /*&nbsp;This&nbsp;is&nbsp;a&nbsp;view,&nbsp;so&nbsp;there&nbsp;is&nbsp;no&nbsp;register&nbsp;defined.&nbsp;*/<br>
-function&nbsp;lower_sstatus(s&nbsp;:&nbsp;Sstatus)&nbsp;-&gt;&nbsp;Ustatus&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{<br>
+function&nbsp;lower_sstatus(s&nbsp;:&nbsp;Sstatus)&nbsp;-&gt;&nbsp;Ustatus&nbsp;=&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{<br>
 &nbsp;&nbsp;let&nbsp;u&nbsp;=&nbsp;Mk_Ustatus(EXTZ(0b0));<br>
 &nbsp;&nbsp;let&nbsp;u&nbsp;=&nbsp;update_UPIE(u,&nbsp;s.UPIE());<br>
 &nbsp;&nbsp;let&nbsp;u&nbsp;=&nbsp;update_UIE(u,&nbsp;s.UIE());<br>
 &nbsp;&nbsp;u<br>
 }</span><br>
 <br>
-function&nbsp;lift_ustatus(s&nbsp;:&nbsp;Sstatus,&nbsp;u&nbsp;:&nbsp;Ustatus)&nbsp;-&gt;&nbsp;Sstatus&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{<br>
+function&nbsp;lift_ustatus(s&nbsp;:&nbsp;Sstatus,&nbsp;u&nbsp;:&nbsp;Ustatus)&nbsp;-&gt;&nbsp;Sstatus&nbsp;=&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{<br>
 &nbsp;&nbsp;let&nbsp;s&nbsp;=&nbsp;update_UPIE(s,&nbsp;u.UPIE());<br>
 &nbsp;&nbsp;let&nbsp;s&nbsp;=&nbsp;update_UIE(s,&nbsp;u.UIE());<br>
 &nbsp;&nbsp;s<br>
 }</span><br>
 <br>
-function&nbsp;legalize_ustatus(m&nbsp;:&nbsp;Mstatus,&nbsp;v&nbsp;:&nbsp;xlenbits)&nbsp;-&gt;&nbsp;Mstatus&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{<br>
+function&nbsp;legalize_ustatus(m&nbsp;:&nbsp;Mstatus,&nbsp;v&nbsp;:&nbsp;xlenbits)&nbsp;-&gt;&nbsp;Mstatus&nbsp;=&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{<br>
 &nbsp;&nbsp;let&nbsp;u&nbsp;=&nbsp;Mk_Ustatus(v);<br>
 &nbsp;&nbsp;let&nbsp;s&nbsp;=&nbsp;lower_mstatus(m);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;lower&nbsp;current&nbsp;mstatus&nbsp;to&nbsp;sstatus<br>
 &nbsp;&nbsp;let&nbsp;s&nbsp;=&nbsp;lift_ustatus(s,&nbsp;u);&nbsp;&nbsp;&nbsp;//&nbsp;get&nbsp;updated&nbsp;sstatus<br>
@@ -43,7 +43,7 @@ bitfield&nbsp;Uinterrupts&nbsp;:&nbsp;xlenbits&nbsp;=&nbsp;{<br>
 }<br>
 <br>
 /*&nbsp;Provides&nbsp;the&nbsp;uip&nbsp;read&nbsp;view&nbsp;of&nbsp;sip&nbsp;(s)&nbsp;as&nbsp;delegated&nbsp;by&nbsp;sideleg&nbsp;(d).&nbsp;*/<br>
-function&nbsp;lower_sip(s&nbsp;:&nbsp;Sinterrupts,&nbsp;d&nbsp;:&nbsp;Sinterrupts)&nbsp;-&gt;&nbsp;Uinterrupts&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{<br>
+function&nbsp;lower_sip(s&nbsp;:&nbsp;Sinterrupts,&nbsp;d&nbsp;:&nbsp;Sinterrupts)&nbsp;-&gt;&nbsp;Uinterrupts&nbsp;=&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{<br>
 &nbsp;&nbsp;let&nbsp;u&nbsp;:&nbsp;Uinterrupts&nbsp;=&nbsp;Mk_Uinterrupts(EXTZ(0b0));<br>
 &nbsp;&nbsp;let&nbsp;u&nbsp;=&nbsp;update_UEI(u,&nbsp;s.UEI()&nbsp;&&nbsp;d.UEI());<br>
 &nbsp;&nbsp;let&nbsp;u&nbsp;=&nbsp;update_UTI(u,&nbsp;s.UTI()&nbsp;&&nbsp;d.UTI());<br>
@@ -52,7 +52,7 @@ function&nbsp;lower_sip(s&nbsp;:&nbsp;Sinterrupts,&nbsp;d&nbsp;:&nbsp;Sinterrupt
 }</span><br>
 <br>
 /*&nbsp;Provides&nbsp;the&nbsp;uie&nbsp;read&nbsp;view&nbsp;of&nbsp;sie&nbsp;as&nbsp;delegated&nbsp;by&nbsp;sideleg.&nbsp;*/<br>
-function&nbsp;lower_sie(s&nbsp;:&nbsp;Sinterrupts,&nbsp;d&nbsp;:&nbsp;Sinterrupts)&nbsp;-&gt;&nbsp;Uinterrupts&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{<br>
+function&nbsp;lower_sie(s&nbsp;:&nbsp;Sinterrupts,&nbsp;d&nbsp;:&nbsp;Sinterrupts)&nbsp;-&gt;&nbsp;Uinterrupts&nbsp;=&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{<br>
 &nbsp;&nbsp;let&nbsp;u&nbsp;:&nbsp;Uinterrupts&nbsp;=&nbsp;Mk_Uinterrupts(EXTZ(0b0));<br>
 &nbsp;&nbsp;let&nbsp;u&nbsp;=&nbsp;update_UEI(u,&nbsp;s.UEI()&nbsp;&&nbsp;d.UEI());<br>
 &nbsp;&nbsp;let&nbsp;u&nbsp;=&nbsp;update_UTI(u,&nbsp;s.UTI()&nbsp;&&nbsp;d.UTI());<br>
@@ -61,26 +61,26 @@ function&nbsp;lower_sie(s&nbsp;:&nbsp;Sinterrupts,&nbsp;d&nbsp;:&nbsp;Sinterrupt
 }</span><br>
 <br>
 /*&nbsp;Returns&nbsp;the&nbsp;new&nbsp;value&nbsp;of&nbsp;sip&nbsp;from&nbsp;the&nbsp;previous&nbsp;sip&nbsp;(o)&nbsp;and&nbsp;the&nbsp;written&nbsp;uip&nbsp;(u)&nbsp;as&nbsp;delegated&nbsp;by&nbsp;sideleg&nbsp;(d).&nbsp;*/<br>
-function&nbsp;lift_uip(o&nbsp;:&nbsp;Sinterrupts,&nbsp;d&nbsp;:&nbsp;Sinterrupts,&nbsp;u&nbsp;:&nbsp;Uinterrupts)&nbsp;-&gt;&nbsp;Sinterrupts&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{<br>
+function&nbsp;lift_uip(o&nbsp;:&nbsp;Sinterrupts,&nbsp;d&nbsp;:&nbsp;Sinterrupts,&nbsp;u&nbsp;:&nbsp;Uinterrupts)&nbsp;-&gt;&nbsp;Sinterrupts&nbsp;=&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{<br>
 &nbsp;&nbsp;let&nbsp;s&nbsp;:&nbsp;Sinterrupts&nbsp;=&nbsp;o;<br>
-&nbsp;&nbsp;let&nbsp;s&nbsp;=&nbsp;if&nbsp;d.USI()&nbsp;==&nbsp;0b1&nbsp;then&nbsp;<span style="background-color: hsl(0, 85%, 75%)">update_USI(s,&nbsp;u.USI())</span>&nbsp;else&nbsp;s;<br>
+&nbsp;&nbsp;let&nbsp;s&nbsp;=&nbsp;if&nbsp;d.USI()&nbsp;==&nbsp;0b1&nbsp;then&nbsp;<span style="background-color: hsl(50, 85%, 75%)">update_USI(s,&nbsp;u.USI())</span>&nbsp;else&nbsp;s;<br>
 &nbsp;&nbsp;s<br>
 }</span><br>
 <br>
-function&nbsp;legalize_uip(s&nbsp;:&nbsp;Sinterrupts,&nbsp;d&nbsp;:&nbsp;Sinterrupts,&nbsp;v&nbsp;:&nbsp;xlenbits)&nbsp;-&gt;&nbsp;Sinterrupts&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{<br>
+function&nbsp;legalize_uip(s&nbsp;:&nbsp;Sinterrupts,&nbsp;d&nbsp;:&nbsp;Sinterrupts,&nbsp;v&nbsp;:&nbsp;xlenbits)&nbsp;-&gt;&nbsp;Sinterrupts&nbsp;=&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{<br>
 &nbsp;&nbsp;lift_uip(s,&nbsp;d,&nbsp;Mk_Uinterrupts(v))<br>
 }</span><br>
 <br>
 /*&nbsp;Returns&nbsp;the&nbsp;new&nbsp;value&nbsp;of&nbsp;sie&nbsp;from&nbsp;the&nbsp;previous&nbsp;sie&nbsp;(o)&nbsp;and&nbsp;the&nbsp;written&nbsp;uie&nbsp;(u)&nbsp;as&nbsp;delegated&nbsp;by&nbsp;sideleg&nbsp;(d).&nbsp;*/<br>
-function&nbsp;lift_uie(o&nbsp;:&nbsp;Sinterrupts,&nbsp;d&nbsp;:&nbsp;Sinterrupts,&nbsp;u&nbsp;:&nbsp;Uinterrupts)&nbsp;-&gt;&nbsp;Sinterrupts&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{<br>
+function&nbsp;lift_uie(o&nbsp;:&nbsp;Sinterrupts,&nbsp;d&nbsp;:&nbsp;Sinterrupts,&nbsp;u&nbsp;:&nbsp;Uinterrupts)&nbsp;-&gt;&nbsp;Sinterrupts&nbsp;=&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{<br>
 &nbsp;&nbsp;let&nbsp;s&nbsp;:&nbsp;Sinterrupts&nbsp;=&nbsp;o;<br>
-&nbsp;&nbsp;let&nbsp;s&nbsp;=&nbsp;if&nbsp;d.UEI()&nbsp;==&nbsp;0b1&nbsp;then&nbsp;<span style="background-color: hsl(0, 85%, 75%)">update_UEI(s,&nbsp;u.UEI())</span>&nbsp;else&nbsp;s;<br>
-&nbsp;&nbsp;let&nbsp;s&nbsp;=&nbsp;if&nbsp;d.UTI()&nbsp;==&nbsp;0b1&nbsp;then&nbsp;<span style="background-color: hsl(0, 85%, 75%)">update_UTI(s,&nbsp;u.UTI())</span>&nbsp;else&nbsp;s;<br>
-&nbsp;&nbsp;let&nbsp;s&nbsp;=&nbsp;if&nbsp;d.USI()&nbsp;==&nbsp;0b1&nbsp;then&nbsp;<span style="background-color: hsl(0, 85%, 75%)">update_USI(s,&nbsp;u.USI())</span>&nbsp;else&nbsp;s;<br>
+&nbsp;&nbsp;let&nbsp;s&nbsp;=&nbsp;if&nbsp;d.UEI()&nbsp;==&nbsp;0b1&nbsp;then&nbsp;<span style="background-color: hsl(50, 85%, 75%)">update_UEI(s,&nbsp;u.UEI())</span>&nbsp;else&nbsp;s;<br>
+&nbsp;&nbsp;let&nbsp;s&nbsp;=&nbsp;if&nbsp;d.UTI()&nbsp;==&nbsp;0b1&nbsp;then&nbsp;<span style="background-color: hsl(50, 85%, 75%)">update_UTI(s,&nbsp;u.UTI())</span>&nbsp;else&nbsp;s;<br>
+&nbsp;&nbsp;let&nbsp;s&nbsp;=&nbsp;if&nbsp;d.USI()&nbsp;==&nbsp;0b1&nbsp;then&nbsp;<span style="background-color: hsl(50, 85%, 75%)">update_USI(s,&nbsp;u.USI())</span>&nbsp;else&nbsp;s;<br>
 &nbsp;&nbsp;s<br>
 }</span><br>
 <br>
-function&nbsp;legalize_uie(s&nbsp;:&nbsp;Sinterrupts,&nbsp;d&nbsp;:&nbsp;Sinterrupts,&nbsp;v&nbsp;:&nbsp;xlenbits)&nbsp;-&gt;&nbsp;Sinterrupts&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{<br>
+function&nbsp;legalize_uie(s&nbsp;:&nbsp;Sinterrupts,&nbsp;d&nbsp;:&nbsp;Sinterrupts,&nbsp;v&nbsp;:&nbsp;xlenbits)&nbsp;-&gt;&nbsp;Sinterrupts&nbsp;=&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{<br>
 &nbsp;&nbsp;lift_uie(s,&nbsp;d,&nbsp;Mk_Uinterrupts(v))<br>
 }</span><br>
 <br>

@@ -35,7 +35,7 @@ function&nbsp;regidx_to_regno&nbsp;b&nbsp;=&nbsp;let&nbsp;'r&nbsp;=&nbsp;unsigne
 <br>
 /*&nbsp;mapping&nbsp;RVC&nbsp;register&nbsp;indices&nbsp;into&nbsp;normal&nbsp;indices&nbsp;*/<br>
 val&nbsp;creg2reg_idx&nbsp;:&nbsp;cregidx&nbsp;-&gt;&nbsp;regidx<br>
-function&nbsp;creg2reg_idx(creg)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">0b01&nbsp;@&nbsp;creg</span><br>
+function&nbsp;creg2reg_idx(creg)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">0b01&nbsp;@&nbsp;creg</span><br>
 <br>
 /*&nbsp;some&nbsp;architecture&nbsp;and&nbsp;ABI&nbsp;relevant&nbsp;register&nbsp;identifiers&nbsp;*/<br>
 let&nbsp;zreg&nbsp;:&nbsp;regidx&nbsp;=&nbsp;0b00000&nbsp;&nbsp;/*&nbsp;x0,&nbsp;zero&nbsp;register&nbsp;&nbsp;*/<br>
@@ -54,11 +54,11 @@ type&nbsp;amo&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;bits(1)&nbsp;&nbsp;/*&nbsp;amo&nbsp;
 enum&nbsp;Architecture&nbsp;=&nbsp;{RV32,&nbsp;RV64,&nbsp;RV128}<br>
 type&nbsp;arch_xlen&nbsp;=&nbsp;bits(2)<br>
 function&nbsp;architecture(a&nbsp;:&nbsp;arch_xlen)&nbsp;-&gt;&nbsp;option(Architecture)&nbsp;=<br>
-&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">match&nbsp;(a)&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;0b01&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">Some(RV32)</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;0b10&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">Some(RV64)</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;0b11&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">Some(RV128)</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;_&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">None()</span><br>
+&nbsp;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">match&nbsp;(a)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b01&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">Some(RV32)</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b10&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">Some(RV64)</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b11&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">Some(RV128)</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;_&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">None()</span><br>
 &nbsp;&nbsp;}</span><br>
 <br>
 function&nbsp;arch_to_bits(a&nbsp;:&nbsp;Architecture)&nbsp;-&gt;&nbsp;arch_xlen&nbsp;=<br>
@@ -75,26 +75,26 @@ enum&nbsp;Privilege&nbsp;&nbsp;=&nbsp;{User,&nbsp;Supervisor,&nbsp;Machine}<br>
 <br>
 val&nbsp;privLevel_to_bits&nbsp;:&nbsp;Privilege&nbsp;-&gt;&nbsp;priv_level<br>
 function&nbsp;privLevel_to_bits&nbsp;(p)&nbsp;=<br>
-&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">match&nbsp;(p)&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;User&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">0b00</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Supervisor&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">0b01</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Machine&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">0b11</span><br>
+&nbsp;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">match&nbsp;(p)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;User&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">0b00</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Supervisor&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">0b01</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Machine&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">0b11</span><br>
 &nbsp;&nbsp;}</span><br>
 <br>
 val&nbsp;privLevel_of_bits&nbsp;:&nbsp;priv_level&nbsp;-&gt;&nbsp;Privilege<br>
 function&nbsp;privLevel_of_bits&nbsp;(p)&nbsp;=<br>
-&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">match&nbsp;(p)&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;0b00&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">User</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;0b01&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">Supervisor</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;0b11&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">Machine</span><br>
+&nbsp;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">match&nbsp;(p)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b00&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">User</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b01&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">Supervisor</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b11&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">Machine</span><br>
 &nbsp;&nbsp;}</span><br>
 <br>
 val&nbsp;privLevel_to_str&nbsp;:&nbsp;Privilege&nbsp;-&gt;&nbsp;string<br>
 function&nbsp;privLevel_to_str&nbsp;(p)&nbsp;=<br>
-&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">match&nbsp;(p)&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;User&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">&quot;U&quot;</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Supervisor&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">&quot;S&quot;</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Machine&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">&quot;M&quot;</span><br>
+&nbsp;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">match&nbsp;(p)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;User&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">&quot;U&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Supervisor&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">&quot;S&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Machine&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">&quot;M&quot;</span><br>
 &nbsp;&nbsp;}</span><br>
 <br>
 overload&nbsp;to_str&nbsp;=&nbsp;{privLevel_to_str}<br>
@@ -130,16 +130,16 @@ enum&nbsp;InterruptType&nbsp;=&nbsp;{<br>
 <br>
 val&nbsp;interruptType_to_bits&nbsp;:&nbsp;InterruptType&nbsp;-&gt;&nbsp;exc_code<br>
 function&nbsp;interruptType_to_bits&nbsp;(i)&nbsp;=<br>
-&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">match&nbsp;(i)&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;I_U_Software&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">0x00</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;I_S_Software&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">0x01</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;I_M_Software&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">0x03</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;I_U_Timer&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">0x04</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;I_S_Timer&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">0x05</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;I_M_Timer&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">0x07</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;I_U_External&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">0x08</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;I_S_External&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">0x09</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;I_M_External&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">0x0b</span><br>
+&nbsp;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">match&nbsp;(i)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;I_U_Software&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">0x00</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;I_S_Software&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">0x01</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;I_M_Software&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">0x03</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;I_U_Timer&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">0x04</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;I_S_Timer&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">0x05</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;I_M_Timer&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">0x07</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;I_U_External&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">0x08</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;I_S_External&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">0x09</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;I_M_External&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">0x0b</span><br>
 &nbsp;&nbsp;}</span><br>
 <br>
 /*&nbsp;architectural&nbsp;exception&nbsp;definitions&nbsp;*/<br>
@@ -168,31 +168,31 @@ union&nbsp;ExceptionType&nbsp;=&nbsp;{<br>
 <br>
 val&nbsp;exceptionType_to_bits&nbsp;:&nbsp;ExceptionType&nbsp;-&gt;&nbsp;exc_code<br>
 function&nbsp;exceptionType_to_bits(e)&nbsp;=<br>
-&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">match&nbsp;(e)&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Fetch_Addr_Align()&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">0x00</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Fetch_Access_Fault()&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">0x01</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Illegal_Instr()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">0x02</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Breakpoint()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">0x03</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Load_Addr_Align()&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">0x04</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Load_Access_Fault()&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">0x05</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_SAMO_Addr_Align()&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">0x06</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_SAMO_Access_Fault()&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">0x07</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_U_EnvCall()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">0x08</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_S_EnvCall()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">0x09</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Reserved_10()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">0x0a</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_M_EnvCall()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">0x0b</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Fetch_Page_Fault()&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">0x0c</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Load_Page_Fault()&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">0x0d</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Reserved_14()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">0x0e</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_SAMO_Page_Fault()&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">0x0f</span>,<br>
+&nbsp;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">match&nbsp;(e)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Fetch_Addr_Align()&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">0x00</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Fetch_Access_Fault()&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">0x01</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Illegal_Instr()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">0x02</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Breakpoint()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">0x03</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Load_Addr_Align()&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">0x04</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Load_Access_Fault()&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">0x05</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_SAMO_Addr_Align()&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">0x06</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_SAMO_Access_Fault()&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">0x07</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_U_EnvCall()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">0x08</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_S_EnvCall()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">0x09</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Reserved_10()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">0x0a</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_M_EnvCall()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">0x0b</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Fetch_Page_Fault()&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">0x0c</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Load_Page_Fault()&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">0x0d</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Reserved_14()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">0x0e</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_SAMO_Page_Fault()&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">0x0f</span>,<br>
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;extensions&nbsp;*/<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Extension(e)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">ext_exc_type_to_bits(e)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Extension(e)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">ext_exc_type_to_bits(e)</span><br>
 &nbsp;&nbsp;}</span><br>
 <br>
 val&nbsp;num_of_ExceptionType&nbsp;:&nbsp;ExceptionType&nbsp;-&gt;&nbsp;{'n,&nbsp;(0&nbsp;&lt;=&nbsp;'n&nbsp;&lt;&nbsp;xlen).&nbsp;int('n)}<br>
 function&nbsp;num_of_ExceptionType(e)&nbsp;=<br>
-&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">match&nbsp;(e)&nbsp;{<br>
+&nbsp;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">match&nbsp;(e)&nbsp;{<br>
 &nbsp;&nbsp;&nbsp;&nbsp;E_Fetch_Addr_Align()&nbsp;&nbsp;&nbsp;=&gt;&nbsp;0,<br>
 &nbsp;&nbsp;&nbsp;&nbsp;E_Fetch_Access_Fault()&nbsp;=&gt;&nbsp;1,<br>
 &nbsp;&nbsp;&nbsp;&nbsp;E_Illegal_Instr()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;2,<br>
@@ -203,40 +203,40 @@ function&nbsp;num_of_ExceptionType(e)&nbsp;=<br>
 &nbsp;&nbsp;&nbsp;&nbsp;E_SAMO_Access_Fault()&nbsp;&nbsp;=&gt;&nbsp;7,<br>
 &nbsp;&nbsp;&nbsp;&nbsp;E_U_EnvCall()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;8,<br>
 &nbsp;&nbsp;&nbsp;&nbsp;E_S_EnvCall()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;9,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Reserved_10()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">10</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_M_EnvCall()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">11</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Fetch_Page_Fault()&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">12</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Load_Page_Fault()&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">13</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Reserved_14()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">14</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_SAMO_Page_Fault()&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">15</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Reserved_10()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">10</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_M_EnvCall()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">11</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Fetch_Page_Fault()&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">12</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Load_Page_Fault()&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">13</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Reserved_14()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">14</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_SAMO_Page_Fault()&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">15</span>,<br>
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;extensions&nbsp;*/<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Extension(e)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">num_of_ext_exc_type(e)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Extension(e)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">num_of_ext_exc_type(e)</span><br>
 <br>
 &nbsp;&nbsp;}</span><br>
 <br>
 val&nbsp;exceptionType_to_str&nbsp;:&nbsp;ExceptionType&nbsp;-&gt;&nbsp;string<br>
 function&nbsp;exceptionType_to_str(e)&nbsp;=<br>
-&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">match&nbsp;(e)&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Fetch_Addr_Align()&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;misaligned-fetch&quot;</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Fetch_Access_Fault()&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">&quot;fetch-access-fault&quot;</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Illegal_Instr()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">&quot;illegal-instruction&quot;</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Breakpoint()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">&quot;breakpoint&quot;</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Load_Addr_Align()&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">&quot;misaligned-load&quot;</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Load_Access_Fault()&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">&quot;load-access-fault&quot;</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_SAMO_Addr_Align()&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">&quot;misaliged-store/amo&quot;</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_SAMO_Access_Fault()&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;store/amo-access-fault&quot;</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_U_EnvCall()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">&quot;u-call&quot;</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_S_EnvCall()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">&quot;s-call&quot;</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Reserved_10()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;reserved-0&quot;</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_M_EnvCall()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">&quot;m-call&quot;</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Fetch_Page_Fault()&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">&quot;fetch-page-fault&quot;</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Load_Page_Fault()&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">&quot;load-page-fault&quot;</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Reserved_14()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;reserved-1&quot;</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_SAMO_Page_Fault()&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">&quot;store/amo-page-fault&quot;</span>,<br>
+&nbsp;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">match&nbsp;(e)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Fetch_Addr_Align()&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;misaligned-fetch&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Fetch_Access_Fault()&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">&quot;fetch-access-fault&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Illegal_Instr()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">&quot;illegal-instruction&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Breakpoint()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">&quot;breakpoint&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Load_Addr_Align()&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">&quot;misaligned-load&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Load_Access_Fault()&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">&quot;load-access-fault&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_SAMO_Addr_Align()&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">&quot;misaliged-store/amo&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_SAMO_Access_Fault()&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;store/amo-access-fault&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_U_EnvCall()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">&quot;u-call&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_S_EnvCall()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">&quot;s-call&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Reserved_10()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;reserved-0&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_M_EnvCall()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">&quot;m-call&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Fetch_Page_Fault()&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">&quot;fetch-page-fault&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Load_Page_Fault()&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">&quot;load-page-fault&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Reserved_14()&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;reserved-1&quot;</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_SAMO_Page_Fault()&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">&quot;store/amo-page-fault&quot;</span>,<br>
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;extensions&nbsp;*/<br>
-&nbsp;&nbsp;&nbsp;&nbsp;E_Extension(e)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">ext_exc_type_to_str(e)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;E_Extension(e)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">ext_exc_type_to_str(e)</span><br>
 &nbsp;&nbsp;}</span><br>
 <br>
 overload&nbsp;to_str&nbsp;=&nbsp;{exceptionType_to_str}<br>
@@ -252,7 +252,7 @@ val&nbsp;not_implemented&nbsp;:&nbsp;forall&nbsp;('a&nbsp;:&nbsp;Type).&nbsp;str
 function&nbsp;not_implemented&nbsp;message&nbsp;=&nbsp;throw(Error_not_implemented(message))<br>
 <br>
 val&nbsp;internal_error&nbsp;:&nbsp;forall&nbsp;('a&nbsp;:&nbsp;Type).&nbsp;string&nbsp;-&gt;&nbsp;'a&nbsp;effect&nbsp;{escape}<br>
-function&nbsp;internal_error(s)&nbsp;=&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{<br>
+function&nbsp;internal_error(s)&nbsp;=&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{<br>
 &nbsp;&nbsp;&nbsp;&nbsp;assert&nbsp;(false,&nbsp;s);<br>
 &nbsp;&nbsp;&nbsp;&nbsp;throw&nbsp;Error_internal_error()<br>
 }</span><br>
@@ -264,10 +264,10 @@ enum&nbsp;TrapVectorMode&nbsp;=&nbsp;{TV_Direct,&nbsp;TV_Vector,&nbsp;TV_Reserve
 <br>
 val&nbsp;trapVectorMode_of_bits&nbsp;:&nbsp;tv_mode&nbsp;-&gt;&nbsp;TrapVectorMode<br>
 function&nbsp;trapVectorMode_of_bits&nbsp;(m)&nbsp;=<br>
-&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">match&nbsp;(m)&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;0b00&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">TV_Direct</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;0b01&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">TV_Vector</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;_&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">TV_Reserved</span><br>
+&nbsp;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">match&nbsp;(m)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b00&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">TV_Direct</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b01&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">TV_Vector</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;_&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">TV_Reserved</span><br>
 &nbsp;&nbsp;}</span><br>
 <br>
 /*&nbsp;extension&nbsp;context&nbsp;status&nbsp;*/<br>
@@ -286,11 +286,11 @@ function&nbsp;extStatus_to_bits(e)&nbsp;=<br>
 <br>
 val&nbsp;extStatus_of_bits&nbsp;:&nbsp;ext_status&nbsp;-&gt;&nbsp;ExtStatus<br>
 function&nbsp;extStatus_of_bits(e)&nbsp;=<br>
-&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">match&nbsp;(e)&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;0b00&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">Off</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;0b01&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">Initial</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;0b10&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">Clean</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;0b11&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">Dirty</span><br>
+&nbsp;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">match&nbsp;(e)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b00&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">Off</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b01&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">Initial</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b10&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">Clean</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0b11&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">Dirty</span><br>
 &nbsp;&nbsp;}</span><br>
 <br>
 /*&nbsp;supervisor-level&nbsp;address&nbsp;translation&nbsp;modes&nbsp;*/<br>
@@ -299,12 +299,12 @@ type&nbsp;satp_mode&nbsp;=&nbsp;bits(4)<br>
 enum&nbsp;SATPMode&nbsp;=&nbsp;{Sbare,&nbsp;Sv32,&nbsp;Sv39,&nbsp;Sv48}<br>
 <br>
 function&nbsp;satp64Mode_of_bits(a&nbsp;:&nbsp;Architecture,&nbsp;m&nbsp;:&nbsp;satp_mode)&nbsp;-&gt;&nbsp;option(SATPMode)&nbsp;=<br>
-&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">match&nbsp;(a,&nbsp;m)&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(_,&nbsp;&nbsp;&nbsp;&nbsp;0x0)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">Some(Sbare)</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(RV32,&nbsp;0x1)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">Some(Sv32)</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(RV64,&nbsp;0x8)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">Some(Sv39)</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(RV64,&nbsp;0x9)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">Some(Sv48)</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(_,&nbsp;_)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">None()</span><br>
+&nbsp;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">match&nbsp;(a,&nbsp;m)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(_,&nbsp;&nbsp;&nbsp;&nbsp;0x0)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">Some(Sbare)</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(RV32,&nbsp;0x1)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">Some(Sv32)</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(RV64,&nbsp;0x8)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">Some(Sv39)</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(RV64,&nbsp;0x9)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">Some(Sv48)</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(_,&nbsp;_)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">None()</span><br>
 &nbsp;&nbsp;}</span><br>
 <br>
 /*&nbsp;CSR&nbsp;access&nbsp;control&nbsp;bits&nbsp;(from&nbsp;CSR&nbsp;addresses)&nbsp;*/<br>
@@ -336,31 +336,31 @@ mapping&nbsp;sep&nbsp;:&nbsp;unit&nbsp;&lt;-&gt;&nbsp;string&nbsp;=&nbsp;{<br>
 }<br>
 <br>
 mapping&nbsp;bool_bits&nbsp;:&nbsp;bool&nbsp;&lt;-&gt;&nbsp;bits(1)&nbsp;=&nbsp;{<br>
-&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">true</span>&nbsp;&nbsp;&nbsp;&lt;-&gt;&nbsp;0b1,<br>
-&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">false</span>&nbsp;&nbsp;&lt;-&gt;&nbsp;0b0<br>
+&nbsp;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">true</span>&nbsp;&nbsp;&nbsp;&lt;-&gt;&nbsp;0b1,<br>
+&nbsp;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">false</span>&nbsp;&nbsp;&lt;-&gt;&nbsp;0b0<br>
 }<br>
 <br>
 mapping&nbsp;bool_not_bits&nbsp;:&nbsp;bool&nbsp;&lt;-&gt;&nbsp;bits(1)&nbsp;=&nbsp;{<br>
-&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">true</span>&nbsp;&nbsp;&nbsp;&lt;-&gt;&nbsp;0b0,<br>
-&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">false</span>&nbsp;&nbsp;&lt;-&gt;&nbsp;0b1<br>
+&nbsp;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">true</span>&nbsp;&nbsp;&nbsp;&lt;-&gt;&nbsp;0b0,<br>
+&nbsp;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">false</span>&nbsp;&nbsp;&lt;-&gt;&nbsp;0b1<br>
 }<br>
 <br>
 mapping&nbsp;size_bits&nbsp;:&nbsp;word_width&nbsp;&lt;-&gt;&nbsp;bits(2)&nbsp;=&nbsp;{<br>
-&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">BYTE</span>&nbsp;&nbsp;&nbsp;&lt;-&gt;&nbsp;0b00,<br>
-&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">HALF</span>&nbsp;&nbsp;&nbsp;&lt;-&gt;&nbsp;0b01,<br>
-&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">WORD</span>&nbsp;&nbsp;&nbsp;&lt;-&gt;&nbsp;0b10,<br>
-&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">DOUBLE</span>&nbsp;&lt;-&gt;&nbsp;0b11<br>
+&nbsp;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">BYTE</span>&nbsp;&nbsp;&nbsp;&lt;-&gt;&nbsp;0b00,<br>
+&nbsp;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">HALF</span>&nbsp;&nbsp;&nbsp;&lt;-&gt;&nbsp;0b01,<br>
+&nbsp;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">WORD</span>&nbsp;&nbsp;&nbsp;&lt;-&gt;&nbsp;0b10,<br>
+&nbsp;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">DOUBLE</span>&nbsp;&lt;-&gt;&nbsp;0b11<br>
 }<br>
 <br>
 mapping&nbsp;size_mnemonic&nbsp;:&nbsp;word_width&nbsp;&lt;-&gt;&nbsp;string&nbsp;=&nbsp;{<br>
-&nbsp;&nbsp;BYTE&nbsp;&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;b&quot;</span>,<br>
-&nbsp;&nbsp;HALF&nbsp;&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;h&quot;</span>,<br>
-&nbsp;&nbsp;WORD&nbsp;&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;w&quot;</span>,<br>
-&nbsp;&nbsp;DOUBLE&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;d&quot;</span><br>
+&nbsp;&nbsp;BYTE&nbsp;&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;b&quot;</span>,<br>
+&nbsp;&nbsp;HALF&nbsp;&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;h&quot;</span>,<br>
+&nbsp;&nbsp;WORD&nbsp;&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;w&quot;</span>,<br>
+&nbsp;&nbsp;DOUBLE&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;d&quot;</span><br>
 }<br>
 <br>
 val&nbsp;word_width_bytes&nbsp;:&nbsp;word_width&nbsp;-&gt;&nbsp;{'s,&nbsp;'s&nbsp;==&nbsp;1&nbsp;|&nbsp;'s&nbsp;==&nbsp;2&nbsp;|&nbsp;'s&nbsp;==&nbsp;4&nbsp;|&nbsp;'s&nbsp;==&nbsp;8&nbsp;.&nbsp;atom('s)}<br>
-function&nbsp;word_width_bytes&nbsp;width&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">match&nbsp;width&nbsp;{<br>
+function&nbsp;word_width_bytes&nbsp;width&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">match&nbsp;width&nbsp;{<br>
 &nbsp;&nbsp;BYTE&nbsp;&nbsp;&nbsp;=&gt;&nbsp;1,<br>
 &nbsp;&nbsp;HALF&nbsp;&nbsp;&nbsp;=&gt;&nbsp;2,<br>
 &nbsp;&nbsp;WORD&nbsp;&nbsp;&nbsp;=&gt;&nbsp;4,<br>

@@ -13,93 +13,93 @@ val&nbsp;csr_name_map&nbsp;:&nbsp;csreg&nbsp;&lt;-&gt;&nbsp;string<br>
 scattered&nbsp;mapping&nbsp;csr_name_map<br>
 <br>
 /*&nbsp;user&nbsp;trap&nbsp;setup&nbsp;*/<br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x000&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;ustatus&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x004&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;uie&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x005&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;utvec&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x000&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;ustatus&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x004&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;uie&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x005&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;utvec&quot;</span><br>
 /*&nbsp;user&nbsp;trap&nbsp;handling&nbsp;*/<br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x040&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;uscratch&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x041&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;uepc&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x042&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;ucause&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x043&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;utval&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x044&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;uip&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x040&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;uscratch&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x041&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;uepc&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x042&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;ucause&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x043&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;utval&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x044&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;uip&quot;</span><br>
 /*&nbsp;user&nbsp;floating-point&nbsp;context&nbsp;*/<br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x001&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;fflags&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x002&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;frm&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x003&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;fcsr&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x001&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;fflags&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x002&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;frm&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x003&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;fcsr&quot;</span><br>
 /*&nbsp;counter/timers&nbsp;*/<br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xC00&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;cycle&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xC01&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;time&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xC02&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;instret&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xC80&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;cycleh&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xC81&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;timeh&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xC82&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;instreth&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xC00&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;cycle&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xC01&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;time&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xC02&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;instret&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xC80&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;cycleh&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xC81&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;timeh&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xC82&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;instreth&quot;</span><br>
 /*&nbsp;TODO:&nbsp;other&nbsp;hpm&nbsp;counters&nbsp;*/<br>
 /*&nbsp;supervisor&nbsp;trap&nbsp;setup&nbsp;*/<br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x100&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;sstatus&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x102&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;sedeleg&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x103&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;sideleg&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x104&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;sie&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x105&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;stvec&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x106&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;scounteren&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x100&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;sstatus&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x102&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;sedeleg&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x103&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;sideleg&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x104&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;sie&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x105&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;stvec&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x106&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;scounteren&quot;</span><br>
 /*&nbsp;supervisor&nbsp;trap&nbsp;handling&nbsp;*/<br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x140&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;sscratch&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x141&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;sepc&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x142&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;scause&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x143&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;stval&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x144&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;sip&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x140&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;sscratch&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x141&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;sepc&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x142&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;scause&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x143&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;stval&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x144&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;sip&quot;</span><br>
 /*&nbsp;supervisor&nbsp;protection&nbsp;and&nbsp;translation&nbsp;*/<br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x180&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;satp&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x180&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;satp&quot;</span><br>
 /*&nbsp;machine&nbsp;information&nbsp;registers&nbsp;*/<br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xF11&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;mvendorid&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xF12&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;marchid&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xF13&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;mimpid&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xF14&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;mhartid&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xF11&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;mvendorid&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xF12&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;marchid&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xF13&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;mimpid&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xF14&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;mhartid&quot;</span><br>
 /*&nbsp;machine&nbsp;trap&nbsp;setup&nbsp;*/<br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x300&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;mstatus&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x301&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;misa&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x302&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;medeleg&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x303&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;mideleg&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x304&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;mie&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x305&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;mtvec&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x306&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;mcounteren&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x300&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;mstatus&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x301&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;misa&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x302&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;medeleg&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x303&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;mideleg&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x304&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;mie&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x305&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;mtvec&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x306&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;mcounteren&quot;</span><br>
 /*&nbsp;machine&nbsp;trap&nbsp;handling&nbsp;*/<br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x340&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;mscratch&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x341&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;mepc&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x342&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;mcause&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x343&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;mtval&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x344&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;mip&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x340&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;mscratch&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x341&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;mepc&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x342&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;mcause&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x343&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;mtval&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x344&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;mip&quot;</span><br>
 /*&nbsp;machine&nbsp;protection&nbsp;and&nbsp;translation&nbsp;*/<br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3A0&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;pmpcfg0&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3A1&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;pmpcfg1&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3A2&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;pmpcfg2&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3A3&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;pmpcfg3&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3B0&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;pmpaddr0&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3B1&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;pmpaddr1&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3B2&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;pmpaddr2&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3B3&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;pmpaddr3&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3B4&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;pmpaddr4&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3B5&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;pmpaddr5&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3B6&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;pmpaddr6&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3B7&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;pmpaddr7&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3B8&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;pmpaddr8&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3B9&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;pmpaddr9&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3BA&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;pmpaddr10&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3BB&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;pmpaddr11&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3BC&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;pmpaddr12&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3BD&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;pmpaddr13&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3BE&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;pmpaddr14&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3BF&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;pmpaddr15&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3A0&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;pmpcfg0&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3A1&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;pmpcfg1&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3A2&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;pmpcfg2&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3A3&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;pmpcfg3&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3B0&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;pmpaddr0&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3B1&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;pmpaddr1&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3B2&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;pmpaddr2&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3B3&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;pmpaddr3&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3B4&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;pmpaddr4&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3B5&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;pmpaddr5&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3B6&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;pmpaddr6&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3B7&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;pmpaddr7&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3B8&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;pmpaddr8&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3B9&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;pmpaddr9&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3BA&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;pmpaddr10&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3BB&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;pmpaddr11&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3BC&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;pmpaddr12&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3BD&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;pmpaddr13&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3BE&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;pmpaddr14&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x3BF&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;pmpaddr15&quot;</span><br>
 /*&nbsp;machine&nbsp;counters/timers&nbsp;*/<br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xB00&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;mcycle&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xB02&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;minstret&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xB80&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;mcycleh&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xB82&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;minstreth&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xB00&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;mcycle&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xB02&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;minstret&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xB80&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;mcycleh&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0xB82&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;minstreth&quot;</span><br>
 /*&nbsp;TODO:&nbsp;other&nbsp;hpm&nbsp;counters&nbsp;and&nbsp;events&nbsp;*/<br>
 /*&nbsp;trigger/debug&nbsp;*/<br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x7a0&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;tselect&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x7a1&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;tdata1&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x7a2&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;tdata2&quot;</span><br>
-mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x7a3&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">&quot;tdata3&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x7a0&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;tselect&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x7a1&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;tdata1&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x7a2&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;tdata2&quot;</span><br>
+mapping&nbsp;clause&nbsp;csr_name_map&nbsp;=&nbsp;0x7a3&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">&quot;tdata3&quot;</span><br>
 <br>
 val&nbsp;csr_name&nbsp;:&nbsp;csreg&nbsp;-&gt;&nbsp;string<br>
 overload&nbsp;to_str&nbsp;=&nbsp;{csr_name}<br>

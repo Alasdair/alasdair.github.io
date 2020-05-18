@@ -17,17 +17,17 @@
 <br>
 /*&nbsp;val&nbsp;clause&nbsp;ext_is_CSR_defined&nbsp;:&nbsp;(csreg,&nbsp;Privilege)&nbsp;-&gt;&nbsp;bool&nbsp;effect&nbsp;{rreg}&nbsp;*/<br>
 <br>
-function&nbsp;clause&nbsp;ext_is_CSR_defined&nbsp;(0x001,&nbsp;_)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">haveFExt()&nbsp;|&nbsp;haveDExt()</span><br>
-function&nbsp;clause&nbsp;ext_is_CSR_defined&nbsp;(0x002,&nbsp;_)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">haveFExt()&nbsp;|&nbsp;haveDExt()</span><br>
-function&nbsp;clause&nbsp;ext_is_CSR_defined&nbsp;(0x003,&nbsp;_)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">haveFExt()&nbsp;|&nbsp;haveDExt()</span><br>
+function&nbsp;clause&nbsp;ext_is_CSR_defined&nbsp;(0x001,&nbsp;_)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">haveFExt()&nbsp;|&nbsp;haveDExt()</span><br>
+function&nbsp;clause&nbsp;ext_is_CSR_defined&nbsp;(0x002,&nbsp;_)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">haveFExt()&nbsp;|&nbsp;haveDExt()</span><br>
+function&nbsp;clause&nbsp;ext_is_CSR_defined&nbsp;(0x003,&nbsp;_)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">haveFExt()&nbsp;|&nbsp;haveDExt()</span><br>
 <br>
-function&nbsp;clause&nbsp;ext_read_CSR&nbsp;(0x001)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">Some&nbsp;(EXTZ&nbsp;(fcsr.FFLAGS()))</span><br>
-function&nbsp;clause&nbsp;ext_read_CSR&nbsp;(0x002)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">Some&nbsp;(EXTZ&nbsp;(fcsr.FRM()))</span><br>
-function&nbsp;clause&nbsp;ext_read_CSR&nbsp;(0x003)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">Some&nbsp;(EXTZ&nbsp;(fcsr.bits()))</span><br>
+function&nbsp;clause&nbsp;ext_read_CSR&nbsp;(0x001)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">Some&nbsp;(EXTZ&nbsp;(fcsr.FFLAGS()))</span><br>
+function&nbsp;clause&nbsp;ext_read_CSR&nbsp;(0x002)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">Some&nbsp;(EXTZ&nbsp;(fcsr.FRM()))</span><br>
+function&nbsp;clause&nbsp;ext_read_CSR&nbsp;(0x003)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">Some&nbsp;(EXTZ&nbsp;(fcsr.bits()))</span><br>
 <br>
-function&nbsp;clause&nbsp;ext_write_CSR&nbsp;(0x001,&nbsp;value)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{&nbsp;ext_write_fcsr&nbsp;(fcsr.FRM(),&nbsp;value&nbsp;[4..0]);&nbsp;Some(EXTZ(fcsr.FFLAGS()))&nbsp;}</span><br>
-function&nbsp;clause&nbsp;ext_write_CSR&nbsp;(0x002,&nbsp;value)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{&nbsp;ext_write_fcsr&nbsp;(value&nbsp;[2..0],&nbsp;fcsr.FFLAGS());&nbsp;Some(EXTZ(fcsr.FRM()))&nbsp;}</span><br>
-function&nbsp;clause&nbsp;ext_write_CSR&nbsp;(0x003,&nbsp;value)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{&nbsp;ext_write_fcsr&nbsp;(value&nbsp;[7..5],&nbsp;value&nbsp;[4..0]);&nbsp;Some(EXTZ(fcsr.bits()))&nbsp;}</span><br>
+function&nbsp;clause&nbsp;ext_write_CSR&nbsp;(0x001,&nbsp;value)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{&nbsp;ext_write_fcsr&nbsp;(fcsr.FRM(),&nbsp;value&nbsp;[4..0]);&nbsp;Some(EXTZ(fcsr.FFLAGS()))&nbsp;}</span><br>
+function&nbsp;clause&nbsp;ext_write_CSR&nbsp;(0x002,&nbsp;value)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{&nbsp;ext_write_fcsr&nbsp;(value&nbsp;[2..0],&nbsp;fcsr.FFLAGS());&nbsp;Some(EXTZ(fcsr.FRM()))&nbsp;}</span><br>
+function&nbsp;clause&nbsp;ext_write_CSR&nbsp;(0x003,&nbsp;value)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{&nbsp;ext_write_fcsr&nbsp;(value&nbsp;[7..5],&nbsp;value&nbsp;[4..0]);&nbsp;Some(EXTZ(fcsr.bits()))&nbsp;}</span><br>
 <br>
 /*&nbsp;****************************************************************&nbsp;*/<br>
 </code>

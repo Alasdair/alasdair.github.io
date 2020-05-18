@@ -13,192 +13,192 @@
 union&nbsp;clause&nbsp;ast&nbsp;=&nbsp;CSR&nbsp;&nbsp;:&nbsp;(bits(12),&nbsp;regidx,&nbsp;regidx,&nbsp;bool,&nbsp;csrop)<br>
 <br>
 mapping&nbsp;encdec_csrop&nbsp;:&nbsp;csrop&nbsp;&lt;-&gt;&nbsp;bits(2)&nbsp;=&nbsp;{<br>
-&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">CSRRW</span>&nbsp;&lt;-&gt;&nbsp;0b01,<br>
-&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">CSRRS</span>&nbsp;&lt;-&gt;&nbsp;0b10,<br>
-&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">CSRRC</span>&nbsp;&lt;-&gt;&nbsp;0b11<br>
+&nbsp;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">CSRRW</span>&nbsp;&lt;-&gt;&nbsp;0b01,<br>
+&nbsp;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">CSRRS</span>&nbsp;&lt;-&gt;&nbsp;0b10,<br>
+&nbsp;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">CSRRC</span>&nbsp;&lt;-&gt;&nbsp;0b11<br>
 }<br>
 <br>
 mapping&nbsp;clause&nbsp;encdec&nbsp;=&nbsp;CSR(csr,&nbsp;rs1,&nbsp;rd,&nbsp;is_imm,&nbsp;op)<br>
 &nbsp;&nbsp;&lt;-&gt;&nbsp;csr&nbsp;@&nbsp;rs1&nbsp;@&nbsp;bool_bits(is_imm)&nbsp;@&nbsp;encdec_csrop(op)&nbsp;@&nbsp;rd&nbsp;@&nbsp;0b1110011<br>
 <br>
-function&nbsp;readCSR&nbsp;csr&nbsp;:&nbsp;csreg&nbsp;-&gt;&nbsp;xlenbits&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;readCSR&nbsp;csr&nbsp;:&nbsp;csreg&nbsp;-&gt;&nbsp;xlenbits&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;let&nbsp;res&nbsp;:&nbsp;xlenbits&nbsp;=<br>
 &nbsp;&nbsp;match&nbsp;(csr,&nbsp;sizeof(xlen))&nbsp;{<br>
 &nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;machine&nbsp;mode&nbsp;*/<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0xF11,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">EXTZ(mvendorid)</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0xF12,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">marchid</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0xF13,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">mimpid</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0xF14,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">mhartid</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x300,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">mstatus.bits()</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x301,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">misa.bits()</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x302,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">medeleg.bits()</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x303,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">mideleg.bits()</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x304,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">mie.bits()</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x305,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">get_mtvec()</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x306,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">EXTZ(mcounteren.bits())</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x320,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">EXTZ(mcountinhibit.bits())</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0xF11,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">EXTZ(mvendorid)</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0xF12,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">marchid</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0xF13,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">mimpid</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0xF14,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">mhartid</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x300,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">mstatus.bits()</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x301,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">misa.bits()</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x302,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">medeleg.bits()</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x303,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">mideleg.bits()</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x304,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">mie.bits()</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x305,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">get_mtvec()</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x306,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">EXTZ(mcounteren.bits())</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x320,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">EXTZ(mcountinhibit.bits())</span>,<br>
 <br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x340,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">mscratch</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x341,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">get_xret_target(Machine)&nbsp;&&nbsp;pc_alignment_mask()</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x342,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">mcause.bits()</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x343,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">mtval</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x344,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">mip.bits()</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x340,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">mscratch</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x341,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">get_xret_target(Machine)&nbsp;&&nbsp;pc_alignment_mask()</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x342,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">mcause.bits()</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x343,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">mtval</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x344,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">mip.bits()</span>,<br>
 <br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3A0,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">pmpReadCfgReg(0)</span>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;pmpcfg0<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3A1,&nbsp;32)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">pmpReadCfgReg(1)</span>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;pmpcfg1<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3A2,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">pmpReadCfgReg(2)</span>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;pmpcfg2<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3A3,&nbsp;32)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">pmpReadCfgReg(3)</span>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;pmpcfg3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3A0,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">pmpReadCfgReg(0)</span>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;pmpcfg0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3A1,&nbsp;32)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">pmpReadCfgReg(1)</span>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;pmpcfg1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3A2,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">pmpReadCfgReg(2)</span>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;pmpcfg2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3A3,&nbsp;32)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">pmpReadCfgReg(3)</span>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;pmpcfg3<br>
 <br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3B0,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">pmpaddr0</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3B1,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">pmpaddr1</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3B2,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">pmpaddr2</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3B3,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">pmpaddr3</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3B4,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">pmpaddr4</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3B5,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">pmpaddr5</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3B6,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">pmpaddr6</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3B7,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">pmpaddr7</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3B8,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">pmpaddr8</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3B9,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">pmpaddr9</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3BA,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">pmpaddr10</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3BB,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">pmpaddr11</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3BC,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">pmpaddr12</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3BD,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">pmpaddr13</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3BE,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">pmpaddr14</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3BF,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">pmpaddr15</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3B0,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">pmpaddr0</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3B1,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">pmpaddr1</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3B2,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">pmpaddr2</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3B3,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">pmpaddr3</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3B4,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">pmpaddr4</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3B5,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">pmpaddr5</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3B6,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">pmpaddr6</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3B7,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">pmpaddr7</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3B8,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">pmpaddr8</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3B9,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">pmpaddr9</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3BA,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">pmpaddr10</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3BB,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">pmpaddr11</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3BC,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">pmpaddr12</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3BD,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">pmpaddr13</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3BE,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">pmpaddr14</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3BF,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">pmpaddr15</span>,<br>
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;machine&nbsp;mode&nbsp;counters&nbsp;*/<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0xB00,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">mcycle[(sizeof(xlen)&nbsp;-&nbsp;1)&nbsp;..&nbsp;0]</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0xB02,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">minstret[(sizeof(xlen)&nbsp;-&nbsp;1)&nbsp;..&nbsp;0]</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0xB80,&nbsp;32)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">mcycle[63&nbsp;..&nbsp;32]</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0xB82,&nbsp;32)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">minstret[63&nbsp;..&nbsp;32]</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0xB00,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">mcycle[(sizeof(xlen)&nbsp;-&nbsp;1)&nbsp;..&nbsp;0]</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0xB02,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">minstret[(sizeof(xlen)&nbsp;-&nbsp;1)&nbsp;..&nbsp;0]</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0xB80,&nbsp;32)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">mcycle[63&nbsp;..&nbsp;32]</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0xB82,&nbsp;32)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">minstret[63&nbsp;..&nbsp;32]</span>,<br>
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;trigger/debug&nbsp;*/<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x7a0,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">~(tselect)</span>,&nbsp;&nbsp;/*&nbsp;this&nbsp;indicates&nbsp;we&nbsp;don't&nbsp;have&nbsp;any&nbsp;trigger&nbsp;support&nbsp;*/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x7a0,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">~(tselect)</span>,&nbsp;&nbsp;/*&nbsp;this&nbsp;indicates&nbsp;we&nbsp;don't&nbsp;have&nbsp;any&nbsp;trigger&nbsp;support&nbsp;*/<br>
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;supervisor&nbsp;mode&nbsp;*/<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x100,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">lower_mstatus(mstatus).bits()</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x102,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">sedeleg.bits()</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x103,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">sideleg.bits()</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x104,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">lower_mie(mie,&nbsp;mideleg).bits()</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x105,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">get_stvec()</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x106,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">EXTZ(scounteren.bits())</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x140,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">sscratch</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x141,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">get_xret_target(Supervisor)&nbsp;&&nbsp;pc_alignment_mask()</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x142,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">scause.bits()</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x143,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">stval</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x144,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">lower_mip(mip,&nbsp;mideleg).bits()</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x180,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">satp</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x100,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">lower_mstatus(mstatus).bits()</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x102,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">sedeleg.bits()</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x103,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">sideleg.bits()</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x104,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">lower_mie(mie,&nbsp;mideleg).bits()</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x105,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">get_stvec()</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x106,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">EXTZ(scounteren.bits())</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x140,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">sscratch</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x141,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">get_xret_target(Supervisor)&nbsp;&&nbsp;pc_alignment_mask()</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x142,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">scause.bits()</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x143,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">stval</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x144,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">lower_mip(mip,&nbsp;mideleg).bits()</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x180,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">satp</span>,<br>
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;user&nbsp;mode&nbsp;counters&nbsp;*/<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0xC00,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">mcycle[(sizeof(xlen)&nbsp;-&nbsp;1)&nbsp;..&nbsp;0]</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0xC01,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">mtime[(sizeof(xlen)&nbsp;-&nbsp;1)&nbsp;..&nbsp;0]</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0xC02,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">minstret[(sizeof(xlen)&nbsp;-&nbsp;1)&nbsp;..&nbsp;0]</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0xC80,&nbsp;32)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">mcycle[63&nbsp;..&nbsp;32]</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0xC81,&nbsp;32)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">mtime[63&nbsp;..&nbsp;32]</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0xC82,&nbsp;32)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">minstret[63&nbsp;..&nbsp;32]</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0xC00,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">mcycle[(sizeof(xlen)&nbsp;-&nbsp;1)&nbsp;..&nbsp;0]</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0xC01,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">mtime[(sizeof(xlen)&nbsp;-&nbsp;1)&nbsp;..&nbsp;0]</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0xC02,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">minstret[(sizeof(xlen)&nbsp;-&nbsp;1)&nbsp;..&nbsp;0]</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0xC80,&nbsp;32)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">mcycle[63&nbsp;..&nbsp;32]</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0xC81,&nbsp;32)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">mtime[63&nbsp;..&nbsp;32]</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0xC82,&nbsp;32)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">minstret[63&nbsp;..&nbsp;32]</span>,<br>
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;/*&nbsp;check&nbsp;extensions&nbsp;*/<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">match&nbsp;ext_read_CSR(csr)&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Some(res)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 70%)">res</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None()&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;print_bits(&quot;unhandled&nbsp;read&nbsp;to&nbsp;CSR&nbsp;&quot;,&nbsp;csr);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">match&nbsp;ext_read_CSR(csr)&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Some(res)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 70%)">res</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None()&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;print_bits(&quot;unhandled&nbsp;read&nbsp;to&nbsp;CSR&nbsp;&quot;,&nbsp;csr);<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXTZ(0x0)&nbsp;}</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span><br>
 &nbsp;&nbsp;};<br>
 &nbsp;&nbsp;if&nbsp;&nbsp;&nbsp;get_config_print_reg()<br>
-&nbsp;&nbsp;then&nbsp;<span style="background-color: hsl(120, 85%, 75%)">print_reg(&quot;CSR&nbsp;&quot;&nbsp;^&nbsp;to_str(csr)&nbsp;^&nbsp;&quot;&nbsp;-&gt;&nbsp;&quot;&nbsp;^&nbsp;BitStr(res))</span><span style="background-color: hsl(0, 85%, 80%)">&#171;Invisible branch not taken here&#187</span>;<br>
+&nbsp;&nbsp;then&nbsp;<span style="background-color: hsl(220, 85%, 75%)">print_reg(&quot;CSR&nbsp;&quot;&nbsp;^&nbsp;to_str(csr)&nbsp;^&nbsp;&quot;&nbsp;-&gt;&nbsp;&quot;&nbsp;^&nbsp;BitStr(res))</span><span style="background-color: hsl(50, 85%, 80%)">&#171;Invisible branch not taken here&#187</span>;<br>
 &nbsp;&nbsp;res<br>
 }</span><br>
 <br>
-function&nbsp;writeCSR&nbsp;(csr&nbsp;:&nbsp;csreg,&nbsp;value&nbsp;:&nbsp;xlenbits)&nbsp;-&gt;&nbsp;unit&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
+function&nbsp;writeCSR&nbsp;(csr&nbsp;:&nbsp;csreg,&nbsp;value&nbsp;:&nbsp;xlenbits)&nbsp;-&gt;&nbsp;unit&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
 &nbsp;&nbsp;let&nbsp;res&nbsp;:&nbsp;option(xlenbits)&nbsp;=<br>
 &nbsp;&nbsp;match&nbsp;(csr,&nbsp;sizeof(xlen))&nbsp;{<br>
 &nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;machine&nbsp;mode&nbsp;*/<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x300,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">{&nbsp;mstatus&nbsp;=&nbsp;legalize_mstatus(mstatus,&nbsp;value);&nbsp;Some(mstatus.bits())&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x301,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">{&nbsp;misa&nbsp;=&nbsp;legalize_misa(misa,&nbsp;value);&nbsp;Some(misa.bits())&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x302,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">{&nbsp;medeleg&nbsp;=&nbsp;legalize_medeleg(medeleg,&nbsp;value);&nbsp;Some(medeleg.bits())&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x303,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">{&nbsp;mideleg&nbsp;=&nbsp;legalize_mideleg(mideleg,&nbsp;value);&nbsp;Some(mideleg.bits())&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x304,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">{&nbsp;mie&nbsp;=&nbsp;legalize_mie(mie,&nbsp;value);&nbsp;Some(mie.bits())&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x305,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">{&nbsp;Some(set_mtvec(value))&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x306,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;mcounteren&nbsp;=&nbsp;legalize_mcounteren(mcounteren,&nbsp;value);&nbsp;Some(EXTZ(mcounteren.bits()))&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x320,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;mcountinhibit&nbsp;=&nbsp;legalize_mcountinhibit(mcountinhibit,&nbsp;value);&nbsp;Some(EXTZ(mcountinhibit.bits()))&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x340,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">{&nbsp;mscratch&nbsp;=&nbsp;value;&nbsp;Some(mscratch)&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x341,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">{&nbsp;Some(set_xret_target(Machine,&nbsp;value))&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x342,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;mcause-&gt;bits()&nbsp;=&nbsp;value;&nbsp;Some(mcause.bits())&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x343,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;mtval&nbsp;=&nbsp;value;&nbsp;Some(mtval)&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x344,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">{&nbsp;mip&nbsp;=&nbsp;legalize_mip(mip,&nbsp;value);&nbsp;Some(mip.bits())&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x300,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">{&nbsp;mstatus&nbsp;=&nbsp;legalize_mstatus(mstatus,&nbsp;value);&nbsp;Some(mstatus.bits())&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x301,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">{&nbsp;misa&nbsp;=&nbsp;legalize_misa(misa,&nbsp;value);&nbsp;Some(misa.bits())&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x302,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">{&nbsp;medeleg&nbsp;=&nbsp;legalize_medeleg(medeleg,&nbsp;value);&nbsp;Some(medeleg.bits())&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x303,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">{&nbsp;mideleg&nbsp;=&nbsp;legalize_mideleg(mideleg,&nbsp;value);&nbsp;Some(mideleg.bits())&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x304,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">{&nbsp;mie&nbsp;=&nbsp;legalize_mie(mie,&nbsp;value);&nbsp;Some(mie.bits())&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x305,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">{&nbsp;Some(set_mtvec(value))&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x306,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;mcounteren&nbsp;=&nbsp;legalize_mcounteren(mcounteren,&nbsp;value);&nbsp;Some(EXTZ(mcounteren.bits()))&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x320,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;mcountinhibit&nbsp;=&nbsp;legalize_mcountinhibit(mcountinhibit,&nbsp;value);&nbsp;Some(EXTZ(mcountinhibit.bits()))&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x340,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">{&nbsp;mscratch&nbsp;=&nbsp;value;&nbsp;Some(mscratch)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x341,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">{&nbsp;Some(set_xret_target(Machine,&nbsp;value))&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x342,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;mcause-&gt;bits()&nbsp;=&nbsp;value;&nbsp;Some(mcause.bits())&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x343,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;mtval&nbsp;=&nbsp;value;&nbsp;Some(mtval)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x344,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">{&nbsp;mip&nbsp;=&nbsp;legalize_mip(mip,&nbsp;value);&nbsp;Some(mip.bits())&nbsp;}</span>,<br>
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;Note:&nbsp;Some(value)&nbsp;returned&nbsp;below&nbsp;is&nbsp;not&nbsp;the&nbsp;legalized&nbsp;value&nbsp;due&nbsp;to&nbsp;locked&nbsp;entries<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3A0,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">{&nbsp;pmpWriteCfgReg(0,&nbsp;value);&nbsp;Some(pmpReadCfgReg(0))&nbsp;}</span>,&nbsp;&nbsp;//&nbsp;pmpcfg0<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3A1,&nbsp;32)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;pmpWriteCfgReg(1,&nbsp;value);&nbsp;Some(pmpReadCfgReg(1))&nbsp;}</span>,&nbsp;&nbsp;//&nbsp;pmpcfg1<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3A2,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;pmpWriteCfgReg(2,&nbsp;value);&nbsp;Some(pmpReadCfgReg(2))&nbsp;}</span>,&nbsp;&nbsp;//&nbsp;pmpcfg2<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3A3,&nbsp;32)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;pmpWriteCfgReg(3,&nbsp;value);&nbsp;Some(pmpReadCfgReg(3))&nbsp;}</span>,&nbsp;&nbsp;//&nbsp;pmpcfg3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3A0,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">{&nbsp;pmpWriteCfgReg(0,&nbsp;value);&nbsp;Some(pmpReadCfgReg(0))&nbsp;}</span>,&nbsp;&nbsp;//&nbsp;pmpcfg0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3A1,&nbsp;32)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;pmpWriteCfgReg(1,&nbsp;value);&nbsp;Some(pmpReadCfgReg(1))&nbsp;}</span>,&nbsp;&nbsp;//&nbsp;pmpcfg1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3A2,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;pmpWriteCfgReg(2,&nbsp;value);&nbsp;Some(pmpReadCfgReg(2))&nbsp;}</span>,&nbsp;&nbsp;//&nbsp;pmpcfg2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3A3,&nbsp;32)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;pmpWriteCfgReg(3,&nbsp;value);&nbsp;Some(pmpReadCfgReg(3))&nbsp;}</span>,&nbsp;&nbsp;//&nbsp;pmpcfg3<br>
 <br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3B0,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">{&nbsp;pmpaddr0&nbsp;&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp0cfg),&nbsp;&nbsp;pmpTORLocked(pmp1cfg),&nbsp;&nbsp;pmpaddr0,&nbsp;&nbsp;value);&nbsp;Some(pmpaddr0)&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3B1,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;pmpaddr1&nbsp;&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp1cfg),&nbsp;&nbsp;pmpTORLocked(pmp2cfg),&nbsp;&nbsp;pmpaddr1,&nbsp;&nbsp;value);&nbsp;Some(pmpaddr1)&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3B2,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;pmpaddr2&nbsp;&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp2cfg),&nbsp;&nbsp;pmpTORLocked(pmp3cfg),&nbsp;&nbsp;pmpaddr2,&nbsp;&nbsp;value);&nbsp;Some(pmpaddr2)&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3B3,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;pmpaddr3&nbsp;&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp3cfg),&nbsp;&nbsp;pmpTORLocked(pmp4cfg),&nbsp;&nbsp;pmpaddr3,&nbsp;&nbsp;value);&nbsp;Some(pmpaddr3)&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3B4,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;pmpaddr4&nbsp;&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp4cfg),&nbsp;&nbsp;pmpTORLocked(pmp5cfg),&nbsp;&nbsp;pmpaddr4,&nbsp;&nbsp;value);&nbsp;Some(pmpaddr4)&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3B5,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;pmpaddr5&nbsp;&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp5cfg),&nbsp;&nbsp;pmpTORLocked(pmp6cfg),&nbsp;&nbsp;pmpaddr5,&nbsp;&nbsp;value);&nbsp;Some(pmpaddr5)&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3B6,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;pmpaddr6&nbsp;&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp6cfg),&nbsp;&nbsp;pmpTORLocked(pmp7cfg),&nbsp;&nbsp;pmpaddr6,&nbsp;&nbsp;value);&nbsp;Some(pmpaddr6)&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3B7,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;pmpaddr7&nbsp;&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp7cfg),&nbsp;&nbsp;pmpTORLocked(pmp8cfg),&nbsp;&nbsp;pmpaddr7,&nbsp;&nbsp;value);&nbsp;Some(pmpaddr7)&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3B8,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;pmpaddr8&nbsp;&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp8cfg),&nbsp;&nbsp;pmpTORLocked(pmp9cfg),&nbsp;&nbsp;pmpaddr8,&nbsp;&nbsp;value);&nbsp;Some(pmpaddr8)&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3B9,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;pmpaddr9&nbsp;&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp9cfg),&nbsp;&nbsp;pmpTORLocked(pmp10cfg),&nbsp;pmpaddr9,&nbsp;&nbsp;value);&nbsp;Some(pmpaddr9)&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3BA,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;pmpaddr10&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp10cfg),&nbsp;pmpTORLocked(pmp11cfg),&nbsp;pmpaddr10,&nbsp;value);&nbsp;Some(pmpaddr10)&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3BB,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;pmpaddr11&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp11cfg),&nbsp;pmpTORLocked(pmp12cfg),&nbsp;pmpaddr11,&nbsp;value);&nbsp;Some(pmpaddr11)&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3BC,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;pmpaddr12&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp12cfg),&nbsp;pmpTORLocked(pmp13cfg),&nbsp;pmpaddr12,&nbsp;value);&nbsp;Some(pmpaddr12)&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3BD,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;pmpaddr13&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp13cfg),&nbsp;pmpTORLocked(pmp14cfg),&nbsp;pmpaddr13,&nbsp;value);&nbsp;Some(pmpaddr13)&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3BE,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;pmpaddr14&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp14cfg),&nbsp;pmpTORLocked(pmp15cfg),&nbsp;pmpaddr14,&nbsp;value);&nbsp;Some(pmpaddr14)&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x3BF,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;pmpaddr15&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp15cfg),&nbsp;false,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pmpaddr15,&nbsp;value);&nbsp;Some(pmpaddr15)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3B0,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">{&nbsp;pmpaddr0&nbsp;&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp0cfg),&nbsp;&nbsp;pmpTORLocked(pmp1cfg),&nbsp;&nbsp;pmpaddr0,&nbsp;&nbsp;value);&nbsp;Some(pmpaddr0)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3B1,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;pmpaddr1&nbsp;&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp1cfg),&nbsp;&nbsp;pmpTORLocked(pmp2cfg),&nbsp;&nbsp;pmpaddr1,&nbsp;&nbsp;value);&nbsp;Some(pmpaddr1)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3B2,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;pmpaddr2&nbsp;&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp2cfg),&nbsp;&nbsp;pmpTORLocked(pmp3cfg),&nbsp;&nbsp;pmpaddr2,&nbsp;&nbsp;value);&nbsp;Some(pmpaddr2)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3B3,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;pmpaddr3&nbsp;&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp3cfg),&nbsp;&nbsp;pmpTORLocked(pmp4cfg),&nbsp;&nbsp;pmpaddr3,&nbsp;&nbsp;value);&nbsp;Some(pmpaddr3)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3B4,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;pmpaddr4&nbsp;&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp4cfg),&nbsp;&nbsp;pmpTORLocked(pmp5cfg),&nbsp;&nbsp;pmpaddr4,&nbsp;&nbsp;value);&nbsp;Some(pmpaddr4)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3B5,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;pmpaddr5&nbsp;&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp5cfg),&nbsp;&nbsp;pmpTORLocked(pmp6cfg),&nbsp;&nbsp;pmpaddr5,&nbsp;&nbsp;value);&nbsp;Some(pmpaddr5)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3B6,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;pmpaddr6&nbsp;&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp6cfg),&nbsp;&nbsp;pmpTORLocked(pmp7cfg),&nbsp;&nbsp;pmpaddr6,&nbsp;&nbsp;value);&nbsp;Some(pmpaddr6)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3B7,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;pmpaddr7&nbsp;&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp7cfg),&nbsp;&nbsp;pmpTORLocked(pmp8cfg),&nbsp;&nbsp;pmpaddr7,&nbsp;&nbsp;value);&nbsp;Some(pmpaddr7)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3B8,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;pmpaddr8&nbsp;&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp8cfg),&nbsp;&nbsp;pmpTORLocked(pmp9cfg),&nbsp;&nbsp;pmpaddr8,&nbsp;&nbsp;value);&nbsp;Some(pmpaddr8)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3B9,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;pmpaddr9&nbsp;&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp9cfg),&nbsp;&nbsp;pmpTORLocked(pmp10cfg),&nbsp;pmpaddr9,&nbsp;&nbsp;value);&nbsp;Some(pmpaddr9)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3BA,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;pmpaddr10&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp10cfg),&nbsp;pmpTORLocked(pmp11cfg),&nbsp;pmpaddr10,&nbsp;value);&nbsp;Some(pmpaddr10)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3BB,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;pmpaddr11&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp11cfg),&nbsp;pmpTORLocked(pmp12cfg),&nbsp;pmpaddr11,&nbsp;value);&nbsp;Some(pmpaddr11)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3BC,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;pmpaddr12&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp12cfg),&nbsp;pmpTORLocked(pmp13cfg),&nbsp;pmpaddr12,&nbsp;value);&nbsp;Some(pmpaddr12)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3BD,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;pmpaddr13&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp13cfg),&nbsp;pmpTORLocked(pmp14cfg),&nbsp;pmpaddr13,&nbsp;value);&nbsp;Some(pmpaddr13)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3BE,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;pmpaddr14&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp14cfg),&nbsp;pmpTORLocked(pmp15cfg),&nbsp;pmpaddr14,&nbsp;value);&nbsp;Some(pmpaddr14)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x3BF,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;pmpaddr15&nbsp;=&nbsp;pmpWriteAddr(pmpLocked(pmp15cfg),&nbsp;false,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pmpaddr15,&nbsp;value);&nbsp;Some(pmpaddr15)&nbsp;}</span>,<br>
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;machine&nbsp;mode&nbsp;counters&nbsp;*/<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0xB00,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;mcycle[(sizeof(xlen)&nbsp;-&nbsp;1)&nbsp;..&nbsp;0]&nbsp;=&nbsp;value;&nbsp;Some(value)&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0xB02,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;minstret[(sizeof(xlen)&nbsp;-&nbsp;1)&nbsp;..&nbsp;0]&nbsp;=&nbsp;value;&nbsp;minstret_written&nbsp;=&nbsp;true;&nbsp;Some(value)&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0xB80,&nbsp;32)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;mcycle[63&nbsp;..&nbsp;32]&nbsp;=&nbsp;value;&nbsp;Some(value)&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0xB82,&nbsp;32)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;minstret[63&nbsp;..&nbsp;32]&nbsp;=&nbsp;value;&nbsp;minstret_written&nbsp;=&nbsp;true;&nbsp;Some(value)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0xB00,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;mcycle[(sizeof(xlen)&nbsp;-&nbsp;1)&nbsp;..&nbsp;0]&nbsp;=&nbsp;value;&nbsp;Some(value)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0xB02,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;minstret[(sizeof(xlen)&nbsp;-&nbsp;1)&nbsp;..&nbsp;0]&nbsp;=&nbsp;value;&nbsp;minstret_written&nbsp;=&nbsp;true;&nbsp;Some(value)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0xB80,&nbsp;32)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;mcycle[63&nbsp;..&nbsp;32]&nbsp;=&nbsp;value;&nbsp;Some(value)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0xB82,&nbsp;32)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;minstret[63&nbsp;..&nbsp;32]&nbsp;=&nbsp;value;&nbsp;minstret_written&nbsp;=&nbsp;true;&nbsp;Some(value)&nbsp;}</span>,<br>
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;trigger/debug&nbsp;*/<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x7a0,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">{&nbsp;tselect&nbsp;=&nbsp;value;&nbsp;Some(tselect)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x7a0,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">{&nbsp;tselect&nbsp;=&nbsp;value;&nbsp;Some(tselect)&nbsp;}</span>,<br>
 <br>
 &nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;supervisor&nbsp;mode&nbsp;*/<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x100,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">{&nbsp;mstatus&nbsp;=&nbsp;legalize_sstatus(mstatus,&nbsp;value);&nbsp;Some(mstatus.bits())&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x102,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;sedeleg&nbsp;=&nbsp;legalize_sedeleg(sedeleg,&nbsp;value);&nbsp;Some(sedeleg.bits())&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x103,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;sideleg-&gt;bits()&nbsp;=&nbsp;value;&nbsp;Some(sideleg.bits())&nbsp;}</span>,&nbsp;/*&nbsp;TODO:&nbsp;does&nbsp;this&nbsp;need&nbsp;legalization?&nbsp;*/<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x104,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">{&nbsp;mie&nbsp;=&nbsp;legalize_sie(mie,&nbsp;mideleg,&nbsp;value);&nbsp;Some(mie.bits())&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x105,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">{&nbsp;Some(set_stvec(value))&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x106,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;scounteren&nbsp;=&nbsp;legalize_scounteren(scounteren,&nbsp;value);&nbsp;Some(EXTZ(scounteren.bits()))&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x140,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">{&nbsp;sscratch&nbsp;=&nbsp;value;&nbsp;Some(sscratch)&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x141,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">{&nbsp;Some(set_xret_target(Supervisor,&nbsp;value))&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x142,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;scause-&gt;bits()&nbsp;=&nbsp;value;&nbsp;Some(scause.bits())&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x143,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;stval&nbsp;=&nbsp;value;&nbsp;Some(stval)&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x144,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">{&nbsp;mip&nbsp;=&nbsp;legalize_sip(mip,&nbsp;mideleg,&nbsp;value);&nbsp;Some(mip.bits())&nbsp;}</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;(0x180,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">{&nbsp;satp&nbsp;=&nbsp;legalize_satp(cur_Architecture(),&nbsp;satp,&nbsp;value);&nbsp;Some(satp)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x100,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">{&nbsp;mstatus&nbsp;=&nbsp;legalize_sstatus(mstatus,&nbsp;value);&nbsp;Some(mstatus.bits())&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x102,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;sedeleg&nbsp;=&nbsp;legalize_sedeleg(sedeleg,&nbsp;value);&nbsp;Some(sedeleg.bits())&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x103,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;sideleg-&gt;bits()&nbsp;=&nbsp;value;&nbsp;Some(sideleg.bits())&nbsp;}</span>,&nbsp;/*&nbsp;TODO:&nbsp;does&nbsp;this&nbsp;need&nbsp;legalization?&nbsp;*/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x104,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">{&nbsp;mie&nbsp;=&nbsp;legalize_sie(mie,&nbsp;mideleg,&nbsp;value);&nbsp;Some(mie.bits())&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x105,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">{&nbsp;Some(set_stvec(value))&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x106,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;scounteren&nbsp;=&nbsp;legalize_scounteren(scounteren,&nbsp;value);&nbsp;Some(EXTZ(scounteren.bits()))&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x140,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">{&nbsp;sscratch&nbsp;=&nbsp;value;&nbsp;Some(sscratch)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x141,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">{&nbsp;Some(set_xret_target(Supervisor,&nbsp;value))&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x142,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;scause-&gt;bits()&nbsp;=&nbsp;value;&nbsp;Some(scause.bits())&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x143,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;stval&nbsp;=&nbsp;value;&nbsp;Some(stval)&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x144,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">{&nbsp;mip&nbsp;=&nbsp;legalize_sip(mip,&nbsp;mideleg,&nbsp;value);&nbsp;Some(mip.bits())&nbsp;}</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(0x180,&nbsp;&nbsp;_)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">{&nbsp;satp&nbsp;=&nbsp;legalize_satp(cur_Architecture(),&nbsp;satp,&nbsp;value);&nbsp;Some(satp)&nbsp;}</span>,<br>
 <br>
-&nbsp;&nbsp;&nbsp;&nbsp;_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">ext_write_CSR(csr,&nbsp;value)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">ext_write_CSR(csr,&nbsp;value)</span><br>
 &nbsp;&nbsp;};<br>
 &nbsp;&nbsp;match&nbsp;res&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;Some(v)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">if&nbsp;&nbsp;&nbsp;get_config_print_reg()<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then&nbsp;<span style="background-color: hsl(120, 85%, 70%)">print_reg(&quot;CSR&nbsp;&quot;&nbsp;^&nbsp;to_str(csr)&nbsp;^&nbsp;&quot;&nbsp;&lt;-&nbsp;&quot;&nbsp;^&nbsp;BitStr(v)&nbsp;^&nbsp;&quot;&nbsp;(input:&nbsp;&quot;&nbsp;^&nbsp;BitStr(value)&nbsp;^&nbsp;&quot;)&quot;)</span></span><span style="background-color: hsl(0, 85%, 80%)">&#171;Invisible branch not taken here&#187</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;None()&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(0, 85%, 80%)">print_bits(&quot;unhandled&nbsp;write&nbsp;to&nbsp;CSR&nbsp;&quot;,&nbsp;csr)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;Some(v)&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">if&nbsp;&nbsp;&nbsp;get_config_print_reg()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then&nbsp;<span style="background-color: hsl(220, 85%, 70%)">print_reg(&quot;CSR&nbsp;&quot;&nbsp;^&nbsp;to_str(csr)&nbsp;^&nbsp;&quot;&nbsp;&lt;-&nbsp;&quot;&nbsp;^&nbsp;BitStr(v)&nbsp;^&nbsp;&quot;&nbsp;(input:&nbsp;&quot;&nbsp;^&nbsp;BitStr(value)&nbsp;^&nbsp;&quot;)&quot;)</span></span><span style="background-color: hsl(50, 85%, 80%)">&#171;Invisible branch not taken here&#187</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;None()&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(50, 85%, 80%)">print_bits(&quot;unhandled&nbsp;write&nbsp;to&nbsp;CSR&nbsp;&quot;,&nbsp;csr)</span><br>
 &nbsp;&nbsp;}<br>
 }</span><br>
 <br>
-function&nbsp;clause&nbsp;execute&nbsp;CSR(csr,&nbsp;rs1,&nbsp;rd,&nbsp;is_imm,&nbsp;op)&nbsp;=&nbsp;<span style="background-color: hsl(120, 85%, 80%)">{<br>
-&nbsp;&nbsp;let&nbsp;rs1_val&nbsp;:&nbsp;xlenbits&nbsp;=&nbsp;if&nbsp;is_imm&nbsp;then&nbsp;<span style="background-color: hsl(120, 85%, 75%)">EXTZ(rs1)</span>&nbsp;else&nbsp;<span style="background-color: hsl(120, 85%, 75%)">X(rs1)</span>;<br>
+function&nbsp;clause&nbsp;execute&nbsp;CSR(csr,&nbsp;rs1,&nbsp;rd,&nbsp;is_imm,&nbsp;op)&nbsp;=&nbsp;<span style="background-color: hsl(220, 85%, 80%)">{<br>
+&nbsp;&nbsp;let&nbsp;rs1_val&nbsp;:&nbsp;xlenbits&nbsp;=&nbsp;if&nbsp;is_imm&nbsp;then&nbsp;<span style="background-color: hsl(220, 85%, 75%)">EXTZ(rs1)</span>&nbsp;else&nbsp;<span style="background-color: hsl(220, 85%, 75%)">X(rs1)</span>;<br>
 &nbsp;&nbsp;let&nbsp;isWrite&nbsp;:&nbsp;bool&nbsp;=&nbsp;match&nbsp;op&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;CSRRW&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">true</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 75%)">if&nbsp;is_imm&nbsp;then&nbsp;<span style="background-color: hsl(120, 85%, 70%)">unsigned(rs1_val)&nbsp;!=&nbsp;0</span>&nbsp;else&nbsp;<span style="background-color: hsl(120, 85%, 70%)">unsigned(rs1)&nbsp;!=&nbsp;0</span></span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;CSRRW&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">true</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;_&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 75%)">if&nbsp;is_imm&nbsp;then&nbsp;<span style="background-color: hsl(220, 85%, 70%)">unsigned(rs1_val)&nbsp;!=&nbsp;0</span>&nbsp;else&nbsp;<span style="background-color: hsl(220, 85%, 70%)">unsigned(rs1)&nbsp;!=&nbsp;0</span></span><br>
 &nbsp;&nbsp;};<br>
 &nbsp;&nbsp;if&nbsp;~&nbsp;(check_CSR(csr,&nbsp;cur_privilege,&nbsp;isWrite))<br>
-&nbsp;&nbsp;then&nbsp;<span style="background-color: hsl(120, 85%, 75%)">{&nbsp;handle_illegal();&nbsp;RETIRE_FAIL&nbsp;}</span><br>
-&nbsp;&nbsp;else&nbsp;<span style="background-color: hsl(120, 85%, 75%)">if&nbsp;~&nbsp;(ext_check_CSR(csr,&nbsp;cur_privilege,&nbsp;isWrite))<br>
-&nbsp;&nbsp;then&nbsp;<span style="background-color: hsl(0, 85%, 80%)">{&nbsp;ext_check_CSR_fail();&nbsp;RETIRE_FAIL&nbsp;}</span><br>
-&nbsp;&nbsp;else&nbsp;<span style="background-color: hsl(120, 85%, 70%)">{<br>
+&nbsp;&nbsp;then&nbsp;<span style="background-color: hsl(220, 85%, 75%)">{&nbsp;handle_illegal();&nbsp;RETIRE_FAIL&nbsp;}</span><br>
+&nbsp;&nbsp;else&nbsp;<span style="background-color: hsl(220, 85%, 75%)">if&nbsp;~&nbsp;(ext_check_CSR(csr,&nbsp;cur_privilege,&nbsp;isWrite))<br>
+&nbsp;&nbsp;then&nbsp;<span style="background-color: hsl(50, 85%, 80%)">{&nbsp;ext_check_CSR_fail();&nbsp;RETIRE_FAIL&nbsp;}</span><br>
+&nbsp;&nbsp;else&nbsp;<span style="background-color: hsl(220, 85%, 70%)">{<br>
 &nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;csr_val&nbsp;=&nbsp;readCSR(csr);&nbsp;/*&nbsp;could&nbsp;have&nbsp;side-effects,&nbsp;so&nbsp;technically&nbsp;shouldn't&nbsp;perform&nbsp;for&nbsp;CSRW[I]&nbsp;with&nbsp;rd&nbsp;==&nbsp;0&nbsp;*/<br>
-&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;isWrite&nbsp;then&nbsp;<span style="background-color: hsl(120, 85%, 65%)">{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;isWrite&nbsp;then&nbsp;<span style="background-color: hsl(220, 85%, 65%)">{<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;new_val&nbsp;:&nbsp;xlenbits&nbsp;=&nbsp;match&nbsp;op&nbsp;{<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSRRW&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 60%)">rs1_val</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSRRS&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 60%)">csr_val&nbsp;|&nbsp;rs1_val</span>,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSRRC&nbsp;=&gt;&nbsp;<span style="background-color: hsl(120, 85%, 60%)">csr_val&nbsp;&&nbsp;~(rs1_val)</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSRRW&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 60%)">rs1_val</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSRRS&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 60%)">csr_val&nbsp;|&nbsp;rs1_val</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CSRRC&nbsp;=&gt;&nbsp;<span style="background-color: hsl(220, 85%, 60%)">csr_val&nbsp;&&nbsp;~(rs1_val)</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;writeCSR(csr,&nbsp;new_val)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;}</span>;<br>
@@ -213,15 +213,15 @@ mapping&nbsp;maybe_i&nbsp;:&nbsp;bool&nbsp;&lt;-&gt;&nbsp;string&nbsp;=&nbsp;{<b
 }<br>
 <br>
 mapping&nbsp;csr_mnemonic&nbsp;:&nbsp;csrop&nbsp;&lt;-&gt;&nbsp;string&nbsp;=&nbsp;{<br>
-&nbsp;&nbsp;CSRRW&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;csrrw&quot;</span>,<br>
-&nbsp;&nbsp;CSRRS&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;csrrs&quot;</span>,<br>
-&nbsp;&nbsp;CSRRC&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">&quot;csrrc&quot;</span><br>
+&nbsp;&nbsp;CSRRW&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;csrrw&quot;</span>,<br>
+&nbsp;&nbsp;CSRRS&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;csrrs&quot;</span>,<br>
+&nbsp;&nbsp;CSRRC&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">&quot;csrrc&quot;</span><br>
 }<br>
 <br>
 mapping&nbsp;clause&nbsp;assembly&nbsp;=&nbsp;CSR(csr,&nbsp;rs1,&nbsp;rd,&nbsp;true,&nbsp;op)<br>
-&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">csr_mnemonic(op)&nbsp;^&nbsp;&quot;i&quot;&nbsp;^&nbsp;spc()&nbsp;^&nbsp;reg_name(rd)&nbsp;&nbsp;^&nbsp;sep()&nbsp;^&nbsp;csr_name_map(csr)&nbsp;^&nbsp;sep()&nbsp;^&nbsp;hex_bits_5(rs1)</span><br>
+&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">csr_mnemonic(op)&nbsp;^&nbsp;&quot;i&quot;&nbsp;^&nbsp;spc()&nbsp;^&nbsp;reg_name(rd)&nbsp;&nbsp;^&nbsp;sep()&nbsp;^&nbsp;csr_name_map(csr)&nbsp;^&nbsp;sep()&nbsp;^&nbsp;hex_bits_5(rs1)</span><br>
 mapping&nbsp;clause&nbsp;assembly&nbsp;=&nbsp;CSR(csr,&nbsp;rs1,&nbsp;rd,&nbsp;false,&nbsp;op)<br>
-&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(120, 85%, 80%)">csr_mnemonic(op)&nbsp;^&nbsp;spc()&nbsp;^&nbsp;reg_name(rd)&nbsp;^&nbsp;sep()&nbsp;^&nbsp;csr_name_map(csr)&nbsp;^&nbsp;sep()&nbsp;^&nbsp;reg_name(rs1)</span><br>
+&nbsp;&nbsp;&lt;-&gt;&nbsp;<span style="background-color: hsl(220, 85%, 80%)">csr_mnemonic(op)&nbsp;^&nbsp;spc()&nbsp;^&nbsp;reg_name(rd)&nbsp;^&nbsp;sep()&nbsp;^&nbsp;csr_name_map(csr)&nbsp;^&nbsp;sep()&nbsp;^&nbsp;reg_name(rs1)</span><br>
 </code>
 </body>
 </html>
