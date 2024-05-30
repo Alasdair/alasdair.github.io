@@ -1,0 +1,60 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /><span id="L26">26</span><br /><span id="L27">27</span><br /><span id="L28">28</span><br /><span id="L29">29</span><br /><span id="L30">30</span><br /><span id="L31">31</span><br /><span id="L32">32</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-comment">/* accessors for default architectural addresses, for use from within instructions */</span>
+
+<span class="sail-comment">/*!
+  Retrieves the architectural PC value. This is not necessarily the value
+  found in the PC register as extensions may choose to override this function.
+  The value in the PC register is the absolute virtual address of the instruction
+  to fetch.
+ */</span>
+<span class="sail-keyword">val</span> <span class="sail-id">get_arch_pc</span> : <span class="sail-id">unit</span> -&gt; <span class="sail-id">xlenbits</span>
+<span class="sail-keyword">function</span> <span class="sail-id">get_arch_pc</span>() = <a href="../model/riscv_regs.html#L11"><span class="sail-id">PC</span></a>
+
+<span class="sail-keyword">val</span> <span class="sail-id">get_next_pc</span> : <span class="sail-id">unit</span> -&gt; <span class="sail-id">xlenbits</span>
+<span class="sail-keyword">function</span> <span class="sail-id">get_next_pc</span>() = <a href="../model/riscv_regs.html#L12"><span class="sail-id">nextPC</span></a>
+
+<span class="sail-keyword">val</span> <span class="sail-id">set_next_pc</span> : <span class="sail-id">xlenbits</span> -&gt; <span class="sail-id">unit</span>
+<span class="sail-keyword">function</span> <span class="sail-id">set_next_pc</span>(<span class="sail-id">pc</span>) = {
+  <span class="sail-id">sail_branch_announce</span>(<span class="sail-keyword">sizeof</span>(<span class="sail-id">xlen</span>), <span class="sail-id">pc</span>);
+  <a href="../model/riscv_regs.html#L12"><span class="sail-id">nextPC</span></a> = <span class="sail-id">pc</span>
+}
+
+<span class="sail-keyword">val</span> <span class="sail-id">tick_pc</span> : <span class="sail-id">unit</span> -&gt; <span class="sail-id">unit</span>
+<span class="sail-keyword">function</span> <span class="sail-id">tick_pc</span>() = {
+  <a href="../model/riscv_regs.html#L11"><span class="sail-id">PC</span></a> = <a href="../model/riscv_regs.html#L12"><span class="sail-id">nextPC</span></a>
+}
+</pre>
+</div>
+</div>
+</body>
+</html>

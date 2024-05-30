@@ -1,0 +1,94 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /><span id="L26">26</span><br /><span id="L27">27</span><br /><span id="L28">28</span><br /><span id="L29">29</span><br /><span id="L30">30</span><br /><span id="L31">31</span><br /><span id="L32">32</span><br /><span id="L33">33</span><br /><span id="L34">34</span><br /><span id="L35">35</span><br /><span id="L36">36</span><br /><span id="L37">37</span><br /><span id="L38">38</span><br /><span id="L39">39</span><br /><span id="L40">40</span><br /><span id="L41">41</span><br /><span id="L42">42</span><br /><span id="L43">43</span><br /><span id="L44">44</span><br /><span id="L45">45</span><br /><span id="L46">46</span><br /><span id="L47">47</span><br /><span id="L48">48</span><br /><span id="L49">49</span><br /><span id="L50">50</span><br /><span id="L51">51</span><br /><span id="L52">52</span><br /><span id="L53">53</span><br /><span id="L54">54</span><br /><span id="L55">55</span><br /><span id="L56">56</span><br /><span id="L57">57</span><br /><span id="L58">58</span><br /><span id="L59">59</span><br /><span id="L60">60</span><br /><span id="L61">61</span><br /><span id="L62">62</span><br /><span id="L63">63</span><br /><span id="L64">64</span><br /><span id="L65">65</span><br /><span id="L66">66</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-comment">// ****************************************************************
+</span><span class="sail-comment">// PTW exceptions
+</span>
+<span class="sail-comment">// 'ext_ptw' supports (non-standard) extensions to the default addr-translation and PTW.
+</span><span class="sail-comment">// See riscv_types_ext.sail for definitions.
+</span>
+<span class="sail-comment">// Failure modes for address-translation/page-table-walks
+</span><span class="sail-comment">// PRIVATE
+</span><span class="sail-keyword">union</span> <span class="sail-id">PTW_Error</span> = {
+  <span class="sail-id">PTW_Invalid_Addr</span>  : <span class="sail-id">unit</span>,          <span class="sail-comment">// invalid source address
+</span>  <span class="sail-id">PTW_Access</span>        : <span class="sail-id">unit</span>,          <span class="sail-comment">// physical memory access error for a PTE
+</span>  <span class="sail-id">PTW_Invalid_PTE</span>   : <span class="sail-id">unit</span>,
+  <span class="sail-id">PTW_No_Permission</span> : <span class="sail-id">unit</span>,
+  <span class="sail-id">PTW_Misaligned</span>    : <span class="sail-id">unit</span>,          <span class="sail-comment">// misaligned superpage
+</span>  <span class="sail-id">PTW_PTE_Update</span>    : <span class="sail-id">unit</span>,          <span class="sail-comment">// PTE update needed but not enabled
+</span>  <span class="sail-id">PTW_Ext_Error</span>     : <span class="sail-id">ext_ptw_error</span>  <span class="sail-comment">// parameterized for errors from extensions
+</span>}
+
+<span class="sail-comment">// PRIVATE: only 'to_str' overload is public
+</span><span class="sail-keyword">function</span> <span class="sail-id">ptw_error_to_str</span>(<span class="sail-id">e</span> : <span class="sail-id">PTW_Error</span>) -&gt; <span class="sail-id">string</span> = {
+  <span class="sail-keyword">match</span> <span class="sail-id">e</span> {
+    <span class="sail-id">PTW_Invalid_Addr</span>()   =&gt; <span class="sail-string">"invalid-source-addr"</span>,
+    <span class="sail-id">PTW_Access</span>()         =&gt; <span class="sail-string">"mem-access-error"</span>,
+    <span class="sail-id">PTW_Invalid_PTE</span>()    =&gt; <span class="sail-string">"invalid-pte"</span>,
+    <span class="sail-id">PTW_No_Permission</span>()  =&gt; <span class="sail-string">"no-permission"</span>,
+    <span class="sail-id">PTW_Misaligned</span>()     =&gt; <span class="sail-string">"misaligned-superpage"</span>,
+    <span class="sail-id">PTW_PTE_Update</span>()     =&gt; <span class="sail-string">"pte-update-needed"</span>,
+    <span class="sail-id">PTW_Ext_Error</span>(<span class="sail-id">e</span>)     =&gt; <span class="sail-string">"extension-error"</span>
+  }
+}
+
+<span class="sail-comment">// PUBLIC
+</span><span class="sail-keyword">overload</span> <span class="sail-id">to_str</span> = {<span class="sail-id">ptw_error_to_str</span>}
+
+<span class="sail-comment">// hook for (non-standard) extensions to customize errors reported by page-table
+</span><span class="sail-comment">// walks during address translation; it typically works in conjunction
+</span><span class="sail-comment">// with any customization to check_PTE_permission().
+</span>
+<span class="sail-comment">// PRIVATE
+</span><span class="sail-keyword">function</span> <span class="sail-id">ext_get_ptw_error</span>(<span class="sail-id">eptwf</span> : <span class="sail-id">ext_ptw_fail</span>) -&gt; <span class="sail-id">PTW_Error</span> =
+  <span class="sail-id">PTW_No_Permission</span>()
+
+<span class="sail-comment">// Convert translation/PTW failures into architectural exceptions
+</span><span class="sail-keyword">function</span> <span class="sail-id">translationException</span>(<span class="sail-id">a</span> : <span class="sail-id">AccessType</span>(<span class="sail-id">ext_access_type</span>),
+                              <span class="sail-id">f</span> : <span class="sail-id">PTW_Error</span>)
+                             -&gt; <span class="sail-id">ExceptionType</span> = {
+  <span class="sail-keyword">match</span> (<span class="sail-id">a</span>, <span class="sail-id">f</span>) {
+    (_, <span class="sail-id">PTW_Ext_Error</span>(<span class="sail-id">e</span>))        =&gt; <span class="sail-id">E_Extension</span>(<a href="../model/riscv_types_ext.html#L56"><span class="sail-id">ext_translate_exception</span></a>(<span class="sail-id">e</span>)),
+    (<span class="sail-id">ReadWrite</span>(_), <span class="sail-id">PTW_Access</span>()) =&gt; <span class="sail-id">E_SAMO_Access_Fault</span>(),
+    (<span class="sail-id">ReadWrite</span>(_), _)            =&gt; <span class="sail-id">E_SAMO_Page_Fault</span>(),
+    (<span class="sail-id">Read</span>(_), <span class="sail-id">PTW_Access</span>())      =&gt; <span class="sail-id">E_Load_Access_Fault</span>(),
+    (<span class="sail-id">Read</span>(_), _)                 =&gt; <span class="sail-id">E_Load_Page_Fault</span>(),
+    (<span class="sail-id">Write</span>(_), <span class="sail-id">PTW_Access</span>())     =&gt; <span class="sail-id">E_SAMO_Access_Fault</span>(),
+    (<span class="sail-id">Write</span>(_), _)                =&gt; <span class="sail-id">E_SAMO_Page_Fault</span>(),
+    (<span class="sail-id">Execute</span>(), <span class="sail-id">PTW_Access</span>())    =&gt; <span class="sail-id">E_Fetch_Access_Fault</span>(),
+    (<span class="sail-id">Execute</span>(), _)               =&gt; <span class="sail-id">E_Fetch_Page_Fault</span>()
+  }
+}
+</pre>
+</div>
+</div>
+</body>
+</html>

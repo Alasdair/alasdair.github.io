@@ -1,0 +1,115 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /><span id="L26">26</span><br /><span id="L27">27</span><br /><span id="L28">28</span><br /><span id="L29">29</span><br /><span id="L30">30</span><br /><span id="L31">31</span><br /><span id="L32">32</span><br /><span id="L33">33</span><br /><span id="L34">34</span><br /><span id="L35">35</span><br /><span id="L36">36</span><br /><span id="L37">37</span><br /><span id="L38">38</span><br /><span id="L39">39</span><br /><span id="L40">40</span><br /><span id="L41">41</span><br /><span id="L42">42</span><br /><span id="L43">43</span><br /><span id="L44">44</span><br /><span id="L45">45</span><br /><span id="L46">46</span><br /><span id="L47">47</span><br /><span id="L48">48</span><br /><span id="L49">49</span><br /><span id="L50">50</span><br /><span id="L51">51</span><br /><span id="L52">52</span><br /><span id="L53">53</span><br /><span id="L54">54</span><br /><span id="L55">55</span><br /><span id="L56">56</span><br /><span id="L57">57</span><br /><span id="L58">58</span><br /><span id="L59">59</span><br /><span id="L60">60</span><br /><span id="L61">61</span><br /><span id="L62">62</span><br /><span id="L63">63</span><br /><span id="L64">64</span><br /><span id="L65">65</span><br /><span id="L66">66</span><br /><span id="L67">67</span><br /><span id="L68">68</span><br /><span id="L69">69</span><br /><span id="L70">70</span><br /><span id="L71">71</span><br /><span id="L72">72</span><br /><span id="L73">73</span><br /><span id="L74">74</span><br /><span id="L75">75</span><br /><span id="L76">76</span><br /><span id="L77">77</span><br /><span id="L78">78</span><br /><span id="L79">79</span><br /><span id="L80">80</span><br /><span id="L81">81</span><br /><span id="L82">82</span><br /><span id="L83">83</span><br /><span id="L84">84</span><br /><span id="L85">85</span><br /><span id="L86">86</span><br /><span id="L87">87</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-comment">/* default exception model */</span>
+
+<span class="sail-keyword">type</span> <span class="sail-id">ext_exception</span> = <span class="sail-id">unit</span>
+
+<span class="sail-comment">/* Is XRET from given mode permitted by extension? */</span>
+<span class="sail-keyword">function</span> <span class="sail-id">ext_check_xret_priv</span> (<span class="sail-id">p</span> : <span class="sail-id">Privilege</span>) : <span class="sail-id">Privilege</span> -&gt; <span class="sail-id">bool</span> = <span class="sail-literal">true</span>
+<span class="sail-comment">/* Called if above check fails */</span>
+<span class="sail-keyword">function</span> <span class="sail-id">ext_fail_xret_priv</span> () : <span class="sail-id">unit</span> -&gt; <span class="sail-id">unit</span> = ()
+
+<span class="sail-keyword">function</span> <span class="sail-id">handle_trap_extension</span>(<span class="sail-id">p</span> : <span class="sail-id">Privilege</span>, <span class="sail-id">pc</span> : <span class="sail-id">xlenbits</span>, <span class="sail-id">u</span> : <span class="sail-id">option</span>(<span class="sail-id">unit</span>)) -&gt; <span class="sail-id">unit</span> = ()
+
+<span class="sail-comment">/* used for traps and ECALL */</span>
+<span class="sail-keyword">function</span> <span class="sail-id">prepare_trap_vector</span>(<span class="sail-id">p</span> : <span class="sail-id">Privilege</span>, <span class="sail-id">cause</span> : <span class="sail-id">Mcause</span>) -&gt; <span class="sail-id">xlenbits</span> = {
+  <span class="sail-keyword">let</span> <span class="sail-id">tvec</span> : <span class="sail-id">Mtvec</span> = <span class="sail-keyword">match</span> <span class="sail-id">p</span> {
+                       <span class="sail-id">Machine</span>    =&gt; <a href="../model/riscv_sys_regs.html#L404"><span class="sail-id">mtvec</span></a>,
+                       <span class="sail-id">Supervisor</span> =&gt; <a href="../model/riscv_sys_regs.html#L682"><span class="sail-id">stvec</span></a>,
+                       <span class="sail-id">User</span>       =&gt; <a href="../model/riscv_next_regs.html#L87"><span class="sail-id">utvec</span></a>
+                     };
+  <span class="sail-keyword">match</span> <a href="../model/riscv_sys_regs.html#L422"><span class="sail-id">tvec_addr</span></a>(<span class="sail-id">tvec</span>, <span class="sail-id">cause</span>) {
+    <span class="sail-id">Some</span>(<span class="sail-id">epc</span>) =&gt; <span class="sail-id">epc</span>,
+    <span class="sail-id">None</span>()    =&gt; <a href="../model/riscv_types.html#L84"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"Invalid tvec mode"</span>)
+  }
+}
+
+<span class="sail-comment">/* xRET handling involves three functions:
+ *
+ * get_xret_target:     used to read the value of the xret target  (no control flow transfer)
+ * set_xret_target:     used to write a value of the xret target   (no control flow transfer)
+ * prepare_xret_target: used to get the value for control transfer to the xret target
+ */</span>
+
+<span class="sail-keyword">val</span> <span class="sail-id">get_xret_target</span> : <span class="sail-id">Privilege</span> -&gt; <span class="sail-id">xlenbits</span>
+<span class="sail-keyword">function</span> <span class="sail-id">get_xret_target</span>(<span class="sail-id">p</span>) =
+  <span class="sail-keyword">match</span> <span class="sail-id">p</span> {
+    <span class="sail-id">Machine</span>    =&gt; <a href="../model/riscv_sys_regs.html#L435"><span class="sail-id">mepc</span></a>,
+    <span class="sail-id">Supervisor</span> =&gt; <a href="../model/riscv_sys_regs.html#L684"><span class="sail-id">sepc</span></a>,
+    <span class="sail-id">User</span>       =&gt; <a href="../model/riscv_next_regs.html#L89"><span class="sail-id">uepc</span></a>
+  }
+
+<span class="sail-keyword">val</span> <span class="sail-id">set_xret_target</span> : (<span class="sail-id">Privilege</span>, <span class="sail-id">xlenbits</span>) -&gt; <span class="sail-id">xlenbits</span>
+<span class="sail-keyword">function</span> <span class="sail-id">set_xret_target</span>(<span class="sail-id">p</span>, <span class="sail-id">value</span>) = {
+  <span class="sail-keyword">let</span> <span class="sail-id">target</span> = <a href="../model/riscv_sys_regs.html#L440"><span class="sail-id">legalize_xepc</span></a>(<span class="sail-id">value</span>);
+  <span class="sail-keyword">match</span> <span class="sail-id">p</span> {
+    <span class="sail-id">Machine</span>    =&gt; <a href="../model/riscv_sys_regs.html#L435"><span class="sail-id">mepc</span></a> = <span class="sail-id">target</span>,
+    <span class="sail-id">Supervisor</span> =&gt; <a href="../model/riscv_sys_regs.html#L684"><span class="sail-id">sepc</span></a> = <span class="sail-id">target</span>,
+    <span class="sail-id">User</span>       =&gt; <a href="../model/riscv_next_regs.html#L89"><span class="sail-id">uepc</span></a> = <span class="sail-id">target</span>
+  };
+  <span class="sail-id">target</span>
+}
+
+<span class="sail-keyword">val</span> <span class="sail-id">prepare_xret_target</span> : (<span class="sail-id">Privilege</span>) -&gt; <span class="sail-id">xlenbits</span>
+<span class="sail-keyword">function</span> <span class="sail-id">prepare_xret_target</span>(<span class="sail-id">p</span>) =
+  <a href="../model/riscv_sys_exceptions.html#L41"><span class="sail-id">get_xret_target</span></a>(<span class="sail-id">p</span>)
+
+<span class="sail-comment">/* other trap-related CSRs */</span>
+
+<span class="sail-keyword">function</span> <span class="sail-id">get_mtvec</span>() -&gt; <span class="sail-id">xlenbits</span> =
+  <a href="../model/riscv_sys_regs.html#L404"><span class="sail-id">mtvec</span></a>.<span class="sail-id">bits</span>
+
+<span class="sail-keyword">function</span> <span class="sail-id">get_stvec</span>() -&gt; <span class="sail-id">xlenbits</span> =
+  <a href="../model/riscv_sys_regs.html#L682"><span class="sail-id">stvec</span></a>.<span class="sail-id">bits</span>
+
+<span class="sail-keyword">function</span> <span class="sail-id">get_utvec</span>() -&gt; <span class="sail-id">xlenbits</span> =
+  <a href="../model/riscv_next_regs.html#L87"><span class="sail-id">utvec</span></a>.<span class="sail-id">bits</span>
+
+<span class="sail-keyword">function</span> <span class="sail-id">set_mtvec</span>(<span class="sail-id">value</span> : <span class="sail-id">xlenbits</span>) -&gt; <span class="sail-id">xlenbits</span> = {
+  <a href="../model/riscv_sys_regs.html#L404"><span class="sail-id">mtvec</span></a> = <a href="../model/riscv_sys_regs.html#L406"><span class="sail-id">legalize_tvec</span></a>(<a href="../model/riscv_sys_regs.html#L404"><span class="sail-id">mtvec</span></a>, <span class="sail-id">value</span>);
+  <a href="../model/riscv_sys_regs.html#L404"><span class="sail-id">mtvec</span></a>.<span class="sail-id">bits</span>
+}
+
+<span class="sail-keyword">function</span> <span class="sail-id">set_stvec</span>(<span class="sail-id">value</span> : <span class="sail-id">xlenbits</span>) -&gt; <span class="sail-id">xlenbits</span> = {
+  <a href="../model/riscv_sys_regs.html#L682"><span class="sail-id">stvec</span></a> = <a href="../model/riscv_sys_regs.html#L406"><span class="sail-id">legalize_tvec</span></a>(<a href="../model/riscv_sys_regs.html#L682"><span class="sail-id">stvec</span></a>, <span class="sail-id">value</span>);
+  <a href="../model/riscv_sys_regs.html#L682"><span class="sail-id">stvec</span></a>.<span class="sail-id">bits</span>
+}
+
+<span class="sail-keyword">function</span> <span class="sail-id">set_utvec</span>(<span class="sail-id">value</span> : <span class="sail-id">xlenbits</span>) -&gt; <span class="sail-id">xlenbits</span> = {
+  <a href="../model/riscv_next_regs.html#L87"><span class="sail-id">utvec</span></a> = <a href="../model/riscv_sys_regs.html#L406"><span class="sail-id">legalize_tvec</span></a>(<a href="../model/riscv_next_regs.html#L87"><span class="sail-id">utvec</span></a>, <span class="sail-id">value</span>);
+  <a href="../model/riscv_next_regs.html#L87"><span class="sail-id">utvec</span></a>.<span class="sail-id">bits</span>
+}
+</pre>
+</div>
+</div>
+</body>
+</html>

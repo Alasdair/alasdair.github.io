@@ -1,0 +1,161 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /><span id="L26">26</span><br /><span id="L27">27</span><br /><span id="L28">28</span><br /><span id="L29">29</span><br /><span id="L30">30</span><br /><span id="L31">31</span><br /><span id="L32">32</span><br /><span id="L33">33</span><br /><span id="L34">34</span><br /><span id="L35">35</span><br /><span id="L36">36</span><br /><span id="L37">37</span><br /><span id="L38">38</span><br /><span id="L39">39</span><br /><span id="L40">40</span><br /><span id="L41">41</span><br /><span id="L42">42</span><br /><span id="L43">43</span><br /><span id="L44">44</span><br /><span id="L45">45</span><br /><span id="L46">46</span><br /><span id="L47">47</span><br /><span id="L48">48</span><br /><span id="L49">49</span><br /><span id="L50">50</span><br /><span id="L51">51</span><br /><span id="L52">52</span><br /><span id="L53">53</span><br /><span id="L54">54</span><br /><span id="L55">55</span><br /><span id="L56">56</span><br /><span id="L57">57</span><br /><span id="L58">58</span><br /><span id="L59">59</span><br /><span id="L60">60</span><br /><span id="L61">61</span><br /><span id="L62">62</span><br /><span id="L63">63</span><br /><span id="L64">64</span><br /><span id="L65">65</span><br /><span id="L66">66</span><br /><span id="L67">67</span><br /><span id="L68">68</span><br /><span id="L69">69</span><br /><span id="L70">70</span><br /><span id="L71">71</span><br /><span id="L72">72</span><br /><span id="L73">73</span><br /><span id="L74">74</span><br /><span id="L75">75</span><br /><span id="L76">76</span><br /><span id="L77">77</span><br /><span id="L78">78</span><br /><span id="L79">79</span><br /><span id="L80">80</span><br /><span id="L81">81</span><br /><span id="L82">82</span><br /><span id="L83">83</span><br /><span id="L84">84</span><br /><span id="L85">85</span><br /><span id="L86">86</span><br /><span id="L87">87</span><br /><span id="L88">88</span><br /><span id="L89">89</span><br /><span id="L90">90</span><br /><span id="L91">91</span><br /><span id="L92">92</span><br /><span id="L93">93</span><br /><span id="L94">94</span><br /><span id="L95">95</span><br /><span id="L96">96</span><br /><span id="L97">97</span><br /><span id="L98">98</span><br /><span id="L99">99</span><br /><span id="L100">100</span><br /><span id="L101">101</span><br /><span id="L102">102</span><br /><span id="L103">103</span><br /><span id="L104">104</span><br /><span id="L105">105</span><br /><span id="L106">106</span><br /><span id="L107">107</span><br /><span id="L108">108</span><br /><span id="L109">109</span><br /><span id="L110">110</span><br /><span id="L111">111</span><br /><span id="L112">112</span><br /><span id="L113">113</span><br /><span id="L114">114</span><br /><span id="L115">115</span><br /><span id="L116">116</span><br /><span id="L117">117</span><br /><span id="L118">118</span><br /><span id="L119">119</span><br /><span id="L120">120</span><br /><span id="L121">121</span><br /><span id="L122">122</span><br /><span id="L123">123</span><br /><span id="L124">124</span><br /><span id="L125">125</span><br /><span id="L126">126</span><br /><span id="L127">127</span><br /><span id="L128">128</span><br /><span id="L129">129</span><br /><span id="L130">130</span><br /><span id="L131">131</span><br /><span id="L132">132</span><br /><span id="L133">133</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-comment">/* The emulator fetch-execute-interrupt dispatch loop. */</span>
+
+<span class="sail-comment">/* returns whether to increment the step count in the trace */</span>
+<span class="sail-keyword">function</span> <span class="sail-id">step</span>(<span class="sail-id">step_no</span> : <span class="sail-id">int</span>) -&gt; <span class="sail-id">bool</span> = {
+  <span class="sail-comment">/* for step extensions */</span>
+  <a href="../model/riscv_step_ext.html#L15"><span class="sail-id">ext_pre_step_hook</span></a>();
+
+  <span class="sail-comment">/*
+   * This records whether or not minstret should be incremented when
+   * the instruction is retired. Since retirement occurs before CSR
+   * writes we initialise it based on mcountinhibit here, before it is
+   * potentially changed. This is also set to false if minstret is
+   * written.  See the note near the minstret declaration for more
+   * information.
+   */</span>
+  <a href="../model/riscv_sys_regs.html#L506"><span class="sail-id">minstret_increment</span></a> = <a href="../model/riscv_sys_regs.html#L483"><span class="sail-id">mcountinhibit</span></a>[<span class="sail-id">IR</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b0</span>;
+
+  <span class="sail-keyword">let</span> (<span class="sail-id">retired</span>, <span class="sail-id">stepped</span>) : (<span class="sail-id">Retired</span>, <span class="sail-id">bool</span>) =
+    <span class="sail-keyword">match</span> <a href="../model/riscv_sys_control.html#L266"><span class="sail-id">dispatchInterrupt</span></a>(<a href="../model/riscv_sys_regs.html#L13"><span class="sail-id">cur_privilege</span></a>) {
+      <span class="sail-id">Some</span>(<span class="sail-id">intr</span>, <span class="sail-id">priv</span>) =&gt; {
+        <span class="sail-keyword">if</span>   <a href="../model/prelude.html#L83"><span class="sail-id">get_config_print_instr</span></a>()
+        <span class="sail-keyword">then</span> <span class="sail-id">print_bits</span>(<span class="sail-string">"Handling interrupt: "</span>, <a href="../model/riscv_types.html#L155"><span class="sail-id">interruptType_to_bits</span></a>(<span class="sail-id">intr</span>));
+        <a href="../model/riscv_sys_control.html#L472"><span class="sail-id">handle_interrupt</span></a>(<span class="sail-id">intr</span>, <span class="sail-id">priv</span>);
+        (<span class="sail-id">RETIRE_FAIL</span>, <span class="sail-literal">false</span>)
+      },
+      <span class="sail-id">None</span>() =&gt; {
+        <span class="sail-comment">/* the extension hook interposes on the fetch result */</span>
+        <span class="sail-keyword">let</span> <span class="sail-id">f</span> : <span class="sail-id">FetchResult</span> = <a href="../model/riscv_step_ext.html#L13"><span class="sail-id">ext_fetch_hook</span></a>(<a href="../model/riscv_fetch.html#L16"><span class="sail-id">fetch</span></a>());
+        <span class="sail-keyword">match</span> <span class="sail-id">f</span> {
+          <span class="sail-comment">/* extension error */</span>
+          <span class="sail-id">F_Ext_Error</span>(<span class="sail-id">e</span>)   =&gt; {
+            <a href="../model/riscv_addr_checks.html#L23"><span class="sail-id">ext_handle_fetch_check_error</span></a>(<span class="sail-id">e</span>);
+            (<span class="sail-id">RETIRE_FAIL</span>, <span class="sail-literal">false</span>)
+          },
+          <span class="sail-comment">/* standard error */</span>
+          <span class="sail-id">F_Error</span>(<span class="sail-id">e</span>, <span class="sail-id">addr</span>) =&gt; {
+            <a href="../model/riscv_sys_control.html#L458"><span class="sail-id">handle_mem_exception</span></a>(<span class="sail-id">addr</span>, <span class="sail-id">e</span>);
+            (<span class="sail-id">RETIRE_FAIL</span>, <span class="sail-literal">false</span>)
+          },
+          <span class="sail-comment">/* non-error cases: */</span>
+          <span class="sail-id">F_RVC</span>(<span class="sail-id">h</span>) =&gt; {
+            <span class="sail-id">sail_instr_announce</span>(<span class="sail-id">h</span>);
+            <a href="../model/riscv_regs.html#L15"><span class="sail-id">instbits</span></a> = <a href="../model/prelude.html#L92"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">h</span>);
+            <span class="sail-keyword">let</span> <span class="sail-id">ast</span> = <a href="../model/riscv_decode_ext.html#L15"><span class="sail-id">ext_decode_compressed</span></a>(<span class="sail-id">h</span>);
+            <span class="sail-keyword">if</span>   <a href="../model/prelude.html#L83"><span class="sail-id">get_config_print_instr</span></a>()
+            <span class="sail-keyword">then</span> {
+              <a href="../model/prelude.html#L72"><span class="sail-id">print_instr</span></a>(<span class="sail-string">"["</span> <span class="sail-operator">^</span> <span class="sail-id">dec_str</span>(<span class="sail-id">step_no</span>) <span class="sail-operator">^</span> <span class="sail-string">"] ["</span> <span class="sail-operator">^</span> <span class="sail-id">to_str</span>(<a href="../model/riscv_sys_regs.html#L13"><span class="sail-id">cur_privilege</span></a>) <span class="sail-operator">^</span> <span class="sail-string">"]: "</span> <span class="sail-operator">^</span> <span class="sail-id">BitStr</span>(<a href="../model/riscv_regs.html#L11"><span class="sail-id">PC</span></a>) <span class="sail-operator">^</span> <span class="sail-string">" ("</span> <span class="sail-operator">^</span> <span class="sail-id">BitStr</span>(<span class="sail-id">h</span>) <span class="sail-operator">^</span> <span class="sail-string">") "</span> <span class="sail-operator">^</span> <span class="sail-id">to_str</span>(<span class="sail-id">ast</span>));
+            };
+            <span class="sail-comment">/* check for RVC once here instead of every RVC execute clause. */</span>
+            <span class="sail-keyword">if</span> <a href="../model/riscv_sys_regs.html#L129"><span class="sail-id">haveRVC</span></a>() <span class="sail-keyword">then</span> {
+              <a href="../model/riscv_regs.html#L12"><span class="sail-id">nextPC</span></a> = <a href="../model/riscv_regs.html#L11"><span class="sail-id">PC</span></a> <span class="sail-operator">+</span> <span class="sail-literal">2</span>;
+              (<a href="../model/riscv_insts_end.html#L23"><span class="sail-id">execute</span></a>(<span class="sail-id">ast</span>), <span class="sail-literal">true</span>)
+             } <span class="sail-keyword">else</span> {
+              <a href="../model/riscv_platform.html#L435"><span class="sail-id">handle_illegal</span></a>();
+              (<span class="sail-id">RETIRE_FAIL</span>, <span class="sail-literal">true</span>)
+             }
+          },
+          <span class="sail-id">F_Base</span>(<span class="sail-id">w</span>) =&gt; {
+            <span class="sail-id">sail_instr_announce</span>(<span class="sail-id">w</span>);
+            <a href="../model/riscv_regs.html#L15"><span class="sail-id">instbits</span></a> = <a href="../model/prelude.html#L92"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">w</span>);
+            <span class="sail-keyword">let</span> <span class="sail-id">ast</span> = <a href="../model/riscv_decode_ext.html#L18"><span class="sail-id">ext_decode</span></a>(<span class="sail-id">w</span>);
+            <span class="sail-keyword">if</span>   <a href="../model/prelude.html#L83"><span class="sail-id">get_config_print_instr</span></a>()
+            <span class="sail-keyword">then</span> {
+              <a href="../model/prelude.html#L72"><span class="sail-id">print_instr</span></a>(<span class="sail-string">"["</span> <span class="sail-operator">^</span> <span class="sail-id">dec_str</span>(<span class="sail-id">step_no</span>) <span class="sail-operator">^</span> <span class="sail-string">"] ["</span> <span class="sail-operator">^</span> <span class="sail-id">to_str</span>(<a href="../model/riscv_sys_regs.html#L13"><span class="sail-id">cur_privilege</span></a>) <span class="sail-operator">^</span> <span class="sail-string">"]: "</span> <span class="sail-operator">^</span> <span class="sail-id">BitStr</span>(<a href="../model/riscv_regs.html#L11"><span class="sail-id">PC</span></a>) <span class="sail-operator">^</span> <span class="sail-string">" ("</span> <span class="sail-operator">^</span> <span class="sail-id">BitStr</span>(<span class="sail-id">w</span>) <span class="sail-operator">^</span> <span class="sail-string">") "</span> <span class="sail-operator">^</span> <span class="sail-id">to_str</span>(<span class="sail-id">ast</span>));
+            };
+            <a href="../model/riscv_regs.html#L12"><span class="sail-id">nextPC</span></a> = <a href="../model/riscv_regs.html#L11"><span class="sail-id">PC</span></a> <span class="sail-operator">+</span> <span class="sail-literal">4</span>;
+            (<a href="../model/riscv_insts_end.html#L23"><span class="sail-id">execute</span></a>(<span class="sail-id">ast</span>), <span class="sail-literal">true</span>)
+          }
+        }
+      }
+    };
+
+  <a href="../model/riscv_pc_access.html#L30"><span class="sail-id">tick_pc</span></a>();
+
+  <span class="sail-comment">/* update minstret */</span>
+  <span class="sail-keyword">match</span> <span class="sail-id">retired</span> {
+    <span class="sail-id">RETIRE_SUCCESS</span> =&gt; <a href="../model/riscv_sys_regs.html#L508"><span class="sail-id">retire_instruction</span></a>(),
+    <span class="sail-id">RETIRE_FAIL</span>    =&gt; ()
+  };
+
+  <span class="sail-comment">/* for step extensions */</span>
+  <a href="../model/riscv_step_ext.html#L16"><span class="sail-id">ext_post_step_hook</span></a>();
+
+  <span class="sail-id">stepped</span>
+}
+
+<span class="sail-keyword">function</span> <span class="sail-id">loop</span> () : <span class="sail-id">unit</span> -&gt; <span class="sail-id">unit</span> = {
+  <span class="sail-keyword">let</span> <span class="sail-id">insns_per_tick</span> = <a href="../model/riscv_platform.html#L122"><span class="sail-id">plat_insns_per_tick</span></a>();
+  <span class="sail-id">i</span> : <span class="sail-id">int</span> = <span class="sail-literal">0</span>;
+  <span class="sail-id">step_no</span> : <span class="sail-id">int</span> = <span class="sail-literal">0</span>;
+  <span class="sail-keyword">while</span> <a href="../model/prelude.html#L27"><span class="sail-id">not</span></a>(<a href="../model/riscv_platform.html#L276"><span class="sail-id">htif_done</span></a>) <span class="sail-keyword">do</span> {
+    <span class="sail-keyword">let</span> <span class="sail-id">stepped</span> = <a href="../model/riscv_step.html#L12"><span class="sail-id">step</span></a>(<span class="sail-id">step_no</span>);
+    <span class="sail-keyword">if</span> <span class="sail-id">stepped</span> <span class="sail-keyword">then</span> {
+      <span class="sail-id">step_no</span> = <span class="sail-id">step_no</span> <span class="sail-operator">+</span> <span class="sail-literal">1</span>;
+      <span class="sail-id">sail_end_cycle</span>()
+    };
+
+    <span class="sail-comment">/* check htif exit */</span>
+    <span class="sail-keyword">if</span> <a href="../model/riscv_platform.html#L276"><span class="sail-id">htif_done</span></a> <span class="sail-keyword">then</span> {
+      <span class="sail-keyword">let</span> <span class="sail-id">exit_val</span> = <span class="sail-id">unsigned</span>(<a href="../model/riscv_platform.html#L277"><span class="sail-id">htif_exit_code</span></a>);
+      <span class="sail-keyword">if</span> <span class="sail-id">exit_val</span> <span class="sail-operator">==</span> <span class="sail-literal">0</span> <span class="sail-keyword">then</span> <a href="../model/prelude.html#L69"><span class="sail-id">print</span></a>(<span class="sail-string">"SUCCESS"</span>)
+      <span class="sail-keyword">else</span> <span class="sail-id">print_int</span>(<span class="sail-string">"FAILURE: "</span>, <span class="sail-id">exit_val</span>);
+    } <span class="sail-keyword">else</span> {
+      <span class="sail-comment">/* update time */</span>
+      <span class="sail-id">i</span> = <span class="sail-id">i</span> <span class="sail-operator">+</span> <span class="sail-literal">1</span>;
+      <span class="sail-keyword">if</span> <span class="sail-id">i</span> <span class="sail-operator">==</span> <span class="sail-id">insns_per_tick</span> <span class="sail-keyword">then</span> {
+        <a href="../model/riscv_platform.html#L254"><span class="sail-id">tick_clock</span></a>();
+        <span class="sail-comment">/* for now, we drive the platform i/o at every clock tick. */</span>
+        <a href="../model/riscv_platform.html#L429"><span class="sail-id">tick_platform</span></a>();
+        <span class="sail-id">i</span> = <span class="sail-literal">0</span>;
+      }
+    }
+  }
+}
+
+<span class="sail-comment">/* initialize model state */</span>
+<span class="sail-keyword">function</span> <span class="sail-id">init_model</span> () -&gt; <span class="sail-id">unit</span> = {
+  <a href="../model/riscv_platform.html#L421"><span class="sail-id">init_platform</span></a> (); <span class="sail-comment">/* devices */</span>
+  <a href="../model/riscv_sys_control.html#L477"><span class="sail-id">init_sys</span></a> ();      <span class="sail-comment">/* processor */</span>
+  <a href="../model/riscv_vmem.html#L450"><span class="sail-id">init_vmem</span></a> ();     <span class="sail-comment">/* virtual memory */</span>
+
+  <span class="sail-comment">/* initialize extensions last */</span>
+  <a href="../model/riscv_step_ext.html#L11"><span class="sail-id">ext_init</span></a> ();
+  <a href="../model/riscv_ext_regs.html#L14"><span class="sail-id">ext_init_regs</span></a> ();
+}
+</pre>
+</div>
+</div>
+</body>
+</html>

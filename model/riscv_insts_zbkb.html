@@ -1,0 +1,141 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /><span id="L26">26</span><br /><span id="L27">27</span><br /><span id="L28">28</span><br /><span id="L29">29</span><br /><span id="L30">30</span><br /><span id="L31">31</span><br /><span id="L32">32</span><br /><span id="L33">33</span><br /><span id="L34">34</span><br /><span id="L35">35</span><br /><span id="L36">36</span><br /><span id="L37">37</span><br /><span id="L38">38</span><br /><span id="L39">39</span><br /><span id="L40">40</span><br /><span id="L41">41</span><br /><span id="L42">42</span><br /><span id="L43">43</span><br /><span id="L44">44</span><br /><span id="L45">45</span><br /><span id="L46">46</span><br /><span id="L47">47</span><br /><span id="L48">48</span><br /><span id="L49">49</span><br /><span id="L50">50</span><br /><span id="L51">51</span><br /><span id="L52">52</span><br /><span id="L53">53</span><br /><span id="L54">54</span><br /><span id="L55">55</span><br /><span id="L56">56</span><br /><span id="L57">57</span><br /><span id="L58">58</span><br /><span id="L59">59</span><br /><span id="L60">60</span><br /><span id="L61">61</span><br /><span id="L62">62</span><br /><span id="L63">63</span><br /><span id="L64">64</span><br /><span id="L65">65</span><br /><span id="L66">66</span><br /><span id="L67">67</span><br /><span id="L68">68</span><br /><span id="L69">69</span><br /><span id="L70">70</span><br /><span id="L71">71</span><br /><span id="L72">72</span><br /><span id="L73">73</span><br /><span id="L74">74</span><br /><span id="L75">75</span><br /><span id="L76">76</span><br /><span id="L77">77</span><br /><span id="L78">78</span><br /><span id="L79">79</span><br /><span id="L80">80</span><br /><span id="L81">81</span><br /><span id="L82">82</span><br /><span id="L83">83</span><br /><span id="L84">84</span><br /><span id="L85">85</span><br /><span id="L86">86</span><br /><span id="L87">87</span><br /><span id="L88">88</span><br /><span id="L89">89</span><br /><span id="L90">90</span><br /><span id="L91">91</span><br /><span id="L92">92</span><br /><span id="L93">93</span><br /><span id="L94">94</span><br /><span id="L95">95</span><br /><span id="L96">96</span><br /><span id="L97">97</span><br /><span id="L98">98</span><br /><span id="L99">99</span><br /><span id="L100">100</span><br /><span id="L101">101</span><br /><span id="L102">102</span><br /><span id="L103">103</span><br /><span id="L104">104</span><br /><span id="L105">105</span><br /><span id="L106">106</span><br /><span id="L107">107</span><br /><span id="L108">108</span><br /><span id="L109">109</span><br /><span id="L110">110</span><br /><span id="L111">111</span><br /><span id="L112">112</span><br /><span id="L113">113</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-comment">/* ****************************************************************** */</span>
+<span class="sail-keyword">union</span> <span class="sail-keyword">clause</span> <span class="sail-id">ast</span> = <span class="sail-id">ZBKB_RTYPE</span> : (<span class="sail-id">regidx</span>, <span class="sail-id">regidx</span>, <span class="sail-id">regidx</span>, <span class="sail-id">brop_zbkb</span>)
+
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">ZBKB_RTYPE</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-id">RISCV_PACK</span>) <span class="sail-keyword">if</span> <span class="sail-id">haveZbkb</span>()
+  &lt;-&gt; <span class="sail-literal">0b0000100</span> @ <span class="sail-id">rs2</span> @ <span class="sail-id">rs1</span> @ <span class="sail-literal">0b100</span> @ <span class="sail-id">rd</span> @ <span class="sail-literal">0b0110011</span> <span class="sail-keyword">if</span> <span class="sail-id">haveZbkb</span>()
+
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">ZBKB_RTYPE</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-id">RISCV_PACKH</span>) <span class="sail-keyword">if</span> <span class="sail-id">haveZbkb</span>()
+  &lt;-&gt; <span class="sail-literal">0b0000100</span> @ <span class="sail-id">rs2</span> @ <span class="sail-id">rs1</span> @ <span class="sail-literal">0b111</span> @ <span class="sail-id">rd</span> @ <span class="sail-literal">0b0110011</span> <span class="sail-keyword">if</span> <span class="sail-id">haveZbkb</span>()
+
+<span class="sail-keyword">mapping</span> <span class="sail-id">zbkb_rtype_mnemonic</span> : <span class="sail-id">brop_zbkb</span> &lt;-&gt; <span class="sail-id">string</span> = {
+  <span class="sail-id">RISCV_PACK</span>  &lt;-&gt; <span class="sail-string">"pack"</span>,
+  <span class="sail-id">RISCV_PACKH</span> &lt;-&gt; <span class="sail-string">"packh"</span>
+}
+
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">assembly</span> = <span class="sail-id">ZBKB_RTYPE</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-id">op</span>)
+  &lt;-&gt; <span class="sail-id">zbkb_rtype_mnemonic</span>(<span class="sail-id">op</span>) <span class="sail-operator">^</span> <span class="sail-id">spc</span>() <span class="sail-operator">^</span> <span class="sail-id">reg_name</span>(<span class="sail-id">rd</span>) <span class="sail-operator">^</span> <span class="sail-id">sep</span>() <span class="sail-operator">^</span> <span class="sail-id">reg_name</span>(<span class="sail-id">rs1</span>) <span class="sail-operator">^</span> <span class="sail-id">sep</span>() <span class="sail-operator">^</span> <span class="sail-id">reg_name</span>(<span class="sail-id">rs2</span>)
+
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">ZBKB_RTYPE</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-id">op</span>)) = {
+  <span class="sail-keyword">let</span> <span class="sail-id">rs1_val</span> = <span class="sail-id">X</span>(<span class="sail-id">rs1</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">rs2_val</span> = <span class="sail-id">X</span>(<span class="sail-id">rs2</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">result</span> : <span class="sail-id">xlenbits</span> = <span class="sail-keyword">match</span> <span class="sail-id">op</span> {
+    <span class="sail-id">RISCV_PACK</span>  =&gt; <span class="sail-id">rs2_val</span>[(<span class="sail-keyword">sizeof</span>(<span class="sail-id">xlen_bytes</span>)<span class="sail-operator">*</span><span class="sail-literal">4</span> <span class="sail-operator">-</span> <span class="sail-literal">1</span>)..<span class="sail-literal">0</span>] @ <span class="sail-id">rs1_val</span>[(<span class="sail-keyword">sizeof</span>(<span class="sail-id">xlen_bytes</span>)<span class="sail-operator">*</span><span class="sail-literal">4</span> <span class="sail-operator">-</span> <span class="sail-literal">1</span>)..<span class="sail-literal">0</span>],
+    <span class="sail-id">RISCV_PACKH</span> =&gt; <a href="../model/prelude.html#L92"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">rs2_val</span>[<span class="sail-literal">7</span>..<span class="sail-literal">0</span>] @ <span class="sail-id">rs1_val</span>[<span class="sail-literal">7</span>..<span class="sail-literal">0</span>])
+  };
+  <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <span class="sail-id">result</span>;
+  <span class="sail-id">RETIRE_SUCCESS</span>
+}
+
+<span class="sail-comment">/* ****************************************************************** */</span>
+<span class="sail-keyword">union</span> <span class="sail-keyword">clause</span> <span class="sail-id">ast</span> = <span class="sail-id">ZBKB_PACKW</span> : (<span class="sail-id">regidx</span>, <span class="sail-id">regidx</span>, <span class="sail-id">regidx</span>)
+
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">ZBKB_PACKW</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>) <span class="sail-keyword">if</span> <span class="sail-id">haveZbkb</span>() <span class="sail-operator">&amp;</span> <span class="sail-keyword">sizeof</span>(<span class="sail-id">xlen</span>) <span class="sail-operator">==</span> <span class="sail-literal">64</span>
+  &lt;-&gt; <span class="sail-literal">0b0000100</span> @ <span class="sail-id">rs2</span> @ <span class="sail-id">rs1</span> @ <span class="sail-literal">0b100</span> @ <span class="sail-id">rd</span> @ <span class="sail-literal">0b0111011</span> <span class="sail-keyword">if</span> <span class="sail-id">haveZbkb</span>() <span class="sail-operator">&amp;</span> <span class="sail-keyword">sizeof</span>(<span class="sail-id">xlen</span>) <span class="sail-operator">==</span> <span class="sail-literal">64</span>
+
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">assembly</span> = <span class="sail-id">ZBKB_PACKW</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>)
+  &lt;-&gt; <span class="sail-string">"packw"</span> <span class="sail-operator">^</span> <span class="sail-id">spc</span>() <span class="sail-operator">^</span> <span class="sail-id">reg_name</span>(<span class="sail-id">rd</span>) <span class="sail-operator">^</span> <span class="sail-id">sep</span>() <span class="sail-operator">^</span> <span class="sail-id">reg_name</span>(<span class="sail-id">rs1</span>) <span class="sail-operator">^</span> <span class="sail-id">sep</span>() <span class="sail-operator">^</span> <span class="sail-id">reg_name</span>(<span class="sail-id">rs2</span>)
+
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">ZBKB_PACKW</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>)) = {
+  <span class="sail-keyword">assert</span>(<span class="sail-keyword">sizeof</span>(<span class="sail-id">xlen</span>) <span class="sail-operator">==</span> <span class="sail-literal">64</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">rs1_val</span> = <span class="sail-id">X</span>(<span class="sail-id">rs1</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">rs2_val</span> = <span class="sail-id">X</span>(<span class="sail-id">rs2</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">result</span> : <span class="sail-id">bits</span>(<span class="sail-literal">32</span>) = <span class="sail-id">rs2_val</span>[<span class="sail-literal">15</span>..<span class="sail-literal">0</span>] @ <span class="sail-id">rs1_val</span>[<span class="sail-literal">15</span>..<span class="sail-literal">0</span>];
+  <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href="../model/prelude.html#L91"><span class="sail-id">sign_extend</span></a>(<span class="sail-id">result</span>);
+  <span class="sail-id">RETIRE_SUCCESS</span>
+}
+
+<span class="sail-comment">/* ****************************************************************** */</span>
+<span class="sail-keyword">union</span> <span class="sail-keyword">clause</span> <span class="sail-id">ast</span> = <span class="sail-id">RISCV_ZIP</span> : (<span class="sail-id">regidx</span>, <span class="sail-id">regidx</span>)
+
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">RISCV_ZIP</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rd</span>) <span class="sail-keyword">if</span> <span class="sail-id">haveZbkb</span>() <span class="sail-operator">&amp;</span> <span class="sail-keyword">sizeof</span>(<span class="sail-id">xlen</span>) <span class="sail-operator">==</span> <span class="sail-literal">32</span>
+  &lt;-&gt; <span class="sail-literal">0b000010001111</span> @ <span class="sail-id">rs1</span> @ <span class="sail-literal">0b001</span> @ <span class="sail-id">rd</span> @ <span class="sail-literal">0b0010011</span> <span class="sail-keyword">if</span> <span class="sail-id">haveZbkb</span>() <span class="sail-operator">&amp;</span> <span class="sail-keyword">sizeof</span>(<span class="sail-id">xlen</span>) <span class="sail-operator">==</span> <span class="sail-literal">32</span>
+
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">assembly</span> = <span class="sail-id">RISCV_ZIP</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rd</span>)
+  &lt;-&gt; <span class="sail-string">"zip"</span> <span class="sail-operator">^</span> <span class="sail-id">spc</span>() <span class="sail-operator">^</span> <span class="sail-id">reg_name</span>(<span class="sail-id">rd</span>) <span class="sail-operator">^</span> <span class="sail-id">sep</span>() <span class="sail-operator">^</span> <span class="sail-id">reg_name</span>(<span class="sail-id">rs1</span>)
+
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">RISCV_ZIP</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rd</span>)) = {
+  <span class="sail-keyword">assert</span>(<span class="sail-keyword">sizeof</span>(<span class="sail-id">xlen</span>) <span class="sail-operator">==</span> <span class="sail-literal">32</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">rs1_val</span> = <span class="sail-id">X</span>(<span class="sail-id">rs1</span>);
+  <span class="sail-id">result</span> : <span class="sail-id">xlenbits</span> = <span class="sail-id">zeros</span>();
+  <span class="sail-keyword">foreach</span> (<span class="sail-id">i</span> <span class="sail-id">from</span> <span class="sail-literal">0</span> <span class="sail-id">to</span> (<span class="sail-keyword">sizeof</span>(<span class="sail-id">xlen_bytes</span>)<span class="sail-operator">*</span><span class="sail-literal">4</span> <span class="sail-operator">-</span> <span class="sail-literal">1</span>)) {
+    <span class="sail-id">result</span>[<span class="sail-id">i</span><span class="sail-operator">*</span><span class="sail-literal">2</span>] = <span class="sail-id">rs1_val</span>[<span class="sail-id">i</span>];
+    <span class="sail-id">result</span>[<span class="sail-id">i</span><span class="sail-operator">*</span><span class="sail-literal">2</span> <span class="sail-operator">+</span> <span class="sail-literal">1</span>] = <span class="sail-id">rs1_val</span>[<span class="sail-id">i</span> <span class="sail-operator">+</span> <span class="sail-keyword">sizeof</span>(<span class="sail-id">xlen_bytes</span>)<span class="sail-operator">*</span><span class="sail-literal">4</span>];
+  };
+  <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <span class="sail-id">result</span>;
+  <span class="sail-id">RETIRE_SUCCESS</span>
+}
+
+<span class="sail-comment">/* ****************************************************************** */</span>
+<span class="sail-keyword">union</span> <span class="sail-keyword">clause</span> <span class="sail-id">ast</span> = <span class="sail-id">RISCV_UNZIP</span> : (<span class="sail-id">regidx</span>, <span class="sail-id">regidx</span>)
+
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">RISCV_UNZIP</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rd</span>) <span class="sail-keyword">if</span> <span class="sail-id">haveZbkb</span>() <span class="sail-operator">&amp;</span> <span class="sail-keyword">sizeof</span>(<span class="sail-id">xlen</span>) <span class="sail-operator">==</span> <span class="sail-literal">32</span>
+  &lt;-&gt; <span class="sail-literal">0b000010001111</span> @ <span class="sail-id">rs1</span> @ <span class="sail-literal">0b101</span> @ <span class="sail-id">rd</span> @ <span class="sail-literal">0b0010011</span> <span class="sail-keyword">if</span> <span class="sail-id">haveZbkb</span>() <span class="sail-operator">&amp;</span> <span class="sail-keyword">sizeof</span>(<span class="sail-id">xlen</span>) <span class="sail-operator">==</span> <span class="sail-literal">32</span>
+
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">assembly</span> = <span class="sail-id">RISCV_UNZIP</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rd</span>)
+  &lt;-&gt; <span class="sail-string">"unzip"</span> <span class="sail-operator">^</span> <span class="sail-id">spc</span>() <span class="sail-operator">^</span> <span class="sail-id">reg_name</span>(<span class="sail-id">rd</span>) <span class="sail-operator">^</span> <span class="sail-id">sep</span>() <span class="sail-operator">^</span> <span class="sail-id">reg_name</span>(<span class="sail-id">rs1</span>)
+
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">RISCV_UNZIP</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rd</span>)) = {
+  <span class="sail-keyword">assert</span>(<span class="sail-keyword">sizeof</span>(<span class="sail-id">xlen</span>) <span class="sail-operator">==</span> <span class="sail-literal">32</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">rs1_val</span> = <span class="sail-id">X</span>(<span class="sail-id">rs1</span>);
+  <span class="sail-id">result</span> : <span class="sail-id">xlenbits</span> = <span class="sail-id">zeros</span>();
+  <span class="sail-keyword">foreach</span> (<span class="sail-id">i</span> <span class="sail-id">from</span> <span class="sail-literal">0</span> <span class="sail-id">to</span> (<span class="sail-keyword">sizeof</span>(<span class="sail-id">xlen_bytes</span>)<span class="sail-operator">*</span><span class="sail-literal">4</span> <span class="sail-operator">-</span> <span class="sail-literal">1</span>)) {
+    <span class="sail-id">result</span>[<span class="sail-id">i</span>] = <span class="sail-id">rs1_val</span>[<span class="sail-id">i</span><span class="sail-operator">*</span><span class="sail-literal">2</span>];
+    <span class="sail-id">result</span>[<span class="sail-id">i</span> <span class="sail-operator">+</span> <span class="sail-keyword">sizeof</span>(<span class="sail-id">xlen_bytes</span>)<span class="sail-operator">*</span><span class="sail-literal">4</span>] = <span class="sail-id">rs1_val</span>[<span class="sail-id">i</span><span class="sail-operator">*</span><span class="sail-literal">2</span> <span class="sail-operator">+</span> <span class="sail-literal">1</span>];
+  };
+  <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <span class="sail-id">result</span>;
+  <span class="sail-id">RETIRE_SUCCESS</span>
+}
+
+<span class="sail-comment">/* ****************************************************************** */</span>
+<span class="sail-keyword">union</span> <span class="sail-keyword">clause</span> <span class="sail-id">ast</span> = <span class="sail-id">RISCV_BREV8</span> : (<span class="sail-id">regidx</span>, <span class="sail-id">regidx</span>)
+
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">RISCV_BREV8</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rd</span>) <span class="sail-keyword">if</span> <span class="sail-id">haveZbkb</span>()
+  &lt;-&gt; <span class="sail-literal">0b011010000111</span> @ <span class="sail-id">rs1</span> @ <span class="sail-literal">0b101</span> @ <span class="sail-id">rd</span> @ <span class="sail-literal">0b0010011</span> <span class="sail-keyword">if</span> <span class="sail-id">haveZbkb</span>()
+
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">assembly</span> = <span class="sail-id">RISCV_BREV8</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rd</span>)
+  &lt;-&gt; <span class="sail-string">"brev8"</span> <span class="sail-operator">^</span> <span class="sail-id">spc</span>() <span class="sail-operator">^</span> <span class="sail-id">reg_name</span>(<span class="sail-id">rd</span>) <span class="sail-operator">^</span> <span class="sail-id">sep</span>() <span class="sail-operator">^</span> <span class="sail-id">reg_name</span>(<span class="sail-id">rs1</span>)
+
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">RISCV_BREV8</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rd</span>)) = {
+  <span class="sail-keyword">let</span> <span class="sail-id">rs1_val</span> = <span class="sail-id">X</span>(<span class="sail-id">rs1</span>);
+  <span class="sail-id">result</span> : <span class="sail-id">xlenbits</span> = <span class="sail-id">zeros</span>();
+  <span class="sail-keyword">foreach</span> (<span class="sail-id">i</span> <span class="sail-id">from</span> <span class="sail-literal">0</span> <span class="sail-id">to</span> (<span class="sail-keyword">sizeof</span>(<span class="sail-id">xlen</span>) <span class="sail-operator">-</span> <span class="sail-literal">8</span>) <span class="sail-keyword">by</span> <span class="sail-literal">8</span>)
+    <span class="sail-id">result</span>[<span class="sail-id">i</span><span class="sail-operator">+</span><span class="sail-literal">7</span>..<span class="sail-id">i</span>] = <span class="sail-id">reverse</span>(<span class="sail-id">rs1_val</span>[<span class="sail-id">i</span><span class="sail-operator">+</span><span class="sail-literal">7</span>..<span class="sail-id">i</span>]);
+  <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <span class="sail-id">result</span>;
+  <span class="sail-id">RETIRE_SUCCESS</span>
+}
+</pre>
+</div>
+</div>
+</body>
+</html>

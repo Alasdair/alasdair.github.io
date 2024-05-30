@@ -1,0 +1,163 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /><span id="L26">26</span><br /><span id="L27">27</span><br /><span id="L28">28</span><br /><span id="L29">29</span><br /><span id="L30">30</span><br /><span id="L31">31</span><br /><span id="L32">32</span><br /><span id="L33">33</span><br /><span id="L34">34</span><br /><span id="L35">35</span><br /><span id="L36">36</span><br /><span id="L37">37</span><br /><span id="L38">38</span><br /><span id="L39">39</span><br /><span id="L40">40</span><br /><span id="L41">41</span><br /><span id="L42">42</span><br /><span id="L43">43</span><br /><span id="L44">44</span><br /><span id="L45">45</span><br /><span id="L46">46</span><br /><span id="L47">47</span><br /><span id="L48">48</span><br /><span id="L49">49</span><br /><span id="L50">50</span><br /><span id="L51">51</span><br /><span id="L52">52</span><br /><span id="L53">53</span><br /><span id="L54">54</span><br /><span id="L55">55</span><br /><span id="L56">56</span><br /><span id="L57">57</span><br /><span id="L58">58</span><br /><span id="L59">59</span><br /><span id="L60">60</span><br /><span id="L61">61</span><br /><span id="L62">62</span><br /><span id="L63">63</span><br /><span id="L64">64</span><br /><span id="L65">65</span><br /><span id="L66">66</span><br /><span id="L67">67</span><br /><span id="L68">68</span><br /><span id="L69">69</span><br /><span id="L70">70</span><br /><span id="L71">71</span><br /><span id="L72">72</span><br /><span id="L73">73</span><br /><span id="L74">74</span><br /><span id="L75">75</span><br /><span id="L76">76</span><br /><span id="L77">77</span><br /><span id="L78">78</span><br /><span id="L79">79</span><br /><span id="L80">80</span><br /><span id="L81">81</span><br /><span id="L82">82</span><br /><span id="L83">83</span><br /><span id="L84">84</span><br /><span id="L85">85</span><br /><span id="L86">86</span><br /><span id="L87">87</span><br /><span id="L88">88</span><br /><span id="L89">89</span><br /><span id="L90">90</span><br /><span id="L91">91</span><br /><span id="L92">92</span><br /><span id="L93">93</span><br /><span id="L94">94</span><br /><span id="L95">95</span><br /><span id="L96">96</span><br /><span id="L97">97</span><br /><span id="L98">98</span><br /><span id="L99">99</span><br /><span id="L100">100</span><br /><span id="L101">101</span><br /><span id="L102">102</span><br /><span id="L103">103</span><br /><span id="L104">104</span><br /><span id="L105">105</span><br /><span id="L106">106</span><br /><span id="L107">107</span><br /><span id="L108">108</span><br /><span id="L109">109</span><br /><span id="L110">110</span><br /><span id="L111">111</span><br /><span id="L112">112</span><br /><span id="L113">113</span><br /><span id="L114">114</span><br /><span id="L115">115</span><br /><span id="L116">116</span><br /><span id="L117">117</span><br /><span id="L118">118</span><br /><span id="L119">119</span><br /><span id="L120">120</span><br /><span id="L121">121</span><br /><span id="L122">122</span><br /><span id="L123">123</span><br /><span id="L124">124</span><br /><span id="L125">125</span><br /><span id="L126">126</span><br /><span id="L127">127</span><br /><span id="L128">128</span><br /><span id="L129">129</span><br /><span id="L130">130</span><br /><span id="L131">131</span><br /><span id="L132">132</span><br /><span id="L133">133</span><br /><span id="L134">134</span><br /><span id="L135">135</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-comment">// ****************************************************************
+</span><span class="sail-comment">// PTE (Page Table Entry) in PTN (Page Table Node)
+</span>
+<span class="sail-comment">// PTE      MSBs      PPNs      RSW    BITs
+</span><span class="sail-comment">// Sv32      -       31..10    9..8    7..0
+</span><span class="sail-comment">// Sv39    63..54    53..10    9..8    7..0
+</span><span class="sail-comment">// Sv48    63..54    53..10    9..8    7..0
+</span>
+<span class="sail-comment">// MSBs of PTE are reserved for RV64 extensions.
+</span><span class="sail-comment">// There are not available bits on RV32, so these bits will be zeros on RV32.
+</span>
+<span class="sail-keyword">type</span> <span class="sail-id">pte_flags_bits</span> = <span class="sail-id">bits</span>(<span class="sail-literal">8</span>)
+
+<span class="sail-comment">// For PTW extensions (non-standard)
+</span><span class="sail-keyword">type</span> <span class="sail-id">extPte</span> = <span class="sail-id">bits</span>(<span class="sail-literal">64</span>)
+
+<span class="sail-comment">// PRIVATE: extract msbs of PTE above the PPN
+</span><span class="sail-keyword">function</span> <span class="sail-id">msbs_of_PTE</span>(<span class="sail-id">sv_params</span> : <span class="sail-id">SV_Params</span>, <span class="sail-id">pte</span> : <span class="sail-id">bits</span>(<span class="sail-literal">64</span>)) -&gt; <span class="sail-id">bits</span>(<span class="sail-literal">64</span>) = {
+  <span class="sail-keyword">let</span> <span class="sail-id">mask</span> : <span class="sail-id">bits</span>(<span class="sail-literal">64</span>) = <a href="../model/prelude.html#L92"><span class="sail-id">zero_extend</span></a>(<a href="../model/prelude.html#L99"><span class="sail-id">ones</span></a>(<span class="sail-id">sv_params</span>.<span class="sail-id">pte_msbs_size_bits</span>));
+  (<span class="sail-id">pte</span> <span class="sail-operator">&gt;&gt;</span> <span class="sail-id">sv_params</span>.<span class="sail-id">pte_msbs_lsb_index</span>) <span class="sail-operator">&amp;</span> <span class="sail-id">mask</span>
+}
+
+<span class="sail-comment">// PRIVATE: extract PPNs of PTE
+</span><span class="sail-keyword">function</span> <span class="sail-id">PPNs_of_PTE</span>(<span class="sail-id">sv_params</span> : <span class="sail-id">SV_Params</span>, <span class="sail-id">pte</span> : <span class="sail-id">bits</span>(<span class="sail-literal">64</span>)) -&gt; <span class="sail-id">bits</span>(<span class="sail-literal">64</span>) = {
+  <span class="sail-keyword">let</span> <span class="sail-id">mask</span> : <span class="sail-id">bits</span>(<span class="sail-literal">64</span>) = <a href="../model/prelude.html#L92"><span class="sail-id">zero_extend</span></a>(<a href="../model/prelude.html#L99"><span class="sail-id">ones</span></a>(<span class="sail-id">sv_params</span>.<span class="sail-id">pte_PPNs_size_bits</span>));
+  (<span class="sail-id">pte</span> <span class="sail-operator">&gt;&gt;</span> <span class="sail-id">sv_params</span>.<span class="sail-id">pte_PPNs_lsb_index</span>) <span class="sail-operator">&amp;</span> <span class="sail-id">mask</span>
+}
+
+<span class="sail-comment">// PRIVATE: 8 LSBs of PTEs in Sv32, Sv39, Sv48 and Sv57
+</span><span class="sail-keyword">bitfield</span> <span class="sail-id">PTE_Flags</span> : <span class="sail-id">pte_flags_bits</span> = {
+  <span class="sail-id">D</span> : <span class="sail-literal">7</span>,    <span class="sail-comment">// dirty
+</span>  <span class="sail-id">A</span> : <span class="sail-literal">6</span>,    <span class="sail-comment">// accessed
+</span>  <span class="sail-id">G</span> : <span class="sail-literal">5</span>,    <span class="sail-comment">// global
+</span>  <span class="sail-id">U</span> : <span class="sail-literal">4</span>,    <span class="sail-comment">// User
+</span>  <span class="sail-id">X</span> : <span class="sail-literal">3</span>,    <span class="sail-comment">// Execute permission
+</span>  <span class="sail-id">W</span> : <span class="sail-literal">2</span>,    <span class="sail-comment">// Write permission
+</span>  <span class="sail-id">R</span> : <span class="sail-literal">1</span>,    <span class="sail-comment">// Read permission
+</span>  <span class="sail-id">V</span> : <span class="sail-literal">0</span>     <span class="sail-comment">// Valid
+</span>}
+
+<span class="sail-comment">// PRIVATE: check if a PTE is a pointer to next level (non-leaf)
+</span><span class="sail-keyword">function</span> <span class="sail-id">pte_is_ptr</span>(<span class="sail-id">pte_flags</span> : <span class="sail-id">PTE_Flags</span>) -&gt; <span class="sail-id">bool</span> = (<span class="sail-id">pte_flags</span>[<span class="sail-id">X</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b0</span>)
+                                                      <span class="sail-operator">&amp;</span> (<span class="sail-id">pte_flags</span>[<span class="sail-id">W</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b0</span>)
+                                                      <span class="sail-operator">&amp;</span> (<span class="sail-id">pte_flags</span>[<span class="sail-id">R</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b0</span>)
+
+<span class="sail-comment">// PRIVATE: check if a PTE is valid
+</span><span class="sail-keyword">function</span> <span class="sail-id">pte_is_invalid</span>(<span class="sail-id">pte_flags</span> : <span class="sail-id">PTE_Flags</span>) -&gt; <span class="sail-id">bool</span> = (<span class="sail-id">pte_flags</span>[<span class="sail-id">V</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b0</span>)
+                                                         <span class="sail-operator">|</span> ((<span class="sail-id">pte_flags</span>[<span class="sail-id">W</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>)
+                                                            <span class="sail-operator">&amp;</span> (<span class="sail-id">pte_flags</span>[<span class="sail-id">R</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b0</span>))
+
+<span class="sail-comment">// ----------------
+</span><span class="sail-comment">// Check access permissions in PTE
+</span>
+<span class="sail-comment">// For (non-standard) extensions: this function gets the extension-available bits
+</span><span class="sail-comment">// of the PTE in extPte, and the accumulated information of the page-table-walk
+</span><span class="sail-comment">// in ext_ptw. It should return the updated ext_ptw in both success and failure cases.
+</span>
+<span class="sail-keyword">union</span> <span class="sail-id">PTE_Check</span> = {
+  <span class="sail-id">PTE_Check_Success</span> : <span class="sail-id">ext_ptw</span>,
+  <span class="sail-id">PTE_Check_Failure</span> : (<span class="sail-id">ext_ptw</span>, <span class="sail-id">ext_ptw_fail</span>)
+}
+
+<span class="sail-comment">// PRIVATE
+</span><span class="sail-keyword">function</span> <span class="sail-id">check_PTE_permission</span>(<span class="sail-id">ac</span>        : <span class="sail-id">AccessType</span>(<span class="sail-id">ext_access_type</span>),
+                              <span class="sail-id">priv</span>      : <span class="sail-id">Privilege</span>,
+                              <span class="sail-id">mxr</span>       : <span class="sail-id">bool</span>,
+                              <span class="sail-id">do_sum</span>    : <span class="sail-id">bool</span>,
+                              <span class="sail-id">pte_flags</span> : <span class="sail-id">PTE_Flags</span>,
+                              <span class="sail-id">ext</span>       : <span class="sail-id">extPte</span>,
+                              <span class="sail-id">ext_ptw</span>   : <span class="sail-id">ext_ptw</span>) -&gt; <span class="sail-id">PTE_Check</span> = {
+  <span class="sail-keyword">let</span> <span class="sail-id">pte_U</span> = <span class="sail-id">pte_flags</span>[<span class="sail-id">U</span>];
+  <span class="sail-keyword">let</span> <span class="sail-id">pte_R</span> = <span class="sail-id">pte_flags</span>[<span class="sail-id">R</span>];
+  <span class="sail-keyword">let</span> <span class="sail-id">pte_W</span> = <span class="sail-id">pte_flags</span>[<span class="sail-id">W</span>];
+  <span class="sail-keyword">let</span> <span class="sail-id">pte_X</span> = <span class="sail-id">pte_flags</span>[<span class="sail-id">X</span>];
+  <span class="sail-keyword">let</span> <span class="sail-id">success</span> : <span class="sail-id">bool</span> =
+    <span class="sail-keyword">match</span> (<span class="sail-id">ac</span>, <span class="sail-id">priv</span>) {
+      (<span class="sail-id">Read</span>(_),         <span class="sail-id">User</span>)       =&gt; (<span class="sail-id">pte_U</span> <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>)
+                                       <span class="sail-operator">&amp;</span> ((<span class="sail-id">pte_R</span> <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>)
+                                          <span class="sail-operator">|</span> ((<span class="sail-id">pte_X</span> <span class="sail-operator">==</span> <span class="sail-literal">0b1</span> <span class="sail-operator">&amp;</span> <span class="sail-id">mxr</span>))),
+      (<span class="sail-id">Write</span>(_),        <span class="sail-id">User</span>)       =&gt; (<span class="sail-id">pte_U</span> <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>) <span class="sail-operator">&amp;</span> (<span class="sail-id">pte_W</span> <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>),
+      (<span class="sail-id">ReadWrite</span>(_, _), <span class="sail-id">User</span>)       =&gt; (<span class="sail-id">pte_U</span> <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>)
+                                       <span class="sail-operator">&amp;</span> (<span class="sail-id">pte_W</span> <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>)
+                                       <span class="sail-operator">&amp;</span> ((<span class="sail-id">pte_R</span> <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>) <span class="sail-operator">|</span> ((<span class="sail-id">pte_X</span> <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>) <span class="sail-operator">&amp;</span> <span class="sail-id">mxr</span>)),
+      (<span class="sail-id">Execute</span>(),       <span class="sail-id">User</span>)       =&gt; (<span class="sail-id">pte_U</span> <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>) <span class="sail-operator">&amp;</span> (<span class="sail-id">pte_X</span> <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>),
+      (<span class="sail-id">Read</span>(_),         <span class="sail-id">Supervisor</span>) =&gt; ((<span class="sail-id">pte_U</span> <span class="sail-operator">==</span> <span class="sail-literal">0b0</span>) <span class="sail-operator">|</span> <span class="sail-id">do_sum</span>)
+                                       <span class="sail-operator">&amp;</span> ((<span class="sail-id">pte_R</span> <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>) <span class="sail-operator">|</span> ((<span class="sail-id">pte_X</span> <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>) <span class="sail-operator">&amp;</span> <span class="sail-id">mxr</span>)),
+      (<span class="sail-id">Write</span>(_),        <span class="sail-id">Supervisor</span>) =&gt; ((<span class="sail-id">pte_U</span> <span class="sail-operator">==</span> <span class="sail-literal">0b0</span>) <span class="sail-operator">|</span> <span class="sail-id">do_sum</span>)
+                                       <span class="sail-operator">&amp;</span> (<span class="sail-id">pte_W</span> <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>),
+      (<span class="sail-id">ReadWrite</span>(_, _), <span class="sail-id">Supervisor</span>) =&gt; ((<span class="sail-id">pte_U</span> <span class="sail-operator">==</span> <span class="sail-literal">0b0</span>) <span class="sail-operator">|</span> <span class="sail-id">do_sum</span>)
+                                       <span class="sail-operator">&amp;</span> (<span class="sail-id">pte_W</span> <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>)
+                                       <span class="sail-operator">&amp;</span> ((<span class="sail-id">pte_R</span> <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>)
+                                          <span class="sail-operator">|</span> ((<span class="sail-id">pte_X</span> <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>) <span class="sail-operator">&amp;</span> <span class="sail-id">mxr</span>)),
+      (<span class="sail-id">Execute</span>(),       <span class="sail-id">Supervisor</span>) =&gt; (<span class="sail-id">pte_U</span> <span class="sail-operator">==</span> <span class="sail-literal">0b0</span>) <span class="sail-operator">&amp;</span> (<span class="sail-id">pte_X</span> <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>),
+      (_,               <span class="sail-id">Machine</span>)    =&gt; <a href="../model/riscv_types.html#L84"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>,
+                                                      <span class="sail-string">"m-mode mem perm check"</span>)};
+  <span class="sail-keyword">if</span> <span class="sail-id">success</span> <span class="sail-keyword">then</span> <span class="sail-id">PTE_Check_Success</span>(())
+  <span class="sail-keyword">else</span>            <span class="sail-id">PTE_Check_Failure</span>((), ())
+}
+
+<span class="sail-comment">// Update PTE bits if needed; return new PTE if updated
+</span><span class="sail-comment">// PRIVATE
+</span><span class="sail-keyword">function</span> <span class="sail-id">update_PTE_Bits</span>(<span class="sail-id">sv_params</span> : <span class="sail-id">SV_Params</span>,
+                         <span class="sail-id">pte</span>       : <span class="sail-id">bits</span>(<span class="sail-literal">64</span>),
+                         <span class="sail-id">a</span>         : <span class="sail-id">AccessType</span>(<span class="sail-id">ext_access_type</span>))
+                        -&gt; <span class="sail-id">option</span>(<span class="sail-id">bits</span>(<span class="sail-literal">64</span>)) = {
+  <span class="sail-keyword">let</span> <span class="sail-id">pte_flags</span> = <span class="sail-id">Mk_PTE_Flags</span>(<span class="sail-id">pte</span> [<span class="sail-literal">7</span> .. <span class="sail-literal">0</span>]);
+
+  <span class="sail-comment">// Update 'dirty' bit?
+</span>  <span class="sail-keyword">let</span> <span class="sail-id">update_d</span> : <span class="sail-id">bool</span> = (<span class="sail-id">pte_flags</span>[<span class="sail-id">D</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b0</span>)
+                        <span class="sail-operator">&amp;</span> (<span class="sail-keyword">match</span> <span class="sail-id">a</span> {
+                             <span class="sail-id">Execute</span>()       =&gt; <span class="sail-literal">false</span>,
+                             <span class="sail-id">Read</span>()          =&gt; <span class="sail-literal">false</span>,
+                             <span class="sail-id">Write</span>(_)        =&gt; <span class="sail-literal">true</span>,
+                             <span class="sail-id">ReadWrite</span>(_, _) =&gt; <span class="sail-literal">true</span>
+                           });
+  <span class="sail-comment">// Update 'accessed'-bit?
+</span>  <span class="sail-keyword">let</span> <span class="sail-id">update_a</span> = (<span class="sail-id">pte_flags</span>[<span class="sail-id">A</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b0</span>);
+
+  <span class="sail-keyword">if</span> <span class="sail-id">update_d</span> <span class="sail-operator">|</span> <span class="sail-id">update_a</span> <span class="sail-keyword">then</span> {
+    <span class="sail-keyword">let</span> <span class="sail-id">pte_flags</span> = [<span class="sail-id">pte_flags</span> <span class="sail-keyword">with</span>
+                      <span class="sail-id">A</span> = <span class="sail-literal">0b1</span>,
+                      <span class="sail-id">D</span> = (<span class="sail-keyword">if</span> <span class="sail-id">update_d</span> <span class="sail-keyword">then</span> <span class="sail-literal">0b1</span> <span class="sail-keyword">else</span> <span class="sail-id">pte_flags</span>[<span class="sail-id">D</span>])];
+    <span class="sail-id">Some</span>(<span class="sail-id">pte</span>[<span class="sail-literal">63</span> .. <span class="sail-literal">8</span>] @ <span class="sail-id">pte_flags</span>.<span class="sail-id">bits</span>())
+  }
+  <span class="sail-keyword">else</span>
+    <span class="sail-id">None</span>()
+}
+</pre>
+</div>
+</div>
+</body>
+</html>

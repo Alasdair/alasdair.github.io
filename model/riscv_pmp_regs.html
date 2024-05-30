@@ -1,0 +1,176 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /><span id="L26">26</span><br /><span id="L27">27</span><br /><span id="L28">28</span><br /><span id="L29">29</span><br /><span id="L30">30</span><br /><span id="L31">31</span><br /><span id="L32">32</span><br /><span id="L33">33</span><br /><span id="L34">34</span><br /><span id="L35">35</span><br /><span id="L36">36</span><br /><span id="L37">37</span><br /><span id="L38">38</span><br /><span id="L39">39</span><br /><span id="L40">40</span><br /><span id="L41">41</span><br /><span id="L42">42</span><br /><span id="L43">43</span><br /><span id="L44">44</span><br /><span id="L45">45</span><br /><span id="L46">46</span><br /><span id="L47">47</span><br /><span id="L48">48</span><br /><span id="L49">49</span><br /><span id="L50">50</span><br /><span id="L51">51</span><br /><span id="L52">52</span><br /><span id="L53">53</span><br /><span id="L54">54</span><br /><span id="L55">55</span><br /><span id="L56">56</span><br /><span id="L57">57</span><br /><span id="L58">58</span><br /><span id="L59">59</span><br /><span id="L60">60</span><br /><span id="L61">61</span><br /><span id="L62">62</span><br /><span id="L63">63</span><br /><span id="L64">64</span><br /><span id="L65">65</span><br /><span id="L66">66</span><br /><span id="L67">67</span><br /><span id="L68">68</span><br /><span id="L69">69</span><br /><span id="L70">70</span><br /><span id="L71">71</span><br /><span id="L72">72</span><br /><span id="L73">73</span><br /><span id="L74">74</span><br /><span id="L75">75</span><br /><span id="L76">76</span><br /><span id="L77">77</span><br /><span id="L78">78</span><br /><span id="L79">79</span><br /><span id="L80">80</span><br /><span id="L81">81</span><br /><span id="L82">82</span><br /><span id="L83">83</span><br /><span id="L84">84</span><br /><span id="L85">85</span><br /><span id="L86">86</span><br /><span id="L87">87</span><br /><span id="L88">88</span><br /><span id="L89">89</span><br /><span id="L90">90</span><br /><span id="L91">91</span><br /><span id="L92">92</span><br /><span id="L93">93</span><br /><span id="L94">94</span><br /><span id="L95">95</span><br /><span id="L96">96</span><br /><span id="L97">97</span><br /><span id="L98">98</span><br /><span id="L99">99</span><br /><span id="L100">100</span><br /><span id="L101">101</span><br /><span id="L102">102</span><br /><span id="L103">103</span><br /><span id="L104">104</span><br /><span id="L105">105</span><br /><span id="L106">106</span><br /><span id="L107">107</span><br /><span id="L108">108</span><br /><span id="L109">109</span><br /><span id="L110">110</span><br /><span id="L111">111</span><br /><span id="L112">112</span><br /><span id="L113">113</span><br /><span id="L114">114</span><br /><span id="L115">115</span><br /><span id="L116">116</span><br /><span id="L117">117</span><br /><span id="L118">118</span><br /><span id="L119">119</span><br /><span id="L120">120</span><br /><span id="L121">121</span><br /><span id="L122">122</span><br /><span id="L123">123</span><br /><span id="L124">124</span><br /><span id="L125">125</span><br /><span id="L126">126</span><br /><span id="L127">127</span><br /><span id="L128">128</span><br /><span id="L129">129</span><br /><span id="L130">130</span><br /><span id="L131">131</span><br /><span id="L132">132</span><br /><span id="L133">133</span><br /><span id="L134">134</span><br /><span id="L135">135</span><br /><span id="L136">136</span><br /><span id="L137">137</span><br /><span id="L138">138</span><br /><span id="L139">139</span><br /><span id="L140">140</span><br /><span id="L141">141</span><br /><span id="L142">142</span><br /><span id="L143">143</span><br /><span id="L144">144</span><br /><span id="L145">145</span><br /><span id="L146">146</span><br /><span id="L147">147</span><br /><span id="L148">148</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-comment">/* PMP configuration entries */</span>
+
+<span class="sail-keyword">enum</span> <span class="sail-id">PmpAddrMatchType</span> = {<span class="sail-id">OFF</span>, <span class="sail-id">TOR</span>, <span class="sail-id">NA4</span>, <span class="sail-id">NAPOT</span>}
+
+<span class="sail-keyword">val</span> <span class="sail-id">pmpAddrMatchType_of_bits</span> : <span class="sail-id">bits</span>(<span class="sail-literal">2</span>) -&gt; <span class="sail-id">PmpAddrMatchType</span>
+<span class="sail-keyword">function</span> <span class="sail-id">pmpAddrMatchType_of_bits</span>(<span class="sail-id">bs</span>) = {
+  <span class="sail-keyword">match</span> <span class="sail-id">bs</span> {
+    <span class="sail-literal">0b00</span> =&gt; <span class="sail-id">OFF</span>,
+    <span class="sail-literal">0b01</span> =&gt; <span class="sail-id">TOR</span>,
+    <span class="sail-literal">0b10</span> =&gt; <span class="sail-id">NA4</span>,
+    <span class="sail-literal">0b11</span> =&gt; <span class="sail-id">NAPOT</span>
+  }
+}
+
+<span class="sail-keyword">val</span> <span class="sail-id">pmpAddrMatchType_to_bits</span> : <span class="sail-id">PmpAddrMatchType</span> -&gt; <span class="sail-id">bits</span>(<span class="sail-literal">2</span>)
+<span class="sail-keyword">function</span> <span class="sail-id">pmpAddrMatchType_to_bits</span>(<span class="sail-id">bs</span>) = {
+  <span class="sail-keyword">match</span> <span class="sail-id">bs</span> {
+    <span class="sail-id">OFF</span>   =&gt; <span class="sail-literal">0b00</span>,
+    <span class="sail-id">TOR</span>   =&gt; <span class="sail-literal">0b01</span>,
+    <span class="sail-id">NA4</span>   =&gt; <span class="sail-literal">0b10</span>,
+    <span class="sail-id">NAPOT</span> =&gt; <span class="sail-literal">0b11</span>
+  }
+}
+
+<span class="sail-keyword">bitfield</span> <span class="sail-id">Pmpcfg_ent</span> : <span class="sail-id">bits</span>(<span class="sail-literal">8</span>) = {
+  <span class="sail-id">L</span> : <span class="sail-literal">7</span>,        <span class="sail-comment">/* locking */</span>
+  <span class="sail-id">A</span> : <span class="sail-literal">4</span> .. <span class="sail-literal">3</span>,   <span class="sail-comment">/* address match type, encoded as above */</span>
+
+  <span class="sail-comment">/* permissions */</span>
+  <span class="sail-id">X</span> : <span class="sail-literal">2</span>,        <span class="sail-comment">/* execute */</span>
+  <span class="sail-id">W</span> : <span class="sail-literal">1</span>,        <span class="sail-comment">/* write */</span>
+  <span class="sail-id">R</span> : <span class="sail-literal">0</span>         <span class="sail-comment">/* read */</span>
+}
+
+<span class="sail-keyword">register</span> <a href="../model/riscv_pmp_regs.html#L43"><span class="sail-id">pmpcfg_n</span></a> : <span class="sail-id">vector</span>(<span class="sail-literal">64</span>, <span class="sail-keyword">dec</span>, <span class="sail-id">Pmpcfg_ent</span>)
+<span class="sail-keyword">register</span> <a href="../model/riscv_pmp_regs.html#L44"><span class="sail-id">pmpaddr_n</span></a> : <span class="sail-id">vector</span>(<span class="sail-literal">64</span>, <span class="sail-keyword">dec</span>, <span class="sail-id">xlenbits</span>)
+
+<span class="sail-comment">/* Packing and unpacking pmpcfg regs for xlen-width accesses */</span>
+
+<span class="sail-keyword">function</span> <span class="sail-id">pmpReadCfgReg</span>(<span class="sail-id">n</span> : <span class="sail-id">range</span>(<span class="sail-literal">0</span>, <span class="sail-literal">15</span>)) -&gt; <span class="sail-id">xlenbits</span> = {
+  <span class="sail-keyword">if</span> <span class="sail-keyword">sizeof</span>(<span class="sail-id">xlen</span>) <span class="sail-operator">==</span> <span class="sail-literal">32</span>
+  <span class="sail-keyword">then</span> {
+    <a href="../model/riscv_pmp_regs.html#L43"><span class="sail-id">pmpcfg_n</span></a>[<span class="sail-id">n</span><span class="sail-operator">*</span><span class="sail-literal">4</span> <span class="sail-operator">+</span> <span class="sail-literal">3</span>].<span class="sail-id">bits</span> @
+    <a href="../model/riscv_pmp_regs.html#L43"><span class="sail-id">pmpcfg_n</span></a>[<span class="sail-id">n</span><span class="sail-operator">*</span><span class="sail-literal">4</span> <span class="sail-operator">+</span> <span class="sail-literal">2</span>].<span class="sail-id">bits</span> @
+    <a href="../model/riscv_pmp_regs.html#L43"><span class="sail-id">pmpcfg_n</span></a>[<span class="sail-id">n</span><span class="sail-operator">*</span><span class="sail-literal">4</span> <span class="sail-operator">+</span> <span class="sail-literal">1</span>].<span class="sail-id">bits</span> @
+    <a href="../model/riscv_pmp_regs.html#L43"><span class="sail-id">pmpcfg_n</span></a>[<span class="sail-id">n</span><span class="sail-operator">*</span><span class="sail-literal">4</span> <span class="sail-operator">+</span> <span class="sail-literal">0</span>].<span class="sail-id">bits</span>
+  }
+  <span class="sail-keyword">else</span> {
+    <span class="sail-keyword">assert</span>(<span class="sail-id">n</span> <span class="sail-operator">%</span> <span class="sail-literal">2</span> <span class="sail-operator">==</span> <span class="sail-literal">0</span>, <span class="sail-string">"Unexpected pmp config reg read"</span>);
+    <a href="../model/riscv_pmp_regs.html#L43"><span class="sail-id">pmpcfg_n</span></a>[<span class="sail-id">n</span><span class="sail-operator">*</span><span class="sail-literal">4</span> <span class="sail-operator">+</span> <span class="sail-literal">7</span>].<span class="sail-id">bits</span> @
+    <a href="../model/riscv_pmp_regs.html#L43"><span class="sail-id">pmpcfg_n</span></a>[<span class="sail-id">n</span><span class="sail-operator">*</span><span class="sail-literal">4</span> <span class="sail-operator">+</span> <span class="sail-literal">6</span>].<span class="sail-id">bits</span> @
+    <a href="../model/riscv_pmp_regs.html#L43"><span class="sail-id">pmpcfg_n</span></a>[<span class="sail-id">n</span><span class="sail-operator">*</span><span class="sail-literal">4</span> <span class="sail-operator">+</span> <span class="sail-literal">5</span>].<span class="sail-id">bits</span> @
+    <a href="../model/riscv_pmp_regs.html#L43"><span class="sail-id">pmpcfg_n</span></a>[<span class="sail-id">n</span><span class="sail-operator">*</span><span class="sail-literal">4</span> <span class="sail-operator">+</span> <span class="sail-literal">4</span>].<span class="sail-id">bits</span> @
+    <a href="../model/riscv_pmp_regs.html#L43"><span class="sail-id">pmpcfg_n</span></a>[<span class="sail-id">n</span><span class="sail-operator">*</span><span class="sail-literal">4</span> <span class="sail-operator">+</span> <span class="sail-literal">3</span>].<span class="sail-id">bits</span> @
+    <a href="../model/riscv_pmp_regs.html#L43"><span class="sail-id">pmpcfg_n</span></a>[<span class="sail-id">n</span><span class="sail-operator">*</span><span class="sail-literal">4</span> <span class="sail-operator">+</span> <span class="sail-literal">2</span>].<span class="sail-id">bits</span> @
+    <a href="../model/riscv_pmp_regs.html#L43"><span class="sail-id">pmpcfg_n</span></a>[<span class="sail-id">n</span><span class="sail-operator">*</span><span class="sail-literal">4</span> <span class="sail-operator">+</span> <span class="sail-literal">1</span>].<span class="sail-id">bits</span> @
+    <a href="../model/riscv_pmp_regs.html#L43"><span class="sail-id">pmpcfg_n</span></a>[<span class="sail-id">n</span><span class="sail-operator">*</span><span class="sail-literal">4</span> <span class="sail-operator">+</span> <span class="sail-literal">0</span>].<span class="sail-id">bits</span>
+  }
+}
+
+<span class="sail-keyword">function</span> <span class="sail-id">pmpReadAddrReg</span>(<span class="sail-id">n</span> : <span class="sail-id">range</span>(<span class="sail-literal">0</span>, <span class="sail-literal">63</span>)) -&gt; <span class="sail-id">xlenbits</span> = {
+  <span class="sail-keyword">let</span> <span class="sail-id">G</span> = <a href="../model/riscv_sys_regs.html#L101"><span class="sail-id">sys_pmp_grain</span></a>();
+  <span class="sail-keyword">let</span> <span class="sail-id">match_type</span> = <a href="../model/riscv_pmp_regs.html#L43"><span class="sail-id">pmpcfg_n</span></a>[<span class="sail-id">n</span>].<span class="sail-id">A</span>();
+  <span class="sail-keyword">let</span> <span class="sail-id">addr</span> = <a href="../model/riscv_pmp_regs.html#L44"><span class="sail-id">pmpaddr_n</span></a>[<span class="sail-id">n</span>];
+
+  <span class="sail-keyword">match</span> <span class="sail-id">match_type</span>[<span class="sail-literal">1</span>] {
+    <span class="sail-literal">bitone</span> <span class="sail-keyword">if</span> <span class="sail-id">G</span> <span class="sail-operator">&gt;=</span> <span class="sail-literal">2</span> =&gt; {
+      <span class="sail-comment">// [G-2..0] read as all ones to form mask, therefore we need G-1 bits.
+</span>      <span class="sail-keyword">let</span> <span class="sail-id">mask</span> : <span class="sail-id">xlenbits</span> = <a href="../model/prelude.html#L92"><span class="sail-id">zero_extend</span></a>(<a href="../model/prelude.html#L99"><span class="sail-id">ones</span></a>(<span class="sail-id">min</span>(<span class="sail-id">G</span> <span class="sail-operator">-</span> <span class="sail-literal">1</span>, <span class="sail-keyword">sizeof</span>(<span class="sail-id">xlen</span>))));
+      <span class="sail-id">addr</span> <span class="sail-operator">|</span> <span class="sail-id">mask</span>
+    },
+
+    <span class="sail-literal">bitzero</span> <span class="sail-keyword">if</span> <span class="sail-id">G</span> <span class="sail-operator">&gt;=</span> <span class="sail-literal">1</span> =&gt; {
+      <span class="sail-comment">// [G-1..0] read as all zeros to form mask, therefore we need G bits.
+</span>      <span class="sail-keyword">let</span> <span class="sail-id">mask</span> : <span class="sail-id">xlenbits</span> = <a href="../model/prelude.html#L92"><span class="sail-id">zero_extend</span></a>(<a href="../model/prelude.html#L99"><span class="sail-id">ones</span></a>(<span class="sail-id">min</span>(<span class="sail-id">G</span> , <span class="sail-keyword">sizeof</span>(<span class="sail-id">xlen</span>))));
+      <span class="sail-id">addr</span> <span class="sail-operator">&amp;</span> <span class="sail-id">~</span>(<span class="sail-id">mask</span>)
+    },
+
+    _ =&gt; <span class="sail-id">addr</span>,
+  }
+}
+
+<span class="sail-comment">/* Helpers to handle locked entries */</span>
+<span class="sail-keyword">function</span> <span class="sail-id">pmpLocked</span>(<span class="sail-id">cfg</span>: <span class="sail-id">Pmpcfg_ent</span>) -&gt; <span class="sail-id">bool</span> =
+   <span class="sail-id">cfg</span>[<span class="sail-id">L</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>
+
+<span class="sail-keyword">function</span> <span class="sail-id">pmpTORLocked</span>(<span class="sail-id">cfg</span>: <span class="sail-id">Pmpcfg_ent</span>) -&gt; <span class="sail-id">bool</span> =
+   (<span class="sail-id">cfg</span>[<span class="sail-id">L</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>) <span class="sail-operator">&amp;</span> (<a href="../model/riscv_pmp_regs.html#L14"><span class="sail-id">pmpAddrMatchType_of_bits</span></a>(<span class="sail-id">cfg</span>[<span class="sail-id">A</span>]) <span class="sail-operator">==</span> <span class="sail-id">TOR</span>)
+
+<span class="sail-keyword">function</span> <span class="sail-id">pmpWriteCfg</span>(<span class="sail-id">n</span>: <span class="sail-id">range</span>(<span class="sail-literal">0</span>, <span class="sail-literal">63</span>), <span class="sail-id">cfg</span>: <span class="sail-id">Pmpcfg_ent</span>, <span class="sail-id">v</span>: <span class="sail-id">bits</span>(<span class="sail-literal">8</span>)) -&gt; <span class="sail-id">Pmpcfg_ent</span> =
+  <span class="sail-keyword">if</span> <a href="../model/riscv_pmp_regs.html#L92"><span class="sail-id">pmpLocked</span></a>(<span class="sail-id">cfg</span>) <span class="sail-keyword">then</span> <span class="sail-id">cfg</span>
+  <span class="sail-keyword">else</span> {
+    <span class="sail-comment">// Bits 5 and 6 are zero.
+</span>    <span class="sail-keyword">let</span> <span class="sail-id">cfg</span> = <span class="sail-id">Mk_Pmpcfg_ent</span>(<span class="sail-id">v</span> <span class="sail-operator">&amp;</span> <span class="sail-literal">0x9f</span>);
+
+    <span class="sail-comment">// "The R, W, and X fields form a collective WARL field for which the combinations with R=0 and W=1 are reserved."
+</span>    <span class="sail-comment">// In this implementation if R=0 and W=1 then R, W and X are all set to 0.
+</span>    <span class="sail-comment">// This is the least risky option from a security perspective.
+</span>    <span class="sail-keyword">let</span> <span class="sail-id">cfg</span> = <span class="sail-keyword">if</span> <span class="sail-id">cfg</span>.<span class="sail-id">W</span>() <span class="sail-operator">==</span> <span class="sail-literal">0b1</span> <span class="sail-operator">&amp;</span> <span class="sail-id">cfg</span>.<span class="sail-id">R</span>() <span class="sail-operator">==</span> <span class="sail-literal">0b0</span> <span class="sail-keyword">then</span> [<span class="sail-id">cfg</span> <span class="sail-keyword">with</span> <span class="sail-id">X</span> = <span class="sail-literal">0b0</span>, <span class="sail-id">W</span> = <span class="sail-literal">0b0</span>, <span class="sail-id">R</span> = <span class="sail-literal">0b0</span>] <span class="sail-keyword">else</span> <span class="sail-id">cfg</span>;
+
+    <span class="sail-comment">// "When G &gt;= 1, the NA4 mode is not selectable."
+</span>    <span class="sail-comment">// In this implementation we set it to OFF if NA4 is selected.
+</span>    <span class="sail-comment">// This is the least risky option from a security perspective.
+</span>    <span class="sail-keyword">let</span> <span class="sail-id">cfg</span> = <span class="sail-keyword">if</span> <a href="../model/riscv_sys_regs.html#L101"><span class="sail-id">sys_pmp_grain</span></a>() <span class="sail-operator">&gt;=</span> <span class="sail-literal">1</span> <span class="sail-operator">&amp;</span> <a href="../model/riscv_pmp_regs.html#L14"><span class="sail-id">pmpAddrMatchType_of_bits</span></a>(<span class="sail-id">cfg</span>.<span class="sail-id">A</span>()) <span class="sail-operator">==</span> <span class="sail-id">NA4</span>
+              <span class="sail-keyword">then</span> [<span class="sail-id">cfg</span> <span class="sail-keyword">with</span> <span class="sail-id">A</span> = <a href="../model/riscv_pmp_regs.html#L24"><span class="sail-id">pmpAddrMatchType_to_bits</span></a>(<span class="sail-id">OFF</span>)]
+              <span class="sail-keyword">else</span> <span class="sail-id">cfg</span>;
+
+    <span class="sail-id">cfg</span>
+  }
+
+<span class="sail-keyword">function</span> <span class="sail-id">pmpWriteCfgReg</span>(<span class="sail-id">n</span> : <span class="sail-id">range</span>(<span class="sail-literal">0</span>, <span class="sail-literal">15</span>), <span class="sail-id">v</span> : <span class="sail-id">xlenbits</span>) -&gt; <span class="sail-id">unit</span> = {
+  <span class="sail-keyword">if</span> <span class="sail-keyword">sizeof</span>(<span class="sail-id">xlen</span>) <span class="sail-operator">==</span> <span class="sail-literal">32</span>
+  <span class="sail-keyword">then</span> {
+    <span class="sail-keyword">foreach</span> (<span class="sail-id">i</span> <span class="sail-id">from</span> <span class="sail-literal">0</span> <span class="sail-id">to</span> <span class="sail-literal">3</span>) {
+      <span class="sail-keyword">let</span> <span class="sail-id">idx</span> = <span class="sail-id">n</span><span class="sail-operator">*</span><span class="sail-literal">4</span> <span class="sail-operator">+</span> <span class="sail-id">i</span>;
+      <a href="../model/riscv_pmp_regs.html#L43"><span class="sail-id">pmpcfg_n</span></a>[<span class="sail-id">idx</span>]  = <a href="../model/riscv_pmp_regs.html#L98"><span class="sail-id">pmpWriteCfg</span></a>(<span class="sail-id">idx</span>,  <a href="../model/riscv_pmp_regs.html#L43"><span class="sail-id">pmpcfg_n</span></a>[<span class="sail-id">idx</span>],  <span class="sail-id">v</span>[<span class="sail-literal">8</span><span class="sail-operator">*</span><span class="sail-id">i</span><span class="sail-operator">+</span><span class="sail-literal">7</span> .. <span class="sail-literal">8</span><span class="sail-operator">*</span><span class="sail-id">i</span>]);
+    }
+  }
+  <span class="sail-keyword">else</span> {
+    <span class="sail-keyword">assert</span>(<span class="sail-id">n</span> <span class="sail-operator">%</span> <span class="sail-literal">2</span> <span class="sail-operator">==</span> <span class="sail-literal">0</span>, <span class="sail-string">"Unexpected pmp config reg write"</span>);
+    <span class="sail-keyword">foreach</span> (<span class="sail-id">i</span> <span class="sail-id">from</span> <span class="sail-literal">0</span> <span class="sail-id">to</span> <span class="sail-literal">7</span>) {
+      <span class="sail-keyword">let</span> <span class="sail-id">idx</span> = <span class="sail-id">n</span><span class="sail-operator">*</span><span class="sail-literal">4</span> <span class="sail-operator">+</span> <span class="sail-id">i</span>;
+      <a href="../model/riscv_pmp_regs.html#L43"><span class="sail-id">pmpcfg_n</span></a>[<span class="sail-id">idx</span>]  = <a href="../model/riscv_pmp_regs.html#L98"><span class="sail-id">pmpWriteCfg</span></a>(<span class="sail-id">idx</span>,  <a href="../model/riscv_pmp_regs.html#L43"><span class="sail-id">pmpcfg_n</span></a>[<span class="sail-id">idx</span>],  <span class="sail-id">v</span>[<span class="sail-literal">8</span><span class="sail-operator">*</span><span class="sail-id">i</span><span class="sail-operator">+</span><span class="sail-literal">7</span> .. <span class="sail-literal">8</span><span class="sail-operator">*</span><span class="sail-id">i</span>]);
+    }
+  }
+}
+
+<span class="sail-keyword">function</span> <span class="sail-id">pmpWriteAddr</span>(<span class="sail-id">locked</span>: <span class="sail-id">bool</span>, <span class="sail-id">tor_locked</span>: <span class="sail-id">bool</span>, <span class="sail-id">reg</span>: <span class="sail-id">xlenbits</span>, <span class="sail-id">v</span>: <span class="sail-id">xlenbits</span>) -&gt; <span class="sail-id">xlenbits</span> =
+  <span class="sail-keyword">if</span>   <span class="sail-keyword">sizeof</span>(<span class="sail-id">xlen</span>) <span class="sail-operator">==</span> <span class="sail-literal">32</span>
+  <span class="sail-keyword">then</span> { <span class="sail-keyword">if</span> (<span class="sail-id">locked</span> <span class="sail-operator">|</span> <span class="sail-id">tor_locked</span>) <span class="sail-keyword">then</span> <span class="sail-id">reg</span> <span class="sail-keyword">else</span> <span class="sail-id">v</span> }
+  <span class="sail-keyword">else</span> { <span class="sail-keyword">if</span> (<span class="sail-id">locked</span> <span class="sail-operator">|</span> <span class="sail-id">tor_locked</span>) <span class="sail-keyword">then</span> <span class="sail-id">reg</span> <span class="sail-keyword">else</span> <a href="../model/prelude.html#L92"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">v</span>[<span class="sail-literal">53</span>..<span class="sail-literal">0</span>]) }
+
+<span class="sail-keyword">function</span> <span class="sail-id">pmpWriteAddrReg</span>(<span class="sail-id">n</span> : <span class="sail-id">range</span>(<span class="sail-literal">0</span>, <span class="sail-literal">63</span>), <span class="sail-id">v</span> : <span class="sail-id">xlenbits</span>) -&gt; <span class="sail-id">unit</span> = {
+  <a href="../model/riscv_pmp_regs.html#L44"><span class="sail-id">pmpaddr_n</span></a>[<span class="sail-id">n</span>] = <a href="../model/riscv_pmp_regs.html#L136"><span class="sail-id">pmpWriteAddr</span></a>(
+    <a href="../model/riscv_pmp_regs.html#L92"><span class="sail-id">pmpLocked</span></a>(<a href="../model/riscv_pmp_regs.html#L43"><span class="sail-id">pmpcfg_n</span></a>[<span class="sail-id">n</span>]),
+    <span class="sail-keyword">if</span> <span class="sail-id">n</span> <span class="sail-operator">+</span> <span class="sail-literal">1</span> <span class="sail-operator">&lt;</span> <span class="sail-literal">64</span> <span class="sail-keyword">then</span> <a href="../model/riscv_pmp_regs.html#L95"><span class="sail-id">pmpTORLocked</span></a>(<a href="../model/riscv_pmp_regs.html#L43"><span class="sail-id">pmpcfg_n</span></a>[<span class="sail-id">n</span> <span class="sail-operator">+</span> <span class="sail-literal">1</span>]) <span class="sail-keyword">else</span> <span class="sail-literal">false</span>,
+    <a href="../model/riscv_pmp_regs.html#L44"><span class="sail-id">pmpaddr_n</span></a>[<span class="sail-id">n</span>],
+    <span class="sail-id">v</span>,
+  );
+}
+</pre>
+</div>
+</div>
+</body>
+</html>

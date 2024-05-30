@@ -1,0 +1,142 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /><span id="L26">26</span><br /><span id="L27">27</span><br /><span id="L28">28</span><br /><span id="L29">29</span><br /><span id="L30">30</span><br /><span id="L31">31</span><br /><span id="L32">32</span><br /><span id="L33">33</span><br /><span id="L34">34</span><br /><span id="L35">35</span><br /><span id="L36">36</span><br /><span id="L37">37</span><br /><span id="L38">38</span><br /><span id="L39">39</span><br /><span id="L40">40</span><br /><span id="L41">41</span><br /><span id="L42">42</span><br /><span id="L43">43</span><br /><span id="L44">44</span><br /><span id="L45">45</span><br /><span id="L46">46</span><br /><span id="L47">47</span><br /><span id="L48">48</span><br /><span id="L49">49</span><br /><span id="L50">50</span><br /><span id="L51">51</span><br /><span id="L52">52</span><br /><span id="L53">53</span><br /><span id="L54">54</span><br /><span id="L55">55</span><br /><span id="L56">56</span><br /><span id="L57">57</span><br /><span id="L58">58</span><br /><span id="L59">59</span><br /><span id="L60">60</span><br /><span id="L61">61</span><br /><span id="L62">62</span><br /><span id="L63">63</span><br /><span id="L64">64</span><br /><span id="L65">65</span><br /><span id="L66">66</span><br /><span id="L67">67</span><br /><span id="L68">68</span><br /><span id="L69">69</span><br /><span id="L70">70</span><br /><span id="L71">71</span><br /><span id="L72">72</span><br /><span id="L73">73</span><br /><span id="L74">74</span><br /><span id="L75">75</span><br /><span id="L76">76</span><br /><span id="L77">77</span><br /><span id="L78">78</span><br /><span id="L79">79</span><br /><span id="L80">80</span><br /><span id="L81">81</span><br /><span id="L82">82</span><br /><span id="L83">83</span><br /><span id="L84">84</span><br /><span id="L85">85</span><br /><span id="L86">86</span><br /><span id="L87">87</span><br /><span id="L88">88</span><br /><span id="L89">89</span><br /><span id="L90">90</span><br /><span id="L91">91</span><br /><span id="L92">92</span><br /><span id="L93">93</span><br /><span id="L94">94</span><br /><span id="L95">95</span><br /><span id="L96">96</span><br /><span id="L97">97</span><br /><span id="L98">98</span><br /><span id="L99">99</span><br /><span id="L100">100</span><br /><span id="L101">101</span><br /><span id="L102">102</span><br /><span id="L103">103</span><br /><span id="L104">104</span><br /><span id="L105">105</span><br /><span id="L106">106</span><br /><span id="L107">107</span><br /><span id="L108">108</span><br /><span id="L109">109</span><br /><span id="L110">110</span><br /><span id="L111">111</span><br /><span id="L112">112</span><br /><span id="L113">113</span><br /><span id="L114">114</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-comment">// ****************************************************************
+</span><span class="sail-comment">// Parameters for VM modes sv32, sv39, sv48 and (TODO) Sv57
+</span>
+<span class="sail-comment">// All VM modes use the same page size (4KB, with 12-bit index)
+</span>
+<span class="sail-comment">// This two-line idiom constrains the value (2nd line) to be a singleton,
+</span><span class="sail-comment">// which helps in type-checking wherever it is used.
+</span><span class="sail-keyword">type</span> <span class="sail-id">PAGESIZE_BITS</span> : <span class="sail-kind">Int</span> = <span class="sail-literal">12</span>
+<span class="sail-keyword">let</span>  <span class="sail-id">pagesize_bits</span> = <span class="sail-keyword">sizeof</span>(<span class="sail-id">PAGESIZE_BITS</span>)
+
+<span class="sail-comment">// PRIVATE
+</span><span class="sail-keyword">struct</span> <span class="sail-id">SV_Params</span> = {
+  <span class="sail-comment">// VA
+</span>  <span class="sail-id">va_size_bits</span>        : {<span class="sail-literal">32</span>, <span class="sail-literal">39</span>, <span class="sail-literal">48</span>},    <span class="sail-comment">//   32    39    48
+</span>  <span class="sail-id">vpn_size_bits</span>       : {<span class="sail-literal">10</span>,  <span class="sail-literal">9</span>},        <span class="sail-comment">//   10     9     9
+</span>
+  <span class="sail-comment">// PTE
+</span>  <span class="sail-id">levels</span>              : { <span class="sail-literal">2</span>,  <span class="sail-literal">3</span>,  <span class="sail-literal">4</span>},    <span class="sail-comment">//    2     3     4
+</span>  <span class="sail-id">log_pte_size_bytes</span>  : { <span class="sail-literal">2</span>,  <span class="sail-literal">3</span>},        <span class="sail-comment">//    2     3     3
+</span>  <span class="sail-id">pte_msbs_lsb_index</span>  : {<span class="sail-literal">32</span>, <span class="sail-literal">54</span>},        <span class="sail-comment">//   32    54    54
+</span>  <span class="sail-id">pte_msbs_size_bits</span>  : { <span class="sail-literal">0</span>, <span class="sail-literal">10</span>},        <span class="sail-comment">//    0    10    10
+</span>  <span class="sail-id">pte_PPNs_lsb_index</span>  : {<span class="sail-literal">10</span>},            <span class="sail-comment">//   10    10    10
+</span>  <span class="sail-id">pte_PPNs_size_bits</span>  : {<span class="sail-literal">22</span>, <span class="sail-literal">44</span>},        <span class="sail-comment">//   22    44    44
+</span>  <span class="sail-id">pte_PPN_j_size_bits</span> : {<span class="sail-literal">10</span>,  <span class="sail-literal">9</span>}         <span class="sail-comment">//   10     9     9
+</span>}
+
+<span class="sail-comment">// Current level during a page-table walk (0 to SV_Params.levels - 1)
+</span><span class="sail-keyword">type</span> <span class="sail-id">PTW_Level</span> = <span class="sail-id">range</span>(<span class="sail-literal">0</span>,<span class="sail-literal">3</span>)    <span class="sail-comment">// range(0,4) when add Sv57 (TODO)
+</span>
+<span class="sail-comment">// PRIVATE
+</span><span class="sail-keyword">let</span> <span class="sail-id">sv32_params</span> : <span class="sail-id">SV_Params</span> = <span class="sail-keyword">struct</span> {
+       <span class="sail-comment">// VA
+</span>       <span class="sail-id">va_size_bits</span>        = <span class="sail-literal">32</span>,
+       <span class="sail-id">vpn_size_bits</span>       = <span class="sail-literal">10</span>,
+
+       <span class="sail-comment">// PTE
+</span>       <span class="sail-id">levels</span>              = <span class="sail-literal">2</span>,
+       <span class="sail-id">log_pte_size_bytes</span>  = <span class="sail-literal">2</span>,    <span class="sail-comment">// 4 Bytes
+</span>       <span class="sail-id">pte_msbs_lsb_index</span>  = <span class="sail-literal">32</span>,
+       <span class="sail-id">pte_msbs_size_bits</span>  = <span class="sail-literal">0</span>,
+       <span class="sail-id">pte_PPNs_lsb_index</span>  = <span class="sail-literal">10</span>,
+       <span class="sail-id">pte_PPNs_size_bits</span>  = <span class="sail-literal">22</span>,
+       <span class="sail-id">pte_PPN_j_size_bits</span> = <span class="sail-literal">10</span>
+}
+
+<span class="sail-comment">// PRIVATE
+</span><span class="sail-keyword">let</span> <span class="sail-id">sv39_params</span> : <span class="sail-id">SV_Params</span> = <span class="sail-keyword">struct</span> {
+       <span class="sail-comment">// VA
+</span>       <span class="sail-id">va_size_bits</span>        = <span class="sail-literal">39</span>,
+       <span class="sail-id">vpn_size_bits</span>       = <span class="sail-literal">9</span>,
+
+       <span class="sail-comment">// PTE
+</span>       <span class="sail-id">levels</span>              = <span class="sail-literal">3</span>,
+       <span class="sail-id">log_pte_size_bytes</span>  = <span class="sail-literal">3</span>,    <span class="sail-comment">// 8 Bytes
+</span>       <span class="sail-id">pte_msbs_lsb_index</span>  = <span class="sail-literal">54</span>,
+       <span class="sail-id">pte_msbs_size_bits</span>  = <span class="sail-literal">10</span>,
+       <span class="sail-id">pte_PPNs_lsb_index</span>  = <span class="sail-literal">10</span>,
+       <span class="sail-id">pte_PPNs_size_bits</span>  = <span class="sail-literal">44</span>,
+       <span class="sail-id">pte_PPN_j_size_bits</span> = <span class="sail-literal">9</span>
+}
+
+<span class="sail-comment">// PRIVATE
+</span><span class="sail-keyword">let</span> <span class="sail-id">sv48_params</span> : <span class="sail-id">SV_Params</span> = <span class="sail-keyword">struct</span> {
+       <span class="sail-comment">// VA
+</span>       <span class="sail-id">va_size_bits</span>        = <span class="sail-literal">48</span>,
+       <span class="sail-id">vpn_size_bits</span>       = <span class="sail-literal">9</span>,
+
+       <span class="sail-comment">// PTE
+</span>       <span class="sail-id">levels</span>              = <span class="sail-literal">4</span>,
+       <span class="sail-id">log_pte_size_bytes</span>  = <span class="sail-literal">3</span>,    <span class="sail-comment">// 8 Bytes
+</span>       <span class="sail-id">pte_msbs_lsb_index</span>  = <span class="sail-literal">54</span>,
+       <span class="sail-id">pte_msbs_size_bits</span>  = <span class="sail-literal">10</span>,
+       <span class="sail-id">pte_PPNs_lsb_index</span>  = <span class="sail-literal">10</span>,
+       <span class="sail-id">pte_PPNs_size_bits</span>  = <span class="sail-literal">44</span>,
+       <span class="sail-id">pte_PPN_j_size_bits</span> = <span class="sail-literal">9</span>
+}
+
+<span class="sail-comment">// TODO; not currently used
+</span><span class="sail-comment">// PRIVATE
+</span><span class="sail-comment">/*
+let sv57_params : SV_Params = struct {
+       // VA
+       va_size_bits        = 57,
+       vpn_size_bits       = 9,
+
+       // PTE
+       levels              = 5,
+       log_pte_size_bytes  = 3,    // 8 Bytes
+       pte_msbs_lsb_index  = 54,
+       pte_msbs_size_bits  = 10,
+       pte_PPNs_lsb_index  = 10,
+       pte_PPNs_size_bits  = 44,
+       pte_PPN_j_size_bits = 9
+}
+*/</span>
+
+<span class="sail-comment">// This 'undefined_SV_Params()' function is not used anywhere, but is
+</span><span class="sail-comment">// currently (2023-12) needed to work around an issue where Sail tries
+</span><span class="sail-comment">// to figure out how it could do
+</span><span class="sail-comment">//     let x : SV_Params = undefined
+</span><span class="sail-comment">// even though the code never does this.  This has been fixed in Sail.
+</span><span class="sail-comment">// The fix will become available in a new Sail release, at which point
+</span><span class="sail-comment">// this function can be deleted (TODO).
+</span><span class="sail-comment">// PRIVATE
+</span><span class="sail-keyword">val</span>      <span class="sail-id">undefined_SV_Params</span> : <span class="sail-id">unit</span> -&gt; <span class="sail-id">SV_Params</span>
+<span class="sail-keyword">function</span> <span class="sail-id">undefined_SV_Params</span>() = <span class="sail-id">sv32_params</span>
+</pre>
+</div>
+</div>
+</body>
+</html>

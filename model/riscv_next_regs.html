@@ -1,0 +1,119 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /><span id="L26">26</span><br /><span id="L27">27</span><br /><span id="L28">28</span><br /><span id="L29">29</span><br /><span id="L30">30</span><br /><span id="L31">31</span><br /><span id="L32">32</span><br /><span id="L33">33</span><br /><span id="L34">34</span><br /><span id="L35">35</span><br /><span id="L36">36</span><br /><span id="L37">37</span><br /><span id="L38">38</span><br /><span id="L39">39</span><br /><span id="L40">40</span><br /><span id="L41">41</span><br /><span id="L42">42</span><br /><span id="L43">43</span><br /><span id="L44">44</span><br /><span id="L45">45</span><br /><span id="L46">46</span><br /><span id="L47">47</span><br /><span id="L48">48</span><br /><span id="L49">49</span><br /><span id="L50">50</span><br /><span id="L51">51</span><br /><span id="L52">52</span><br /><span id="L53">53</span><br /><span id="L54">54</span><br /><span id="L55">55</span><br /><span id="L56">56</span><br /><span id="L57">57</span><br /><span id="L58">58</span><br /><span id="L59">59</span><br /><span id="L60">60</span><br /><span id="L61">61</span><br /><span id="L62">62</span><br /><span id="L63">63</span><br /><span id="L64">64</span><br /><span id="L65">65</span><br /><span id="L66">66</span><br /><span id="L67">67</span><br /><span id="L68">68</span><br /><span id="L69">69</span><br /><span id="L70">70</span><br /><span id="L71">71</span><br /><span id="L72">72</span><br /><span id="L73">73</span><br /><span id="L74">74</span><br /><span id="L75">75</span><br /><span id="L76">76</span><br /><span id="L77">77</span><br /><span id="L78">78</span><br /><span id="L79">79</span><br /><span id="L80">80</span><br /><span id="L81">81</span><br /><span id="L82">82</span><br /><span id="L83">83</span><br /><span id="L84">84</span><br /><span id="L85">85</span><br /><span id="L86">86</span><br /><span id="L87">87</span><br /><span id="L88">88</span><br /><span id="L89">89</span><br /><span id="L90">90</span><br /><span id="L91">91</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-comment">/* Architectural state for the 'N' user-level interrupts standard extension. */</span>
+
+<span class="sail-comment">/* ustatus reveals a subset of mstatus */</span>
+<span class="sail-keyword">bitfield</span> <span class="sail-id">Ustatus</span> : <span class="sail-id">xlenbits</span> = {
+  <span class="sail-id">UPIE</span> : <span class="sail-literal">4</span>,
+  <span class="sail-id">UIE</span>  : <span class="sail-literal">0</span>
+}
+
+<span class="sail-comment">/* This is a view, so there is no register defined. */</span>
+<span class="sail-keyword">function</span> <span class="sail-id">lower_sstatus</span>(<span class="sail-id">s</span> : <span class="sail-id">Sstatus</span>) -&gt; <span class="sail-id">Ustatus</span> = {
+  <span class="sail-keyword">let</span> <span class="sail-id">u</span> = <span class="sail-id">Mk_Ustatus</span>(<a href="../model/prelude.html#L92"><span class="sail-id">zero_extend</span></a>(<span class="sail-literal">0b0</span>));
+  <span class="sail-keyword">let</span> <span class="sail-id">u</span> = [<span class="sail-id">u</span> <span class="sail-keyword">with</span> <span class="sail-id">UPIE</span> = <span class="sail-id">s</span>[<span class="sail-id">UPIE</span>]];
+  <span class="sail-keyword">let</span> <span class="sail-id">u</span> = [<span class="sail-id">u</span> <span class="sail-keyword">with</span> <span class="sail-id">UIE</span> = <span class="sail-id">s</span>[<span class="sail-id">UIE</span>]];
+  <span class="sail-id">u</span>
+}
+
+<span class="sail-keyword">function</span> <span class="sail-id">lift_ustatus</span>(<span class="sail-id">s</span> : <span class="sail-id">Sstatus</span>, <span class="sail-id">u</span> : <span class="sail-id">Ustatus</span>) -&gt; <span class="sail-id">Sstatus</span> = {
+  <span class="sail-keyword">let</span> <span class="sail-id">s</span> = [<span class="sail-id">s</span> <span class="sail-keyword">with</span> <span class="sail-id">UPIE</span> = <span class="sail-id">u</span>[<span class="sail-id">UPIE</span>]];
+  <span class="sail-keyword">let</span> <span class="sail-id">s</span> = [<span class="sail-id">s</span> <span class="sail-keyword">with</span> <span class="sail-id">UIE</span> = <span class="sail-id">u</span>[<span class="sail-id">UIE</span>]];
+  <span class="sail-id">s</span>
+}
+
+<span class="sail-keyword">function</span> <span class="sail-id">legalize_ustatus</span>(<span class="sail-id">m</span> : <span class="sail-id">Mstatus</span>, <span class="sail-id">v</span> : <span class="sail-id">xlenbits</span>) -&gt; <span class="sail-id">Mstatus</span> = {
+  <span class="sail-keyword">let</span> <span class="sail-id">u</span> = <span class="sail-id">Mk_Ustatus</span>(<span class="sail-id">v</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">s</span> = <a href="../model/riscv_sys_regs.html#L552"><span class="sail-id">lower_mstatus</span></a>(<span class="sail-id">m</span>);     <span class="sail-comment">// lower current mstatus to sstatus
+</span>  <span class="sail-keyword">let</span> <span class="sail-id">s</span> = <a href="../model/riscv_next_regs.html#L25"><span class="sail-id">lift_ustatus</span></a>(<span class="sail-id">s</span>, <span class="sail-id">u</span>);   <span class="sail-comment">// get updated sstatus
+</span>  <span class="sail-keyword">let</span> <span class="sail-id">m</span> = <a href="../model/riscv_sys_regs.html#L569"><span class="sail-id">lift_sstatus</span></a>(<span class="sail-id">m</span>, <span class="sail-id">s</span>);   <span class="sail-comment">// lift it to an updated mstatus
+</span>  <span class="sail-id">m</span>
+}
+
+<span class="sail-keyword">bitfield</span> <span class="sail-id">Uinterrupts</span> : <span class="sail-id">xlenbits</span> = {
+  <span class="sail-id">UEI</span> : <span class="sail-literal">8</span>,  <span class="sail-comment">/* external interrupt */</span>
+  <span class="sail-id">UTI</span> : <span class="sail-literal">4</span>,  <span class="sail-comment">/* timer interrupt    */</span>
+  <span class="sail-id">USI</span> : <span class="sail-literal">0</span>   <span class="sail-comment">/* software interrupt */</span>
+}
+
+<span class="sail-comment">/* Provides the uip read view of sip (s) as delegated by sideleg (d). */</span>
+<span class="sail-keyword">function</span> <span class="sail-id">lower_sip</span>(<span class="sail-id">s</span> : <span class="sail-id">Sinterrupts</span>, <span class="sail-id">d</span> : <span class="sail-id">Sinterrupts</span>) -&gt; <span class="sail-id">Uinterrupts</span> = {
+  <span class="sail-keyword">let</span> <span class="sail-id">u</span> : <span class="sail-id">Uinterrupts</span> = <span class="sail-id">Mk_Uinterrupts</span>(<a href="../model/prelude.html#L92"><span class="sail-id">zero_extend</span></a>(<span class="sail-literal">0b0</span>));
+  <span class="sail-keyword">let</span> <span class="sail-id">u</span> = [<span class="sail-id">u</span> <span class="sail-keyword">with</span> <span class="sail-id">UEI</span> = <span class="sail-id">s</span>[<span class="sail-id">UEI</span>] <span class="sail-operator">&amp;</span> <span class="sail-id">d</span>[<span class="sail-id">UEI</span>]];
+  <span class="sail-keyword">let</span> <span class="sail-id">u</span> = [<span class="sail-id">u</span> <span class="sail-keyword">with</span> <span class="sail-id">UTI</span> = <span class="sail-id">s</span>[<span class="sail-id">UTI</span>] <span class="sail-operator">&amp;</span> <span class="sail-id">d</span>[<span class="sail-id">UTI</span>]];
+  <span class="sail-keyword">let</span> <span class="sail-id">u</span> = [<span class="sail-id">u</span> <span class="sail-keyword">with</span> <span class="sail-id">USI</span> = <span class="sail-id">s</span>[<span class="sail-id">USI</span>] <span class="sail-operator">&amp;</span> <span class="sail-id">d</span>[<span class="sail-id">USI</span>]];
+  <span class="sail-id">u</span>
+}
+
+<span class="sail-comment">/* Provides the uie read view of sie as delegated by sideleg. */</span>
+<span class="sail-keyword">function</span> <span class="sail-id">lower_sie</span>(<span class="sail-id">s</span> : <span class="sail-id">Sinterrupts</span>, <span class="sail-id">d</span> : <span class="sail-id">Sinterrupts</span>) -&gt; <span class="sail-id">Uinterrupts</span> = {
+  <span class="sail-keyword">let</span> <span class="sail-id">u</span> : <span class="sail-id">Uinterrupts</span> = <span class="sail-id">Mk_Uinterrupts</span>(<a href="../model/prelude.html#L92"><span class="sail-id">zero_extend</span></a>(<span class="sail-literal">0b0</span>));
+  <span class="sail-keyword">let</span> <span class="sail-id">u</span> = [<span class="sail-id">u</span> <span class="sail-keyword">with</span> <span class="sail-id">UEI</span> = <span class="sail-id">s</span>[<span class="sail-id">UEI</span>] <span class="sail-operator">&amp;</span> <span class="sail-id">d</span>[<span class="sail-id">UEI</span>]];
+  <span class="sail-keyword">let</span> <span class="sail-id">u</span> = [<span class="sail-id">u</span> <span class="sail-keyword">with</span> <span class="sail-id">UTI</span> = <span class="sail-id">s</span>[<span class="sail-id">UTI</span>] <span class="sail-operator">&amp;</span> <span class="sail-id">d</span>[<span class="sail-id">UTI</span>]];
+  <span class="sail-keyword">let</span> <span class="sail-id">u</span> = [<span class="sail-id">u</span> <span class="sail-keyword">with</span> <span class="sail-id">USI</span> = <span class="sail-id">s</span>[<span class="sail-id">USI</span>] <span class="sail-operator">&amp;</span> <span class="sail-id">d</span>[<span class="sail-id">USI</span>]];
+  <span class="sail-id">u</span>
+}
+
+<span class="sail-comment">/* Returns the new value of sip from the previous sip (o) and the written uip (u) as delegated by sideleg (d). */</span>
+<span class="sail-keyword">function</span> <span class="sail-id">lift_uip</span>(<span class="sail-id">o</span> : <span class="sail-id">Sinterrupts</span>, <span class="sail-id">d</span> : <span class="sail-id">Sinterrupts</span>, <span class="sail-id">u</span> : <span class="sail-id">Uinterrupts</span>) -&gt; <span class="sail-id">Sinterrupts</span> = {
+  <span class="sail-keyword">let</span> <span class="sail-id">s</span> : <span class="sail-id">Sinterrupts</span> = <span class="sail-id">o</span>;
+  <span class="sail-keyword">let</span> <span class="sail-id">s</span> = <span class="sail-keyword">if</span> <span class="sail-id">d</span>[<span class="sail-id">USI</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b1</span> <span class="sail-keyword">then</span> [<span class="sail-id">s</span> <span class="sail-keyword">with</span> <span class="sail-id">USI</span> = <span class="sail-id">u</span>[<span class="sail-id">USI</span>]] <span class="sail-keyword">else</span> <span class="sail-id">s</span>;
+  <span class="sail-id">s</span>
+}
+
+<span class="sail-keyword">function</span> <span class="sail-id">legalize_uip</span>(<span class="sail-id">s</span> : <span class="sail-id">Sinterrupts</span>, <span class="sail-id">d</span> : <span class="sail-id">Sinterrupts</span>, <span class="sail-id">v</span> : <span class="sail-id">xlenbits</span>) -&gt; <span class="sail-id">Sinterrupts</span> = {
+  <a href="../model/riscv_next_regs.html#L64"><span class="sail-id">lift_uip</span></a>(<span class="sail-id">s</span>, <span class="sail-id">d</span>, <span class="sail-id">Mk_Uinterrupts</span>(<span class="sail-id">v</span>))
+}
+
+<span class="sail-comment">/* Returns the new value of sie from the previous sie (o) and the written uie (u) as delegated by sideleg (d). */</span>
+<span class="sail-keyword">function</span> <span class="sail-id">lift_uie</span>(<span class="sail-id">o</span> : <span class="sail-id">Sinterrupts</span>, <span class="sail-id">d</span> : <span class="sail-id">Sinterrupts</span>, <span class="sail-id">u</span> : <span class="sail-id">Uinterrupts</span>) -&gt; <span class="sail-id">Sinterrupts</span> = {
+  <span class="sail-keyword">let</span> <span class="sail-id">s</span> : <span class="sail-id">Sinterrupts</span> = <span class="sail-id">o</span>;
+  <span class="sail-keyword">let</span> <span class="sail-id">s</span> = <span class="sail-keyword">if</span> <span class="sail-id">d</span>[<span class="sail-id">UEI</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b1</span> <span class="sail-keyword">then</span> [<span class="sail-id">s</span> <span class="sail-keyword">with</span> <span class="sail-id">UEI</span> = <span class="sail-id">u</span>[<span class="sail-id">UEI</span>]] <span class="sail-keyword">else</span> <span class="sail-id">s</span>;
+  <span class="sail-keyword">let</span> <span class="sail-id">s</span> = <span class="sail-keyword">if</span> <span class="sail-id">d</span>[<span class="sail-id">UTI</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b1</span> <span class="sail-keyword">then</span> [<span class="sail-id">s</span> <span class="sail-keyword">with</span> <span class="sail-id">UTI</span> = <span class="sail-id">u</span>[<span class="sail-id">UTI</span>]] <span class="sail-keyword">else</span> <span class="sail-id">s</span>;
+  <span class="sail-keyword">let</span> <span class="sail-id">s</span> = <span class="sail-keyword">if</span> <span class="sail-id">d</span>[<span class="sail-id">USI</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b1</span> <span class="sail-keyword">then</span> [<span class="sail-id">s</span> <span class="sail-keyword">with</span> <span class="sail-id">USI</span> = <span class="sail-id">u</span>[<span class="sail-id">USI</span>]] <span class="sail-keyword">else</span> <span class="sail-id">s</span>;
+  <span class="sail-id">s</span>
+}
+
+<span class="sail-keyword">function</span> <span class="sail-id">legalize_uie</span>(<span class="sail-id">s</span> : <span class="sail-id">Sinterrupts</span>, <span class="sail-id">d</span> : <span class="sail-id">Sinterrupts</span>, <span class="sail-id">v</span> : <span class="sail-id">xlenbits</span>) -&gt; <span class="sail-id">Sinterrupts</span> = {
+  <a href="../model/riscv_next_regs.html#L75"><span class="sail-id">lift_uie</span></a>(<span class="sail-id">s</span>, <span class="sail-id">d</span>, <span class="sail-id">Mk_Uinterrupts</span>(<span class="sail-id">v</span>))
+}
+
+<span class="sail-keyword">register</span> <a href="../model/riscv_next_regs.html#L87"><span class="sail-id">utvec</span></a>    : <span class="sail-id">Mtvec</span>
+<span class="sail-keyword">register</span> <a href="../model/riscv_next_regs.html#L88"><span class="sail-id">uscratch</span></a> : <span class="sail-id">xlenbits</span>
+<span class="sail-keyword">register</span> <a href="../model/riscv_next_regs.html#L89"><span class="sail-id">uepc</span></a>     : <span class="sail-id">xlenbits</span>
+<span class="sail-keyword">register</span> <a href="../model/riscv_next_regs.html#L90"><span class="sail-id">ucause</span></a>   : <span class="sail-id">Mcause</span>
+<span class="sail-keyword">register</span> <a href="../model/riscv_next_regs.html#L91"><span class="sail-id">utval</span></a>    : <span class="sail-id">xlenbits</span>
+</pre>
+</div>
+</div>
+</body>
+</html>

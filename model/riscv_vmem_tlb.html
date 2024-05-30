@@ -1,0 +1,143 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /><span id="L26">26</span><br /><span id="L27">27</span><br /><span id="L28">28</span><br /><span id="L29">29</span><br /><span id="L30">30</span><br /><span id="L31">31</span><br /><span id="L32">32</span><br /><span id="L33">33</span><br /><span id="L34">34</span><br /><span id="L35">35</span><br /><span id="L36">36</span><br /><span id="L37">37</span><br /><span id="L38">38</span><br /><span id="L39">39</span><br /><span id="L40">40</span><br /><span id="L41">41</span><br /><span id="L42">42</span><br /><span id="L43">43</span><br /><span id="L44">44</span><br /><span id="L45">45</span><br /><span id="L46">46</span><br /><span id="L47">47</span><br /><span id="L48">48</span><br /><span id="L49">49</span><br /><span id="L50">50</span><br /><span id="L51">51</span><br /><span id="L52">52</span><br /><span id="L53">53</span><br /><span id="L54">54</span><br /><span id="L55">55</span><br /><span id="L56">56</span><br /><span id="L57">57</span><br /><span id="L58">58</span><br /><span id="L59">59</span><br /><span id="L60">60</span><br /><span id="L61">61</span><br /><span id="L62">62</span><br /><span id="L63">63</span><br /><span id="L64">64</span><br /><span id="L65">65</span><br /><span id="L66">66</span><br /><span id="L67">67</span><br /><span id="L68">68</span><br /><span id="L69">69</span><br /><span id="L70">70</span><br /><span id="L71">71</span><br /><span id="L72">72</span><br /><span id="L73">73</span><br /><span id="L74">74</span><br /><span id="L75">75</span><br /><span id="L76">76</span><br /><span id="L77">77</span><br /><span id="L78">78</span><br /><span id="L79">79</span><br /><span id="L80">80</span><br /><span id="L81">81</span><br /><span id="L82">82</span><br /><span id="L83">83</span><br /><span id="L84">84</span><br /><span id="L85">85</span><br /><span id="L86">86</span><br /><span id="L87">87</span><br /><span id="L88">88</span><br /><span id="L89">89</span><br /><span id="L90">90</span><br /><span id="L91">91</span><br /><span id="L92">92</span><br /><span id="L93">93</span><br /><span id="L94">94</span><br /><span id="L95">95</span><br /><span id="L96">96</span><br /><span id="L97">97</span><br /><span id="L98">98</span><br /><span id="L99">99</span><br /><span id="L100">100</span><br /><span id="L101">101</span><br /><span id="L102">102</span><br /><span id="L103">103</span><br /><span id="L104">104</span><br /><span id="L105">105</span><br /><span id="L106">106</span><br /><span id="L107">107</span><br /><span id="L108">108</span><br /><span id="L109">109</span><br /><span id="L110">110</span><br /><span id="L111">111</span><br /><span id="L112">112</span><br /><span id="L113">113</span><br /><span id="L114">114</span><br /><span id="L115">115</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-comment">// Although a TLB is not part of the RISC-V Architecture
+</span><span class="sail-comment">// specification, we model a simple TLB so that
+</span><span class="sail-comment">// (1) we can meaningfully test SFENCE.VMA which would be a no-op wihout a TLB;
+</span><span class="sail-comment">// (2) we can greatly speed up simulation speed (for Linux boot, can
+</span><span class="sail-comment">//     reduce elapsed time from 10s of minutes to few minutes).
+</span>
+<span class="sail-keyword">type</span> <span class="sail-id">asidbits</span> = <span class="sail-id">bits</span>(<span class="sail-literal">16</span>)
+
+<span class="sail-comment">// PRIVATE
+</span><span class="sail-keyword">struct</span> <span class="sail-id">TLB_Entry</span> = {
+  <span class="sail-id">asid</span>       : <span class="sail-id">asidbits</span>,  <span class="sail-comment">// address-space id
+</span>  <span class="sail-id">global</span>     : <span class="sail-id">bool</span>,      <span class="sail-comment">// global translation
+</span>  <span class="sail-id">vAddr</span>      : <span class="sail-id">bits</span>(<span class="sail-literal">64</span>),  <span class="sail-comment">// VPN
+</span>  <span class="sail-id">pAddr</span>      : <span class="sail-id">bits</span>(<span class="sail-literal">64</span>),  <span class="sail-comment">// ppn
+</span>  <span class="sail-id">vMatchMask</span> : <span class="sail-id">bits</span>(<span class="sail-literal">64</span>),  <span class="sail-comment">// matching mask for superpages
+</span>  <span class="sail-id">vAddrMask</span>  : <span class="sail-id">bits</span>(<span class="sail-literal">64</span>),  <span class="sail-comment">// selection mask for superpages
+</span>  <span class="sail-id">pte</span>        : <span class="sail-id">bits</span>(<span class="sail-literal">64</span>),  <span class="sail-comment">// PTE
+</span>  <span class="sail-id">pteAddr</span>    : <span class="sail-id">bits</span>(<span class="sail-literal">64</span>),  <span class="sail-comment">// for dirty writeback
+</span>  <span class="sail-id">age</span>        : <span class="sail-id">bits</span>(<span class="sail-literal">64</span>)   <span class="sail-comment">// for replacement policy?
+</span>}
+
+<span class="sail-comment">// Single-entry TLB (could enlarge this in future for better simulation speed)
+</span><span class="sail-comment">// PRIVATE
+</span><span class="sail-keyword">register</span> <span class="sail-id">tlb</span> : <span class="sail-id">option</span>(<span class="sail-id">TLB_Entry</span>) = <span class="sail-id">None</span>()
+
+<span class="sail-comment">// PUBLIC: invoked in init_vmem() [riscv_vmem.sail]
+</span><span class="sail-keyword">function</span> <span class="sail-id">init_TLB</span>() -&gt; <span class="sail-id">unit</span> =
+  <a href="../model/riscv_vmem_tlb.html#L32"><span class="sail-id">tlb</span></a> = <span class="sail-id">None</span>()
+
+<span class="sail-comment">// PUBLIC: invoked in translate_TLB_hit() [riscv_vmem.sail]
+</span><span class="sail-keyword">function</span> <span class="sail-id">write_TLB</span>(<span class="sail-id">idx</span> : <span class="sail-id">nat</span>, <span class="sail-id">ent</span> : <span class="sail-id">TLB_Entry</span>) -&gt; <span class="sail-id">unit</span> =
+  <a href="../model/riscv_vmem_tlb.html#L32"><span class="sail-id">tlb</span></a> = <span class="sail-id">Some</span>(<span class="sail-id">ent</span>)
+
+<span class="sail-comment">// PRIVATE
+</span><span class="sail-keyword">function</span> <span class="sail-id">match_TLB_Entry</span>(<span class="sail-id">ent</span>   : <span class="sail-id">TLB_Entry</span>,
+                         <span class="sail-id">asid</span>  : <span class="sail-id">asidbits</span>,
+                         <span class="sail-id">vaddr</span> : <span class="sail-id">bits</span>(<span class="sail-literal">64</span>)) -&gt; <span class="sail-id">bool</span> =
+  (<span class="sail-id">ent</span>.<span class="sail-id">global</span> <span class="sail-operator">|</span> (<span class="sail-id">ent</span>.<span class="sail-id">asid</span> <span class="sail-operator">==</span> <span class="sail-id">asid</span>))
+  <span class="sail-operator">&amp;</span> (<span class="sail-id">ent</span>.<span class="sail-id">vAddr</span> <span class="sail-operator">==</span> (<span class="sail-id">ent</span>.<span class="sail-id">vMatchMask</span> <span class="sail-operator">&amp;</span> <span class="sail-id">vaddr</span>))
+
+<span class="sail-comment">// PRIVATE
+</span><span class="sail-keyword">function</span> <span class="sail-id">flush_TLB_Entry</span>(<span class="sail-id">e</span>    : <span class="sail-id">TLB_Entry</span>,
+                         <span class="sail-id">asid</span> : <span class="sail-id">option</span>(<span class="sail-id">asidbits</span>),
+                         <span class="sail-id">addr</span> : <span class="sail-id">option</span>(<span class="sail-id">bits</span>(<span class="sail-literal">64</span>))) -&gt; <span class="sail-id">bool</span> = {
+  <span class="sail-keyword">match</span> (<span class="sail-id">asid</span>, <span class="sail-id">addr</span>) {
+    ( <span class="sail-id">None</span>(),  <span class="sail-id">None</span>()) =&gt; <span class="sail-literal">true</span>,
+    ( <span class="sail-id">None</span>(), <span class="sail-id">Some</span>(<span class="sail-id">a</span>)) =&gt; <span class="sail-id">e</span>.<span class="sail-id">vAddr</span> <span class="sail-operator">==</span> (<span class="sail-id">e</span>.<span class="sail-id">vMatchMask</span> <span class="sail-operator">&amp;</span> <span class="sail-id">a</span>),
+    (<span class="sail-id">Some</span>(<span class="sail-id">i</span>),  <span class="sail-id">None</span>()) =&gt; (<span class="sail-id">e</span>.<span class="sail-id">asid</span> <span class="sail-operator">==</span> <span class="sail-id">i</span>) <span class="sail-operator">&amp;</span> <a href="../model/prelude.html#L27"><span class="sail-id">not</span></a>(<span class="sail-id">e</span>.<span class="sail-id">global</span>),
+    (<span class="sail-id">Some</span>(<span class="sail-id">i</span>), <span class="sail-id">Some</span>(<span class="sail-id">a</span>)) =&gt; (  (<span class="sail-id">e</span>.<span class="sail-id">asid</span> <span class="sail-operator">==</span> <span class="sail-id">i</span>) <span class="sail-operator">&amp;</span> (<span class="sail-id">e</span>.<span class="sail-id">vAddr</span> <span class="sail-operator">==</span> (<span class="sail-id">a</span> <span class="sail-operator">&amp;</span> <span class="sail-id">e</span>.<span class="sail-id">vMatchMask</span>))
+                           <span class="sail-operator">&amp;</span> <a href="../model/prelude.html#L27"><span class="sail-id">not</span></a>(<span class="sail-id">e</span>.<span class="sail-id">global</span>))
+  }
+}
+
+<span class="sail-comment">// PUBLIC: invoked in translate() [riscv_vmem.sail]
+</span><span class="sail-keyword">function</span> <span class="sail-id">lookup_TLB</span> (<span class="sail-id">asid</span> : <span class="sail-id">asidbits</span>, <span class="sail-id">vaddr</span> : <span class="sail-id">bits</span>(<span class="sail-literal">64</span>)) -&gt; <span class="sail-id">option</span>((<span class="sail-id">nat</span>, <span class="sail-id">TLB_Entry</span>)) =
+  <span class="sail-keyword">match</span> <a href="../model/riscv_vmem_tlb.html#L32"><span class="sail-id">tlb</span></a> {
+    <span class="sail-id">None</span>()  =&gt; <span class="sail-id">None</span>(),
+    <span class="sail-id">Some</span>(<span class="sail-id">e</span>) =&gt; <span class="sail-keyword">if</span> <a href="../model/riscv_vmem_tlb.html#L43"><span class="sail-id">match_TLB_Entry</span></a>(<span class="sail-id">e</span>, <span class="sail-id">asid</span>, <span class="sail-id">vaddr</span>) <span class="sail-keyword">then</span> <span class="sail-id">Some</span>((<span class="sail-literal">0</span>, <span class="sail-id">e</span>)) <span class="sail-keyword">else</span> <span class="sail-id">None</span>()
+  }
+
+<span class="sail-comment">// PRIVATE
+</span><span class="sail-keyword">function</span> <span class="sail-id">add_to_TLB</span>(<span class="sail-id">asid</span>          : <span class="sail-id">asidbits</span>,
+                    <span class="sail-id">vAddr</span>         : <span class="sail-id">bits</span>(<span class="sail-literal">64</span>),
+                    <span class="sail-id">pAddr</span>         : <span class="sail-id">bits</span>(<span class="sail-literal">64</span>),
+                    <span class="sail-id">pte</span>           : <span class="sail-id">bits</span>(<span class="sail-literal">64</span>),
+                    <span class="sail-id">pteAddr</span>       : <span class="sail-id">bits</span>(<span class="sail-literal">64</span>),
+                    <span class="sail-id">level</span>         : <span class="sail-id">nat</span>,
+                    <span class="sail-id">global</span>        : <span class="sail-id">bool</span>,
+                    <span class="sail-id">levelBitSize</span>  : <span class="sail-id">nat</span>,
+                    <span class="sail-id">PAGESIZE_BITS</span> : <span class="sail-id">nat</span>)     -&gt; <span class="sail-id">unit</span> = {
+  <span class="sail-keyword">let</span> <span class="sail-id">shift</span> = <span class="sail-id">PAGESIZE_BITS</span> <span class="sail-operator">+</span> (<span class="sail-id">level</span> <span class="sail-operator">*</span> <span class="sail-id">levelBitSize</span>);
+  <span class="sail-keyword">assert</span>(<span class="sail-id">shift</span> <span class="sail-operator">&lt;=</span> <span class="sail-literal">64</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">vAddrMask</span>  : <span class="sail-id">bits</span>(<span class="sail-literal">64</span>)  = <a href="../model/prelude.html#L92"><span class="sail-id">zero_extend</span></a>(<a href="../model/prelude.html#L99"><span class="sail-id">ones</span></a>(<span class="sail-id">shift</span>));
+  <span class="sail-keyword">let</span> <span class="sail-id">vMatchMask</span> : <span class="sail-id">bits</span>(<span class="sail-literal">64</span>)  = <span class="sail-id">~</span> (<span class="sail-id">vAddrMask</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">entry</span>      : <span class="sail-id">TLB_Entry</span> = <span class="sail-keyword">struct</span>{<span class="sail-id">asid</span>       = <span class="sail-id">asid</span>,
+                                      <span class="sail-id">global</span>     = <span class="sail-id">global</span>,
+                                      <span class="sail-id">pte</span>        = <span class="sail-id">pte</span>,
+                                      <span class="sail-id">pteAddr</span>    = <span class="sail-id">pteAddr</span>,
+                                      <span class="sail-id">vAddrMask</span>  = <span class="sail-id">vAddrMask</span>,
+                                      <span class="sail-id">vMatchMask</span> = <span class="sail-id">vMatchMask</span>,
+                                      <span class="sail-id">vAddr</span>      = <span class="sail-id">vAddr</span> <span class="sail-operator">&amp;</span> <span class="sail-id">vMatchMask</span>,
+                                      <span class="sail-id">pAddr</span>      = <a href="../model/prelude.html#L149"><span class="sail-id">shiftl</span></a>(<a href="../model/prelude.html#L150"><span class="sail-id">shiftr</span></a>(<span class="sail-id">pAddr</span>, <span class="sail-id">shift</span>), <span class="sail-id">shift</span>),
+                                      <span class="sail-id">age</span>        = <a href="../model/riscv_sys_regs.html#L489"><span class="sail-id">mcycle</span></a>};
+  <a href="../model/riscv_vmem_tlb.html#L32"><span class="sail-id">tlb</span></a> = <span class="sail-id">Some</span>(<span class="sail-id">entry</span>)
+}
+
+<span class="sail-comment">// Top-level TLB flush function
+</span><span class="sail-comment">// PUBLIC: invoked from exec SFENCE_VMA
+</span><span class="sail-keyword">function</span> <span class="sail-id">flush_TLB</span>(<span class="sail-id">asid_xlen</span> : <span class="sail-id">option</span>(<span class="sail-id">xlenbits</span>),
+                   <span class="sail-id">addr_xlen</span> : <span class="sail-id">option</span>(<span class="sail-id">xlenbits</span>)) -&gt; <span class="sail-id">unit</span> = {
+  <span class="sail-keyword">let</span> <span class="sail-id">asid</span> : <span class="sail-id">option</span>(<span class="sail-id">asidbits</span>) =
+    <span class="sail-keyword">match</span> <span class="sail-id">asid_xlen</span> {
+      <span class="sail-id">None</span>()  =&gt; <span class="sail-id">None</span>(),
+      <span class="sail-id">Some</span>(<span class="sail-id">a</span>) =&gt; <span class="sail-id">Some</span>(<span class="sail-id">a</span>[<span class="sail-literal">15</span> .. <span class="sail-literal">0</span>])
+    };
+  <span class="sail-keyword">let</span> <span class="sail-id">addr_64b</span> : <span class="sail-id">option</span>(<span class="sail-id">bits</span>(<span class="sail-literal">64</span>)) =
+    <span class="sail-keyword">match</span> <span class="sail-id">addr_xlen</span> {
+      <span class="sail-id">None</span>()  =&gt; <span class="sail-id">None</span>(),
+      <span class="sail-id">Some</span>(<span class="sail-id">a</span>) =&gt; <span class="sail-id">Some</span>(<a href="../model/prelude.html#L92"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">a</span>))
+    };
+  <span class="sail-keyword">match</span> <a href="../model/riscv_vmem_tlb.html#L32"><span class="sail-id">tlb</span></a> {
+    <span class="sail-id">None</span>()  =&gt; (),
+    <span class="sail-id">Some</span>(<span class="sail-id">e</span>) =&gt; <span class="sail-keyword">if</span> <a href="../model/riscv_vmem_tlb.html#L50"><span class="sail-id">flush_TLB_Entry</span></a>(<span class="sail-id">e</span>, <span class="sail-id">asid</span>, <span class="sail-id">addr_64b</span>)
+               <span class="sail-keyword">then</span> <a href="../model/riscv_vmem_tlb.html#L32"><span class="sail-id">tlb</span></a> = <span class="sail-id">None</span>()
+               <span class="sail-keyword">else</span> ()
+  }
+}
+</pre>
+</div>
+</div>
+</body>
+</html>
