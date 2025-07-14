@@ -1,0 +1,181 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /><span id="L26">26</span><br /><span id="L27">27</span><br /><span id="L28">28</span><br /><span id="L29">29</span><br /><span id="L30">30</span><br /><span id="L31">31</span><br /><span id="L32">32</span><br /><span id="L33">33</span><br /><span id="L34">34</span><br /><span id="L35">35</span><br /><span id="L36">36</span><br /><span id="L37">37</span><br /><span id="L38">38</span><br /><span id="L39">39</span><br /><span id="L40">40</span><br /><span id="L41">41</span><br /><span id="L42">42</span><br /><span id="L43">43</span><br /><span id="L44">44</span><br /><span id="L45">45</span><br /><span id="L46">46</span><br /><span id="L47">47</span><br /><span id="L48">48</span><br /><span id="L49">49</span><br /><span id="L50">50</span><br /><span id="L51">51</span><br /><span id="L52">52</span><br /><span id="L53">53</span><br /><span id="L54">54</span><br /><span id="L55">55</span><br /><span id="L56">56</span><br /><span id="L57">57</span><br /><span id="L58">58</span><br /><span id="L59">59</span><br /><span id="L60">60</span><br /><span id="L61">61</span><br /><span id="L62">62</span><br /><span id="L63">63</span><br /><span id="L64">64</span><br /><span id="L65">65</span><br /><span id="L66">66</span><br /><span id="L67">67</span><br /><span id="L68">68</span><br /><span id="L69">69</span><br /><span id="L70">70</span><br /><span id="L71">71</span><br /><span id="L72">72</span><br /><span id="L73">73</span><br /><span id="L74">74</span><br /><span id="L75">75</span><br /><span id="L76">76</span><br /><span id="L77">77</span><br /><span id="L78">78</span><br /><span id="L79">79</span><br /><span id="L80">80</span><br /><span id="L81">81</span><br /><span id="L82">82</span><br /><span id="L83">83</span><br /><span id="L84">84</span><br /><span id="L85">85</span><br /><span id="L86">86</span><br /><span id="L87">87</span><br /><span id="L88">88</span><br /><span id="L89">89</span><br /><span id="L90">90</span><br /><span id="L91">91</span><br /><span id="L92">92</span><br /><span id="L93">93</span><br /><span id="L94">94</span><br /><span id="L95">95</span><br /><span id="L96">96</span><br /><span id="L97">97</span><br /><span id="L98">98</span><br /><span id="L99">99</span><br /><span id="L100">100</span><br /><span id="L101">101</span><br /><span id="L102">102</span><br /><span id="L103">103</span><br /><span id="L104">104</span><br /><span id="L105">105</span><br /><span id="L106">106</span><br /><span id="L107">107</span><br /><span id="L108">108</span><br /><span id="L109">109</span><br /><span id="L110">110</span><br /><span id="L111">111</span><br /><span id="L112">112</span><br /><span id="L113">113</span><br /><span id="L114">114</span><br /><span id="L115">115</span><br /><span id="L116">116</span><br /><span id="L117">117</span><br /><span id="L118">118</span><br /><span id="L119">119</span><br /><span id="L120">120</span><br /><span id="L121">121</span><br /><span id="L122">122</span><br /><span id="L123">123</span><br /><span id="L124">124</span><br /><span id="L125">125</span><br /><span id="L126">126</span><br /><span id="L127">127</span><br /><span id="L128">128</span><br /><span id="L129">129</span><br /><span id="L130">130</span><br /><span id="L131">131</span><br /><span id="L132">132</span><br /><span id="L133">133</span><br /><span id="L134">134</span><br /><span id="L135">135</span><br /><span id="L136">136</span><br /><span id="L137">137</span><br /><span id="L138">138</span><br /><span id="L139">139</span><br /><span id="L140">140</span><br /><span id="L141">141</span><br /><span id="L142">142</span><br /><span id="L143">143</span><br /><span id="L144">144</span><br /><span id="L145">145</span><br /><span id="L146">146</span><br /><span id="L147">147</span><br /><span id="L148">148</span><br /><span id="L149">149</span><br /><span id="L150">150</span><br /><span id="L151">151</span><br /><span id="L152">152</span><br /><span id="L153">153</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-comment">// Cache Block Operations - Management
+</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zicbom</span>) = <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zicbom</span>)
+
+<span class="sail-keyword">function</span> <span class="sail-id">cbo_clean_flush_enabled</span>(<span class="sail-id">p</span> : <span class="sail-id">Privilege</span>) -&gt; <span class="sail-id">bool</span> = <a href=".././riscv_sys_control.html#L34"><span class="sail-id">feature_enabled_for_priv</span></a>(<span class="sail-id">p</span>, <a href=".././riscv_sys_regs.html#L410"><span class="sail-id">menvcfg</span></a>[<span class="sail-id">CBCFE</span>][<span class="sail-literal">0</span>], <a href=".././riscv_sys_regs.html#L411"><span class="sail-id">senvcfg</span></a>[<span class="sail-id">CBCFE</span>][<span class="sail-literal">0</span>])
+
+<span class="sail-comment">/* ****************************************************************** */</span>
+<span class="sail-keyword">union</span> <span class="sail-keyword">clause</span> <span class="sail-id">instruction</span> = <span class="sail-id">ZICBOM</span> : (<span class="sail-id">cbop_zicbom</span>, <span class="sail-id">regidx</span>)
+
+<span class="sail-keyword">mapping</span> <span class="sail-id">encdec_cbop</span> : <span class="sail-id">cbop_zicbom</span> &lt;-&gt; <span class="sail-id">bits</span>(<span class="sail-literal">12</span>) = {
+  <span class="sail-id">CBO_CLEAN</span> &lt;-&gt; <span class="sail-literal">0b000000000001</span>,
+  <span class="sail-id">CBO_FLUSH</span> &lt;-&gt; <span class="sail-literal">0b000000000010</span>,
+  <span class="sail-id">CBO_INVAL</span> &lt;-&gt; <span class="sail-literal">0b000000000000</span>,
+}
+
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">ZICBOM</span>(<span class="sail-id">cbop</span>, <span class="sail-id">rs1</span>)
+  &lt;-&gt; <span class="sail-id">encdec_cbop</span>(<span class="sail-id">cbop</span>) @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-literal">0b010</span> @ <span class="sail-literal">0b00000</span> @ <span class="sail-literal">0b0001111</span>
+  <span class="sail-keyword">when</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zicbom</span>)
+
+<span class="sail-keyword">mapping</span> <span class="sail-id">cbop_mnemonic</span> : <span class="sail-id">cbop_zicbom</span> &lt;-&gt; <span class="sail-id">string</span> = {
+  <span class="sail-id">CBO_CLEAN</span> &lt;-&gt; <span class="sail-string">"cbo.clean"</span>,
+  <span class="sail-id">CBO_FLUSH</span> &lt;-&gt; <span class="sail-string">"cbo.flush"</span>,
+  <span class="sail-id">CBO_INVAL</span> &lt;-&gt; <span class="sail-string">"cbo.inval"</span>
+}
+
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">assembly</span> = <span class="sail-id">ZICBOM</span>(<span class="sail-id">cbop</span>, <span class="sail-id">rs1</span>)
+  &lt;-&gt; <span class="sail-id">cbop_mnemonic</span>(<span class="sail-id">cbop</span>) <span class="sail-operator">^</span> <span class="sail-id">spc</span>() <span class="sail-operator">^</span> <span class="sail-string">"("</span> <span class="sail-operator">^</span> <span class="sail-id">opt_spc</span>() <span class="sail-operator">^</span> <span class="sail-id">reg_name</span>(<span class="sail-id">rs1</span>) <span class="sail-operator">^</span> <span class="sail-id">opt_spc</span>() <span class="sail-operator">^</span> <span class="sail-string">")"</span>
+
+<span class="sail-comment">/* CBIE from xenvcfg */</span>
+<span class="sail-keyword">enum</span> <span class="sail-id">cbie</span> = {<span class="sail-id">CBIE_ILLEGAL</span>, <span class="sail-id">CBIE_EXEC_FLUSH</span>, <span class="sail-id">CBIE_EXEC_INVAL</span>}
+
+<span class="sail-keyword">mapping</span> <span class="sail-id">encdec_cbie</span> : <span class="sail-id">cbie</span> &lt;-&gt; <span class="sail-id">bits</span>(<span class="sail-literal">2</span>) = {
+  <span class="sail-id">CBIE_ILLEGAL</span>    &lt;-&gt; <span class="sail-literal">0b00</span>,
+  <span class="sail-id">CBIE_EXEC_FLUSH</span> &lt;-&gt; <span class="sail-literal">0b01</span>,
+  <span class="sail-id">CBIE_EXEC_INVAL</span> &lt;-&gt; <span class="sail-literal">0b11</span>,
+  <span class="sail-keyword">backwards</span> <span class="sail-literal">0b10</span>   =&gt; <a href=".././riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"reserved CBIE"</span>),
+}
+
+<span class="sail-comment">// Illegal-Virtual will be needed by the hypervisor mode, but is currently unused.
+</span><span class="sail-keyword">enum</span> <span class="sail-id">checked_cbop</span> = {<span class="sail-id">CBOP_ILLEGAL</span>, <span class="sail-id">CBOP_ILLEGAL_VIRTUAL</span>, <span class="sail-id">CBOP_INVAL_FLUSH</span>, <span class="sail-id">CBOP_INVAL_INVAL</span>}
+
+<span class="sail-comment">// Select the cbop to perform based on the privilege.
+</span><span class="sail-keyword">function</span> <span class="sail-id">cbop_priv_check</span>(<span class="sail-id">p</span>: <span class="sail-id">Privilege</span>) -&gt; <span class="sail-id">checked_cbop</span> = {
+  <span class="sail-keyword">let</span> <span class="sail-id">mCBIE</span> : <span class="sail-id">cbie</span> = <span class="sail-id">encdec_cbie</span>(<a href=".././riscv_sys_regs.html#L410"><span class="sail-id">menvcfg</span></a>[<span class="sail-id">CBIE</span>]);
+  <span class="sail-keyword">let</span> <span class="sail-id">sCBIE</span> : <span class="sail-id">cbie</span> = <span class="sail-keyword">if</span>   <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_S</span>)
+                     <span class="sail-keyword">then</span> <span class="sail-id">encdec_cbie</span>(<a href=".././riscv_sys_regs.html#L411"><span class="sail-id">senvcfg</span></a>[<span class="sail-id">CBIE</span>])
+                     <span class="sail-keyword">else</span> <span class="sail-id">encdec_cbie</span>(<a href=".././riscv_sys_regs.html#L410"><span class="sail-id">menvcfg</span></a>[<span class="sail-id">CBIE</span>]);
+  <span class="sail-keyword">match</span> (<span class="sail-id">p</span>, <span class="sail-id">mCBIE</span>, <span class="sail-id">sCBIE</span>) {
+    (<span class="sail-id">Machine</span>, _,               _              ) =&gt; <span class="sail-id">CBOP_INVAL_INVAL</span>,
+    (_,       <span class="sail-id">CBIE_ILLEGAL</span>,    _              ) =&gt; <span class="sail-id">CBOP_ILLEGAL</span>,      <span class="sail-comment">// (priv_mode != M) &amp;&amp; mCBIE == 00
+</span>    (<span class="sail-id">User</span>,    _,               <span class="sail-id">CBIE_ILLEGAL</span>   ) =&gt; <span class="sail-id">CBOP_ILLEGAL</span>,      <span class="sail-comment">// (priv_mode == U) &amp;&amp; sCBIE == 00
+</span>    (_,       <span class="sail-id">CBIE_EXEC_FLUSH</span>, _              ) =&gt; <span class="sail-id">CBOP_INVAL_FLUSH</span>,  <span class="sail-comment">// (priv_mode != M) &amp;&amp; mCBIE == 01
+</span>    (<span class="sail-id">User</span>,    _,               <span class="sail-id">CBIE_EXEC_FLUSH</span>) =&gt; <span class="sail-id">CBOP_INVAL_FLUSH</span>,  <span class="sail-comment">// (priv_mode == U) &amp;&amp; sCBIE == 01
+</span>    _                                           =&gt; <span class="sail-id">CBOP_INVAL_INVAL</span>,
+  }
+}
+
+<span class="sail-keyword">val</span> <span class="sail-id">process_clean_inval</span> : (<span class="sail-id">regidx</span>, <span class="sail-id">cbop_zicbom</span>) -&gt; <span class="sail-id">ExecutionResult</span>
+<span class="sail-keyword">function</span> <span class="sail-id">process_clean_inval</span>(<span class="sail-id">rs1</span>, <span class="sail-id">cbop</span>) = {
+  <span class="sail-keyword">let</span> <span class="sail-id">rs1_val</span> = <span class="sail-id">X</span>(<span class="sail-id">rs1</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">cache_block_size</span> = 2 ^ <span class="sail-id">plat_cache_block_size_exp</span>;
+
+  <span class="sail-comment">// Offset from rs1 to the beginning of the cache block. This is 0 if rs1
+</span>  <span class="sail-comment">// is aligned to the cache block, or negative if rs1 is misaligned.
+</span>  <span class="sail-keyword">let</span> <span class="sail-id">negative_offset</span> = (<span class="sail-id">rs1_val</span> <span class="sail-operator">&amp;</span> <span class="sail-id">~</span>(<a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<a href=".././prelude.html#L92"><span class="sail-id">ones</span></a>(<span class="sail-id">plat_cache_block_size_exp</span>)))) <span class="sail-operator">-</span> <span class="sail-id">rs1_val</span>;
+
+  <span class="sail-comment">// TODO: This is incorrect since CHERI only requires at least one byte
+</span>  <span class="sail-comment">// to be in bounds here, whereas `ext_data_get_addr()` checks that all bytes
+</span>  <span class="sail-comment">// are in bounds. We will need to add a new function, parameter or access type.
+</span>  <span class="sail-keyword">match</span> <a href=".././riscv_addr_checks.html#L57"><span class="sail-id">ext_data_get_addr</span></a>(<span class="sail-id">rs1</span>, <span class="sail-id">negative_offset</span>, <span class="sail-id">Read</span>(<span class="sail-id">Data</span>), <span class="sail-id">cache_block_size</span>) {
+    <span class="sail-id">Ext_DataAddr_Error</span>(<span class="sail-id">e</span>) =&gt; <span class="sail-id">Ext_DataAddr_Check_Failure</span>(<span class="sail-id">e</span>),
+    <span class="sail-id">Ext_DataAddr_OK</span>(<span class="sail-id">vaddr</span>) =&gt; {
+      <span class="sail-keyword">let</span> <span class="sail-id">res</span> : <span class="sail-id">option</span>(<span class="sail-id">ExceptionType</span>) = <span class="sail-keyword">match</span> <a href=".././riscv_vmem.html#L356"><span class="sail-id">translateAddr</span></a>(<span class="sail-id">vaddr</span>, <span class="sail-id">Read</span>(<span class="sail-id">Data</span>)) {
+        <span class="sail-id">Ok</span>(<span class="sail-id">paddr</span>, _) =&gt; {
+          <span class="sail-comment">// "A cache-block management instruction is permitted to access the
+</span>          <span class="sail-comment">// specified cache block whenever a load instruction or store instruction
+</span>          <span class="sail-comment">// is permitted to access the corresponding physical addresses. If
+</span>          <span class="sail-comment">// neither a load instruction nor store instruction is permitted to
+</span>          <span class="sail-comment">// access the physical addresses, but an instruction fetch is permitted
+</span>          <span class="sail-comment">// to access the physical addresses, whether a cache-block management
+</span>          <span class="sail-comment">// instruction is permitted to access the cache block is UNSPECIFIED."
+</span>          <span class="sail-comment">//
+</span>          <span class="sail-comment">// In this implementation we currently don't allow access for fetches.
+</span>
+          <span class="sail-comment">// effectivePrivilege() only cares if access type is Execute or not
+</span>          <span class="sail-comment">// so it doesn't matter that we use Read here. In future we will use
+</span>          <span class="sail-comment">// the proper Cache access type when it is available. See
+</span>          <span class="sail-comment">// https://github.com/riscv/sail-riscv/pull/792
+</span>          <span class="sail-keyword">let</span> <span class="sail-id">ep</span> = <a href=".././riscv_sys_control.html#L11"><span class="sail-id">effectivePrivilege</span></a>(<span class="sail-id">Read</span>(<span class="sail-id">Data</span>), <a href=".././riscv_sys_regs.html#L263"><span class="sail-id">mstatus</span></a>, <a href=".././riscv_sys_regs.html#L13"><span class="sail-id">cur_privilege</span></a>);
+          <span class="sail-keyword">let</span> <span class="sail-id">exc_read</span> = <a href=".././riscv_mem.html#L99"><span class="sail-id">phys_access_check</span></a>(<span class="sail-id">Read</span>(<span class="sail-id">Data</span>), <span class="sail-id">ep</span>, <span class="sail-id">paddr</span>, <span class="sail-id">cache_block_size</span>);
+          <span class="sail-keyword">let</span> <span class="sail-id">exc_write</span> = <a href=".././riscv_mem.html#L99"><span class="sail-id">phys_access_check</span></a>(<span class="sail-id">Write</span>(<span class="sail-id">Data</span>), <span class="sail-id">ep</span>, <span class="sail-id">paddr</span>, <span class="sail-id">cache_block_size</span>);
+          <span class="sail-keyword">match</span> (<span class="sail-id">exc_read</span>, <span class="sail-id">exc_write</span>) {
+            <span class="sail-comment">// Access is permitted if read OR write are allowed. If neither
+</span>            <span class="sail-comment">// are allowed then we always report a store exception.
+</span>            (<span class="sail-id">Some</span>(<span class="sail-id">exc_read</span>), <span class="sail-id">Some</span>(<span class="sail-id">exc_write</span>)) =&gt; <span class="sail-id">Some</span>(<span class="sail-id">exc_write</span>),
+            _ =&gt; <span class="sail-id">None</span>(),
+          }
+        },
+        <span class="sail-id">Err</span>(<span class="sail-id">e</span>, _) =&gt; <span class="sail-id">Some</span>(<span class="sail-id">e</span>)
+      };
+      <span class="sail-comment">// "If access to the cache block is not permitted, a cache-block management
+</span>      <span class="sail-comment">//  instruction raises a store page fault or store guest-page fault exception
+</span>      <span class="sail-comment">//  if address translation does not permit any access or raises a store access
+</span>      <span class="sail-comment">//  fault exception otherwise."
+</span>      <span class="sail-keyword">match</span> <span class="sail-id">res</span> {
+        <span class="sail-comment">// The model has no caches so there's no action required.
+</span>        <span class="sail-id">None</span>() =&gt; <span class="sail-id">RETIRE_SUCCESS</span>,
+        <span class="sail-id">Some</span>(<span class="sail-id">e</span>) =&gt; {
+          <span class="sail-keyword">let</span> <span class="sail-id">e</span> : <span class="sail-id">ExceptionType</span> = <span class="sail-keyword">match</span> <span class="sail-id">e</span> {
+            <span class="sail-id">E_Load_Access_Fault</span>() =&gt; <span class="sail-id">E_SAMO_Access_Fault</span>(),
+            <span class="sail-id">E_SAMO_Access_Fault</span>() =&gt; <span class="sail-id">E_SAMO_Access_Fault</span>(),
+            <span class="sail-id">E_Load_Page_Fault</span>() =&gt; <span class="sail-id">E_SAMO_Page_Fault</span>(),
+            <span class="sail-id">E_SAMO_Page_Fault</span>() =&gt; <span class="sail-id">E_SAMO_Page_Fault</span>(),
+            <span class="sail-comment">// No other exceptions should be generated since we're not checking
+</span>            <span class="sail-comment">// for fetch access and it's can't be misaligned.
+</span>            _ =&gt; <a href=".././riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"unexpected exception for cmo.clean/inval"</span>),
+          };
+          <span class="sail-comment">// vaddr is the aligned address, but errors report the address that
+</span>          <span class="sail-comment">// was encoded in the instruction. We subtract the negative offset
+</span>          <span class="sail-comment">// (add the positive offset) to get it. Normally this will be
+</span>          <span class="sail-comment">// equal to rs1, but pointer masking can change that.
+</span>          <span class="sail-id">Memory_Exception</span>(<span class="sail-id">vaddr</span> <span class="sail-operator">-</span> <span class="sail-id">negative_offset</span>, <span class="sail-id">e</span>)
+        }
+      }
+    }
+  }
+}
+
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span>(<span class="sail-id">ZICBOM</span>(<span class="sail-id">CBO_CLEAN</span>, <span class="sail-id">rs1</span>)) =
+  <span class="sail-keyword">if</span>   <a href=".././riscv_insts_zicbom.html#L13"><span class="sail-id">cbo_clean_flush_enabled</span></a>(<a href=".././riscv_sys_regs.html#L13"><span class="sail-id">cur_privilege</span></a>)
+  <span class="sail-keyword">then</span> <a href=".././riscv_insts_zicbom.html#L67"><span class="sail-id">process_clean_inval</span></a>(<span class="sail-id">rs1</span>, <span class="sail-id">CBO_CLEAN</span>)
+  <span class="sail-keyword">else</span> <span class="sail-id">Illegal_Instruction</span>()
+
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span>(<span class="sail-id">ZICBOM</span>(<span class="sail-id">CBO_FLUSH</span>, <span class="sail-id">rs1</span>)) =
+  <span class="sail-keyword">if</span>   <a href=".././riscv_insts_zicbom.html#L13"><span class="sail-id">cbo_clean_flush_enabled</span></a>(<a href=".././riscv_sys_regs.html#L13"><span class="sail-id">cur_privilege</span></a>)
+  <span class="sail-keyword">then</span> <a href=".././riscv_insts_zicbom.html#L67"><span class="sail-id">process_clean_inval</span></a>(<span class="sail-id">rs1</span>, <span class="sail-id">CBO_FLUSH</span>)
+  <span class="sail-keyword">else</span> <span class="sail-id">Illegal_Instruction</span>()
+
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span>(<span class="sail-id">ZICBOM</span>(<span class="sail-id">CBO_INVAL</span>, <span class="sail-id">rs1</span>)) =
+  <span class="sail-keyword">match</span> <a href=".././riscv_insts_zicbom.html#L51"><span class="sail-id">cbop_priv_check</span></a>(<a href=".././riscv_sys_regs.html#L13"><span class="sail-id">cur_privilege</span></a>) {
+    <span class="sail-id">CBOP_ILLEGAL</span>         =&gt; <span class="sail-id">Illegal_Instruction</span>(),
+    <span class="sail-id">CBOP_ILLEGAL_VIRTUAL</span> =&gt; <a href=".././riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"unimplemented"</span>),
+    <span class="sail-id">CBOP_INVAL_INVAL</span>     =&gt; <a href=".././riscv_insts_zicbom.html#L67"><span class="sail-id">process_clean_inval</span></a>(<span class="sail-id">rs1</span>, <span class="sail-id">CBO_INVAL</span>),
+    <span class="sail-id">CBOP_INVAL_FLUSH</span>     =&gt; <a href=".././riscv_insts_zicbom.html#L67"><span class="sail-id">process_clean_inval</span></a>(<span class="sail-id">rs1</span>, <span class="sail-id">CBO_FLUSH</span>),
+  }
+</pre>
+</div>
+</div>
+</body>
+</html>

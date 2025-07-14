@@ -1,0 +1,53 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">csr_name_map</span> = <span class="sail-id">reg</span> &lt;-&gt; <span class="sail-id">hex_bits_12</span>(<span class="sail-id">reg</span>)
+<span class="sail-keyword">end</span> <span class="sail-id">csr_name_map</span>
+
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">is_CSR_defined</span>(_) = <span class="sail-literal">false</span>
+<span class="sail-keyword">end</span> <span class="sail-id">is_CSR_defined</span>
+
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">read_CSR</span>(<span class="sail-id">csr</span>) = {
+   <span class="sail-comment">// This should be impossible because is_CSR_defined() should have returned false.
+</span>   <a href=".././riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"Read from CSR that does not exist: "</span> <span class="sail-operator">^</span> <span class="sail-id">bits_str</span>(<span class="sail-id">csr</span>));
+}
+<span class="sail-keyword">end</span> <span class="sail-id">read_CSR</span>
+
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">write_CSR</span>(<span class="sail-id">csr</span>, _) = {
+   <span class="sail-comment">// This should be impossible because is_CSR_defined() should have returned false.
+</span>   <a href=".././riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"Write to CSR that does not exist: "</span> <span class="sail-operator">^</span> <span class="sail-id">bits_str</span>(<span class="sail-id">csr</span>));
+}
+<span class="sail-keyword">end</span> <span class="sail-id">write_CSR</span>
+</pre>
+</div>
+</div>
+</body>
+</html>

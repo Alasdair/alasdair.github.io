@@ -1,0 +1,502 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /><span id="L26">26</span><br /><span id="L27">27</span><br /><span id="L28">28</span><br /><span id="L29">29</span><br /><span id="L30">30</span><br /><span id="L31">31</span><br /><span id="L32">32</span><br /><span id="L33">33</span><br /><span id="L34">34</span><br /><span id="L35">35</span><br /><span id="L36">36</span><br /><span id="L37">37</span><br /><span id="L38">38</span><br /><span id="L39">39</span><br /><span id="L40">40</span><br /><span id="L41">41</span><br /><span id="L42">42</span><br /><span id="L43">43</span><br /><span id="L44">44</span><br /><span id="L45">45</span><br /><span id="L46">46</span><br /><span id="L47">47</span><br /><span id="L48">48</span><br /><span id="L49">49</span><br /><span id="L50">50</span><br /><span id="L51">51</span><br /><span id="L52">52</span><br /><span id="L53">53</span><br /><span id="L54">54</span><br /><span id="L55">55</span><br /><span id="L56">56</span><br /><span id="L57">57</span><br /><span id="L58">58</span><br /><span id="L59">59</span><br /><span id="L60">60</span><br /><span id="L61">61</span><br /><span id="L62">62</span><br /><span id="L63">63</span><br /><span id="L64">64</span><br /><span id="L65">65</span><br /><span id="L66">66</span><br /><span id="L67">67</span><br /><span id="L68">68</span><br /><span id="L69">69</span><br /><span id="L70">70</span><br /><span id="L71">71</span><br /><span id="L72">72</span><br /><span id="L73">73</span><br /><span id="L74">74</span><br /><span id="L75">75</span><br /><span id="L76">76</span><br /><span id="L77">77</span><br /><span id="L78">78</span><br /><span id="L79">79</span><br /><span id="L80">80</span><br /><span id="L81">81</span><br /><span id="L82">82</span><br /><span id="L83">83</span><br /><span id="L84">84</span><br /><span id="L85">85</span><br /><span id="L86">86</span><br /><span id="L87">87</span><br /><span id="L88">88</span><br /><span id="L89">89</span><br /><span id="L90">90</span><br /><span id="L91">91</span><br /><span id="L92">92</span><br /><span id="L93">93</span><br /><span id="L94">94</span><br /><span id="L95">95</span><br /><span id="L96">96</span><br /><span id="L97">97</span><br /><span id="L98">98</span><br /><span id="L99">99</span><br /><span id="L100">100</span><br /><span id="L101">101</span><br /><span id="L102">102</span><br /><span id="L103">103</span><br /><span id="L104">104</span><br /><span id="L105">105</span><br /><span id="L106">106</span><br /><span id="L107">107</span><br /><span id="L108">108</span><br /><span id="L109">109</span><br /><span id="L110">110</span><br /><span id="L111">111</span><br /><span id="L112">112</span><br /><span id="L113">113</span><br /><span id="L114">114</span><br /><span id="L115">115</span><br /><span id="L116">116</span><br /><span id="L117">117</span><br /><span id="L118">118</span><br /><span id="L119">119</span><br /><span id="L120">120</span><br /><span id="L121">121</span><br /><span id="L122">122</span><br /><span id="L123">123</span><br /><span id="L124">124</span><br /><span id="L125">125</span><br /><span id="L126">126</span><br /><span id="L127">127</span><br /><span id="L128">128</span><br /><span id="L129">129</span><br /><span id="L130">130</span><br /><span id="L131">131</span><br /><span id="L132">132</span><br /><span id="L133">133</span><br /><span id="L134">134</span><br /><span id="L135">135</span><br /><span id="L136">136</span><br /><span id="L137">137</span><br /><span id="L138">138</span><br /><span id="L139">139</span><br /><span id="L140">140</span><br /><span id="L141">141</span><br /><span id="L142">142</span><br /><span id="L143">143</span><br /><span id="L144">144</span><br /><span id="L145">145</span><br /><span id="L146">146</span><br /><span id="L147">147</span><br /><span id="L148">148</span><br /><span id="L149">149</span><br /><span id="L150">150</span><br /><span id="L151">151</span><br /><span id="L152">152</span><br /><span id="L153">153</span><br /><span id="L154">154</span><br /><span id="L155">155</span><br /><span id="L156">156</span><br /><span id="L157">157</span><br /><span id="L158">158</span><br /><span id="L159">159</span><br /><span id="L160">160</span><br /><span id="L161">161</span><br /><span id="L162">162</span><br /><span id="L163">163</span><br /><span id="L164">164</span><br /><span id="L165">165</span><br /><span id="L166">166</span><br /><span id="L167">167</span><br /><span id="L168">168</span><br /><span id="L169">169</span><br /><span id="L170">170</span><br /><span id="L171">171</span><br /><span id="L172">172</span><br /><span id="L173">173</span><br /><span id="L174">174</span><br /><span id="L175">175</span><br /><span id="L176">176</span><br /><span id="L177">177</span><br /><span id="L178">178</span><br /><span id="L179">179</span><br /><span id="L180">180</span><br /><span id="L181">181</span><br /><span id="L182">182</span><br /><span id="L183">183</span><br /><span id="L184">184</span><br /><span id="L185">185</span><br /><span id="L186">186</span><br /><span id="L187">187</span><br /><span id="L188">188</span><br /><span id="L189">189</span><br /><span id="L190">190</span><br /><span id="L191">191</span><br /><span id="L192">192</span><br /><span id="L193">193</span><br /><span id="L194">194</span><br /><span id="L195">195</span><br /><span id="L196">196</span><br /><span id="L197">197</span><br /><span id="L198">198</span><br /><span id="L199">199</span><br /><span id="L200">200</span><br /><span id="L201">201</span><br /><span id="L202">202</span><br /><span id="L203">203</span><br /><span id="L204">204</span><br /><span id="L205">205</span><br /><span id="L206">206</span><br /><span id="L207">207</span><br /><span id="L208">208</span><br /><span id="L209">209</span><br /><span id="L210">210</span><br /><span id="L211">211</span><br /><span id="L212">212</span><br /><span id="L213">213</span><br /><span id="L214">214</span><br /><span id="L215">215</span><br /><span id="L216">216</span><br /><span id="L217">217</span><br /><span id="L218">218</span><br /><span id="L219">219</span><br /><span id="L220">220</span><br /><span id="L221">221</span><br /><span id="L222">222</span><br /><span id="L223">223</span><br /><span id="L224">224</span><br /><span id="L225">225</span><br /><span id="L226">226</span><br /><span id="L227">227</span><br /><span id="L228">228</span><br /><span id="L229">229</span><br /><span id="L230">230</span><br /><span id="L231">231</span><br /><span id="L232">232</span><br /><span id="L233">233</span><br /><span id="L234">234</span><br /><span id="L235">235</span><br /><span id="L236">236</span><br /><span id="L237">237</span><br /><span id="L238">238</span><br /><span id="L239">239</span><br /><span id="L240">240</span><br /><span id="L241">241</span><br /><span id="L242">242</span><br /><span id="L243">243</span><br /><span id="L244">244</span><br /><span id="L245">245</span><br /><span id="L246">246</span><br /><span id="L247">247</span><br /><span id="L248">248</span><br /><span id="L249">249</span><br /><span id="L250">250</span><br /><span id="L251">251</span><br /><span id="L252">252</span><br /><span id="L253">253</span><br /><span id="L254">254</span><br /><span id="L255">255</span><br /><span id="L256">256</span><br /><span id="L257">257</span><br /><span id="L258">258</span><br /><span id="L259">259</span><br /><span id="L260">260</span><br /><span id="L261">261</span><br /><span id="L262">262</span><br /><span id="L263">263</span><br /><span id="L264">264</span><br /><span id="L265">265</span><br /><span id="L266">266</span><br /><span id="L267">267</span><br /><span id="L268">268</span><br /><span id="L269">269</span><br /><span id="L270">270</span><br /><span id="L271">271</span><br /><span id="L272">272</span><br /><span id="L273">273</span><br /><span id="L274">274</span><br /><span id="L275">275</span><br /><span id="L276">276</span><br /><span id="L277">277</span><br /><span id="L278">278</span><br /><span id="L279">279</span><br /><span id="L280">280</span><br /><span id="L281">281</span><br /><span id="L282">282</span><br /><span id="L283">283</span><br /><span id="L284">284</span><br /><span id="L285">285</span><br /><span id="L286">286</span><br /><span id="L287">287</span><br /><span id="L288">288</span><br /><span id="L289">289</span><br /><span id="L290">290</span><br /><span id="L291">291</span><br /><span id="L292">292</span><br /><span id="L293">293</span><br /><span id="L294">294</span><br /><span id="L295">295</span><br /><span id="L296">296</span><br /><span id="L297">297</span><br /><span id="L298">298</span><br /><span id="L299">299</span><br /><span id="L300">300</span><br /><span id="L301">301</span><br /><span id="L302">302</span><br /><span id="L303">303</span><br /><span id="L304">304</span><br /><span id="L305">305</span><br /><span id="L306">306</span><br /><span id="L307">307</span><br /><span id="L308">308</span><br /><span id="L309">309</span><br /><span id="L310">310</span><br /><span id="L311">311</span><br /><span id="L312">312</span><br /><span id="L313">313</span><br /><span id="L314">314</span><br /><span id="L315">315</span><br /><span id="L316">316</span><br /><span id="L317">317</span><br /><span id="L318">318</span><br /><span id="L319">319</span><br /><span id="L320">320</span><br /><span id="L321">321</span><br /><span id="L322">322</span><br /><span id="L323">323</span><br /><span id="L324">324</span><br /><span id="L325">325</span><br /><span id="L326">326</span><br /><span id="L327">327</span><br /><span id="L328">328</span><br /><span id="L329">329</span><br /><span id="L330">330</span><br /><span id="L331">331</span><br /><span id="L332">332</span><br /><span id="L333">333</span><br /><span id="L334">334</span><br /><span id="L335">335</span><br /><span id="L336">336</span><br /><span id="L337">337</span><br /><span id="L338">338</span><br /><span id="L339">339</span><br /><span id="L340">340</span><br /><span id="L341">341</span><br /><span id="L342">342</span><br /><span id="L343">343</span><br /><span id="L344">344</span><br /><span id="L345">345</span><br /><span id="L346">346</span><br /><span id="L347">347</span><br /><span id="L348">348</span><br /><span id="L349">349</span><br /><span id="L350">350</span><br /><span id="L351">351</span><br /><span id="L352">352</span><br /><span id="L353">353</span><br /><span id="L354">354</span><br /><span id="L355">355</span><br /><span id="L356">356</span><br /><span id="L357">357</span><br /><span id="L358">358</span><br /><span id="L359">359</span><br /><span id="L360">360</span><br /><span id="L361">361</span><br /><span id="L362">362</span><br /><span id="L363">363</span><br /><span id="L364">364</span><br /><span id="L365">365</span><br /><span id="L366">366</span><br /><span id="L367">367</span><br /><span id="L368">368</span><br /><span id="L369">369</span><br /><span id="L370">370</span><br /><span id="L371">371</span><br /><span id="L372">372</span><br /><span id="L373">373</span><br /><span id="L374">374</span><br /><span id="L375">375</span><br /><span id="L376">376</span><br /><span id="L377">377</span><br /><span id="L378">378</span><br /><span id="L379">379</span><br /><span id="L380">380</span><br /><span id="L381">381</span><br /><span id="L382">382</span><br /><span id="L383">383</span><br /><span id="L384">384</span><br /><span id="L385">385</span><br /><span id="L386">386</span><br /><span id="L387">387</span><br /><span id="L388">388</span><br /><span id="L389">389</span><br /><span id="L390">390</span><br /><span id="L391">391</span><br /><span id="L392">392</span><br /><span id="L393">393</span><br /><span id="L394">394</span><br /><span id="L395">395</span><br /><span id="L396">396</span><br /><span id="L397">397</span><br /><span id="L398">398</span><br /><span id="L399">399</span><br /><span id="L400">400</span><br /><span id="L401">401</span><br /><span id="L402">402</span><br /><span id="L403">403</span><br /><span id="L404">404</span><br /><span id="L405">405</span><br /><span id="L406">406</span><br /><span id="L407">407</span><br /><span id="L408">408</span><br /><span id="L409">409</span><br /><span id="L410">410</span><br /><span id="L411">411</span><br /><span id="L412">412</span><br /><span id="L413">413</span><br /><span id="L414">414</span><br /><span id="L415">415</span><br /><span id="L416">416</span><br /><span id="L417">417</span><br /><span id="L418">418</span><br /><span id="L419">419</span><br /><span id="L420">420</span><br /><span id="L421">421</span><br /><span id="L422">422</span><br /><span id="L423">423</span><br /><span id="L424">424</span><br /><span id="L425">425</span><br /><span id="L426">426</span><br /><span id="L427">427</span><br /><span id="L428">428</span><br /><span id="L429">429</span><br /><span id="L430">430</span><br /><span id="L431">431</span><br /><span id="L432">432</span><br /><span id="L433">433</span><br /><span id="L434">434</span><br /><span id="L435">435</span><br /><span id="L436">436</span><br /><span id="L437">437</span><br /><span id="L438">438</span><br /><span id="L439">439</span><br /><span id="L440">440</span><br /><span id="L441">441</span><br /><span id="L442">442</span><br /><span id="L443">443</span><br /><span id="L444">444</span><br /><span id="L445">445</span><br /><span id="L446">446</span><br /><span id="L447">447</span><br /><span id="L448">448</span><br /><span id="L449">449</span><br /><span id="L450">450</span><br /><span id="L451">451</span><br /><span id="L452">452</span><br /><span id="L453">453</span><br /><span id="L454">454</span><br /><span id="L455">455</span><br /><span id="L456">456</span><br /><span id="L457">457</span><br /><span id="L458">458</span><br /><span id="L459">459</span><br /><span id="L460">460</span><br /><span id="L461">461</span><br /><span id="L462">462</span><br /><span id="L463">463</span><br /><span id="L464">464</span><br /><span id="L465">465</span><br /><span id="L466">466</span><br /><span id="L467">467</span><br /><span id="L468">468</span><br /><span id="L469">469</span><br /><span id="L470">470</span><br /><span id="L471">471</span><br /><span id="L472">472</span><br /><span id="L473">473</span><br /><span id="L474">474</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-comment">// Enum with all extensions possibly supported by the model.
+</span><span class="sail-keyword">scattered</span> <span class="sail-keyword">enum</span> <span class="sail-id">extension</span>
+
+<span class="sail-comment">// Name of extension.  The current primary consumer of these names is
+</span><span class="sail-comment">// the device tree support, which uses lower case.  Since the ISA
+</span><span class="sail-comment">// naming strings are case-insensitive anyway, the names are lowercase.
+</span><span class="sail-keyword">val</span> <span class="sail-id">extensionName</span> : <span class="sail-id">extension</span> &lt;-&gt; <span class="sail-id">string</span>
+<span class="sail-keyword">scattered</span> <span class="sail-keyword">mapping</span> <span class="sail-id">extensionName</span>
+
+<span class="sail-comment">// Function used to determine if an extension is supported in the current configuration.
+</span><span class="sail-keyword">val</span> <span class="sail-id">hartSupports</span> : <span class="sail-id">extension</span> -&gt; <span class="sail-id">bool</span>
+<span class="sail-keyword">scattered</span> <span class="sail-keyword">function</span> <span class="sail-id">hartSupports</span>
+
+<span class="sail-comment">// Function used to determine if an extension is currently enabled in the model.
+</span><span class="sail-comment">// This means an extension is supported, *and* any necessary bits are set in the
+</span><span class="sail-comment">// relevant CSRs (misa, mstatus, etc.) to enable its use. It is possible for some
+</span><span class="sail-comment">// extensions to be supported in hardware, but temporarily disabled via a CSR, in
+</span><span class="sail-comment">// which case this function should return false.
+</span><span class="sail-comment">// Note: when adding a new extension, adjust the associated termination measure
+</span><span class="sail-comment">// in the file riscv_terminiation.sail, as explained in the comment in
+</span><span class="sail-comment">// that file.
+</span><span class="sail-keyword">val</span> <span class="sail-id">currentlyEnabled</span> : <span class="sail-id">extension</span> -&gt; <span class="sail-id">bool</span>
+<span class="sail-keyword">scattered</span> <span class="sail-keyword">function</span> <span class="sail-id">currentlyEnabled</span>
+
+<span class="sail-comment">// Note, these are sorted according to the canonical ordering vaguely described
+</span><span class="sail-comment">// in the `Subset Naming Convention` section of the unprivileged spec.
+</span>
+<span class="sail-comment">// Integer Multiplication and Division; not Machine!
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_M</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_M</span> &lt;-&gt; <span class="sail-string">"m"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_M</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">M</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Atomic Instructions
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_A</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_A</span> &lt;-&gt; <span class="sail-string">"a"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_A</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">A</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Single-Precision Floating-Point
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_F</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_F</span> &lt;-&gt; <span class="sail-string">"f"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_F</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">F</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Double-Precision Floating-Point
+</span><span class="sail-comment">// TODO: Ideally we'd use `config extensions.D.supported` here but it doesn't
+</span><span class="sail-comment">// work due to https://github.com/rems-project/sail/issues/1255
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_D</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_D</span> &lt;-&gt; <span class="sail-string">"d"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_D</span>) = <span class="sail-keyword">constraint</span>(<span class="sail-id">ext_d_supported</span>) <span class="sail-operator">&amp;</span> <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_F</span>)
+<span class="sail-comment">// Bit Manipulation
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_B</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_B</span> &lt;-&gt; <span class="sail-string">"b"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_B</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">B</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Vector Operations
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_V</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_V</span> &lt;-&gt; <span class="sail-string">"v"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_V</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">V</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Supervisor
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_S</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_S</span> &lt;-&gt; <span class="sail-string">"s"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_S</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">S</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// User
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_U</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_U</span> &lt;-&gt; <span class="sail-string">"u"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_U</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">U</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Hypervisor
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_H</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_H</span> &lt;-&gt; <span class="sail-string">"h"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_H</span>) = <span class="sail-literal">false</span>
+
+<span class="sail-comment">// Cache-Block Management Instructions
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zicbom</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zicbom</span> &lt;-&gt; <span class="sail-string">"zicbom"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zicbom</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zicbom</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Cache-Block Zero Instructions
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zicboz</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zicboz</span> &lt;-&gt; <span class="sail-string">"zicboz"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zicboz</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zicboz</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Base Counters and Timers
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zicntr</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zicntr</span> &lt;-&gt; <span class="sail-string">"zicntr"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zicntr</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zicntr</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Integer Conditional Operations
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zicond</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zicond</span> &lt;-&gt; <span class="sail-string">"zicond"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zicond</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zicond</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Extension for Control and Status Register (CSR) Instructions
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zicsr</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zicsr</span> &lt;-&gt; <span class="sail-string">"zicsr"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zicsr</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zicsr</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Instruction-Fetch Fence
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zifencei</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zifencei</span> &lt;-&gt; <span class="sail-string">"zifencei"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zifencei</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zifencei</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Hardware Performance Counters
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zihpm</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zihpm</span> &lt;-&gt; <span class="sail-string">"zihpm"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zihpm</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zihpm</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// May-Be-Operations
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zimop</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zimop</span> &lt;-&gt; <span class="sail-string">"zimop"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zimop</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zimop</span>.<span class="sail-id">supported</span>
+
+<span class="sail-comment">// Multiplication and Division: Multiplication only
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zmmul</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zmmul</span> &lt;-&gt; <span class="sail-string">"zmmul"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zmmul</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zmmul</span>.<span class="sail-id">supported</span>
+
+<span class="sail-comment">// Atomic Memory Operations
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zaamo</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zaamo</span> &lt;-&gt; <span class="sail-string">"zaamo"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zaamo</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zaamo</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Byte and Halfword Atomic Memory Operations
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zabha</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zabha</span> &lt;-&gt; <span class="sail-string">"zabha"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zabha</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zabha</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Load-Reserved/Store-Conditional Instructions
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zalrsc</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zalrsc</span> &lt;-&gt; <span class="sail-string">"zalrsc"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zalrsc</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zalrsc</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Wait-On-Reservation-Set
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zawrs</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zawrs</span> &lt;-&gt; <span class="sail-string">"zawrs"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zawrs</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zawrs</span>.<span class="sail-id">supported</span>
+
+<span class="sail-comment">// Additional Floating-Point Instructions
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zfa</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zfa</span> &lt;-&gt; <span class="sail-string">"zfa"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zfa</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zfa</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Half-Precision Floating-Point
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zfh</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zfh</span> &lt;-&gt; <span class="sail-string">"zfh"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zfh</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zfh</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Minimal Half-Precision Floating-Point
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zfhmin</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zfhmin</span> &lt;-&gt; <span class="sail-string">"zfhmin"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zfhmin</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zfhmin</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Floating-Point in Integer Registers (single precision)
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zfinx</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zfinx</span> &lt;-&gt; <span class="sail-string">"zfinx"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zfinx</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zfinx</span>.<span class="sail-id">supported</span>
+
+<span class="sail-comment">// Floating-Point in Integer Registers (double precision)
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zdinx</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zdinx</span> &lt;-&gt; <span class="sail-string">"zdinx"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zdinx</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zfinx</span>.<span class="sail-id">supported</span> <span class="sail-comment">// TODO: Separate Zfinx and Zdinx supported flags
+</span>
+<span class="sail-comment">// Code Size Reduction: compressed instructions excluding floating point loads and stores
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zca</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zca</span> &lt;-&gt; <span class="sail-string">"zca"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zca</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zca</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Code Size Reduction: additional 16-bit aliases
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zcb</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zcb</span> &lt;-&gt; <span class="sail-string">"zcb"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zcb</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zcb</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Code Size Reduction: compressed double precision floating point loads and stores
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zcd</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zcd</span> &lt;-&gt; <span class="sail-string">"zcd"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zcd</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zcd</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Code Size Reduction: compressed single precision floating point loads and stores
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zcf</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zcf</span> &lt;-&gt; <span class="sail-string">"zcf"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zcf</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zcf</span>.<span class="sail-id">supported</span> : <span class="sail-id">bool</span> <span class="sail-operator">&amp;</span> (<span class="sail-id">xlen</span> <span class="sail-operator">==</span> <span class="sail-literal">32</span>)
+<span class="sail-comment">// Compressed May-Be-Operations
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zcmop</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zcmop</span> &lt;-&gt; <span class="sail-string">"zcmop"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zcmop</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zcmop</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Compressed Instructions
+</span><span class="sail-comment">// C is supported if all of the following are true:
+</span><span class="sail-comment">//   - Zca is supported
+</span><span class="sail-comment">//   - Zcf is supported if F is supported (on rv32)
+</span><span class="sail-comment">//   - Zcd is supported if D is supported
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_C</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_C</span> &lt;-&gt; <span class="sail-string">"c"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_C</span>) = <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zca</span>) <span class="sail-operator">&amp;</span> (<a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zcf</span>) <span class="sail-operator">|</span> <a href=".././prelude.html#L29"><span class="sail-id">not</span></a>(<a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_F</span>)) <span class="sail-operator">|</span> <span class="sail-id">xlen</span> <span class="sail-operator">!=</span> <span class="sail-literal">32</span>) <span class="sail-operator">&amp;</span> (<a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zcd</span>) <span class="sail-operator">|</span> <a href=".././prelude.html#L29"><span class="sail-id">not</span></a>(<a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_D</span>)))
+
+<span class="sail-comment">// Bit Manipulation: Address generation
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zba</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zba</span> &lt;-&gt; <span class="sail-string">"zba"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zba</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zba</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Bit Manipulation: Basic bit-manipulation
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zbb</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zbb</span> &lt;-&gt; <span class="sail-string">"zbb"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zbb</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zbb</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Bit Manipulation: Carry-less multiplication
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zbc</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zbc</span> &lt;-&gt; <span class="sail-string">"zbc"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zbc</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zbc</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Bit Manipulation: Bit-manipulation for Cryptography
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zbkb</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zbkb</span> &lt;-&gt; <span class="sail-string">"zbkb"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zbkb</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zbkb</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Bit Manipulation: Carry-less multiplication for Cryptography
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zbkc</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zbkc</span> &lt;-&gt; <span class="sail-string">"zbkc"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zbkc</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zbkc</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Bit Manipulation: Crossbar permutations
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zbkx</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zbkx</span> &lt;-&gt; <span class="sail-string">"zbkx"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zbkx</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zbkx</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Bit Manipulation: Single-bit instructions
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zbs</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zbs</span> &lt;-&gt; <span class="sail-string">"zbs"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zbs</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zbs</span>.<span class="sail-id">supported</span>
+
+<span class="sail-comment">// Scalar &amp; Entropy Source Instructions: NIST Suite: AES Decryption
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zknd</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zknd</span> &lt;-&gt; <span class="sail-string">"zknd"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zknd</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zknd</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Scalar &amp; Entropy Source Instructions: NIST Suite: AES Encryption
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zkne</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zkne</span> &lt;-&gt; <span class="sail-string">"zkne"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zkne</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zkne</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Scalar &amp; Entropy Source Instructions: NIST Suite: Hash Function Instructions
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zknh</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zknh</span> &lt;-&gt; <span class="sail-string">"zknh"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zknh</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zknh</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Scalar &amp; Entropy Source Instructions: Entropy Source Extension
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zkr</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zkr</span> &lt;-&gt; <span class="sail-string">"zkr"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zkr</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zkr</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Scalar &amp; Entropy Source Instructions: ShangMi Suite: SM4 Block Cipher Instructions
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zksed</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zksed</span> &lt;-&gt; <span class="sail-string">"zksed"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zksed</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zksed</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Scalar &amp; Entropy Source Instructions: ShangMi Suite: SM3 Hash Cipher Instructions
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zksh</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zksh</span> &lt;-&gt; <span class="sail-string">"zksh"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zksh</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zksh</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Data Independent Execution Latency
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zkt</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zkt</span> &lt;-&gt; <span class="sail-string">"zkt"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zkt</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zkt</span>.<span class="sail-id">supported</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zkt</span>) = <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zkt</span>)
+
+<span class="sail-comment">// Floating-Point in Integer Registers (half precision)
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zhinx</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zhinx</span> &lt;-&gt; <span class="sail-string">"zhinx"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zhinx</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zhinx</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Floating-Point in Integer Registers (minimal half precision)
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zhinxmin</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zhinxmin</span> &lt;-&gt; <span class="sail-string">"zhinxmin"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zhinxmin</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zhinxmin</span>.<span class="sail-id">supported</span>
+
+<span class="sail-comment">// Vector Basic Bit-manipulation
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zvbb</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zvbb</span> &lt;-&gt; <span class="sail-string">"zvbb"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zvbb</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zvbb</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Vector Carryless Multiplication
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zvbc</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zvbc</span> &lt;-&gt; <span class="sail-string">"zvbc"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zvbc</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zvbc</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Vector Cryptography Bit-manipulation
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zvkb</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zvkb</span> &lt;-&gt; <span class="sail-string">"zvkb"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zvkb</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zvkb</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Vector GCM/GMAC
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zvkg</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zvkg</span> &lt;-&gt; <span class="sail-string">"zvkg"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zvkg</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zvkg</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// NIST Suite: Vector AES Block Cipher
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zvkned</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zvkned</span> &lt;-&gt; <span class="sail-string">"zvkned"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zvkned</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zvkned</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// NIST Suite: Vector SHA-2 Secure Hash (SHA-256 only)
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zvknha</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zvknha</span> &lt;-&gt; <span class="sail-string">"zvknha"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zvknha</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zvknha</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// NIST Suite: Vector SHA-2 Secure Hash (SHA-256 and SHA-512)
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zvknhb</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zvknhb</span> &lt;-&gt; <span class="sail-string">"zvknhb"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zvknhb</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zvknhb</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// ShangMi Suite: SM4 Block Cipher
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zvksed</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zvksed</span> &lt;-&gt; <span class="sail-string">"zvksed"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zvksed</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zvksed</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// ShangMi Suite: SM3 Secure Hash
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zvksh</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zvksh</span> &lt;-&gt; <span class="sail-string">"zvksh"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zvksh</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zvksh</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Vector Data Independent Execution Latency
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zvkt</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zvkt</span> &lt;-&gt; <span class="sail-string">"zvkt"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zvkt</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Zvkt</span>.<span class="sail-id">supported</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zvkt</span>) = <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zvkt</span>)
+<span class="sail-comment">// The following extensions are superset/shorthand extensions. They cannot be
+</span><span class="sail-comment">// directly configured in the config file and are automatically supported when
+</span><span class="sail-comment">// all their required subset extensions are supported.
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zvkn</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zvkn</span> &lt;-&gt; <span class="sail-string">"zvkn"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zvkn</span>) =
+  <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zvkned</span>) <span class="sail-operator">&amp;</span>
+  <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zvknhb</span>) <span class="sail-operator">&amp;</span>
+  <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zvkb</span>)   <span class="sail-operator">&amp;</span>
+  <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zvkt</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zvkn</span>) = <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zvkn</span>)
+<span class="sail-comment">// NIST Algorithm Suite with carryless multiply
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zvknc</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zvknc</span> &lt;-&gt; <span class="sail-string">"zvknc"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zvknc</span>) = <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zvkn</span>) <span class="sail-operator">&amp;</span> <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zvbc</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zvknc</span>) = <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zvknc</span>)
+<span class="sail-comment">// NIST Algorithm Suite with GCM
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zvkng</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zvkng</span> &lt;-&gt; <span class="sail-string">"zvkng"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zvkng</span>) = <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zvkn</span>) <span class="sail-operator">&amp;</span> <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zvkg</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zvkng</span>) = <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zvkng</span>)
+<span class="sail-comment">// ShangMi Algorithm Suite
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zvks</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zvks</span> &lt;-&gt; <span class="sail-string">"zvks"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zvks</span>) =
+  <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zvksed</span>) <span class="sail-operator">&amp;</span>
+  <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zvksh</span>)  <span class="sail-operator">&amp;</span>
+  <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zvkb</span>)   <span class="sail-operator">&amp;</span>
+  <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zvkt</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zvks</span>) = <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zvks</span>)
+<span class="sail-comment">// ShangMi Algorithm Suite with carryless multiplication
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zvksc</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zvksc</span> &lt;-&gt; <span class="sail-string">"zvksc"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zvksc</span>) = <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zvks</span>) <span class="sail-operator">&amp;</span> <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zvbc</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zvksc</span>) = <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zvksc</span>)
+<span class="sail-comment">// ShangMi Algorithm Suite with GCM
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Zvksg</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Zvksg</span> &lt;-&gt; <span class="sail-string">"zvksg"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Zvksg</span>) = <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zvks</span>) <span class="sail-operator">&amp;</span> <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zvkg</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zvksg</span>) = <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zvksg</span>)
+
+<span class="sail-comment">// Count Overflow and Mode-Based Filtering
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Sscofpmf</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Sscofpmf</span> &lt;-&gt; <span class="sail-string">"sscofpmf"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Sscofpmf</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Sscofpmf</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Supervisor-mode Timer Interrupts
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Sstc</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Sstc</span> &lt;-&gt; <span class="sail-string">"sstc"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Sstc</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Sstc</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// Fine-Grained Address-Translation Cache Invalidation
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Svinval</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Svinval</span> &lt;-&gt; <span class="sail-string">"svinval"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Svinval</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Svinval</span>.<span class="sail-id">supported</span>
+<span class="sail-comment">// NAPOT Translation Contiguity
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Svnapot</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Svnapot</span> &lt;-&gt; <span class="sail-string">"svnapot"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Svnapot</span>) = <span class="sail-literal">false</span> <span class="sail-comment">// Not supported yet
+</span><span class="sail-comment">// Page-Based Memory Types
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Svpbmt</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Svpbmt</span> &lt;-&gt; <span class="sail-string">"svpbmt"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Svpbmt</span>) = <span class="sail-literal">false</span> <span class="sail-comment">// Not supported yet
+</span>
+<span class="sail-comment">// Supervisor-Level Address Translation Modes
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Svbare</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Svbare</span> &lt;-&gt; <span class="sail-string">"svbare"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Svbare</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Svbare</span>.<span class="sail-id">supported</span>
+<span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Sv32</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Sv32</span> &lt;-&gt; <span class="sail-string">"sv32"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Sv32</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Sv32</span>.<span class="sail-id">supported</span> : <span class="sail-id">bool</span> <span class="sail-operator">&amp;</span> (<span class="sail-id">xlen</span> <span class="sail-operator">==</span> <span class="sail-literal">32</span>)
+<span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Sv39</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Sv39</span> &lt;-&gt; <span class="sail-string">"sv39"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Sv39</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Sv39</span>.<span class="sail-id">supported</span> : <span class="sail-id">bool</span> <span class="sail-operator">&amp;</span> (<span class="sail-id">xlen</span> <span class="sail-operator">==</span> <span class="sail-literal">64</span>)
+<span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Sv48</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Sv48</span> &lt;-&gt; <span class="sail-string">"sv48"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Sv48</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Sv48</span>.<span class="sail-id">supported</span> : <span class="sail-id">bool</span> <span class="sail-operator">&amp;</span> (<span class="sail-id">xlen</span> <span class="sail-operator">==</span> <span class="sail-literal">64</span>)
+<span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Sv57</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Sv57</span> &lt;-&gt; <span class="sail-string">"sv57"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Sv57</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Sv57</span>.<span class="sail-id">supported</span> : <span class="sail-id">bool</span> <span class="sail-operator">&amp;</span> (<span class="sail-id">xlen</span> <span class="sail-operator">==</span> <span class="sail-literal">64</span>)
+
+<span class="sail-comment">// Cycle and Instret Privilege Mode Filtering
+</span><span class="sail-keyword">enum</span> <span class="sail-keyword">clause</span> <span class="sail-id">extension</span> = <span class="sail-id">Ext_Smcntrpmf</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">extensionName</span> = <span class="sail-id">Ext_Smcntrpmf</span> &lt;-&gt; <span class="sail-string">"smcntrpmf"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">hartSupports</span>(<span class="sail-id">Ext_Smcntrpmf</span>) = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">Smcntrpmf</span>.<span class="sail-id">supported</span>
+
+<span class="sail-keyword">let</span> <span class="sail-id">extensions_ordered_for_isa_string</span> = [
+  <span class="sail-comment">// Single letter extensions.
+</span>  <span class="sail-id">Ext_M</span>,
+  <span class="sail-id">Ext_A</span>,
+  <span class="sail-id">Ext_F</span>,
+  <span class="sail-id">Ext_D</span>,
+  <span class="sail-comment">// Ext_G,
+</span>  <span class="sail-comment">// Ext_Q,
+</span>  <span class="sail-id">Ext_C</span>,
+  <span class="sail-id">Ext_B</span>,
+  <span class="sail-comment">// Ext_P,
+</span>  <span class="sail-id">Ext_V</span>,
+  <span class="sail-id">Ext_H</span>,
+  <span class="sail-comment">// S and U are not valid extensions in the device-tree, whereas H is.
+</span>
+  <span class="sail-comment">// Z extensions, ordered by category and then alphabetically.
+</span>  <span class="sail-comment">// Zi
+</span>  <span class="sail-id">Ext_Zicbom</span>,
+  <span class="sail-id">Ext_Zicboz</span>,
+  <span class="sail-id">Ext_Zicntr</span>,
+  <span class="sail-id">Ext_Zicond</span>,
+  <span class="sail-id">Ext_Zicsr</span>,
+  <span class="sail-id">Ext_Zifencei</span>,
+  <span class="sail-id">Ext_Zihpm</span>,
+  <span class="sail-id">Ext_Zimop</span>,
+
+  <span class="sail-comment">// Zm
+</span>  <span class="sail-id">Ext_Zmmul</span>,
+
+  <span class="sail-comment">// Za
+</span>  <span class="sail-id">Ext_Zaamo</span>,
+  <span class="sail-id">Ext_Zabha</span>,
+  <span class="sail-id">Ext_Zalrsc</span>,
+  <span class="sail-id">Ext_Zawrs</span>,
+
+  <span class="sail-comment">// Zf, Zd, and Zq
+</span>  <span class="sail-id">Ext_Zfa</span>,
+  <span class="sail-id">Ext_Zfh</span>,
+  <span class="sail-id">Ext_Zfhmin</span>,
+  <span class="sail-id">Ext_Zfinx</span>,
+  <span class="sail-id">Ext_Zdinx</span>,
+  <span class="sail-id">Ext_Zhinx</span>,
+  <span class="sail-id">Ext_Zhinxmin</span>,
+
+  <span class="sail-comment">// Zc
+</span>  <span class="sail-id">Ext_Zca</span>,
+  <span class="sail-id">Ext_Zcb</span>,
+  <span class="sail-id">Ext_Zcd</span>,
+  <span class="sail-id">Ext_Zcf</span>,
+  <span class="sail-id">Ext_Zcmop</span>,
+
+  <span class="sail-comment">// Zb
+</span>  <span class="sail-id">Ext_Zba</span>,
+  <span class="sail-id">Ext_Zbb</span>,
+  <span class="sail-id">Ext_Zbc</span>,
+  <span class="sail-id">Ext_Zbkb</span>,
+  <span class="sail-id">Ext_Zbkc</span>,
+  <span class="sail-id">Ext_Zbkx</span>,
+  <span class="sail-id">Ext_Zbs</span>,
+
+  <span class="sail-comment">// Zk
+</span>  <span class="sail-id">Ext_Zknd</span>,
+  <span class="sail-id">Ext_Zkne</span>,
+  <span class="sail-id">Ext_Zknh</span>,
+  <span class="sail-id">Ext_Zkr</span>,
+  <span class="sail-id">Ext_Zksed</span>,
+  <span class="sail-id">Ext_Zksh</span>,
+  <span class="sail-id">Ext_Zkt</span>,
+
+  <span class="sail-comment">// Zv
+</span>  <span class="sail-id">Ext_Zvbb</span>,
+  <span class="sail-id">Ext_Zvbc</span>,
+  <span class="sail-id">Ext_Zvkb</span>,
+  <span class="sail-id">Ext_Zvkg</span>,
+  <span class="sail-id">Ext_Zvkn</span>,
+  <span class="sail-id">Ext_Zvknc</span>,
+  <span class="sail-id">Ext_Zvkned</span>,
+  <span class="sail-id">Ext_Zvkng</span>,
+  <span class="sail-id">Ext_Zvknha</span>,
+  <span class="sail-id">Ext_Zvknhb</span>,
+  <span class="sail-id">Ext_Zvks</span>,
+  <span class="sail-id">Ext_Zvksc</span>,
+  <span class="sail-id">Ext_Zvksed</span>,
+  <span class="sail-id">Ext_Zvksg</span>,
+  <span class="sail-id">Ext_Zvksh</span>,
+  <span class="sail-id">Ext_Zvkt</span>,
+
+  <span class="sail-comment">// Supervisor extensions, ordered alphabetically.
+</span>  <span class="sail-id">Ext_Sscofpmf</span>,
+  <span class="sail-id">Ext_Sstc</span>,
+  <span class="sail-comment">// Ext_Svade,
+</span>  <span class="sail-comment">// Ext_Svadu,
+</span>  <span class="sail-id">Ext_Svinval</span>,
+  <span class="sail-id">Ext_Svnapot</span>,
+  <span class="sail-id">Ext_Svpbmt</span>,
+
+  <span class="sail-comment">// Hypervisor extensions, ordered alphabetically.
+</span>
+  <span class="sail-comment">// Machine mode extensions, ordered alphabetically.
+</span>  <span class="sail-id">Ext_Smcntrpmf</span>,
+]
+</pre>
+</div>
+</div>
+</body>
+</html>

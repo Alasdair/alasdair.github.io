@@ -1,0 +1,104 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /><span id="L26">26</span><br /><span id="L27">27</span><br /><span id="L28">28</span><br /><span id="L29">29</span><br /><span id="L30">30</span><br /><span id="L31">31</span><br /><span id="L32">32</span><br /><span id="L33">33</span><br /><span id="L34">34</span><br /><span id="L35">35</span><br /><span id="L36">36</span><br /><span id="L37">37</span><br /><span id="L38">38</span><br /><span id="L39">39</span><br /><span id="L40">40</span><br /><span id="L41">41</span><br /><span id="L42">42</span><br /><span id="L43">43</span><br /><span id="L44">44</span><br /><span id="L45">45</span><br /><span id="L46">46</span><br /><span id="L47">47</span><br /><span id="L48">48</span><br /><span id="L49">49</span><br /><span id="L50">50</span><br /><span id="L51">51</span><br /><span id="L52">52</span><br /><span id="L53">53</span><br /><span id="L54">54</span><br /><span id="L55">55</span><br /><span id="L56">56</span><br /><span id="L57">57</span><br /><span id="L58">58</span><br /><span id="L59">59</span><br /><span id="L60">60</span><br /><span id="L61">61</span><br /><span id="L62">62</span><br /><span id="L63">63</span><br /><span id="L64">64</span><br /><span id="L65">65</span><br /><span id="L66">66</span><br /><span id="L67">67</span><br /><span id="L68">68</span><br /><span id="L69">69</span><br /><span id="L70">70</span><br /><span id="L71">71</span><br /><span id="L72">72</span><br /><span id="L73">73</span><br /><span id="L74">74</span><br /><span id="L75">75</span><br /><span id="L76">76</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-comment">// When the symbolic execution is running a litmus test, it sets a
+</span><span class="sail-comment">// different entry point for each thread in the compiled litmus test.
+</span>
+<span class="sail-keyword">val</span> <span class="sail-id">get_entry_point</span> : <span class="sail-id">unit</span> -&gt; <span class="sail-id">xlenbits</span>
+
+<span class="sail-pragma">$ifdef SYMBOLIC
+</span>
+<span class="sail-pragma">$include &lt;elf.sail&gt;
+</span>
+<span class="sail-keyword">function</span> <span class="sail-id">get_entry_point</span>() = <span class="sail-id">to_bits_checked</span>(<span class="sail-id">elf_entry</span>())
+
+<span class="sail-pragma">$else
+</span>
+<span class="sail-keyword">function</span> <span class="sail-id">get_entry_point</span>() = <a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-literal">0x1000</span>)
+
+<span class="sail-pragma">$endif
+</span>
+<span class="sail-keyword">function</span> <span class="sail-id">main</span>() : <span class="sail-id">unit</span> -&gt; <span class="sail-id">unit</span> = {
+  <a href=".././riscv_regs.html#L11"><span class="sail-id">PC</span></a> = <a href=".././main.html#L22"><span class="sail-id">get_entry_point</span></a>();
+  <span class="sail-id">print_bits</span>(<span class="sail-string">"PC = "</span>, <a href=".././riscv_regs.html#L11"><span class="sail-id">PC</span></a>);
+
+  <span class="sail-keyword">try</span> {
+    <a href=".././riscv_model.html#L19"><span class="sail-id">init_model</span></a>(<span class="sail-string">""</span>);
+    <span class="sail-id">sail_end_cycle</span>();
+    <a href=".././riscv_step.html#L247"><span class="sail-id">loop</span></a>()
+  } <span class="sail-keyword">catch</span> {
+    <span class="sail-id">Error_not_implemented</span>(<span class="sail-id">s</span>) =&gt; <a href=".././prelude.html#L64"><span class="sail-id">print_string</span></a>(<span class="sail-string">"Error: Not implemented: "</span>, <span class="sail-id">s</span>),
+    <span class="sail-id">Error_internal_error</span>() =&gt; <span class="sail-id">print</span>(<span class="sail-string">"Error: internal error"</span>)
+  }
+}
+
+<span class="sail-comment">// For symbolic execution using Isla, we need an entry point that
+</span><span class="sail-comment">// allows us to execute a single instruction.
+</span><span class="sail-pragma">$ifdef SYMBOLIC
+</span>
+<span class="sail-pragma">$include &lt;isla.sail&gt;
+</span>
+<span class="sail-keyword">val</span> <span class="sail-id">isla_footprint_no_init</span> : <span class="sail-keyword">forall</span> <span class="sail-ty-var">'n</span>, <span class="sail-ty-var">'n</span> <span class="sail-keyword">in</span> {<span class="sail-literal">16</span>, <span class="sail-literal">32</span>}. <span class="sail-id">bits</span>(<span class="sail-ty-var">'n</span>) -&gt; <span class="sail-id">bool</span>
+
+<span class="sail-keyword">function</span> <span class="sail-id">isla_footprint_no_init</span>(<span class="sail-id">opcode</span>) = {
+  <span class="sail-keyword">try</span> {
+    <span class="sail-id">isla_reset_registers</span>();
+    <span class="sail-id">sail_end_cycle</span>();
+
+    <span class="sail-keyword">let</span> <span class="sail-id">instr</span> = <span class="sail-keyword">if</span> <span class="sail-id">length</span>(<span class="sail-id">opcode</span>) <span class="sail-operator">==</span> <span class="sail-literal">16</span> <span class="sail-keyword">then</span> {
+      <span class="sail-id">ext_decode_compressed</span>(<span class="sail-id">opcode</span>)
+    } <span class="sail-keyword">else</span> {
+      <span class="sail-id">ext_decode</span>(<span class="sail-id">opcode</span>)
+    };
+    <span class="sail-keyword">let</span> _ = <span class="sail-id">execute</span>(<span class="sail-id">instr</span>);
+    <span class="sail-literal">true</span>
+  } <span class="sail-keyword">catch</span> {
+    _ =&gt; <span class="sail-literal">false</span>
+  }
+}
+
+<span class="sail-keyword">val</span> <span class="sail-id">isla_footprint</span> : <span class="sail-keyword">forall</span> <span class="sail-ty-var">'n</span>, <span class="sail-ty-var">'n</span> <span class="sail-keyword">in</span> {<span class="sail-literal">16</span>, <span class="sail-literal">32</span>}. <span class="sail-id">bits</span>(<span class="sail-ty-var">'n</span>) -&gt; <span class="sail-id">bool</span>
+
+<span class="sail-keyword">function</span> <span class="sail-id">isla_footprint</span>(<span class="sail-id">opcode</span>) = {
+  <span class="sail-keyword">try</span> {
+    <span class="sail-id">init_model</span>();
+    <span class="sail-id">isla_footprint_no_init</span>(<span class="sail-id">opcode</span>)
+  } <span class="sail-keyword">catch</span> {
+    _ =&gt; <span class="sail-literal">false</span>
+  }
+}
+
+<span class="sail-pragma">$endif
+</pre>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /><span id="L26">26</span><br /><span id="L27">27</span><br /><span id="L28">28</span><br /><span id="L29">29</span><br /><span id="L30">30</span><br /><span id="L31">31</span><br /><span id="L32">32</span><br /><span id="L33">33</span><br /><span id="L34">34</span><br /><span id="L35">35</span><br /><span id="L36">36</span><br /><span id="L37">37</span><br /><span id="L38">38</span><br /><span id="L39">39</span><br /><span id="L40">40</span><br /><span id="L41">41</span><br /><span id="L42">42</span><br /><span id="L43">43</span><br /><span id="L44">44</span><br /><span id="L45">45</span><br /><span id="L46">46</span><br /><span id="L47">47</span><br /><span id="L48">48</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_V</span>) = <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_V</span>) <span class="sail-operator">&amp;</span> (<a href=".././riscv_sys_regs.html#L79"><span class="sail-id">misa</span></a>[<span class="sail-id">V</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>) <span class="sail-operator">&amp;</span> (<a href=".././riscv_sys_regs.html#L263"><span class="sail-id">mstatus</span></a>[<span class="sail-id">VS</span>] <span class="sail-operator">!=</span> <span class="sail-literal">0b00</span>) <span class="sail-operator">&amp;</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zicsr</span>)
+
+<span class="sail-comment">// Note: The spec recommends trapping if vstart is out of bounds but the
+</span><span class="sail-comment">// current implementation does not do that because write_CSR() doesn't
+</span><span class="sail-comment">// allow traps.
+</span>
+<span class="sail-keyword">function</span> <span class="sail-id">set_vstart</span>(<span class="sail-id">value</span> : <span class="sail-id">bits</span>(<span class="sail-literal">16</span>)) -&gt; <span class="sail-id">unit</span> = {
+  <a href=".././riscv_vext_regs.html#L94"><span class="sail-id">dirty_v_context</span></a>();
+  <a href=".././riscv_sys_regs.html#L952"><span class="sail-id">vstart</span></a> = <a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">value</span>[(<span class="sail-id">VLEN_pow</span> <span class="sail-operator">-</span> <span class="sail-literal">1</span>) .. <span class="sail-literal">0</span>]);
+  <span class="sail-id">csr_write_callback</span>(<span class="sail-string">"vstart"</span>, <a href=".././riscv_sys_regs.html#L952"><span class="sail-id">vstart</span></a>);
+}
+
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">csr_name_map</span> = <span class="sail-literal">0x008</span>  &lt;-&gt; <span class="sail-string">"vstart"</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">csr_name_map</span> = <span class="sail-literal">0x009</span>  &lt;-&gt; <span class="sail-string">"vxsat"</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">csr_name_map</span> = <span class="sail-literal">0x00A</span>  &lt;-&gt; <span class="sail-string">"vxrm"</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">csr_name_map</span> = <span class="sail-literal">0x00F</span>  &lt;-&gt; <span class="sail-string">"vcsr"</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">csr_name_map</span> = <span class="sail-literal">0xC20</span>  &lt;-&gt; <span class="sail-string">"vl"</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">csr_name_map</span> = <span class="sail-literal">0xC21</span>  &lt;-&gt; <span class="sail-string">"vtype"</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">csr_name_map</span> = <span class="sail-literal">0xC22</span>  &lt;-&gt; <span class="sail-string">"vlenb"</span>
+
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">is_CSR_defined</span> (<span class="sail-literal">0x008</span>) = <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_V</span>) <span class="sail-comment">// vstart
+</span><span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">is_CSR_defined</span> (<span class="sail-literal">0x009</span>) = <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_V</span>) <span class="sail-comment">// vxsat
+</span><span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">is_CSR_defined</span> (<span class="sail-literal">0x00A</span>) = <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_V</span>) <span class="sail-comment">// vxrm
+</span><span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">is_CSR_defined</span> (<span class="sail-literal">0x00F</span>) = <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_V</span>) <span class="sail-comment">// vcsr
+</span><span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">is_CSR_defined</span> (<span class="sail-literal">0xC20</span>) = <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_V</span>) <span class="sail-comment">// vl
+</span><span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">is_CSR_defined</span> (<span class="sail-literal">0xC21</span>) = <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_V</span>) <span class="sail-comment">// vtype
+</span><span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">is_CSR_defined</span> (<span class="sail-literal">0xC22</span>) = <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_V</span>) <span class="sail-comment">// vlenb
+</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">read_CSR</span>(<span class="sail-literal">0x008</span>) = <a href=".././riscv_sys_regs.html#L952"><span class="sail-id">vstart</span></a>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">read_CSR</span>(<span class="sail-literal">0x009</span>) = <a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<a href=".././riscv_vext_regs.html#L230"><span class="sail-id">vcsr</span></a>[<span class="sail-id">vxsat</span>])
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">read_CSR</span>(<span class="sail-literal">0x00A</span>) = <a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<a href=".././riscv_vext_regs.html#L230"><span class="sail-id">vcsr</span></a>[<span class="sail-id">vxrm</span>])
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">read_CSR</span>(<span class="sail-literal">0x00F</span>) = <a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<a href=".././riscv_vext_regs.html#L230"><span class="sail-id">vcsr</span></a>.<span class="sail-id">bits</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">read_CSR</span>(<span class="sail-literal">0xC20</span>) = <a href=".././riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">read_CSR</span>(<span class="sail-literal">0xC21</span>) = <a href=".././riscv_sys_regs.html#L966"><span class="sail-id">vtype</span></a>.<span class="sail-id">bits</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">read_CSR</span>(<span class="sail-literal">0xC22</span>) = <span class="sail-id">VLENB</span>
+
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">write_CSR</span>(<span class="sail-literal">0x008</span>, <span class="sail-id">value</span>) = { <a href=".././riscv_vext_control.html#L15"><span class="sail-id">set_vstart</span></a>(<span class="sail-id">value</span>[<span class="sail-literal">15</span> .. <span class="sail-literal">0</span>]); <a href=".././riscv_sys_regs.html#L952"><span class="sail-id">vstart</span></a> }
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">write_CSR</span>(<span class="sail-literal">0x009</span>, <span class="sail-id">value</span>) = { <a href=".././riscv_vext_regs.html#L233"><span class="sail-id">ext_write_vcsr</span></a> (<a href=".././riscv_vext_regs.html#L230"><span class="sail-id">vcsr</span></a>[<span class="sail-id">vxrm</span>], <span class="sail-id">value</span>[<span class="sail-literal">0</span> .. <span class="sail-literal">0</span>]); <a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<a href=".././riscv_vext_regs.html#L230"><span class="sail-id">vcsr</span></a>[<span class="sail-id">vxsat</span>]) }
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">write_CSR</span>(<span class="sail-literal">0x00A</span>, <span class="sail-id">value</span>) = { <a href=".././riscv_vext_regs.html#L233"><span class="sail-id">ext_write_vcsr</span></a> (<span class="sail-id">value</span>[<span class="sail-literal">1</span> .. <span class="sail-literal">0</span>], <a href=".././riscv_vext_regs.html#L230"><span class="sail-id">vcsr</span></a>[<span class="sail-id">vxsat</span>]); <a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<a href=".././riscv_vext_regs.html#L230"><span class="sail-id">vcsr</span></a>[<span class="sail-id">vxrm</span>]) }
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">write_CSR</span>(<span class="sail-literal">0x00F</span>, <span class="sail-id">value</span>) = { <a href=".././riscv_vext_regs.html#L233"><span class="sail-id">ext_write_vcsr</span></a> (<span class="sail-id">value</span> [<span class="sail-literal">2</span> .. <span class="sail-literal">1</span>], <span class="sail-id">value</span> [<span class="sail-literal">0</span> .. <span class="sail-literal">0</span>]); <a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<a href=".././riscv_vext_regs.html#L230"><span class="sail-id">vcsr</span></a>.<span class="sail-id">bits</span>) }
+</pre>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /><span id="L26">26</span><br /><span id="L27">27</span><br /><span id="L28">28</span><br /><span id="L29">29</span><br /><span id="L30">30</span><br /><span id="L31">31</span><br /><span id="L32">32</span><br /><span id="L33">33</span><br /><span id="L34">34</span><br /><span id="L35">35</span><br /><span id="L36">36</span><br /><span id="L37">37</span><br /><span id="L38">38</span><br /><span id="L39">39</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-comment">/* **************************************************************** */</span>
+<span class="sail-comment">/* Floating point register file and accessors for F, D extensions   */</span>
+<span class="sail-comment">/* Floating point CSR and accessors                                 */</span>
+<span class="sail-comment">/* **************************************************************** */</span>
+
+<span class="sail-comment">/* Original version written by Rishiyur S. Nikhil, Sept-Oct 2019    */</span>
+
+<span class="sail-comment">/* **************************************************************** */</span>
+
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_F</span>) = <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_F</span>) <span class="sail-operator">&amp;</span> (<a href=".././riscv_sys_regs.html#L79"><span class="sail-id">misa</span></a>[<span class="sail-id">F</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>) <span class="sail-operator">&amp;</span> (<a href=".././riscv_sys_regs.html#L263"><span class="sail-id">mstatus</span></a>[<span class="sail-id">FS</span>] <span class="sail-operator">!=</span> <span class="sail-literal">0b00</span>) <span class="sail-operator">&amp;</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zicsr</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_D</span>) = <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_D</span>) <span class="sail-operator">&amp;</span> (<a href=".././riscv_sys_regs.html#L79"><span class="sail-id">misa</span></a>[<span class="sail-id">D</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>) <span class="sail-operator">&amp;</span> (<a href=".././riscv_sys_regs.html#L263"><span class="sail-id">mstatus</span></a>[<span class="sail-id">FS</span>] <span class="sail-operator">!=</span> <span class="sail-literal">0b00</span>) <span class="sail-operator">&amp;</span> <span class="sail-id">flen</span> <span class="sail-operator">&gt;=</span> <span class="sail-literal">64</span> <span class="sail-operator">&amp;</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zicsr</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zfinx</span>) = <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zfinx</span>) <span class="sail-operator">&amp;</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zicsr</span>)
+
+<span class="sail-comment">/* Floating Point CSRs */</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">csr_name_map</span> = <span class="sail-literal">0x001</span>  &lt;-&gt; <span class="sail-string">"fflags"</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">csr_name_map</span> = <span class="sail-literal">0x002</span>  &lt;-&gt; <span class="sail-string">"frm"</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">csr_name_map</span> = <span class="sail-literal">0x003</span>  &lt;-&gt; <span class="sail-string">"fcsr"</span>
+
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">is_CSR_defined</span> (<span class="sail-literal">0x001</span>) = <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_F</span>) <span class="sail-operator">|</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zfinx</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">is_CSR_defined</span> (<span class="sail-literal">0x002</span>) = <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_F</span>) <span class="sail-operator">|</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zfinx</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">is_CSR_defined</span> (<span class="sail-literal">0x003</span>) = <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_F</span>) <span class="sail-operator">|</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zfinx</span>)
+
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">read_CSR</span> (<span class="sail-literal">0x001</span>) = <a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<a href=".././riscv_fdext_regs.html#L429"><span class="sail-id">fcsr</span></a>[<span class="sail-id">FFLAGS</span>])
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">read_CSR</span> (<span class="sail-literal">0x002</span>) = <a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<a href=".././riscv_fdext_regs.html#L429"><span class="sail-id">fcsr</span></a>[<span class="sail-id">FRM</span>])
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">read_CSR</span> (<span class="sail-literal">0x003</span>) = <a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<a href=".././riscv_fdext_regs.html#L429"><span class="sail-id">fcsr</span></a>.<span class="sail-id">bits</span>)
+
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">write_CSR</span> (<span class="sail-literal">0x001</span>, <span class="sail-id">value</span>) = { <a href=".././riscv_fdext_regs.html#L432"><span class="sail-id">write_fcsr</span></a>(<a href=".././riscv_fdext_regs.html#L429"><span class="sail-id">fcsr</span></a>[<span class="sail-id">FRM</span>], <span class="sail-id">value</span>[<span class="sail-literal">4</span>..<span class="sail-literal">0</span>]); <a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<a href=".././riscv_fdext_regs.html#L429"><span class="sail-id">fcsr</span></a>[<span class="sail-id">FFLAGS</span>]) }
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">write_CSR</span> (<span class="sail-literal">0x002</span>, <span class="sail-id">value</span>) = { <a href=".././riscv_fdext_regs.html#L432"><span class="sail-id">write_fcsr</span></a>(<span class="sail-id">value</span>[<span class="sail-literal">2</span>..<span class="sail-literal">0</span>], <a href=".././riscv_fdext_regs.html#L429"><span class="sail-id">fcsr</span></a>[<span class="sail-id">FFLAGS</span>]); <a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<a href=".././riscv_fdext_regs.html#L429"><span class="sail-id">fcsr</span></a>[<span class="sail-id">FRM</span>]) }
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">write_CSR</span> (<span class="sail-literal">0x003</span>, <span class="sail-id">value</span>) = { <a href=".././riscv_fdext_regs.html#L432"><span class="sail-id">write_fcsr</span></a>(<span class="sail-id">value</span>[<span class="sail-literal">7</span>..<span class="sail-literal">5</span>], <span class="sail-id">value</span>[<span class="sail-literal">4</span>..<span class="sail-literal">0</span>]); <a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<a href=".././riscv_fdext_regs.html#L429"><span class="sail-id">fcsr</span></a>.<span class="sail-id">bits</span>) }
+
+<span class="sail-comment">/* **************************************************************** */</span>
+</pre>
+</div>
+</div>
+</body>
+</html>

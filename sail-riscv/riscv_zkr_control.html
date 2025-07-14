@@ -1,0 +1,75 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /><span id="L26">26</span><br /><span id="L27">27</span><br /><span id="L28">28</span><br /><span id="L29">29</span><br /><span id="L30">30</span><br /><span id="L31">31</span><br /><span id="L32">32</span><br /><span id="L33">33</span><br /><span id="L34">34</span><br /><span id="L35">35</span><br /><span id="L36">36</span><br /><span id="L37">37</span><br /><span id="L38">38</span><br /><span id="L39">39</span><br /><span id="L40">40</span><br /><span id="L41">41</span><br /><span id="L42">42</span><br /><span id="L43">43</span><br /><span id="L44">44</span><br /><span id="L45">45</span><br /><span id="L46">46</span><br /><span id="L47">47</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-comment">/* Zkr entropy seed source */</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zkr</span>) = <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zkr</span>)
+
+<span class="sail-comment">/* Valid return states for reading the seed CSR. */</span>
+<span class="sail-keyword">enum</span> <span class="sail-id">seed_opst</span> = {
+  <span class="sail-id">BIST</span>, <span class="sail-comment">// Built-in-self-test. No randomness sampled.
+</span>  <span class="sail-id">ES16</span>, <span class="sail-comment">// Entropy-sample-16. Valid 16-bits of randomness sampled.
+</span>  <span class="sail-id">WAIT</span>, <span class="sail-comment">// Device still gathering entropy.
+</span>  <span class="sail-id">DEAD</span>  <span class="sail-comment">// Fatal device compromise. No randomness sampled.
+</span>}
+
+<span class="sail-comment">/* Mapping of status codes and their actual encodings. */</span>
+<span class="sail-keyword">mapping</span> <span class="sail-id">opst_code</span> : <span class="sail-id">seed_opst</span> &lt;-&gt; <span class="sail-id">bits</span>(<span class="sail-literal">2</span>) = {
+  <span class="sail-id">BIST</span> &lt;-&gt; <span class="sail-literal">0b00</span>,
+  <span class="sail-id">WAIT</span> &lt;-&gt; <span class="sail-literal">0b01</span>,
+  <span class="sail-id">ES16</span> &lt;-&gt; <span class="sail-literal">0b10</span>,
+  <span class="sail-id">DEAD</span> &lt;-&gt; <span class="sail-literal">0b11</span>
+}
+
+<span class="sail-comment">/* Entropy source spec requires an Illegal opcode exception be raised if the
+ * seed register is read without also being written. This function is only
+ * called once we know the CSR is being written, and all other access control
+ * checks have been done.
+ */</span>
+<span class="sail-keyword">function</span> <span class="sail-id">read_seed_csr</span>() -&gt; <span class="sail-id">xlenbits</span> = {
+  <span class="sail-keyword">let</span> <span class="sail-id">reserved_bits</span> : <span class="sail-id">bits</span>(<span class="sail-literal">6</span>) = <span class="sail-literal">0b000000</span>;
+  <span class="sail-keyword">let</span> <span class="sail-id">custom_bits</span> : <span class="sail-id">bits</span>(<span class="sail-literal">8</span>) = <span class="sail-literal">0x00</span>;
+  <span class="sail-keyword">let</span> <span class="sail-id">seed</span> : <span class="sail-id">bits</span>(<span class="sail-literal">16</span>) = <a href=".././riscv_sys_regs.html#L945"><span class="sail-id">get_16_random_bits</span></a>();
+  <a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">opst_code</span>(<span class="sail-id">ES16</span>) @ <span class="sail-id">reserved_bits</span> @ <span class="sail-id">custom_bits</span> @ <span class="sail-id">seed</span>)
+}
+
+<span class="sail-comment">/* Writes to the seed CSR are ignored */</span>
+<span class="sail-keyword">function</span> <span class="sail-id">write_seed_csr</span> () -&gt; <span class="sail-id">xlenbits</span> = <a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>()
+
+<span class="sail-comment">/* CSR mapping */</span>
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">csr_name_map</span> = <span class="sail-literal">0x015</span>  &lt;-&gt; <span class="sail-string">"seed"</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">is_CSR_defined</span>(<span class="sail-literal">0x015</span>) = <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zkr</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">read_CSR</span>(<span class="sail-literal">0x015</span>) = <a href=".././riscv_zkr_control.html#L33"><span class="sail-id">read_seed_csr</span></a>()
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">write_CSR</span>(<span class="sail-literal">0x015</span>, <span class="sail-id">value</span>) = <a href=".././riscv_zkr_control.html#L41"><span class="sail-id">write_seed_csr</span></a>()
+</pre>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /><span id="L26">26</span><br /><span id="L27">27</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-comment">/* Note: virtaddr includes physical addresses when address translation is disabled.
+ * It is used where the address would be virtual if address translation is active.
+ */</span>
+<span class="sail-keyword">type</span> <span class="sail-id">physaddrbits</span> = <span class="sail-id">bits</span>(<span class="sail-id">physaddrbits_len</span>)
+
+<span class="sail-keyword">let</span> <span class="sail-id">physaddrbits_len</span> = <span class="sail-keyword">sizeof</span>(<span class="sail-id">physaddrbits_len</span>)
+
+<span class="sail-keyword">newtype</span> <span class="sail-id">physaddr</span> = <span class="sail-id">Physaddr</span> : <span class="sail-id">physaddrbits</span>
+<span class="sail-keyword">newtype</span> <span class="sail-id">virtaddr</span> = <span class="sail-id">Virtaddr</span> : <span class="sail-id">xlenbits</span>
+
+<span class="sail-keyword">function</span> <span class="sail-id">bits_of_physaddr</span>(<span class="sail-id">Physaddr</span>(<span class="sail-id">paddr</span>) : <span class="sail-id">physaddr</span>) -&gt; <span class="sail-id">physaddrbits</span> = <span class="sail-id">paddr</span>
+
+<span class="sail-keyword">function</span> <span class="sail-id">bits_of_virtaddr</span>(<span class="sail-id">Virtaddr</span>(<span class="sail-id">vaddr</span>) : <span class="sail-id">virtaddr</span>) -&gt; <span class="sail-id">xlenbits</span> = <span class="sail-id">vaddr</span>
+
+<span class="sail-keyword">function</span> <span class="sail-id">sub_virtaddr_xlenbits</span>(<span class="sail-id">Virtaddr</span>(<span class="sail-id">addr</span>) : <span class="sail-id">virtaddr</span>, <span class="sail-id">offset</span> : <span class="sail-id">xlenbits</span>) -&gt; <span class="sail-id">virtaddr</span> = <span class="sail-id">Virtaddr</span>(<span class="sail-id">addr</span> <span class="sail-operator">-</span> <span class="sail-id">offset</span>)
+
+<span class="sail-keyword">overload</span> <span class="sail-keyword">operator</span> <span class="sail-operator">-</span> = { <a href=".././prelude_mem_addrtype.html#L23"><span class="sail-id">sub_virtaddr_xlenbits</span></a> }
+
+<span class="sail-keyword">overload</span> <span class="sail-id">bits_of</span> = { <a href=".././prelude_mem_addrtype.html#L19"><span class="sail-id">bits_of_physaddr</span></a>, <a href=".././prelude_mem_addrtype.html#L21"><span class="sail-id">bits_of_virtaddr</span></a> }
+</pre>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /><span id="L26">26</span><br /><span id="L27">27</span><br /><span id="L28">28</span><br /><span id="L29">29</span><br /><span id="L30">30</span><br /><span id="L31">31</span><br /><span id="L32">32</span><br /><span id="L33">33</span><br /><span id="L34">34</span><br /><span id="L35">35</span><br /><span id="L36">36</span><br /><span id="L37">37</span><br /><span id="L38">38</span><br /><span id="L39">39</span><br /><span id="L40">40</span><br /><span id="L41">41</span><br /><span id="L42">42</span><br /><span id="L43">43</span><br /><span id="L44">44</span><br /><span id="L45">45</span><br /><span id="L46">46</span><br /><span id="L47">47</span><br /><span id="L48">48</span><br /><span id="L49">49</span><br /><span id="L50">50</span><br /><span id="L51">51</span><br /><span id="L52">52</span><br /><span id="L53">53</span><br /><span id="L54">54</span><br /><span id="L55">55</span><br /><span id="L56">56</span><br /><span id="L57">57</span><br /><span id="L58">58</span><br /><span id="L59">59</span><br /><span id="L60">60</span><br /><span id="L61">61</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-keyword">bitfield</span> <span class="sail-id">RVFI_DII_Execution_Packet_V1</span> : <span class="sail-id">bits</span>(<span class="sail-literal">704</span>) = {
+   <span class="sail-id">rvfi_intr</span>      : <span class="sail-literal">703</span> .. <span class="sail-literal">696</span>, <span class="sail-comment">// [87] Trap handler:            Set for first instruction in trap handler.
+</span>   <span class="sail-id">rvfi_halt</span>      : <span class="sail-literal">695</span> .. <span class="sail-literal">688</span>, <span class="sail-comment">// [86] Halt indicator:          Marks the last instruction retired
+</span>                                <span class="sail-comment">//                                      before halting execution.
+</span>   <span class="sail-id">rvfi_trap</span>      : <span class="sail-literal">687</span> .. <span class="sail-literal">680</span>, <span class="sail-comment">// [85] Trap indicator:          Invalid decode, misaligned access or
+</span>                                <span class="sail-comment">//                                      jump command to misaligned address.
+</span>   <span class="sail-id">rvfi_rd_addr</span>   : <span class="sail-literal">679</span> .. <span class="sail-literal">672</span>, <span class="sail-comment">// [84]      Write register address:  MUST be 0 if not used.
+</span>   <span class="sail-id">rvfi_rs2_addr</span>  : <span class="sail-literal">671</span> .. <span class="sail-literal">664</span>, <span class="sail-comment">// [83]                          otherwise set as decoded.
+</span>   <span class="sail-id">rvfi_rs1_addr</span>  : <span class="sail-literal">663</span> .. <span class="sail-literal">656</span>, <span class="sail-comment">// [82]      Read register addresses: Can be arbitrary when not used,
+</span>   <span class="sail-id">rvfi_mem_wmask</span> : <span class="sail-literal">655</span> .. <span class="sail-literal">648</span>, <span class="sail-comment">// [81]      Write mask:              Indicates valid bytes written. 0 if unused.
+</span>   <span class="sail-id">rvfi_mem_rmask</span> : <span class="sail-literal">647</span> .. <span class="sail-literal">640</span>, <span class="sail-comment">// [80]      Read mask:               Indicates valid bytes read. 0 if unused.
+</span>   <span class="sail-id">rvfi_mem_wdata</span> : <span class="sail-literal">639</span> .. <span class="sail-literal">576</span>, <span class="sail-comment">// [72 - 79] Write data:              Data written to memory by this command.
+</span>   <span class="sail-id">rvfi_mem_rdata</span> : <span class="sail-literal">575</span> .. <span class="sail-literal">512</span>, <span class="sail-comment">// [64 - 71] Read data:               Data read from mem_addr (i.e. before write)
+</span>   <span class="sail-id">rvfi_mem_addr</span>  : <span class="sail-literal">511</span> .. <span class="sail-literal">448</span>, <span class="sail-comment">// [56 - 63] Memory access addr:      Points to byte address (aligned if define
+</span>                                <span class="sail-comment">//                                      is set). *Should* be straightforward.
+</span>                                <span class="sail-comment">//                                      0 if unused.
+</span>   <span class="sail-id">rvfi_rd_wdata</span>  : <span class="sail-literal">447</span> .. <span class="sail-literal">384</span>, <span class="sail-comment">// [48 - 55] Write register value:    MUST be 0 if rd_ is 0.
+</span>   <span class="sail-id">rvfi_rs2_data</span>  : <span class="sail-literal">383</span> .. <span class="sail-literal">320</span>, <span class="sail-comment">// [40 - 47]                          above. Must be 0 if register ID is 0.
+</span>   <span class="sail-id">rvfi_rs1_data</span>  : <span class="sail-literal">319</span> .. <span class="sail-literal">256</span>, <span class="sail-comment">// [32 - 39] Read register values:    Values as read from registers named
+</span>   <span class="sail-id">rvfi_insn</span>      : <span class="sail-literal">255</span> .. <span class="sail-literal">192</span>, <span class="sail-comment">// [24 - 31] Instruction word:        32-bit command value.
+</span>   <span class="sail-id">rvfi_pc_wdata</span>  : <span class="sail-literal">191</span> .. <span class="sail-literal">128</span>, <span class="sail-comment">// [16 - 23] PC after instr:          Following PC - either PC + 4 or jump/trap target.
+</span>   <span class="sail-id">rvfi_pc_rdata</span>  : <span class="sail-literal">127</span> ..  <span class="sail-literal">64</span>, <span class="sail-comment">// [08 - 15] PC before instr:         PC for current instruction
+</span>   <span class="sail-id">rvfi_order</span>     :  <span class="sail-literal">63</span> ..   <span class="sail-literal">0</span>, <span class="sail-comment">// [00 - 07] Instruction number:      INSTRET value after completion.
+</span>}
+
+<span class="sail-keyword">val</span> <span class="sail-id">rvfi_get_exec_packet_v1</span> : <span class="sail-id">unit</span> -&gt; <span class="sail-id">bits</span>(<span class="sail-literal">704</span>)
+<span class="sail-keyword">function</span> <span class="sail-id">rvfi_get_exec_packet_v1</span> () = {
+  <span class="sail-keyword">let</span> <span class="sail-id">v1_packet</span> = <span class="sail-id">Mk_RVFI_DII_Execution_Packet_V1</span>(<a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>());
+  <span class="sail-comment">// Convert the v2 packet to a v1 packet
+</span>  <span class="sail-keyword">let</span> <span class="sail-id">v1_packet</span> = <span class="sail-id">update_rvfi_intr</span>(<span class="sail-id">v1_packet</span>, <a href=".././rvfi_dii.html#L152"><span class="sail-id">rvfi_inst_data</span></a>[<span class="sail-id">rvfi_intr</span>]);
+  <span class="sail-keyword">let</span> <span class="sail-id">v1_packet</span> = <span class="sail-id">update_rvfi_halt</span>(<span class="sail-id">v1_packet</span>, <a href=".././rvfi_dii.html#L152"><span class="sail-id">rvfi_inst_data</span></a>[<span class="sail-id">rvfi_halt</span>]);
+  <span class="sail-keyword">let</span> <span class="sail-id">v1_packet</span> = <span class="sail-id">update_rvfi_trap</span>(<span class="sail-id">v1_packet</span>, <a href=".././rvfi_dii.html#L152"><span class="sail-id">rvfi_inst_data</span></a>[<span class="sail-id">rvfi_trap</span>]);
+  <span class="sail-keyword">let</span> <span class="sail-id">v1_packet</span> = <span class="sail-id">update_rvfi_insn</span>(<span class="sail-id">v1_packet</span>, <a href=".././rvfi_dii.html#L152"><span class="sail-id">rvfi_inst_data</span></a>[<span class="sail-id">rvfi_insn</span>]);
+  <span class="sail-keyword">let</span> <span class="sail-id">v1_packet</span> = <span class="sail-id">update_rvfi_order</span>(<span class="sail-id">v1_packet</span>, <a href=".././rvfi_dii.html#L152"><span class="sail-id">rvfi_inst_data</span></a>[<span class="sail-id">rvfi_order</span>]);
+
+  <span class="sail-keyword">let</span> <span class="sail-id">v1_packet</span> = <span class="sail-id">update_rvfi_pc_wdata</span>(<span class="sail-id">v1_packet</span>, <a href=".././rvfi_dii.html#L153"><span class="sail-id">rvfi_pc_data</span></a>[<span class="sail-id">rvfi_pc_wdata</span>]);
+  <span class="sail-keyword">let</span> <span class="sail-id">v1_packet</span> = <span class="sail-id">update_rvfi_pc_rdata</span>(<span class="sail-id">v1_packet</span>, <a href=".././rvfi_dii.html#L153"><span class="sail-id">rvfi_pc_data</span></a>[<span class="sail-id">rvfi_pc_rdata</span>]);
+
+  <span class="sail-keyword">let</span> <span class="sail-id">v1_packet</span> = <span class="sail-id">update_rvfi_rd_addr</span>(<span class="sail-id">v1_packet</span>, <a href=".././rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>[<span class="sail-id">rvfi_rd_addr</span>]);
+  <span class="sail-keyword">let</span> <span class="sail-id">v1_packet</span> = <span class="sail-id">update_rvfi_rs2_addr</span>(<span class="sail-id">v1_packet</span>, <a href=".././rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>[<span class="sail-id">rvfi_rs2_addr</span>]);
+  <span class="sail-keyword">let</span> <span class="sail-id">v1_packet</span> = <span class="sail-id">update_rvfi_rs1_addr</span>(<span class="sail-id">v1_packet</span>, <a href=".././rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>[<span class="sail-id">rvfi_rs1_addr</span>]);
+  <span class="sail-keyword">let</span> <span class="sail-id">v1_packet</span> = <span class="sail-id">update_rvfi_rd_wdata</span>(<span class="sail-id">v1_packet</span>, <a href=".././rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>[<span class="sail-id">rvfi_rd_wdata</span>]);
+  <span class="sail-keyword">let</span> <span class="sail-id">v1_packet</span> = <span class="sail-id">update_rvfi_rs2_data</span>(<span class="sail-id">v1_packet</span>, <a href=".././rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>[<span class="sail-id">rvfi_rs2_rdata</span>]);
+  <span class="sail-keyword">let</span> <span class="sail-id">v1_packet</span> = <span class="sail-id">update_rvfi_rs1_data</span>(<span class="sail-id">v1_packet</span>, <a href=".././rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>[<span class="sail-id">rvfi_rs1_rdata</span>]);
+
+  <span class="sail-keyword">let</span> <span class="sail-id">v1_packet</span> = <span class="sail-id">update_rvfi_mem_wmask</span>(<span class="sail-id">v1_packet</span>, <span class="sail-id">truncate</span>(<a href=".././rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_wmask</span>], <span class="sail-literal">8</span>));
+  <span class="sail-keyword">let</span> <span class="sail-id">v1_packet</span> = <span class="sail-id">update_rvfi_mem_rmask</span>(<span class="sail-id">v1_packet</span>, <span class="sail-id">truncate</span>(<a href=".././rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_rmask</span>], <span class="sail-literal">8</span>));
+  <span class="sail-keyword">let</span> <span class="sail-id">v1_packet</span> = <span class="sail-id">update_rvfi_mem_wdata</span>(<span class="sail-id">v1_packet</span>, <span class="sail-id">truncate</span>(<a href=".././rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_wdata</span>], <span class="sail-literal">64</span>));
+  <span class="sail-keyword">let</span> <span class="sail-id">v1_packet</span> = <span class="sail-id">update_rvfi_mem_rdata</span>(<span class="sail-id">v1_packet</span>, <span class="sail-id">truncate</span>(<a href=".././rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_rdata</span>], <span class="sail-literal">64</span>));
+  <span class="sail-keyword">let</span> <span class="sail-id">v1_packet</span> = <span class="sail-id">update_rvfi_mem_addr</span>(<span class="sail-id">v1_packet</span>, <a href=".././rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_addr</span>]);
+
+  <span class="sail-keyword">return</span> <span class="sail-id">v1_packet</span>.<span class="sail-id">bits</span>;
+}
+</pre>
+</div>
+</div>
+</body>
+</html>

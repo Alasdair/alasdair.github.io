@@ -1,0 +1,110 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /><span id="L26">26</span><br /><span id="L27">27</span><br /><span id="L28">28</span><br /><span id="L29">29</span><br /><span id="L30">30</span><br /><span id="L31">31</span><br /><span id="L32">32</span><br /><span id="L33">33</span><br /><span id="L34">34</span><br /><span id="L35">35</span><br /><span id="L36">36</span><br /><span id="L37">37</span><br /><span id="L38">38</span><br /><span id="L39">39</span><br /><span id="L40">40</span><br /><span id="L41">41</span><br /><span id="L42">42</span><br /><span id="L43">43</span><br /><span id="L44">44</span><br /><span id="L45">45</span><br /><span id="L46">46</span><br /><span id="L47">47</span><br /><span id="L48">48</span><br /><span id="L49">49</span><br /><span id="L50">50</span><br /><span id="L51">51</span><br /><span id="L52">52</span><br /><span id="L53">53</span><br /><span id="L54">54</span><br /><span id="L55">55</span><br /><span id="L56">56</span><br /><span id="L57">57</span><br /><span id="L58">58</span><br /><span id="L59">59</span><br /><span id="L60">60</span><br /><span id="L61">61</span><br /><span id="L62">62</span><br /><span id="L63">63</span><br /><span id="L64">64</span><br /><span id="L65">65</span><br /><span id="L66">66</span><br /><span id="L67">67</span><br /><span id="L68">68</span><br /><span id="L69">69</span><br /><span id="L70">70</span><br /><span id="L71">71</span><br /><span id="L72">72</span><br /><span id="L73">73</span><br /><span id="L74">74</span><br /><span id="L75">75</span><br /><span id="L76">76</span><br /><span id="L77">77</span><br /><span id="L78">78</span><br /><span id="L79">79</span><br /><span id="L80">80</span><br /><span id="L81">81</span><br /><span id="L82">82</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zalrsc</span>) = <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zalrsc</span>) <span class="sail-operator">|</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_A</span>)
+
+<span class="sail-comment">// Zalrsc defines LR/SC for word and double
+</span><span class="sail-keyword">function</span> <span class="sail-id">lrsc_width_valid</span>(<span class="sail-id">size</span> : <span class="sail-id">word_width</span>) -&gt; <span class="sail-id">bool</span> = {
+  <span class="sail-keyword">match</span> <span class="sail-id">size</span> {
+    <span class="sail-literal">4</span> =&gt; <span class="sail-literal">true</span>,
+    <span class="sail-literal">8</span> =&gt; <span class="sail-id">xlen</span> <span class="sail-operator">&gt;=</span> <span class="sail-literal">64</span>,
+    _ =&gt; <span class="sail-literal">false</span>,
+  }
+}
+
+<span class="sail-comment">/* ****************************************************************** */</span>
+
+<span class="sail-keyword">union</span> <span class="sail-keyword">clause</span> <span class="sail-id">instruction</span> = <span class="sail-id">LOADRES</span> : (<span class="sail-id">bool</span>, <span class="sail-id">bool</span>, <span class="sail-id">regidx</span>, <span class="sail-id">word_width</span>, <span class="sail-id">regidx</span>)
+
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">LOADRES</span>(<span class="sail-id">aq</span>, <span class="sail-id">rl</span>, <span class="sail-id">rs1</span>, <span class="sail-id">size</span>, <span class="sail-id">rd</span>)
+  &lt;-&gt; <span class="sail-literal">0b00010</span> @ <span class="sail-id">bool_bits</span>(<span class="sail-id">aq</span>) @ <span class="sail-id">bool_bits</span>(<span class="sail-id">rl</span>) @ <span class="sail-literal">0b00000</span> @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-literal">0b0</span> @ <span class="sail-id">size_enc</span>(<span class="sail-id">size</span>) @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b0101111</span>
+  <span class="sail-keyword">when</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zalrsc</span>) <span class="sail-operator">&amp;</span> <a href=".././riscv_insts_zalrsc.html#L12"><span class="sail-id">lrsc_width_valid</span></a>(<span class="sail-id">size</span>)
+
+<span class="sail-comment">/* We could set load-reservations on physical or virtual addresses.
+ * However most chips (especially multi-core) will use physical addresses.
+ * Additionally, matching on physical addresses allows as many SC's to
+ * succeed as the spec allows. This simplifies verification against real chips
+ * since you can force spurious failures from a DUT into the Sail model and
+ * then compare the result (a kind of one-way waiver). Using virtual addresses
+ * requires cancelling the reservation in some additional places, e.g. xRET, and
+ * that will break comparison with a DUT that doesn't require cancellation there.
+ */</span>
+
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span>(<span class="sail-id">LOADRES</span>(<span class="sail-id">aq</span>, <span class="sail-id">rl</span>, <span class="sail-id">rs1</span>, <span class="sail-id">width</span>, <span class="sail-id">rd</span>)) = {
+  <span class="sail-comment">// This is checked during decoding.
+</span>  <span class="sail-keyword">assert</span>(<span class="sail-id">width</span> <span class="sail-operator">&lt;=</span> <span class="sail-id">xlen_bytes</span>);
+
+  <span class="sail-keyword">match</span> <a href=".././riscv_vmem_utils.html#L180"><span class="sail-id">vmem_read</span></a>(<span class="sail-id">rs1</span>, <a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>(), <span class="sail-id">width</span>, <span class="sail-id">Read</span>(<span class="sail-id">Data</span>), <span class="sail-id">aq</span>, <span class="sail-id">aq</span> <span class="sail-operator">&amp;</span> <span class="sail-id">rl</span>, <span class="sail-literal">true</span>) {
+    <span class="sail-id">Ok</span>(<span class="sail-id">data</span>) =&gt; {
+      <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href=".././prelude.html#L85"><span class="sail-id">sign_extend</span></a>(<span class="sail-id">data</span>);
+      <span class="sail-id">RETIRE_SUCCESS</span>
+    },
+    <span class="sail-id">Err</span>(<span class="sail-id">e</span>) =&gt; <span class="sail-id">e</span>,
+  }
+}
+
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">assembly</span> = <span class="sail-id">LOADRES</span>(<span class="sail-id">aq</span>, <span class="sail-id">rl</span>, <span class="sail-id">rs1</span>, <span class="sail-id">size</span>, <span class="sail-id">rd</span>)
+  &lt;-&gt; <span class="sail-string">"lr."</span> <span class="sail-operator">^</span> <span class="sail-id">size_mnemonic</span>(<span class="sail-id">size</span>) <span class="sail-operator">^</span> <span class="sail-id">maybe_aqrl</span>(<span class="sail-id">aq</span>, <span class="sail-id">rl</span>) <span class="sail-operator">^</span> <span class="sail-id">spc</span>() <span class="sail-operator">^</span> <span class="sail-id">reg_name</span>(<span class="sail-id">rd</span>) <span class="sail-operator">^</span> <span class="sail-id">sep</span>() <span class="sail-operator">^</span> <span class="sail-string">"("</span> <span class="sail-operator">^</span> <span class="sail-id">reg_name</span>(<span class="sail-id">rs1</span>) <span class="sail-operator">^</span> <span class="sail-string">")"</span>
+
+<span class="sail-comment">/* ****************************************************************** */</span>
+
+<span class="sail-keyword">union</span> <span class="sail-keyword">clause</span> <span class="sail-id">instruction</span> = <span class="sail-id">STORECON</span> : (<span class="sail-id">bool</span>, <span class="sail-id">bool</span>, <span class="sail-id">regidx</span>, <span class="sail-id">regidx</span>, <span class="sail-id">word_width</span>, <span class="sail-id">regidx</span>)
+
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">STORECON</span>(<span class="sail-id">aq</span>, <span class="sail-id">rl</span>, <span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">size</span>, <span class="sail-id">rd</span>)
+  &lt;-&gt; <span class="sail-literal">0b00011</span> @ <span class="sail-id">bool_bits</span>(<span class="sail-id">aq</span>) @ <span class="sail-id">bool_bits</span>(<span class="sail-id">rl</span>) @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rs2</span>) @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-literal">0b0</span> @ <span class="sail-id">size_enc</span>(<span class="sail-id">size</span>) @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b0101111</span>
+  <span class="sail-keyword">when</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zalrsc</span>) <span class="sail-operator">&amp;</span> <a href=".././riscv_insts_zalrsc.html#L12"><span class="sail-id">lrsc_width_valid</span></a>(<span class="sail-id">size</span>)
+
+<span class="sail-comment">/* NOTE: Currently, we only EA if address translation is successful. This may need revisiting. */</span>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">STORECON</span>(<span class="sail-id">aq</span>, <span class="sail-id">rl</span>, <span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">width</span>, <span class="sail-id">rd</span>)) = {
+  <span class="sail-comment">// This is checked during decoding.
+</span>  <span class="sail-keyword">assert</span>(<span class="sail-id">width</span> <span class="sail-operator">&lt;=</span> <span class="sail-id">xlen_bytes</span>);
+
+  <span class="sail-comment">/* normal non-rmem case
+   * RMEM: SC is allowed to succeed (but might fail later)
+   */</span>
+  <span class="sail-keyword">let</span> <span class="sail-id">data</span> = <span class="sail-id">X</span>(<span class="sail-id">rs2</span>)[<span class="sail-id">width</span> <span class="sail-operator">*</span> <span class="sail-literal">8</span> <span class="sail-operator">-</span> <span class="sail-literal">1</span> .. <span class="sail-literal">0</span>];
+  <span class="sail-keyword">match</span> <a href=".././riscv_vmem_utils.html#L245"><span class="sail-id">vmem_write</span></a>(<span class="sail-id">rs1</span>, <a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>(), <span class="sail-id">width</span>, <span class="sail-id">data</span>, <span class="sail-id">Write</span>(<span class="sail-id">Data</span>), <span class="sail-id">aq</span> <span class="sail-operator">&amp;</span> <span class="sail-id">rl</span>, <span class="sail-id">rl</span>, <span class="sail-literal">true</span>) {
+    <span class="sail-id">Ok</span>(<span class="sail-id">b</span>) =&gt; {
+      <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">bool_bits</span>(<span class="sail-id">~</span>(<span class="sail-id">b</span>)));
+      <a href=".././riscv_sys_reservation.html#L23"><span class="sail-id">cancel_reservation</span></a>();
+      <span class="sail-id">RETIRE_SUCCESS</span>
+    },
+    <span class="sail-id">Err</span>(<span class="sail-id">e</span>) =&gt; <span class="sail-id">e</span>,
+  }
+}
+
+<span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">assembly</span> = <span class="sail-id">STORECON</span>(<span class="sail-id">aq</span>, <span class="sail-id">rl</span>, <span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">size</span>, <span class="sail-id">rd</span>)
+  &lt;-&gt; <span class="sail-string">"sc."</span> <span class="sail-operator">^</span> <span class="sail-id">size_mnemonic</span>(<span class="sail-id">size</span>) <span class="sail-operator">^</span> <span class="sail-id">maybe_aqrl</span>(<span class="sail-id">aq</span>, <span class="sail-id">rl</span>) <span class="sail-operator">^</span> <span class="sail-id">spc</span>() <span class="sail-operator">^</span> <span class="sail-id">reg_name</span>(<span class="sail-id">rd</span>) <span class="sail-operator">^</span> <span class="sail-id">sep</span>() <span class="sail-operator">^</span> <span class="sail-id">reg_name</span>(<span class="sail-id">rs2</span>) <span class="sail-operator">^</span> <span class="sail-id">sep</span>() <span class="sail-operator">^</span> <span class="sail-string">"("</span> <span class="sail-operator">^</span> <span class="sail-id">reg_name</span>(<span class="sail-id">rs1</span>) <span class="sail-operator">^</span> <span class="sail-string">")"</span>
+</pre>
+</div>
+</div>
+</body>
+</html>

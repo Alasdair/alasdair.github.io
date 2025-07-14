@@ -1,0 +1,87 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /><span id="L26">26</span><br /><span id="L27">27</span><br /><span id="L28">28</span><br /><span id="L29">29</span><br /><span id="L30">30</span><br /><span id="L31">31</span><br /><span id="L32">32</span><br /><span id="L33">33</span><br /><span id="L34">34</span><br /><span id="L35">35</span><br /><span id="L36">36</span><br /><span id="L37">37</span><br /><span id="L38">38</span><br /><span id="L39">39</span><br /><span id="L40">40</span><br /><span id="L41">41</span><br /><span id="L42">42</span><br /><span id="L43">43</span><br /><span id="L44">44</span><br /><span id="L45">45</span><br /><span id="L46">46</span><br /><span id="L47">47</span><br /><span id="L48">48</span><br /><span id="L49">49</span><br /><span id="L50">50</span><br /><span id="L51">51</span><br /><span id="L52">52</span><br /><span id="L53">53</span><br /><span id="L54">54</span><br /><span id="L55">55</span><br /><span id="L56">56</span><br /><span id="L57">57</span><br /><span id="L58">58</span><br /><span id="L59">59</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-keyword">bitfield</span> <span class="sail-id">RVFI_DII_Execution_PacketV2</span> : <span class="sail-id">bits</span>(<span class="sail-literal">512</span>) = {
+  <span class="sail-id">magic</span> : <span class="sail-literal">63</span> .. <span class="sail-literal">0</span>,         <span class="sail-comment">// must be set to 'trace-v2'
+</span>  <span class="sail-id">trace_size</span> : <span class="sail-literal">127</span> .. <span class="sail-literal">64</span>,  <span class="sail-comment">// total size of the trace packet + extensions
+</span>  <span class="sail-id">basic_data</span> : <span class="sail-literal">319</span> .. <span class="sail-literal">128</span>, <span class="sail-comment">// RVFI_DII_Execution_Packet_InstMetaData
+</span>  <span class="sail-id">pc_data</span> : <span class="sail-literal">447</span> .. <span class="sail-literal">320</span>,    <span class="sail-comment">// RVFI_DII_Execution_Packet_PC
+</span>  <span class="sail-comment">// available_fields : 511 .. 448,
+</span>  <span class="sail-id">integer_data_available</span>: <span class="sail-literal">448</span>, <span class="sail-comment">// Followed by RVFI_DII_Execution_Packet_Ext_Integer if set
+</span>  <span class="sail-id">memory_access_data_available</span>: <span class="sail-literal">449</span>, <span class="sail-comment">// Followed by R VFI_DII_Execution_Packet_Ext_MemAccess if set
+</span>  <span class="sail-id">floating_point_data_available</span>: <span class="sail-literal">450</span>, <span class="sail-comment">// TODO: Followed by RVFI_DII_Execution_Packet_Ext_FP if set
+</span>  <span class="sail-id">csr_read_write_data_available</span>: <span class="sail-literal">451</span>, <span class="sail-comment">// TODO: Followed by RVFI_DII_Execution_Packet_Ext_CSR if set
+</span>  <span class="sail-id">cheri_data_available</span>: <span class="sail-literal">452</span>, <span class="sail-comment">// TODO: Followed by RVFI_DII_Execution_Packet_Ext_CHERI if set
+</span>  <span class="sail-id">cheri_scr_read_write_data_available</span>: <span class="sail-literal">453</span>, <span class="sail-comment">// TODO: Followed by RVFI_DII_Execution_Packet_Ext_CHERI_SCR if set
+</span>  <span class="sail-id">trap_data_available</span>: <span class="sail-literal">454</span>, <span class="sail-comment">// TODO: Followed by RVFI_DII_Execution_Packet_Ext_Trap if set
+</span>  <span class="sail-id">unused_data_available_fields</span> : <span class="sail-literal">511</span> .. <span class="sail-literal">455</span>, <span class="sail-comment">// To be used for additional RVFI_DII_Execution_Packet_Ext_* structs
+</span>}
+
+<span class="sail-keyword">val</span> <span class="sail-id">rvfi_get_v2_support_packet</span> : <span class="sail-id">unit</span> -&gt; <span class="sail-id">bits</span>(<span class="sail-literal">704</span>)
+<span class="sail-keyword">function</span> <span class="sail-id">rvfi_get_v2_support_packet</span> () = {
+  <span class="sail-keyword">let</span> <span class="sail-id">rvfi_exec</span> = <span class="sail-id">Mk_RVFI_DII_Execution_Packet_V1</span>(<a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>());
+  <span class="sail-comment">// Returning 0x3 (using the unused high bits) in halt instead of 0x1 means
+</span>  <span class="sail-comment">// that we support the version 2 wire format. This is required to keep
+</span>  <span class="sail-comment">// backwards compatibility with old implementations that do not support
+</span>  <span class="sail-comment">// the new trace format.
+</span>  <span class="sail-keyword">let</span> <span class="sail-id">rvfi_exec</span> = <span class="sail-id">update_rvfi_halt</span>(<span class="sail-id">rvfi_exec</span>, <span class="sail-literal">0x03</span>);
+  <span class="sail-keyword">return</span> <span class="sail-id">rvfi_exec</span>.<span class="sail-id">bits</span>;
+}
+
+<span class="sail-keyword">val</span> <span class="sail-id">rvfi_get_v2_trace_size</span> : <span class="sail-id">unit</span> -&gt; <span class="sail-id">bits</span>(<span class="sail-literal">64</span>)
+<span class="sail-keyword">function</span> <span class="sail-id">rvfi_get_v2_trace_size</span> () = {
+  <span class="sail-keyword">let</span> <span class="sail-id">trace_size</span> : <span class="sail-id">bits</span>(<span class="sail-literal">64</span>) = <a href=".././prelude.html#L118"><span class="sail-id">to_bits</span></a>(<span class="sail-literal">512</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">trace_size</span> = <span class="sail-keyword">if</span> (<a href=".././rvfi_dii.html#L155"><span class="sail-id">rvfi_int_data_present</span></a>) <span class="sail-keyword">then</span> <span class="sail-id">trace_size</span> <span class="sail-operator">+</span> <span class="sail-literal">320</span> <span class="sail-keyword">else</span> <span class="sail-id">trace_size</span>;
+  <span class="sail-keyword">let</span> <span class="sail-id">trace_size</span> = <span class="sail-keyword">if</span> (<a href=".././rvfi_dii.html#L157"><span class="sail-id">rvfi_mem_data_present</span></a>) <span class="sail-keyword">then</span> <span class="sail-id">trace_size</span> <span class="sail-operator">+</span> <span class="sail-literal">704</span> <span class="sail-keyword">else</span> <span class="sail-id">trace_size</span>;
+  <span class="sail-keyword">return</span> <span class="sail-id">trace_size</span> <span class="sail-operator">&gt;&gt;</span> <span class="sail-literal">3</span>; <span class="sail-comment">// we have to return bytes not bits
+</span>}
+
+<span class="sail-keyword">val</span> <span class="sail-id">rvfi_get_exec_packet_v2</span> : <span class="sail-id">unit</span> -&gt; <span class="sail-id">bits</span>(<span class="sail-literal">512</span>)
+<span class="sail-keyword">function</span> <span class="sail-id">rvfi_get_exec_packet_v2</span> () = {
+  <span class="sail-comment">// TODO: add the other data
+</span>  <span class="sail-comment">// TODO: find a way to return a variable-length bitvector
+</span>  <span class="sail-keyword">let</span> <span class="sail-id">packet</span> = <span class="sail-id">Mk_RVFI_DII_Execution_PacketV2</span>(<a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>());
+  <span class="sail-keyword">let</span> <span class="sail-id">packet</span> = <span class="sail-id">update_magic</span>(<span class="sail-id">packet</span>, <span class="sail-literal">0x32762d6563617274</span>); <span class="sail-comment">// ASCII "trace-v2" (BE)
+</span>  <span class="sail-keyword">let</span> <span class="sail-id">packet</span> = <span class="sail-id">update_basic_data</span>(<span class="sail-id">packet</span>, <a href=".././rvfi_dii.html#L152"><span class="sail-id">rvfi_inst_data</span></a>.<span class="sail-id">bits</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">packet</span> = <span class="sail-id">update_pc_data</span>(<span class="sail-id">packet</span>, <a href=".././rvfi_dii.html#L153"><span class="sail-id">rvfi_pc_data</span></a>.<span class="sail-id">bits</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">packet</span> = <span class="sail-id">update_integer_data_available</span>(<span class="sail-id">packet</span>, <a href=".././prelude.html#L112"><span class="sail-id">bool_to_bits</span></a>(<a href=".././rvfi_dii.html#L155"><span class="sail-id">rvfi_int_data_present</span></a>));
+  <span class="sail-keyword">let</span> <span class="sail-id">packet</span> = <span class="sail-id">update_memory_access_data_available</span>(<span class="sail-id">packet</span>, <a href=".././prelude.html#L112"><span class="sail-id">bool_to_bits</span></a>(<a href=".././rvfi_dii.html#L157"><span class="sail-id">rvfi_mem_data_present</span></a>));
+  <span class="sail-comment">// To simplify the implementation (so that we can return a fixed-size vector)
+</span>  <span class="sail-comment">// we always return a max-size packet from this function, and the C emulator
+</span>  <span class="sail-comment">// ensures that only trace_size bits are sent over the socket.
+</span>  <span class="sail-keyword">let</span> <span class="sail-id">packet</span> = <span class="sail-id">update_trace_size</span>(<span class="sail-id">packet</span>, <a href=".././rvfi_dii_v2.html#L37"><span class="sail-id">rvfi_get_v2_trace_size</span></a>());
+  <span class="sail-keyword">return</span> <span class="sail-id">packet</span>.<span class="sail-id">bits</span>;
+}
+</pre>
+</div>
+</div>
+</body>
+</html>

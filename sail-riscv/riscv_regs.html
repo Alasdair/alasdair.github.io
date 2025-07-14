@@ -1,0 +1,258 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /><span id="L26">26</span><br /><span id="L27">27</span><br /><span id="L28">28</span><br /><span id="L29">29</span><br /><span id="L30">30</span><br /><span id="L31">31</span><br /><span id="L32">32</span><br /><span id="L33">33</span><br /><span id="L34">34</span><br /><span id="L35">35</span><br /><span id="L36">36</span><br /><span id="L37">37</span><br /><span id="L38">38</span><br /><span id="L39">39</span><br /><span id="L40">40</span><br /><span id="L41">41</span><br /><span id="L42">42</span><br /><span id="L43">43</span><br /><span id="L44">44</span><br /><span id="L45">45</span><br /><span id="L46">46</span><br /><span id="L47">47</span><br /><span id="L48">48</span><br /><span id="L49">49</span><br /><span id="L50">50</span><br /><span id="L51">51</span><br /><span id="L52">52</span><br /><span id="L53">53</span><br /><span id="L54">54</span><br /><span id="L55">55</span><br /><span id="L56">56</span><br /><span id="L57">57</span><br /><span id="L58">58</span><br /><span id="L59">59</span><br /><span id="L60">60</span><br /><span id="L61">61</span><br /><span id="L62">62</span><br /><span id="L63">63</span><br /><span id="L64">64</span><br /><span id="L65">65</span><br /><span id="L66">66</span><br /><span id="L67">67</span><br /><span id="L68">68</span><br /><span id="L69">69</span><br /><span id="L70">70</span><br /><span id="L71">71</span><br /><span id="L72">72</span><br /><span id="L73">73</span><br /><span id="L74">74</span><br /><span id="L75">75</span><br /><span id="L76">76</span><br /><span id="L77">77</span><br /><span id="L78">78</span><br /><span id="L79">79</span><br /><span id="L80">80</span><br /><span id="L81">81</span><br /><span id="L82">82</span><br /><span id="L83">83</span><br /><span id="L84">84</span><br /><span id="L85">85</span><br /><span id="L86">86</span><br /><span id="L87">87</span><br /><span id="L88">88</span><br /><span id="L89">89</span><br /><span id="L90">90</span><br /><span id="L91">91</span><br /><span id="L92">92</span><br /><span id="L93">93</span><br /><span id="L94">94</span><br /><span id="L95">95</span><br /><span id="L96">96</span><br /><span id="L97">97</span><br /><span id="L98">98</span><br /><span id="L99">99</span><br /><span id="L100">100</span><br /><span id="L101">101</span><br /><span id="L102">102</span><br /><span id="L103">103</span><br /><span id="L104">104</span><br /><span id="L105">105</span><br /><span id="L106">106</span><br /><span id="L107">107</span><br /><span id="L108">108</span><br /><span id="L109">109</span><br /><span id="L110">110</span><br /><span id="L111">111</span><br /><span id="L112">112</span><br /><span id="L113">113</span><br /><span id="L114">114</span><br /><span id="L115">115</span><br /><span id="L116">116</span><br /><span id="L117">117</span><br /><span id="L118">118</span><br /><span id="L119">119</span><br /><span id="L120">120</span><br /><span id="L121">121</span><br /><span id="L122">122</span><br /><span id="L123">123</span><br /><span id="L124">124</span><br /><span id="L125">125</span><br /><span id="L126">126</span><br /><span id="L127">127</span><br /><span id="L128">128</span><br /><span id="L129">129</span><br /><span id="L130">130</span><br /><span id="L131">131</span><br /><span id="L132">132</span><br /><span id="L133">133</span><br /><span id="L134">134</span><br /><span id="L135">135</span><br /><span id="L136">136</span><br /><span id="L137">137</span><br /><span id="L138">138</span><br /><span id="L139">139</span><br /><span id="L140">140</span><br /><span id="L141">141</span><br /><span id="L142">142</span><br /><span id="L143">143</span><br /><span id="L144">144</span><br /><span id="L145">145</span><br /><span id="L146">146</span><br /><span id="L147">147</span><br /><span id="L148">148</span><br /><span id="L149">149</span><br /><span id="L150">150</span><br /><span id="L151">151</span><br /><span id="L152">152</span><br /><span id="L153">153</span><br /><span id="L154">154</span><br /><span id="L155">155</span><br /><span id="L156">156</span><br /><span id="L157">157</span><br /><span id="L158">158</span><br /><span id="L159">159</span><br /><span id="L160">160</span><br /><span id="L161">161</span><br /><span id="L162">162</span><br /><span id="L163">163</span><br /><span id="L164">164</span><br /><span id="L165">165</span><br /><span id="L166">166</span><br /><span id="L167">167</span><br /><span id="L168">168</span><br /><span id="L169">169</span><br /><span id="L170">170</span><br /><span id="L171">171</span><br /><span id="L172">172</span><br /><span id="L173">173</span><br /><span id="L174">174</span><br /><span id="L175">175</span><br /><span id="L176">176</span><br /><span id="L177">177</span><br /><span id="L178">178</span><br /><span id="L179">179</span><br /><span id="L180">180</span><br /><span id="L181">181</span><br /><span id="L182">182</span><br /><span id="L183">183</span><br /><span id="L184">184</span><br /><span id="L185">185</span><br /><span id="L186">186</span><br /><span id="L187">187</span><br /><span id="L188">188</span><br /><span id="L189">189</span><br /><span id="L190">190</span><br /><span id="L191">191</span><br /><span id="L192">192</span><br /><span id="L193">193</span><br /><span id="L194">194</span><br /><span id="L195">195</span><br /><span id="L196">196</span><br /><span id="L197">197</span><br /><span id="L198">198</span><br /><span id="L199">199</span><br /><span id="L200">200</span><br /><span id="L201">201</span><br /><span id="L202">202</span><br /><span id="L203">203</span><br /><span id="L204">204</span><br /><span id="L205">205</span><br /><span id="L206">206</span><br /><span id="L207">207</span><br /><span id="L208">208</span><br /><span id="L209">209</span><br /><span id="L210">210</span><br /><span id="L211">211</span><br /><span id="L212">212</span><br /><span id="L213">213</span><br /><span id="L214">214</span><br /><span id="L215">215</span><br /><span id="L216">216</span><br /><span id="L217">217</span><br /><span id="L218">218</span><br /><span id="L219">219</span><br /><span id="L220">220</span><br /><span id="L221">221</span><br /><span id="L222">222</span><br /><span id="L223">223</span><br /><span id="L224">224</span><br /><span id="L225">225</span><br /><span id="L226">226</span><br /><span id="L227">227</span><br /><span id="L228">228</span><br /><span id="L229">229</span><br /><span id="L230">230</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-comment">/* program counter */</span>
+
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L11"><span class="sail-id">PC</span></a>       : <span class="sail-id">xlenbits</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L12"><span class="sail-id">nextPC</span></a>   : <span class="sail-id">xlenbits</span>
+
+<span class="sail-comment">/* mappings for assembly */</span>
+
+<span class="sail-keyword">mapping</span> <span class="sail-id">reg_abi_name_raw</span> : <span class="sail-id">bits</span>(<span class="sail-literal">5</span>) &lt;-&gt; <span class="sail-id">string</span> = {
+    <span class="sail-literal">0b00000</span> &lt;-&gt; <span class="sail-string">"zero"</span>,
+    <span class="sail-literal">0b00001</span> &lt;-&gt; <span class="sail-string">"ra"</span>,
+    <span class="sail-literal">0b00010</span> &lt;-&gt; <span class="sail-string">"sp"</span>,
+    <span class="sail-literal">0b00011</span> &lt;-&gt; <span class="sail-string">"gp"</span>,
+    <span class="sail-literal">0b00100</span> &lt;-&gt; <span class="sail-string">"tp"</span>,
+    <span class="sail-literal">0b00101</span> &lt;-&gt; <span class="sail-string">"t0"</span>,
+    <span class="sail-literal">0b00110</span> &lt;-&gt; <span class="sail-string">"t1"</span>,
+    <span class="sail-literal">0b00111</span> &lt;-&gt; <span class="sail-string">"t2"</span>,
+    <span class="sail-literal">0b01000</span> &lt;-&gt; <span class="sail-string">"s0"</span>,
+    <span class="sail-literal">0b01000</span> &lt;-&gt; <span class="sail-string">"fp"</span>,
+    <span class="sail-literal">0b01001</span> &lt;-&gt; <span class="sail-string">"s1"</span>,
+    <span class="sail-literal">0b01010</span> &lt;-&gt; <span class="sail-string">"a0"</span>,
+    <span class="sail-literal">0b01011</span> &lt;-&gt; <span class="sail-string">"a1"</span>,
+    <span class="sail-literal">0b01100</span> &lt;-&gt; <span class="sail-string">"a2"</span>,
+    <span class="sail-literal">0b01101</span> &lt;-&gt; <span class="sail-string">"a3"</span>,
+    <span class="sail-literal">0b01110</span> &lt;-&gt; <span class="sail-string">"a4"</span>,
+    <span class="sail-literal">0b01111</span> &lt;-&gt; <span class="sail-string">"a5"</span>,
+    <span class="sail-literal">0b10000</span> &lt;-&gt; <span class="sail-string">"a6"</span>,
+    <span class="sail-literal">0b10001</span> &lt;-&gt; <span class="sail-string">"a7"</span>,
+    <span class="sail-literal">0b10010</span> &lt;-&gt; <span class="sail-string">"s2"</span>,
+    <span class="sail-literal">0b10011</span> &lt;-&gt; <span class="sail-string">"s3"</span>,
+    <span class="sail-literal">0b10100</span> &lt;-&gt; <span class="sail-string">"s4"</span>,
+    <span class="sail-literal">0b10101</span> &lt;-&gt; <span class="sail-string">"s5"</span>,
+    <span class="sail-literal">0b10110</span> &lt;-&gt; <span class="sail-string">"s6"</span>,
+    <span class="sail-literal">0b10111</span> &lt;-&gt; <span class="sail-string">"s7"</span>,
+    <span class="sail-literal">0b11000</span> &lt;-&gt; <span class="sail-string">"s8"</span>,
+    <span class="sail-literal">0b11001</span> &lt;-&gt; <span class="sail-string">"s9"</span>,
+    <span class="sail-literal">0b11010</span> &lt;-&gt; <span class="sail-string">"s10"</span>,
+    <span class="sail-literal">0b11011</span> &lt;-&gt; <span class="sail-string">"s11"</span>,
+    <span class="sail-literal">0b11100</span> &lt;-&gt; <span class="sail-string">"t3"</span>,
+    <span class="sail-literal">0b11101</span> &lt;-&gt; <span class="sail-string">"t4"</span>,
+    <span class="sail-literal">0b11110</span> &lt;-&gt; <span class="sail-string">"t5"</span>,
+    <span class="sail-literal">0b11111</span> &lt;-&gt; <span class="sail-string">"t6"</span>,
+}
+
+<span class="sail-keyword">mapping</span> <span class="sail-id">reg_arch_name_raw</span> : <span class="sail-id">bits</span>(<span class="sail-literal">5</span>) &lt;-&gt; <span class="sail-id">string</span> = {
+    <span class="sail-literal">0b00000</span> &lt;-&gt; <span class="sail-string">"x0"</span>,
+    <span class="sail-literal">0b00001</span> &lt;-&gt; <span class="sail-string">"x1"</span>,
+    <span class="sail-literal">0b00010</span> &lt;-&gt; <span class="sail-string">"x2"</span>,
+    <span class="sail-literal">0b00011</span> &lt;-&gt; <span class="sail-string">"x3"</span>,
+    <span class="sail-literal">0b00100</span> &lt;-&gt; <span class="sail-string">"x4"</span>,
+    <span class="sail-literal">0b00101</span> &lt;-&gt; <span class="sail-string">"x5"</span>,
+    <span class="sail-literal">0b00110</span> &lt;-&gt; <span class="sail-string">"x6"</span>,
+    <span class="sail-literal">0b00111</span> &lt;-&gt; <span class="sail-string">"x7"</span>,
+    <span class="sail-literal">0b01000</span> &lt;-&gt; <span class="sail-string">"x8"</span>,
+    <span class="sail-literal">0b01001</span> &lt;-&gt; <span class="sail-string">"x9"</span>,
+    <span class="sail-literal">0b01010</span> &lt;-&gt; <span class="sail-string">"x10"</span>,
+    <span class="sail-literal">0b01011</span> &lt;-&gt; <span class="sail-string">"x11"</span>,
+    <span class="sail-literal">0b01100</span> &lt;-&gt; <span class="sail-string">"x12"</span>,
+    <span class="sail-literal">0b01101</span> &lt;-&gt; <span class="sail-string">"x13"</span>,
+    <span class="sail-literal">0b01110</span> &lt;-&gt; <span class="sail-string">"x14"</span>,
+    <span class="sail-literal">0b01111</span> &lt;-&gt; <span class="sail-string">"x15"</span>,
+    <span class="sail-literal">0b10000</span> &lt;-&gt; <span class="sail-string">"x16"</span>,
+    <span class="sail-literal">0b10001</span> &lt;-&gt; <span class="sail-string">"x17"</span>,
+    <span class="sail-literal">0b10010</span> &lt;-&gt; <span class="sail-string">"x18"</span>,
+    <span class="sail-literal">0b10011</span> &lt;-&gt; <span class="sail-string">"x19"</span>,
+    <span class="sail-literal">0b10100</span> &lt;-&gt; <span class="sail-string">"x20"</span>,
+    <span class="sail-literal">0b10101</span> &lt;-&gt; <span class="sail-string">"x21"</span>,
+    <span class="sail-literal">0b10110</span> &lt;-&gt; <span class="sail-string">"x22"</span>,
+    <span class="sail-literal">0b10111</span> &lt;-&gt; <span class="sail-string">"x23"</span>,
+    <span class="sail-literal">0b11000</span> &lt;-&gt; <span class="sail-string">"x24"</span>,
+    <span class="sail-literal">0b11001</span> &lt;-&gt; <span class="sail-string">"x25"</span>,
+    <span class="sail-literal">0b11010</span> &lt;-&gt; <span class="sail-string">"x26"</span>,
+    <span class="sail-literal">0b11011</span> &lt;-&gt; <span class="sail-string">"x27"</span>,
+    <span class="sail-literal">0b11100</span> &lt;-&gt; <span class="sail-string">"x28"</span>,
+    <span class="sail-literal">0b11101</span> &lt;-&gt; <span class="sail-string">"x29"</span>,
+    <span class="sail-literal">0b11110</span> &lt;-&gt; <span class="sail-string">"x30"</span>,
+    <span class="sail-literal">0b11111</span> &lt;-&gt; <span class="sail-string">"x31"</span>,
+}
+
+<span class="sail-keyword">mapping</span> <span class="sail-id">reg_name</span> : <span class="sail-id">regidx</span> &lt;-&gt; <span class="sail-id">string</span> = {
+  <span class="sail-id">Regidx</span>(<span class="sail-id">i</span>) <span class="sail-keyword">if</span> <a href=".././prelude.html#L80"><span class="sail-id">get_config_use_abi_names</span></a>()      &lt;-&gt; <span class="sail-id">reg_abi_name_raw</span>(<span class="sail-id">i</span>),
+  <span class="sail-id">Regidx</span>(<span class="sail-id">i</span>) <span class="sail-keyword">if</span> <a href=".././prelude.html#L29"><span class="sail-id">not</span></a>(<a href=".././prelude.html#L80"><span class="sail-id">get_config_use_abi_names</span></a>()) &lt;-&gt; <span class="sail-id">reg_arch_name_raw</span>(<span class="sail-id">i</span>),
+}
+
+<span class="sail-comment">// Special mapping for the sp register for use in assembly for sp-relative
+</span><span class="sail-comment">// instructions where the argument *must* be `sp` (or `x2`).
+</span><span class="sail-keyword">mapping</span> <span class="sail-id">sp_reg_name</span> : <span class="sail-id">unit</span> &lt;-&gt; <span class="sail-id">string</span> = {
+  () <span class="sail-keyword">if</span> <a href=".././prelude.html#L80"><span class="sail-id">get_config_use_abi_names</span></a>() &lt;-&gt; <span class="sail-string">"sp"</span>,
+  () <span class="sail-keyword">if</span> <a href=".././prelude.html#L29"><span class="sail-id">not</span></a>(<a href=".././prelude.html#L80"><span class="sail-id">get_config_use_abi_names</span></a>()) &lt;-&gt; <span class="sail-string">"x2"</span>,
+}
+
+<span class="sail-keyword">mapping</span> <span class="sail-id">creg_name</span> : <span class="sail-id">cregidx</span> &lt;-&gt; <span class="sail-id">string</span> = { <span class="sail-id">Cregidx</span>(<span class="sail-id">i</span>) &lt;-&gt; <span class="sail-id">reg_name</span>(<span class="sail-id">Regidx</span>(<span class="sail-literal">0b01</span> @ <span class="sail-id">i</span>)) }
+
+<span class="sail-keyword">function</span> <span class="sail-id">xreg_write_callback</span>(<span class="sail-id">reg</span> : <span class="sail-id">regidx</span>, <span class="sail-id">value</span> : <span class="sail-id">xlenbits</span>) -&gt; <span class="sail-id">unit</span> = {
+  <span class="sail-keyword">let</span> <span class="sail-id">name</span> = <span class="sail-id">reg_name</span>(<span class="sail-id">reg</span>);
+  <a href=".././riscv_callbacks.html#L23"><span class="sail-id">xreg_full_write_callback</span></a>(<span class="sail-id">name</span>, <span class="sail-id">reg</span>, <span class="sail-id">value</span>);
+}
+
+<span class="sail-comment">/* register file and accessors */</span>
+
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L108"><span class="sail-id">x1</span></a>  : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L109"><span class="sail-id">x2</span></a>  : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L110"><span class="sail-id">x3</span></a>  : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L111"><span class="sail-id">x4</span></a>  : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L112"><span class="sail-id">x5</span></a>  : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L113"><span class="sail-id">x6</span></a>  : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L114"><span class="sail-id">x7</span></a>  : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L115"><span class="sail-id">x8</span></a>  : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L116"><span class="sail-id">x9</span></a>  : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L117"><span class="sail-id">x10</span></a> : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L118"><span class="sail-id">x11</span></a> : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L119"><span class="sail-id">x12</span></a> : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L120"><span class="sail-id">x13</span></a> : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L121"><span class="sail-id">x14</span></a> : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L122"><span class="sail-id">x15</span></a> : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L123"><span class="sail-id">x16</span></a> : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L124"><span class="sail-id">x17</span></a> : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L125"><span class="sail-id">x18</span></a> : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L126"><span class="sail-id">x19</span></a> : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L127"><span class="sail-id">x20</span></a> : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L128"><span class="sail-id">x21</span></a> : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L129"><span class="sail-id">x22</span></a> : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L130"><span class="sail-id">x23</span></a> : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L131"><span class="sail-id">x24</span></a> : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L132"><span class="sail-id">x25</span></a> : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L133"><span class="sail-id">x26</span></a> : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L134"><span class="sail-id">x27</span></a> : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L135"><span class="sail-id">x28</span></a> : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L136"><span class="sail-id">x29</span></a> : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L137"><span class="sail-id">x30</span></a> : <span class="sail-id">regtype</span>
+<span class="sail-keyword">register</span> <a href=".././riscv_regs.html#L138"><span class="sail-id">x31</span></a> : <span class="sail-id">regtype</span>
+
+<span class="sail-keyword">function</span> <span class="sail-id">rX</span> (<span class="sail-id">Regno</span>(<span class="sail-id">r</span>) : <span class="sail-id">regno</span>) -&gt; <span class="sail-id">xlenbits</span> = {
+  <span class="sail-keyword">let</span> <span class="sail-id">v</span> : <span class="sail-id">regtype</span> =
+    <span class="sail-keyword">match</span> <span class="sail-id">r</span> {
+      <span class="sail-literal">0</span> =&gt; <span class="sail-id">zero_reg</span>,
+      <span class="sail-literal">1</span> =&gt; <a href=".././riscv_regs.html#L108"><span class="sail-id">x1</span></a>,
+      <span class="sail-literal">2</span> =&gt; <a href=".././riscv_regs.html#L109"><span class="sail-id">x2</span></a>,
+      <span class="sail-literal">3</span> =&gt; <a href=".././riscv_regs.html#L110"><span class="sail-id">x3</span></a>,
+      <span class="sail-literal">4</span> =&gt; <a href=".././riscv_regs.html#L111"><span class="sail-id">x4</span></a>,
+      <span class="sail-literal">5</span> =&gt; <a href=".././riscv_regs.html#L112"><span class="sail-id">x5</span></a>,
+      <span class="sail-literal">6</span> =&gt; <a href=".././riscv_regs.html#L113"><span class="sail-id">x6</span></a>,
+      <span class="sail-literal">7</span> =&gt; <a href=".././riscv_regs.html#L114"><span class="sail-id">x7</span></a>,
+      <span class="sail-literal">8</span> =&gt; <a href=".././riscv_regs.html#L115"><span class="sail-id">x8</span></a>,
+      <span class="sail-literal">9</span> =&gt; <a href=".././riscv_regs.html#L116"><span class="sail-id">x9</span></a>,
+      <span class="sail-literal">10</span> =&gt; <a href=".././riscv_regs.html#L117"><span class="sail-id">x10</span></a>,
+      <span class="sail-literal">11</span> =&gt; <a href=".././riscv_regs.html#L118"><span class="sail-id">x11</span></a>,
+      <span class="sail-literal">12</span> =&gt; <a href=".././riscv_regs.html#L119"><span class="sail-id">x12</span></a>,
+      <span class="sail-literal">13</span> =&gt; <a href=".././riscv_regs.html#L120"><span class="sail-id">x13</span></a>,
+      <span class="sail-literal">14</span> =&gt; <a href=".././riscv_regs.html#L121"><span class="sail-id">x14</span></a>,
+      <span class="sail-literal">15</span> =&gt; <a href=".././riscv_regs.html#L122"><span class="sail-id">x15</span></a>,
+      <span class="sail-literal">16</span> =&gt; <a href=".././riscv_regs.html#L123"><span class="sail-id">x16</span></a>,
+      <span class="sail-literal">17</span> =&gt; <a href=".././riscv_regs.html#L124"><span class="sail-id">x17</span></a>,
+      <span class="sail-literal">18</span> =&gt; <a href=".././riscv_regs.html#L125"><span class="sail-id">x18</span></a>,
+      <span class="sail-literal">19</span> =&gt; <a href=".././riscv_regs.html#L126"><span class="sail-id">x19</span></a>,
+      <span class="sail-literal">20</span> =&gt; <a href=".././riscv_regs.html#L127"><span class="sail-id">x20</span></a>,
+      <span class="sail-literal">21</span> =&gt; <a href=".././riscv_regs.html#L128"><span class="sail-id">x21</span></a>,
+      <span class="sail-literal">22</span> =&gt; <a href=".././riscv_regs.html#L129"><span class="sail-id">x22</span></a>,
+      <span class="sail-literal">23</span> =&gt; <a href=".././riscv_regs.html#L130"><span class="sail-id">x23</span></a>,
+      <span class="sail-literal">24</span> =&gt; <a href=".././riscv_regs.html#L131"><span class="sail-id">x24</span></a>,
+      <span class="sail-literal">25</span> =&gt; <a href=".././riscv_regs.html#L132"><span class="sail-id">x25</span></a>,
+      <span class="sail-literal">26</span> =&gt; <a href=".././riscv_regs.html#L133"><span class="sail-id">x26</span></a>,
+      <span class="sail-literal">27</span> =&gt; <a href=".././riscv_regs.html#L134"><span class="sail-id">x27</span></a>,
+      <span class="sail-literal">28</span> =&gt; <a href=".././riscv_regs.html#L135"><span class="sail-id">x28</span></a>,
+      <span class="sail-literal">29</span> =&gt; <a href=".././riscv_regs.html#L136"><span class="sail-id">x29</span></a>,
+      <span class="sail-literal">30</span> =&gt; <a href=".././riscv_regs.html#L137"><span class="sail-id">x30</span></a>,
+      <span class="sail-literal">31</span> =&gt; <a href=".././riscv_regs.html#L138"><span class="sail-id">x31</span></a>,
+    };
+  <a href=".././riscv_reg_type.html#L22"><span class="sail-id">regval_from_reg</span></a>(<span class="sail-id">v</span>)
+}
+
+<span class="sail-keyword">function</span> <span class="sail-id">wX</span> (<span class="sail-id">Regno</span>(<span class="sail-id">r</span>) : <span class="sail-id">regno</span>, <span class="sail-id">in_v</span> : <span class="sail-id">xlenbits</span>) -&gt; <span class="sail-id">unit</span> = {
+  <span class="sail-keyword">let</span> <span class="sail-id">v</span> = <a href=".././riscv_reg_type.html#L25"><span class="sail-id">regval_into_reg</span></a>(<span class="sail-id">in_v</span>);
+  <span class="sail-keyword">match</span> <span class="sail-id">r</span> {
+    <span class="sail-literal">0</span>  =&gt; (),
+    <span class="sail-literal">1</span>  =&gt; <a href=".././riscv_regs.html#L108"><span class="sail-id">x1</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">2</span>  =&gt; <a href=".././riscv_regs.html#L109"><span class="sail-id">x2</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">3</span>  =&gt; <a href=".././riscv_regs.html#L110"><span class="sail-id">x3</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">4</span>  =&gt; <a href=".././riscv_regs.html#L111"><span class="sail-id">x4</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">5</span>  =&gt; <a href=".././riscv_regs.html#L112"><span class="sail-id">x5</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">6</span>  =&gt; <a href=".././riscv_regs.html#L113"><span class="sail-id">x6</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">7</span>  =&gt; <a href=".././riscv_regs.html#L114"><span class="sail-id">x7</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">8</span>  =&gt; <a href=".././riscv_regs.html#L115"><span class="sail-id">x8</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">9</span>  =&gt; <a href=".././riscv_regs.html#L116"><span class="sail-id">x9</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">10</span> =&gt; <a href=".././riscv_regs.html#L117"><span class="sail-id">x10</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">11</span> =&gt; <a href=".././riscv_regs.html#L118"><span class="sail-id">x11</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">12</span> =&gt; <a href=".././riscv_regs.html#L119"><span class="sail-id">x12</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">13</span> =&gt; <a href=".././riscv_regs.html#L120"><span class="sail-id">x13</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">14</span> =&gt; <a href=".././riscv_regs.html#L121"><span class="sail-id">x14</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">15</span> =&gt; <a href=".././riscv_regs.html#L122"><span class="sail-id">x15</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">16</span> =&gt; <a href=".././riscv_regs.html#L123"><span class="sail-id">x16</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">17</span> =&gt; <a href=".././riscv_regs.html#L124"><span class="sail-id">x17</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">18</span> =&gt; <a href=".././riscv_regs.html#L125"><span class="sail-id">x18</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">19</span> =&gt; <a href=".././riscv_regs.html#L126"><span class="sail-id">x19</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">20</span> =&gt; <a href=".././riscv_regs.html#L127"><span class="sail-id">x20</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">21</span> =&gt; <a href=".././riscv_regs.html#L128"><span class="sail-id">x21</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">22</span> =&gt; <a href=".././riscv_regs.html#L129"><span class="sail-id">x22</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">23</span> =&gt; <a href=".././riscv_regs.html#L130"><span class="sail-id">x23</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">24</span> =&gt; <a href=".././riscv_regs.html#L131"><span class="sail-id">x24</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">25</span> =&gt; <a href=".././riscv_regs.html#L132"><span class="sail-id">x25</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">26</span> =&gt; <a href=".././riscv_regs.html#L133"><span class="sail-id">x26</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">27</span> =&gt; <a href=".././riscv_regs.html#L134"><span class="sail-id">x27</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">28</span> =&gt; <a href=".././riscv_regs.html#L135"><span class="sail-id">x28</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">29</span> =&gt; <a href=".././riscv_regs.html#L136"><span class="sail-id">x29</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">30</span> =&gt; <a href=".././riscv_regs.html#L137"><span class="sail-id">x30</span></a> = <span class="sail-id">v</span>,
+    <span class="sail-literal">31</span> =&gt; <a href=".././riscv_regs.html#L138"><span class="sail-id">x31</span></a> = <span class="sail-id">v</span>,
+  };
+  <span class="sail-keyword">if</span> <span class="sail-id">r</span> <span class="sail-operator">!=</span> <span class="sail-literal">0</span> <span class="sail-keyword">then</span> <a href=".././riscv_regs.html#L101"><span class="sail-id">xreg_write_callback</span></a>(<span class="sail-id">Regidx</span>(<a href=".././prelude.html#L118"><span class="sail-id">to_bits</span></a>(<span class="sail-id">r</span>)), <span class="sail-id">in_v</span>)
+}
+
+<span class="sail-keyword">function</span> <span class="sail-id">rX_bits</span>(<span class="sail-id">Regidx</span>(<span class="sail-id">i</span>) : <span class="sail-id">regidx</span>) -&gt; <span class="sail-id">xlenbits</span> = <a href=".././riscv_regs.html#L140"><span class="sail-id">rX</span></a>(<span class="sail-id">Regno</span>(<span class="sail-id">unsigned</span>(<span class="sail-id">i</span>)))
+
+<span class="sail-keyword">function</span> <span class="sail-id">wX_bits</span>(<span class="sail-id">Regidx</span>(<span class="sail-id">i</span>) : <span class="sail-id">regidx</span>, <span class="sail-id">data</span> : <span class="sail-id">xlenbits</span>) -&gt; <span class="sail-id">unit</span> = {
+  <a href=".././riscv_regs.html#L179"><span class="sail-id">wX</span></a>(<span class="sail-id">Regno</span>(<span class="sail-id">unsigned</span>(<span class="sail-id">i</span>))) = <span class="sail-id">data</span>
+}
+
+<span class="sail-keyword">overload</span> <span class="sail-id">X</span> = {<a href=".././riscv_regs.html#L218"><span class="sail-id">rX_bits</span></a>, <a href=".././riscv_regs.html#L220"><span class="sail-id">wX_bits</span></a>, <span class="sail-id">rX</span>, <span class="sail-id">wX</span>}
+
+<span class="sail-comment">/* Mappings for encoding */</span>
+
+<span class="sail-keyword">mapping</span> <span class="sail-id">encdec_reg</span> : <span class="sail-id">regidx</span> &lt;-&gt; <span class="sail-id">bits</span>(<span class="sail-literal">5</span>) = { <span class="sail-id">Regidx</span>(<span class="sail-id">r</span>) &lt;-&gt; <span class="sail-id">r</span> }
+
+<span class="sail-keyword">mapping</span> <span class="sail-id">encdec_creg</span> : <span class="sail-id">cregidx</span> &lt;-&gt; <span class="sail-id">bits</span>(<span class="sail-literal">3</span>) = { <span class="sail-id">Cregidx</span>(<span class="sail-id">r</span>) &lt;-&gt; <span class="sail-id">r</span> }
+</pre>
+</div>
+</div>
+</body>
+</html>

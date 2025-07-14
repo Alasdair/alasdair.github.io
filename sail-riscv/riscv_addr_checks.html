@@ -1,0 +1,98 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /><span id="L26">26</span><br /><span id="L27">27</span><br /><span id="L28">28</span><br /><span id="L29">29</span><br /><span id="L30">30</span><br /><span id="L31">31</span><br /><span id="L32">32</span><br /><span id="L33">33</span><br /><span id="L34">34</span><br /><span id="L35">35</span><br /><span id="L36">36</span><br /><span id="L37">37</span><br /><span id="L38">38</span><br /><span id="L39">39</span><br /><span id="L40">40</span><br /><span id="L41">41</span><br /><span id="L42">42</span><br /><span id="L43">43</span><br /><span id="L44">44</span><br /><span id="L45">45</span><br /><span id="L46">46</span><br /><span id="L47">47</span><br /><span id="L48">48</span><br /><span id="L49">49</span><br /><span id="L50">50</span><br /><span id="L51">51</span><br /><span id="L52">52</span><br /><span id="L53">53</span><br /><span id="L54">54</span><br /><span id="L55">55</span><br /><span id="L56">56</span><br /><span id="L57">57</span><br /><span id="L58">58</span><br /><span id="L59">59</span><br /><span id="L60">60</span><br /><span id="L61">61</span><br /><span id="L62">62</span><br /><span id="L63">63</span><br /><span id="L64">64</span><br /><span id="L65">65</span><br /><span id="L66">66</span><br /><span id="L67">67</span><br /><span id="L68">68</span><br /><span id="L69">69</span><br /><span id="L70">70</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-comment">/* default fetch address checks */</span>
+
+<span class="sail-keyword">type</span> <span class="sail-id">ext_fetch_addr_error</span> = <span class="sail-id">unit</span>
+
+<span class="sail-comment">/* Since fetch is done in granules, the check function gets two arguments:
+ * start_pc: the PC at the start of the current fetch sequence
+ * pc:       the PC for the current granule
+ *
+ * returns:  the *virtual* memory address to use for the fetch.
+ *           any address translation errors are reported for pc, not the returned value.
+ */</span>
+<span class="sail-keyword">function</span> <span class="sail-id">ext_fetch_check_pc</span>(<span class="sail-id">start_pc</span> : <span class="sail-id">xlenbits</span>, <span class="sail-id">pc</span> : <span class="sail-id">xlenbits</span>) -&gt; <span class="sail-id">Ext_FetchAddr_Check</span>(<span class="sail-id">ext_fetch_addr_error</span>) =
+  <span class="sail-id">Ext_FetchAddr_OK</span>(<span class="sail-id">Virtaddr</span>(<span class="sail-id">pc</span>))
+
+<span class="sail-keyword">function</span> <span class="sail-id">ext_handle_fetch_check_error</span>(<span class="sail-id">err</span> : <span class="sail-id">ext_fetch_addr_error</span>) -&gt; <span class="sail-id">unit</span> =
+  ()
+
+<span class="sail-comment">/* default control address checks */</span>
+
+<span class="sail-keyword">type</span> <span class="sail-id">ext_control_addr_error</span> = <span class="sail-id">unit</span>
+
+<span class="sail-comment">/* these functions return the address to use as the target for
+ * the control transfer.  any address translation or other errors
+ * are reported for the original value, not the returned value.
+ *
+ * NOTE: the input value does *not* have bit[0] set to 0, to enable
+ * more accurate bounds checking.  There is no constraint on the output
+ * value, which will have bit[0] cleared by the caller if needed.
+ */</span>
+
+<span class="sail-comment">/* the control address is derived from a non-PC register, e.g. in JALR */</span>
+<span class="sail-keyword">function</span> <span class="sail-id">ext_control_check_addr</span>(<span class="sail-id">pc</span> : <span class="sail-id">xlenbits</span>) -&gt; <span class="sail-id">Ext_ControlAddr_Check</span>(<span class="sail-id">ext_control_addr_error</span>) =
+  <span class="sail-id">Ext_ControlAddr_OK</span>(<span class="sail-id">Virtaddr</span>(<span class="sail-id">pc</span>))
+
+<span class="sail-comment">/* the control address is derived from the PC register, e.g. in JAL */</span>
+<span class="sail-keyword">function</span> <span class="sail-id">ext_control_check_pc</span>(<span class="sail-id">pc</span> : <span class="sail-id">xlenbits</span>) -&gt; <span class="sail-id">Ext_ControlAddr_Check</span>(<span class="sail-id">ext_control_addr_error</span>) =
+  <span class="sail-id">Ext_ControlAddr_OK</span>(<span class="sail-id">Virtaddr</span>(<span class="sail-id">pc</span>))
+
+<span class="sail-keyword">function</span> <span class="sail-id">ext_handle_control_check_error</span>(<span class="sail-id">err</span> : <span class="sail-id">ext_control_addr_error</span>) -&gt; <span class="sail-id">unit</span> =
+  ()
+
+
+<span class="sail-comment">/* The default data address function does not perform any checks so
+   just uses unit for error type. */</span>
+<span class="sail-keyword">type</span> <span class="sail-id">ext_data_addr_error</span> = <span class="sail-id">unit</span>
+
+<span class="sail-comment">/* Default data addr is just base register + immediate offset (may be zero).
+   Extensions might override and add additional checks. */</span>
+<span class="sail-keyword">function</span> <span class="sail-id">ext_data_get_addr</span>(<span class="sail-id">base</span> : <span class="sail-id">regidx</span>, <span class="sail-id">offset</span> : <span class="sail-id">xlenbits</span>, <span class="sail-id">acc</span> : <span class="sail-id">AccessType</span>(<span class="sail-id">ext_access_type</span>), <span class="sail-id">width</span> : <span class="sail-id">mem_access_width</span>)
+         -&gt; <span class="sail-id">Ext_DataAddr_Check</span>(<span class="sail-id">ext_data_addr_error</span>) =
+  <span class="sail-keyword">let</span> <span class="sail-id">addr</span> = <span class="sail-id">Virtaddr</span>(<span class="sail-id">X</span>(<span class="sail-id">base</span>) <span class="sail-operator">+</span> <span class="sail-id">offset</span>) <span class="sail-keyword">in</span>
+  <span class="sail-id">Ext_DataAddr_OK</span>(<span class="sail-id">addr</span>)
+
+<span class="sail-keyword">function</span> <span class="sail-id">ext_handle_data_check_error</span>(<span class="sail-id">err</span> : <span class="sail-id">ext_data_addr_error</span>) -&gt; <span class="sail-id">unit</span> =
+  ()
+
+<span class="sail-comment">/* Default implementations of these hooks permit all accesses.  */</span>
+<span class="sail-keyword">function</span> <span class="sail-id">ext_check_phys_mem_read</span> (<span class="sail-id">access_type</span>, <span class="sail-id">paddr</span>, <span class="sail-id">size</span>, <span class="sail-id">acquire</span>, <span class="sail-id">release</span>, <span class="sail-id">reserved</span>, <span class="sail-id">read_meta</span>) =
+  <span class="sail-id">Ext_PhysAddr_OK</span> ()
+
+<span class="sail-keyword">function</span> <span class="sail-id">ext_check_phys_mem_write</span>(<span class="sail-id">write_kind</span>, <span class="sail-id">paddr</span>, <span class="sail-id">size</span>, <span class="sail-id">data</span>, <span class="sail-id">metadata</span>) =
+  <span class="sail-id">Ext_PhysAddr_OK</span> ()
+</pre>
+</div>
+</div>
+</body>
+</html>

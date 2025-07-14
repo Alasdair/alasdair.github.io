@@ -1,0 +1,65 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /><span id="L26">26</span><br /><span id="L27">27</span><br /><span id="L28">28</span><br /><span id="L29">29</span><br /><span id="L30">30</span><br /><span id="L31">31</span><br /><span id="L32">32</span><br /><span id="L33">33</span><br /><span id="L34">34</span><br /><span id="L35">35</span><br /><span id="L36">36</span><br /><span id="L37">37</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-comment">// Define the XLEN value for the architecture.
+</span><span class="sail-comment">// This is done using the smallest/most logarithmic possible value since Sail's
+</span><span class="sail-comment">// type system works well for multiply and 2^ but not divide and log2.
+</span>
+<span class="sail-keyword">type</span> <span class="sail-id">xlen</span> : <span class="sail-kind">Int</span> = <span class="sail-keyword">config</span> <span class="sail-id">base</span>.<span class="sail-id">xlen</span>
+<span class="sail-keyword">constraint</span> <span class="sail-id">xlen</span> <span class="sail-keyword">in</span> {<span class="sail-literal">32</span>, <span class="sail-literal">64</span>}
+
+<span class="sail-keyword">type</span> <span class="sail-id">log2_xlen</span>  : <span class="sail-kind">Int</span> = <span class="sail-keyword">if</span> <span class="sail-id">xlen</span> <span class="sail-operator">==</span> <span class="sail-literal">32</span> <span class="sail-keyword">then</span> <span class="sail-literal">5</span> <span class="sail-keyword">else</span> <span class="sail-literal">6</span>
+<span class="sail-keyword">type</span> <span class="sail-id">xlen_bytes</span> : <span class="sail-kind">Int</span> = <span class="sail-keyword">if</span> <span class="sail-id">xlen</span> <span class="sail-operator">==</span> <span class="sail-literal">32</span> <span class="sail-keyword">then</span> <span class="sail-literal">4</span> <span class="sail-keyword">else</span> <span class="sail-literal">8</span>
+
+<span class="sail-comment">// TODO: Allow configuring a lower number of physical address bits.
+</span><span class="sail-comment">// For example it is unlikely that serious RV64 implementations really
+</span><span class="sail-comment">// have 64 physical address bits.
+</span><span class="sail-keyword">type</span> <span class="sail-id">physaddrbits_len</span> : <span class="sail-kind">Int</span> = <span class="sail-keyword">if</span> <span class="sail-id">xlen</span> <span class="sail-operator">==</span> <span class="sail-literal">32</span> <span class="sail-keyword">then</span> <span class="sail-literal">34</span> <span class="sail-keyword">else</span> <span class="sail-literal">64</span>
+
+<span class="sail-comment">// This is the maximum; designs can implement shorter ASIDLENs.
+</span><span class="sail-comment">// TODO: Allow configuring shorter ASIDLENs.
+</span><span class="sail-keyword">type</span> <span class="sail-id">asidlen</span>    : <span class="sail-kind">Int</span> = <span class="sail-keyword">if</span> <span class="sail-id">xlen</span> <span class="sail-operator">==</span> <span class="sail-literal">32</span> <span class="sail-keyword">then</span> <span class="sail-literal">9</span> <span class="sail-keyword">else</span> <span class="sail-literal">16</span>
+
+<span class="sail-comment">// Variable versions of the above types. Variables and types
+</span><span class="sail-comment">// are disjoint in Sail so they are allowed to have the same name.
+</span><span class="sail-comment">// This saves typing `sizeof()` everywhere.
+</span><span class="sail-keyword">let</span> <span class="sail-id">log2_xlen</span> = <span class="sail-keyword">sizeof</span>(<span class="sail-id">log2_xlen</span>)
+<span class="sail-keyword">let</span> <span class="sail-id">xlen_bytes</span> = <span class="sail-keyword">sizeof</span>(<span class="sail-id">xlen_bytes</span>)
+<span class="sail-keyword">let</span> <span class="sail-id">xlen</span> = <span class="sail-keyword">sizeof</span>(<span class="sail-id">xlen</span>)
+<span class="sail-keyword">let</span> <span class="sail-id">asidlen</span> = <span class="sail-keyword">sizeof</span>(<span class="sail-id">asidlen</span>)
+
+<span class="sail-keyword">type</span> <span class="sail-id">xlenbits</span> = <span class="sail-id">bits</span>(<span class="sail-id">xlen</span>)
+<span class="sail-keyword">type</span> <span class="sail-id">asidbits</span> = <span class="sail-id">bits</span>(<span class="sail-id">asidlen</span>)
+</pre>
+</div>
+</div>
+</body>
+</html>

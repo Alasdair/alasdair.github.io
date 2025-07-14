@@ -1,0 +1,172 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /><span id="L26">26</span><br /><span id="L27">27</span><br /><span id="L28">28</span><br /><span id="L29">29</span><br /><span id="L30">30</span><br /><span id="L31">31</span><br /><span id="L32">32</span><br /><span id="L33">33</span><br /><span id="L34">34</span><br /><span id="L35">35</span><br /><span id="L36">36</span><br /><span id="L37">37</span><br /><span id="L38">38</span><br /><span id="L39">39</span><br /><span id="L40">40</span><br /><span id="L41">41</span><br /><span id="L42">42</span><br /><span id="L43">43</span><br /><span id="L44">44</span><br /><span id="L45">45</span><br /><span id="L46">46</span><br /><span id="L47">47</span><br /><span id="L48">48</span><br /><span id="L49">49</span><br /><span id="L50">50</span><br /><span id="L51">51</span><br /><span id="L52">52</span><br /><span id="L53">53</span><br /><span id="L54">54</span><br /><span id="L55">55</span><br /><span id="L56">56</span><br /><span id="L57">57</span><br /><span id="L58">58</span><br /><span id="L59">59</span><br /><span id="L60">60</span><br /><span id="L61">61</span><br /><span id="L62">62</span><br /><span id="L63">63</span><br /><span id="L64">64</span><br /><span id="L65">65</span><br /><span id="L66">66</span><br /><span id="L67">67</span><br /><span id="L68">68</span><br /><span id="L69">69</span><br /><span id="L70">70</span><br /><span id="L71">71</span><br /><span id="L72">72</span><br /><span id="L73">73</span><br /><span id="L74">74</span><br /><span id="L75">75</span><br /><span id="L76">76</span><br /><span id="L77">77</span><br /><span id="L78">78</span><br /><span id="L79">79</span><br /><span id="L80">80</span><br /><span id="L81">81</span><br /><span id="L82">82</span><br /><span id="L83">83</span><br /><span id="L84">84</span><br /><span id="L85">85</span><br /><span id="L86">86</span><br /><span id="L87">87</span><br /><span id="L88">88</span><br /><span id="L89">89</span><br /><span id="L90">90</span><br /><span id="L91">91</span><br /><span id="L92">92</span><br /><span id="L93">93</span><br /><span id="L94">94</span><br /><span id="L95">95</span><br /><span id="L96">96</span><br /><span id="L97">97</span><br /><span id="L98">98</span><br /><span id="L99">99</span><br /><span id="L100">100</span><br /><span id="L101">101</span><br /><span id="L102">102</span><br /><span id="L103">103</span><br /><span id="L104">104</span><br /><span id="L105">105</span><br /><span id="L106">106</span><br /><span id="L107">107</span><br /><span id="L108">108</span><br /><span id="L109">109</span><br /><span id="L110">110</span><br /><span id="L111">111</span><br /><span id="L112">112</span><br /><span id="L113">113</span><br /><span id="L114">114</span><br /><span id="L115">115</span><br /><span id="L116">116</span><br /><span id="L117">117</span><br /><span id="L118">118</span><br /><span id="L119">119</span><br /><span id="L120">120</span><br /><span id="L121">121</span><br /><span id="L122">122</span><br /><span id="L123">123</span><br /><span id="L124">124</span><br /><span id="L125">125</span><br /><span id="L126">126</span><br /><span id="L127">127</span><br /><span id="L128">128</span><br /><span id="L129">129</span><br /><span id="L130">130</span><br /><span id="L131">131</span><br /><span id="L132">132</span><br /><span id="L133">133</span><br /><span id="L134">134</span><br /><span id="L135">135</span><br /><span id="L136">136</span><br /><span id="L137">137</span><br /><span id="L138">138</span><br /><span id="L139">139</span><br /><span id="L140">140</span><br /><span id="L141">141</span><br /><span id="L142">142</span><br /><span id="L143">143</span><br /><span id="L144">144</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-comment">/* Definitions for vector registers (V extension) */</span>
+
+<span class="sail-keyword">type</span> <span class="sail-id">vreglenbits</span> = <span class="sail-id">bits</span>(<span class="sail-id">vlenmax</span>) <span class="sail-comment">/* use the largest possible register length */</span>
+
+<span class="sail-comment">/* default vector register type */</span>
+<span class="sail-keyword">type</span> <span class="sail-id">vregtype</span> = <span class="sail-id">vreglenbits</span>
+
+<span class="sail-comment">/* vector instruction types */</span>
+
+<span class="sail-keyword">enum</span> <span class="sail-id">vvfunct6</span>     = { <span class="sail-id">VV_VADD</span>, <span class="sail-id">VV_VSUB</span>, <span class="sail-id">VV_VMINU</span>, <span class="sail-id">VV_VMIN</span>, <span class="sail-id">VV_VMAXU</span>, <span class="sail-id">VV_VMAX</span>, <span class="sail-id">VV_VAND</span>, <span class="sail-id">VV_VOR</span>, <span class="sail-id">VV_VXOR</span>,
+  <span class="sail-id">VV_VRGATHER</span>, <span class="sail-id">VV_VRGATHEREI16</span>, <span class="sail-id">VV_VSADDU</span>, <span class="sail-id">VV_VSADD</span>, <span class="sail-id">VV_VSSUBU</span>, <span class="sail-id">VV_VSSUB</span>, <span class="sail-id">VV_VSLL</span>, <span class="sail-id">VV_VSMUL</span>,
+  <span class="sail-id">VV_VSRL</span>, <span class="sail-id">VV_VSRA</span>, <span class="sail-id">VV_VSSRL</span>, <span class="sail-id">VV_VSSRA</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">vvcmpfunct6</span>  = { <span class="sail-id">VVCMP_VMSEQ</span>, <span class="sail-id">VVCMP_VMSNE</span>, <span class="sail-id">VVCMP_VMSLTU</span>, <span class="sail-id">VVCMP_VMSLT</span>, <span class="sail-id">VVCMP_VMSLEU</span>, <span class="sail-id">VVCMP_VMSLE</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">vvmfunct6</span>    = { <span class="sail-id">VVM_VMADC</span>, <span class="sail-id">VVM_VMSBC</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">vvmcfunct6</span>   = { <span class="sail-id">VVMC_VMADC</span>, <span class="sail-id">VVMC_VMSBC</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">vvmsfunct6</span>   = { <span class="sail-id">VVMS_VADC</span>, <span class="sail-id">VVMS_VSBC</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">vxmfunct6</span>    = { <span class="sail-id">VXM_VMADC</span>, <span class="sail-id">VXM_VMSBC</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">vxmcfunct6</span>   = { <span class="sail-id">VXMC_VMADC</span>, <span class="sail-id">VXMC_VMSBC</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">vxmsfunct6</span>   = { <span class="sail-id">VXMS_VADC</span>, <span class="sail-id">VXMS_VSBC</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">vimfunct6</span>    = { <span class="sail-id">VIM_VMADC</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">vimcfunct6</span>   = { <span class="sail-id">VIMC_VMADC</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">vimsfunct6</span>   = { <span class="sail-id">VIMS_VADC</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">vxcmpfunct6</span>  = { <span class="sail-id">VXCMP_VMSEQ</span>, <span class="sail-id">VXCMP_VMSNE</span>, <span class="sail-id">VXCMP_VMSLTU</span>, <span class="sail-id">VXCMP_VMSLT</span>, <span class="sail-id">VXCMP_VMSLEU</span>, <span class="sail-id">VXCMP_VMSLE</span>,
+  <span class="sail-id">VXCMP_VMSGTU</span>, <span class="sail-id">VXCMP_VMSGT</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">vicmpfunct6</span>  = { <span class="sail-id">VICMP_VMSEQ</span>, <span class="sail-id">VICMP_VMSNE</span>, <span class="sail-id">VICMP_VMSLEU</span>, <span class="sail-id">VICMP_VMSLE</span>, <span class="sail-id">VICMP_VMSGTU</span>, <span class="sail-id">VICMP_VMSGT</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">nvfunct6</span>     = { <span class="sail-id">NV_VNCLIPU</span>, <span class="sail-id">NV_VNCLIP</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">nvsfunct6</span>    = { <span class="sail-id">NVS_VNSRL</span>, <span class="sail-id">NVS_VNSRA</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">nxfunct6</span>     = { <span class="sail-id">NX_VNCLIPU</span>, <span class="sail-id">NX_VNCLIP</span>}
+
+<span class="sail-keyword">enum</span> <span class="sail-id">nxsfunct6</span>    = { <span class="sail-id">NXS_VNSRL</span>, <span class="sail-id">NXS_VNSRA</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">mmfunct6</span>     = { <span class="sail-id">MM_VMAND</span>, <span class="sail-id">MM_VMNAND</span>, <span class="sail-id">MM_VMANDN</span>, <span class="sail-id">MM_VMXOR</span>, <span class="sail-id">MM_VMOR</span>, <span class="sail-id">MM_VMNOR</span>, <span class="sail-id">MM_VMORN</span>, <span class="sail-id">MM_VMXNOR</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">nifunct6</span>     = { <span class="sail-id">NI_VNCLIPU</span>, <span class="sail-id">NI_VNCLIP</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">nisfunct6</span>    = { <span class="sail-id">NIS_VNSRL</span>, <span class="sail-id">NIS_VNSRA</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">wvvfunct6</span>    = { <span class="sail-id">WVV_VADD</span>, <span class="sail-id">WVV_VSUB</span>, <span class="sail-id">WVV_VADDU</span>, <span class="sail-id">WVV_VSUBU</span>, <span class="sail-id">WVV_VWMUL</span>, <span class="sail-id">WVV_VWMULU</span>, <span class="sail-id">WVV_VWMULSU</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">wvfunct6</span>     = { <span class="sail-id">WV_VADD</span>, <span class="sail-id">WV_VSUB</span>, <span class="sail-id">WV_VADDU</span>, <span class="sail-id">WV_VSUBU</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">wvxfunct6</span>    = { <span class="sail-id">WVX_VADD</span>, <span class="sail-id">WVX_VSUB</span>, <span class="sail-id">WVX_VADDU</span>, <span class="sail-id">WVX_VSUBU</span>, <span class="sail-id">WVX_VWMUL</span>, <span class="sail-id">WVX_VWMULU</span>, <span class="sail-id">WVX_VWMULSU</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">wxfunct6</span>     = { <span class="sail-id">WX_VADD</span>, <span class="sail-id">WX_VSUB</span>, <span class="sail-id">WX_VADDU</span>, <span class="sail-id">WX_VSUBU</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">vextfunct6</span>   = { <span class="sail-id">VEXT2_ZVF2</span>, <span class="sail-id">VEXT2_SVF2</span>, <span class="sail-id">VEXT4_ZVF4</span>, <span class="sail-id">VEXT4_SVF4</span>, <span class="sail-id">VEXT8_ZVF8</span>, <span class="sail-id">VEXT8_SVF8</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">vxfunct6</span>     = { <span class="sail-id">VX_VADD</span>, <span class="sail-id">VX_VSUB</span>, <span class="sail-id">VX_VRSUB</span>, <span class="sail-id">VX_VMINU</span>, <span class="sail-id">VX_VMIN</span>, <span class="sail-id">VX_VMAXU</span>, <span class="sail-id">VX_VMAX</span>,
+  <span class="sail-id">VX_VAND</span>, <span class="sail-id">VX_VOR</span>, <span class="sail-id">VX_VXOR</span>, <span class="sail-id">VX_VSADDU</span>, <span class="sail-id">VX_VSADD</span>, <span class="sail-id">VX_VSSUBU</span>, <span class="sail-id">VX_VSSUB</span>,
+  <span class="sail-id">VX_VSLL</span>, <span class="sail-id">VX_VSMUL</span>, <span class="sail-id">VX_VSRL</span>, <span class="sail-id">VX_VSRA</span>, <span class="sail-id">VX_VSSRL</span>, <span class="sail-id">VX_VSSRA</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">vifunct6</span>     = { <span class="sail-id">VI_VADD</span>, <span class="sail-id">VI_VRSUB</span>, <span class="sail-id">VI_VAND</span>, <span class="sail-id">VI_VOR</span>, <span class="sail-id">VI_VXOR</span>, <span class="sail-id">VI_VSADDU</span>, <span class="sail-id">VI_VSADD</span>,
+  <span class="sail-id">VI_VSLL</span>, <span class="sail-id">VI_VSRL</span>, <span class="sail-id">VI_VSRA</span>, <span class="sail-id">VI_VSSRL</span>, <span class="sail-id">VI_VSSRA</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">vxsgfunct6</span>   = { <span class="sail-id">VX_VSLIDEUP</span>, <span class="sail-id">VX_VSLIDEDOWN</span>, <span class="sail-id">VX_VRGATHER</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">visgfunct6</span>   = { <span class="sail-id">VI_VSLIDEUP</span>, <span class="sail-id">VI_VSLIDEDOWN</span>, <span class="sail-id">VI_VRGATHER</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">mvvfunct6</span>    = { <span class="sail-id">MVV_VAADDU</span>, <span class="sail-id">MVV_VAADD</span>, <span class="sail-id">MVV_VASUBU</span>, <span class="sail-id">MVV_VASUB</span>, <span class="sail-id">MVV_VMUL</span>, <span class="sail-id">MVV_VMULH</span>,
+  <span class="sail-id">MVV_VMULHU</span>, <span class="sail-id">MVV_VMULHSU</span>, <span class="sail-id">MVV_VDIVU</span>, <span class="sail-id">MVV_VDIV</span>, <span class="sail-id">MVV_VREMU</span>, <span class="sail-id">MVV_VREM</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">mvvmafunct6</span>  = { <span class="sail-id">MVV_VMACC</span>, <span class="sail-id">MVV_VNMSAC</span>, <span class="sail-id">MVV_VMADD</span>, <span class="sail-id">MVV_VNMSUB</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">rmvvfunct6</span>   = { <span class="sail-id">MVV_VREDSUM</span>, <span class="sail-id">MVV_VREDAND</span>, <span class="sail-id">MVV_VREDOR</span>, <span class="sail-id">MVV_VREDXOR</span>,
+  <span class="sail-id">MVV_VREDMINU</span>, <span class="sail-id">MVV_VREDMIN</span>, <span class="sail-id">MVV_VREDMAXU</span>, <span class="sail-id">MVV_VREDMAX</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">rivvfunct6</span>   = { <span class="sail-id">IVV_VWREDSUMU</span>, <span class="sail-id">IVV_VWREDSUM</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">rfvvfunct6</span>   = { <span class="sail-id">FVV_VFREDOSUM</span>, <span class="sail-id">FVV_VFREDUSUM</span>, <span class="sail-id">FVV_VFREDMAX</span>, <span class="sail-id">FVV_VFREDMIN</span>,
+  <span class="sail-id">FVV_VFWREDOSUM</span>, <span class="sail-id">FVV_VFWREDUSUM</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">wmvvfunct6</span>   = { <span class="sail-id">WMVV_VWMACCU</span>, <span class="sail-id">WMVV_VWMACC</span>, <span class="sail-id">WMVV_VWMACCSU</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">mvxfunct6</span>    = { <span class="sail-id">MVX_VAADDU</span>, <span class="sail-id">MVX_VAADD</span>, <span class="sail-id">MVX_VASUBU</span>, <span class="sail-id">MVX_VASUB</span>, <span class="sail-id">MVX_VSLIDE1UP</span>, <span class="sail-id">MVX_VSLIDE1DOWN</span>,
+  <span class="sail-id">MVX_VMUL</span>, <span class="sail-id">MVX_VMULH</span>, <span class="sail-id">MVX_VMULHU</span>, <span class="sail-id">MVX_VMULHSU</span>, <span class="sail-id">MVX_VDIVU</span>, <span class="sail-id">MVX_VDIV</span>, <span class="sail-id">MVX_VREMU</span>, <span class="sail-id">MVX_VREM</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">mvxmafunct6</span>  = { <span class="sail-id">MVX_VMACC</span>, <span class="sail-id">MVX_VNMSAC</span>, <span class="sail-id">MVX_VMADD</span>, <span class="sail-id">MVX_VNMSUB</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">wmvxfunct6</span>   = { <span class="sail-id">WMVX_VWMACCU</span>, <span class="sail-id">WMVX_VWMACC</span>, <span class="sail-id">WMVX_VWMACCUS</span>, <span class="sail-id">WMVX_VWMACCSU</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">maskfunct3</span>   = { <span class="sail-id">VV_VMERGE</span>, <span class="sail-id">VI_VMERGE</span>, <span class="sail-id">VX_VMERGE</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">vlewidth</span>     = { <span class="sail-id">VLE8</span>, <span class="sail-id">VLE16</span>, <span class="sail-id">VLE32</span>, <span class="sail-id">VLE64</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">fvvfunct6</span>    = { <span class="sail-id">FVV_VADD</span>, <span class="sail-id">FVV_VSUB</span>, <span class="sail-id">FVV_VMIN</span>, <span class="sail-id">FVV_VMAX</span>, <span class="sail-id">FVV_VSGNJ</span>, <span class="sail-id">FVV_VSGNJN</span>, <span class="sail-id">FVV_VSGNJX</span>,
+  <span class="sail-id">FVV_VDIV</span>, <span class="sail-id">FVV_VMUL</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">fvvmafunct6</span>  = { <span class="sail-id">FVV_VMADD</span>, <span class="sail-id">FVV_VNMADD</span>, <span class="sail-id">FVV_VMSUB</span>, <span class="sail-id">FVV_VNMSUB</span>, <span class="sail-id">FVV_VMACC</span>, <span class="sail-id">FVV_VNMACC</span>, <span class="sail-id">FVV_VMSAC</span>, <span class="sail-id">FVV_VNMSAC</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">fwvvfunct6</span>   = { <span class="sail-id">FWVV_VADD</span>, <span class="sail-id">FWVV_VSUB</span>, <span class="sail-id">FWVV_VMUL</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">fwvvmafunct6</span> = { <span class="sail-id">FWVV_VMACC</span>, <span class="sail-id">FWVV_VNMACC</span>, <span class="sail-id">FWVV_VMSAC</span>, <span class="sail-id">FWVV_VNMSAC</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">fwvfunct6</span>    = { <span class="sail-id">FWV_VADD</span>, <span class="sail-id">FWV_VSUB</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">fvvmfunct6</span>   = { <span class="sail-id">FVVM_VMFEQ</span>, <span class="sail-id">FVVM_VMFLE</span>, <span class="sail-id">FVVM_VMFLT</span>, <span class="sail-id">FVVM_VMFNE</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">vfunary0</span>     = { <span class="sail-id">FV_CVT_XU_F</span>, <span class="sail-id">FV_CVT_X_F</span>, <span class="sail-id">FV_CVT_F_XU</span>, <span class="sail-id">FV_CVT_F_X</span>, <span class="sail-id">FV_CVT_RTZ_XU_F</span>, <span class="sail-id">FV_CVT_RTZ_X_F</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">vfwunary0</span>    = { <span class="sail-id">FWV_CVT_XU_F</span>, <span class="sail-id">FWV_CVT_X_F</span>, <span class="sail-id">FWV_CVT_F_XU</span>, <span class="sail-id">FWV_CVT_F_X</span>, <span class="sail-id">FWV_CVT_F_F</span>,
+  <span class="sail-id">FWV_CVT_RTZ_XU_F</span>, <span class="sail-id">FWV_CVT_RTZ_X_F</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">vfnunary0</span>    = { <span class="sail-id">FNV_CVT_XU_F</span>, <span class="sail-id">FNV_CVT_X_F</span>, <span class="sail-id">FNV_CVT_F_XU</span>, <span class="sail-id">FNV_CVT_F_X</span>, <span class="sail-id">FNV_CVT_F_F</span>,
+  <span class="sail-id">FNV_CVT_ROD_F_F</span>, <span class="sail-id">FNV_CVT_RTZ_XU_F</span>, <span class="sail-id">FNV_CVT_RTZ_X_F</span>}
+
+<span class="sail-keyword">enum</span> <span class="sail-id">vfunary1</span>     = { <span class="sail-id">FVV_VSQRT</span>, <span class="sail-id">FVV_VRSQRT7</span>, <span class="sail-id">FVV_VREC7</span>, <span class="sail-id">FVV_VCLASS</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">fvffunct6</span>    = { <span class="sail-id">VF_VADD</span>, <span class="sail-id">VF_VSUB</span>, <span class="sail-id">VF_VMIN</span>, <span class="sail-id">VF_VMAX</span>, <span class="sail-id">VF_VSGNJ</span>, <span class="sail-id">VF_VSGNJN</span>, <span class="sail-id">VF_VSGNJX</span>,
+  <span class="sail-id">VF_VDIV</span>, <span class="sail-id">VF_VRDIV</span>, <span class="sail-id">VF_VMUL</span>, <span class="sail-id">VF_VRSUB</span>, <span class="sail-id">VF_VSLIDE1UP</span>, <span class="sail-id">VF_VSLIDE1DOWN</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">fvfmafunct6</span>  = { <span class="sail-id">VF_VMADD</span>, <span class="sail-id">VF_VNMADD</span>, <span class="sail-id">VF_VMSUB</span>, <span class="sail-id">VF_VNMSUB</span>, <span class="sail-id">VF_VMACC</span>, <span class="sail-id">VF_VNMACC</span>, <span class="sail-id">VF_VMSAC</span>, <span class="sail-id">VF_VNMSAC</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">fwvffunct6</span>   = { <span class="sail-id">FWVF_VADD</span>, <span class="sail-id">FWVF_VSUB</span>, <span class="sail-id">FWVF_VMUL</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">fwvfmafunct6</span> = { <span class="sail-id">FWVF_VMACC</span>, <span class="sail-id">FWVF_VNMACC</span>, <span class="sail-id">FWVF_VMSAC</span>, <span class="sail-id">FWVF_VNMSAC</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">fwffunct6</span>    = { <span class="sail-id">FWF_VADD</span>, <span class="sail-id">FWF_VSUB</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">fvfmfunct6</span>   = { <span class="sail-id">VFM_VMFEQ</span>, <span class="sail-id">VFM_VMFLE</span>, <span class="sail-id">VFM_VMFLT</span>, <span class="sail-id">VFM_VMFNE</span>, <span class="sail-id">VFM_VMFGT</span>, <span class="sail-id">VFM_VMFGE</span> }
+
+<span class="sail-keyword">enum</span> <span class="sail-id">vmlsop</span>       = { <span class="sail-id">VLM</span>, <span class="sail-id">VSM</span> }
+</pre>
+</div>
+</div>
+</body>
+</html>

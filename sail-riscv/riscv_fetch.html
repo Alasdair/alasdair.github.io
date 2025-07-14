@@ -1,0 +1,92 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>.sail-id { color: black; }
+.sail-keyword { font-weight: bold; color: maroon; }
+.sail-kind { color: purple; }
+.sail-comment { color: green; }
+.sail-string { color: red; }
+.sail-pragma { font-weight: bold; color: blue; }
+.sail-internal { font-weight: bold; color: red; }
+.sail-operator { color: maroon; }
+.sail-literal { color: teal; }
+.sail-ty-var { color: blue; }
+#sail-html-columns { display: flex; width: 100%; }
+#sail-html-lines { padding-left: 10px; padding-right: 10px; width: min-content; text-align: right; white-space: nowrap; }
+#sail-html-source { padding-left: 10px; flex: 1; }
+:target { background: yellow; }
+</style>
+</head>
+<body>
+<pre>
+<div id="sail-html-columns">
+<div id="sail-html-lines"><span id="L1">1</span><br /><span id="L2">2</span><br /><span id="L3">3</span><br /><span id="L4">4</span><br /><span id="L5">5</span><br /><span id="L6">6</span><br /><span id="L7">7</span><br /><span id="L8">8</span><br /><span id="L9">9</span><br /><span id="L10">10</span><br /><span id="L11">11</span><br /><span id="L12">12</span><br /><span id="L13">13</span><br /><span id="L14">14</span><br /><span id="L15">15</span><br /><span id="L16">16</span><br /><span id="L17">17</span><br /><span id="L18">18</span><br /><span id="L19">19</span><br /><span id="L20">20</span><br /><span id="L21">21</span><br /><span id="L22">22</span><br /><span id="L23">23</span><br /><span id="L24">24</span><br /><span id="L25">25</span><br /><span id="L26">26</span><br /><span id="L27">27</span><br /><span id="L28">28</span><br /><span id="L29">29</span><br /><span id="L30">30</span><br /><span id="L31">31</span><br /><span id="L32">32</span><br /><span id="L33">33</span><br /><span id="L34">34</span><br /><span id="L35">35</span><br /><span id="L36">36</span><br /><span id="L37">37</span><br /><span id="L38">38</span><br /><span id="L39">39</span><br /><span id="L40">40</span><br /><span id="L41">41</span><br /><span id="L42">42</span><br /><span id="L43">43</span><br /><span id="L44">44</span><br /><span id="L45">45</span><br /><span id="L46">46</span><br /><span id="L47">47</span><br /><span id="L48">48</span><br /><span id="L49">49</span><br /><span id="L50">50</span><br /><span id="L51">51</span><br /><span id="L52">52</span><br /><span id="L53">53</span><br /><span id="L54">54</span><br /><span id="L55">55</span><br /><span id="L56">56</span><br /><span id="L57">57</span><br /><span id="L58">58</span><br /><span id="L59">59</span><br /><span id="L60">60</span><br /><span id="L61">61</span><br /><span id="L62">62</span><br /><span id="L63">63</span><br /><span id="L64">64</span><br /></div>
+<div id="sail-html-source"><span class="sail-comment">/*=======================================================================================*/</span>
+<span class="sail-comment">/*  This Sail RISC-V architecture model, comprising all files and                        */</span>
+<span class="sail-comment">/*  directories except where otherwise noted is subject the BSD                          */</span>
+<span class="sail-comment">/*  two-clause license in the LICENSE file.                                              */</span>
+<span class="sail-comment">/*                                                                                       */</span>
+<span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
+<span class="sail-comment">/*=======================================================================================*/</span>
+
+<span class="sail-comment">/* Current fetch hooks for RISC-V extensions call extensions
+ * to check PC validity *before* standard fetch processing checks.
+ */</span>
+
+<span class="sail-keyword">function</span> <span class="sail-id">isRVC</span>(<span class="sail-id">h</span> : <span class="sail-id">half</span>) -&gt; <span class="sail-id">bool</span> = <a href=".././prelude.html#L29"><span class="sail-id">not</span></a>(<span class="sail-id">h</span>[<span class="sail-literal">1</span> .. <span class="sail-literal">0</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b11</span>)
+
+<span class="sail-keyword">function</span> <span class="sail-id">fetch</span>() -&gt; <span class="sail-id">FetchResult</span> = {
+  <span class="sail-comment">/* fetch PC check for extensions: extensions return a transformed PC to fetch,
+   * but any exceptions use the untransformed PC.
+   */</span>
+  <span class="sail-comment">// TODO: Add a parameter to try_step() to allow forcing the fetch result and use that instead.
+</span>  <span class="sail-keyword">if</span> <a href=".././prelude.html#L79"><span class="sail-id">get_config_rvfi</span></a>()
+  <span class="sail-keyword">then</span> <span class="sail-keyword">return</span> <a href=".././riscv_fetch_rvfi.html#L9"><span class="sail-id">rvfi_fetch</span></a>();
+  <span class="sail-keyword">match</span> <a href=".././riscv_addr_checks.html#L20"><span class="sail-id">ext_fetch_check_pc</span></a>(<a href=".././riscv_regs.html#L11"><span class="sail-id">PC</span></a>, <a href=".././riscv_regs.html#L11"><span class="sail-id">PC</span></a>) {
+    <span class="sail-id">Ext_FetchAddr_Error</span>(<span class="sail-id">e</span>)   =&gt; <span class="sail-id">F_Ext_Error</span>(<span class="sail-id">e</span>),
+    <span class="sail-id">Ext_FetchAddr_OK</span>(<span class="sail-id">use_pc</span>) =&gt; {
+      <span class="sail-keyword">let</span> <span class="sail-id">use_pc_bits</span> = <span class="sail-id">bits_of</span>(<span class="sail-id">use_pc</span>);
+      <span class="sail-keyword">if</span>   (<span class="sail-id">use_pc_bits</span>[<span class="sail-literal">0</span>] <span class="sail-operator">!=</span> <span class="sail-literal">bitzero</span> <span class="sail-operator">|</span> (<span class="sail-id">use_pc_bits</span>[<span class="sail-literal">1</span>] <span class="sail-operator">!=</span> <span class="sail-literal">bitzero</span> <span class="sail-operator">&amp;</span> <a href=".././prelude.html#L29"><span class="sail-id">not</span></a>(<a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zca</span>))))
+      <span class="sail-keyword">then</span> <span class="sail-id">F_Error</span>(<span class="sail-id">E_Fetch_Addr_Align</span>(), <a href=".././riscv_regs.html#L11"><span class="sail-id">PC</span></a>)
+      <span class="sail-keyword">else</span> <span class="sail-keyword">match</span> <a href=".././riscv_vmem.html#L356"><span class="sail-id">translateAddr</span></a>(<span class="sail-id">use_pc</span>, <span class="sail-id">InstructionFetch</span>()) {
+        <span class="sail-id">Err</span>(<span class="sail-id">e</span>, _)    =&gt; <span class="sail-id">F_Error</span>(<span class="sail-id">e</span>, <a href=".././riscv_regs.html#L11"><span class="sail-id">PC</span></a>),
+        <span class="sail-id">Ok</span>(<span class="sail-id">ppclo</span>, _) =&gt; {
+          <span class="sail-comment">/* split instruction fetch into 16-bit granules to handle RVC, as
+           * well as to generate precise fault addresses in any fetch
+           * exceptions.
+           */</span>
+          <span class="sail-keyword">match</span> <a href=".././riscv_mem.html#L165"><span class="sail-id">mem_read</span></a>(<span class="sail-id">InstructionFetch</span>(), <span class="sail-id">ppclo</span>, <span class="sail-literal">2</span>, <span class="sail-literal">false</span>, <span class="sail-literal">false</span>, <span class="sail-literal">false</span>) {
+            <span class="sail-id">Err</span>(<span class="sail-id">e</span>)  =&gt; <span class="sail-id">F_Error</span>(<span class="sail-id">e</span>, <a href=".././riscv_regs.html#L11"><span class="sail-id">PC</span></a>),
+            <span class="sail-id">Ok</span>(<span class="sail-id">ilo</span>) =&gt; {
+              <span class="sail-keyword">if</span>   <a href=".././riscv_fetch.html#L13"><span class="sail-id">isRVC</span></a>(<span class="sail-id">ilo</span>)
+              <span class="sail-keyword">then</span> <span class="sail-id">F_RVC</span>(<span class="sail-id">ilo</span>)
+              <span class="sail-keyword">else</span> {
+                <span class="sail-comment">/* fetch PC check for the next instruction granule */</span>
+                <span class="sail-keyword">let</span> <span class="sail-id">PC_hi</span> = <a href=".././riscv_regs.html#L11"><span class="sail-id">PC</span></a> <span class="sail-operator">+</span> <span class="sail-literal">2</span>;
+                <span class="sail-keyword">match</span> <a href=".././riscv_addr_checks.html#L20"><span class="sail-id">ext_fetch_check_pc</span></a>(<a href=".././riscv_regs.html#L11"><span class="sail-id">PC</span></a>, <span class="sail-id">PC_hi</span>) {
+                  <span class="sail-id">Ext_FetchAddr_Error</span>(<span class="sail-id">e</span>)      =&gt; <span class="sail-id">F_Ext_Error</span>(<span class="sail-id">e</span>),
+                  <span class="sail-id">Ext_FetchAddr_OK</span>(<span class="sail-id">use_pc_hi</span>) =&gt; {
+                    <span class="sail-keyword">match</span> <a href=".././riscv_vmem.html#L356"><span class="sail-id">translateAddr</span></a>(<span class="sail-id">use_pc_hi</span>, <span class="sail-id">InstructionFetch</span>()) {
+                      <span class="sail-id">Err</span>(<span class="sail-id">e</span>, _)    =&gt; <span class="sail-id">F_Error</span>(<span class="sail-id">e</span>, <span class="sail-id">PC_hi</span>),
+                      <span class="sail-id">Ok</span>(<span class="sail-id">ppchi</span>, _) =&gt; {
+                        <span class="sail-keyword">match</span> <a href=".././riscv_mem.html#L165"><span class="sail-id">mem_read</span></a>(<span class="sail-id">InstructionFetch</span>(), <span class="sail-id">ppchi</span>, <span class="sail-literal">2</span>, <span class="sail-literal">false</span>, <span class="sail-literal">false</span>, <span class="sail-literal">false</span>) {
+                          <span class="sail-id">Err</span>(<span class="sail-id">e</span>)  =&gt; <span class="sail-id">F_Error</span>(<span class="sail-id">e</span>, <span class="sail-id">PC_hi</span>),
+                          <span class="sail-id">Ok</span>(<span class="sail-id">ihi</span>) =&gt; <span class="sail-id">F_Base</span>(<span class="sail-id">append</span>(<span class="sail-id">ihi</span>, <span class="sail-id">ilo</span>))
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</pre>
+</div>
+</div>
+</body>
+</html>
