@@ -34,13 +34,13 @@
 
 <span class="sail-comment">/* ****************************************************************** */</span>
 
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zifencei</span>) = <a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zifencei</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zifencei</span>) = <a href="./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zifencei</span>)
 
 <span class="sail-keyword">union</span> <span class="sail-keyword">clause</span> <span class="sail-id">instruction</span> = <span class="sail-id">FENCEI</span> : <span class="sail-id">unit</span>
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">FENCEI</span>()
   &lt;-&gt; <span class="sail-literal">0b000000000000</span> @ <span class="sail-literal">0b00000</span> @ <span class="sail-literal">0b001</span> @ <span class="sail-literal">0b00000</span> @ <span class="sail-literal">0b0001111</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zifencei</span>)
+  <span class="sail-keyword">when</span> <a href="./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zifencei</span>)
 
 <span class="sail-comment">/* fence.i is a nop for the memory model */</span>
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> <span class="sail-id">FENCEI</span>() = { <span class="sail-comment">/* __barrier(Barrier_RISCV_i); */</span> <span class="sail-id">RETIRE_SUCCESS</span> }

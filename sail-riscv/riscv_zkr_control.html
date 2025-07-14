@@ -30,7 +30,7 @@
 <span class="sail-comment">/*=======================================================================================*/</span>
 
 <span class="sail-comment">/* Zkr entropy seed source */</span>
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zkr</span>) = <a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zkr</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zkr</span>) = <a href="./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zkr</span>)
 
 <span class="sail-comment">/* Valid return states for reading the seed CSR. */</span>
 <span class="sail-keyword">enum</span> <span class="sail-id">seed_opst</span> = {
@@ -56,18 +56,18 @@
 <span class="sail-keyword">function</span> <span class="sail-id">read_seed_csr</span>() -&gt; <span class="sail-id">xlenbits</span> = {
   <span class="sail-keyword">let</span> <span class="sail-id">reserved_bits</span> : <span class="sail-id">bits</span>(<span class="sail-literal">6</span>) = <span class="sail-literal">0b000000</span>;
   <span class="sail-keyword">let</span> <span class="sail-id">custom_bits</span> : <span class="sail-id">bits</span>(<span class="sail-literal">8</span>) = <span class="sail-literal">0x00</span>;
-  <span class="sail-keyword">let</span> <span class="sail-id">seed</span> : <span class="sail-id">bits</span>(<span class="sail-literal">16</span>) = <a href="sail-riscv/./riscv_sys_regs.html#L945"><span class="sail-id">get_16_random_bits</span></a>();
-  <a href="sail-riscv/./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">opst_code</span>(<span class="sail-id">ES16</span>) @ <span class="sail-id">reserved_bits</span> @ <span class="sail-id">custom_bits</span> @ <span class="sail-id">seed</span>)
+  <span class="sail-keyword">let</span> <span class="sail-id">seed</span> : <span class="sail-id">bits</span>(<span class="sail-literal">16</span>) = <a href="./riscv_sys_regs.html#L945"><span class="sail-id">get_16_random_bits</span></a>();
+  <a href="./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">opst_code</span>(<span class="sail-id">ES16</span>) @ <span class="sail-id">reserved_bits</span> @ <span class="sail-id">custom_bits</span> @ <span class="sail-id">seed</span>)
 }
 
 <span class="sail-comment">/* Writes to the seed CSR are ignored */</span>
-<span class="sail-keyword">function</span> <span class="sail-id">write_seed_csr</span> () -&gt; <span class="sail-id">xlenbits</span> = <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>()
+<span class="sail-keyword">function</span> <span class="sail-id">write_seed_csr</span> () -&gt; <span class="sail-id">xlenbits</span> = <a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>()
 
 <span class="sail-comment">/* CSR mapping */</span>
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">csr_name_map</span> = <span class="sail-literal">0x015</span>  &lt;-&gt; <span class="sail-string">"seed"</span>
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">is_CSR_defined</span>(<span class="sail-literal">0x015</span>) = <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zkr</span>)
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">read_CSR</span>(<span class="sail-literal">0x015</span>) = <a href="sail-riscv/./riscv_zkr_control.html#L33"><span class="sail-id">read_seed_csr</span></a>()
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">write_CSR</span>(<span class="sail-literal">0x015</span>, <span class="sail-id">value</span>) = <a href="sail-riscv/./riscv_zkr_control.html#L41"><span class="sail-id">write_seed_csr</span></a>()
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">is_CSR_defined</span>(<span class="sail-literal">0x015</span>) = <a href="./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zkr</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">read_CSR</span>(<span class="sail-literal">0x015</span>) = <a href="./riscv_zkr_control.html#L33"><span class="sail-id">read_seed_csr</span></a>()
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">write_CSR</span>(<span class="sail-literal">0x015</span>, <span class="sail-id">value</span>) = <a href="./riscv_zkr_control.html#L41"><span class="sail-id">write_seed_csr</span></a>()
 </pre>
 </div>
 </div>

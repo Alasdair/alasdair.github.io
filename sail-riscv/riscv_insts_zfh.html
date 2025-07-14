@@ -29,8 +29,8 @@
 <span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
 <span class="sail-comment">/*=======================================================================================*/</span>
 
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zhinx</span>) = <a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zhinx</span>) <span class="sail-operator">&amp;</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zfinx</span>)
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zhinxmin</span>) = (<a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zhinxmin</span>) <span class="sail-operator">&amp;</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zfinx</span>))<span class="sail-operator">|</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zhinx</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zhinx</span>) = <a href="./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zhinx</span>) <span class="sail-operator">&amp;</span> <a href="./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zfinx</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zhinxmin</span>) = (<a href="./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zhinxmin</span>) <span class="sail-operator">&amp;</span> <a href="./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zfinx</span>))<span class="sail-operator">|</span> <a href="./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zhinx</span>)
 
 <span class="sail-comment">/* **************************************************************** */</span>
 <span class="sail-comment">/* This file specifies the instructions in the Zfh extension        */</span>
@@ -59,105 +59,105 @@
 
 <span class="sail-keyword">val</span>      <span class="sail-id">negate_H</span> : <span class="sail-id">bits</span>(<span class="sail-literal">16</span>) -&gt; <span class="sail-id">bits</span>(<span class="sail-literal">16</span>)
 <span class="sail-keyword">function</span> <span class="sail-id">negate_H</span> (<span class="sail-id">xf16</span>) = {
-  <span class="sail-keyword">let</span> (<span class="sail-id">sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>) = <a href="sail-riscv/./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">xf16</span>);
+  <span class="sail-keyword">let</span> (<span class="sail-id">sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>) = <a href="./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">xf16</span>);
   <span class="sail-keyword">let</span> <span class="sail-id">new_sign</span> = <span class="sail-keyword">if</span> (<span class="sail-id">sign</span> <span class="sail-operator">==</span> <span class="sail-literal">0b0</span>) <span class="sail-keyword">then</span> <span class="sail-literal">0b1</span> <span class="sail-keyword">else</span> <span class="sail-literal">0b0</span>;
-  <a href="sail-riscv/./riscv_insts_zfh.html#L35"><span class="sail-id">fmake_H</span></a> (<span class="sail-id">new_sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>)
+  <a href="./riscv_insts_zfh.html#L35"><span class="sail-id">fmake_H</span></a> (<span class="sail-id">new_sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>)
 }
 
 <span class="sail-keyword">val</span>      <span class="sail-id">f_is_neg_inf_H</span> : <span class="sail-id">bits</span>(<span class="sail-literal">16</span>) -&gt; <span class="sail-id">bool</span>
 <span class="sail-keyword">function</span> <span class="sail-id">f_is_neg_inf_H</span>   <span class="sail-id">xf16</span> = {
-  <span class="sail-keyword">let</span> (<span class="sail-id">sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>) = <a href="sail-riscv/./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">xf16</span>);
+  <span class="sail-keyword">let</span> (<span class="sail-id">sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>) = <a href="./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">xf16</span>);
   (  (<span class="sail-id">sign</span> <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>)
-   <span class="sail-operator">&amp;</span> (<span class="sail-id">exp</span>  <span class="sail-operator">==</span> <a href="sail-riscv/./prelude.html#L92"><span class="sail-id">ones</span></a>())
-   <span class="sail-operator">&amp;</span> (<span class="sail-id">mant</span> <span class="sail-operator">==</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>()))
+   <span class="sail-operator">&amp;</span> (<span class="sail-id">exp</span>  <span class="sail-operator">==</span> <a href="./prelude.html#L92"><span class="sail-id">ones</span></a>())
+   <span class="sail-operator">&amp;</span> (<span class="sail-id">mant</span> <span class="sail-operator">==</span> <a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>()))
 }
 
 <span class="sail-keyword">val</span>      <span class="sail-id">f_is_neg_norm_H</span> : <span class="sail-id">bits</span>(<span class="sail-literal">16</span>) -&gt; <span class="sail-id">bool</span>
 <span class="sail-keyword">function</span> <span class="sail-id">f_is_neg_norm_H</span>   <span class="sail-id">xf16</span> = {
-  <span class="sail-keyword">let</span> (<span class="sail-id">sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>) = <a href="sail-riscv/./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">xf16</span>);
+  <span class="sail-keyword">let</span> (<span class="sail-id">sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>) = <a href="./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">xf16</span>);
   (  (<span class="sail-id">sign</span> <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>)
-   <span class="sail-operator">&amp;</span> (<span class="sail-id">exp</span>  <span class="sail-operator">!=</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>())
-   <span class="sail-operator">&amp;</span> (<span class="sail-id">exp</span>  <span class="sail-operator">!=</span> <a href="sail-riscv/./prelude.html#L92"><span class="sail-id">ones</span></a>()))
+   <span class="sail-operator">&amp;</span> (<span class="sail-id">exp</span>  <span class="sail-operator">!=</span> <a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>())
+   <span class="sail-operator">&amp;</span> (<span class="sail-id">exp</span>  <span class="sail-operator">!=</span> <a href="./prelude.html#L92"><span class="sail-id">ones</span></a>()))
 }
 
 <span class="sail-keyword">val</span>      <span class="sail-id">f_is_neg_subnorm_H</span> : <span class="sail-id">bits</span>(<span class="sail-literal">16</span>) -&gt; <span class="sail-id">bool</span>
 <span class="sail-keyword">function</span> <span class="sail-id">f_is_neg_subnorm_H</span>   <span class="sail-id">xf16</span> = {
-  <span class="sail-keyword">let</span> (<span class="sail-id">sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>) = <a href="sail-riscv/./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">xf16</span>);
+  <span class="sail-keyword">let</span> (<span class="sail-id">sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>) = <a href="./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">xf16</span>);
   (  (<span class="sail-id">sign</span> <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>)
-   <span class="sail-operator">&amp;</span> (<span class="sail-id">exp</span>  <span class="sail-operator">==</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>())
-   <span class="sail-operator">&amp;</span> (<span class="sail-id">mant</span> <span class="sail-operator">!=</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>()))
+   <span class="sail-operator">&amp;</span> (<span class="sail-id">exp</span>  <span class="sail-operator">==</span> <a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>())
+   <span class="sail-operator">&amp;</span> (<span class="sail-id">mant</span> <span class="sail-operator">!=</span> <a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>()))
 }
 
 <span class="sail-keyword">val</span>      <span class="sail-id">f_is_pos_subnorm_H</span> : <span class="sail-id">bits</span>(<span class="sail-literal">16</span>) -&gt; <span class="sail-id">bool</span>
 <span class="sail-keyword">function</span> <span class="sail-id">f_is_pos_subnorm_H</span>   <span class="sail-id">xf16</span> = {
-  <span class="sail-keyword">let</span> (<span class="sail-id">sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>) = <a href="sail-riscv/./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">xf16</span>);
-  (  (<span class="sail-id">sign</span> <span class="sail-operator">==</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>())
-   <span class="sail-operator">&amp;</span> (<span class="sail-id">exp</span>  <span class="sail-operator">==</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>())
-   <span class="sail-operator">&amp;</span> (<span class="sail-id">mant</span> <span class="sail-operator">!=</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>()))
+  <span class="sail-keyword">let</span> (<span class="sail-id">sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>) = <a href="./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">xf16</span>);
+  (  (<span class="sail-id">sign</span> <span class="sail-operator">==</span> <a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>())
+   <span class="sail-operator">&amp;</span> (<span class="sail-id">exp</span>  <span class="sail-operator">==</span> <a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>())
+   <span class="sail-operator">&amp;</span> (<span class="sail-id">mant</span> <span class="sail-operator">!=</span> <a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>()))
 }
 
 <span class="sail-keyword">val</span>      <span class="sail-id">f_is_pos_norm_H</span> : <span class="sail-id">bits</span>(<span class="sail-literal">16</span>) -&gt; <span class="sail-id">bool</span>
 <span class="sail-keyword">function</span> <span class="sail-id">f_is_pos_norm_H</span>   <span class="sail-id">xf16</span> = {
-  <span class="sail-keyword">let</span> (<span class="sail-id">sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>) = <a href="sail-riscv/./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">xf16</span>);
-  (  (<span class="sail-id">sign</span> <span class="sail-operator">==</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>())
-   <span class="sail-operator">&amp;</span> (<span class="sail-id">exp</span>  <span class="sail-operator">!=</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>())
-   <span class="sail-operator">&amp;</span> (<span class="sail-id">exp</span>  <span class="sail-operator">!=</span> <a href="sail-riscv/./prelude.html#L92"><span class="sail-id">ones</span></a>()))
+  <span class="sail-keyword">let</span> (<span class="sail-id">sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>) = <a href="./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">xf16</span>);
+  (  (<span class="sail-id">sign</span> <span class="sail-operator">==</span> <a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>())
+   <span class="sail-operator">&amp;</span> (<span class="sail-id">exp</span>  <span class="sail-operator">!=</span> <a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>())
+   <span class="sail-operator">&amp;</span> (<span class="sail-id">exp</span>  <span class="sail-operator">!=</span> <a href="./prelude.html#L92"><span class="sail-id">ones</span></a>()))
 }
 
 <span class="sail-keyword">val</span>      <span class="sail-id">f_is_pos_inf_H</span> : <span class="sail-id">bits</span>(<span class="sail-literal">16</span>) -&gt; <span class="sail-id">bool</span>
 <span class="sail-keyword">function</span> <span class="sail-id">f_is_pos_inf_H</span>   <span class="sail-id">xf16</span> = {
-  <span class="sail-keyword">let</span> (<span class="sail-id">sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>) = <a href="sail-riscv/./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">xf16</span>);
-  (  (<span class="sail-id">sign</span> <span class="sail-operator">==</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>())
-   <span class="sail-operator">&amp;</span> (<span class="sail-id">exp</span>  <span class="sail-operator">==</span> <a href="sail-riscv/./prelude.html#L92"><span class="sail-id">ones</span></a>())
-   <span class="sail-operator">&amp;</span> (<span class="sail-id">mant</span> <span class="sail-operator">==</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>()))
+  <span class="sail-keyword">let</span> (<span class="sail-id">sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>) = <a href="./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">xf16</span>);
+  (  (<span class="sail-id">sign</span> <span class="sail-operator">==</span> <a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>())
+   <span class="sail-operator">&amp;</span> (<span class="sail-id">exp</span>  <span class="sail-operator">==</span> <a href="./prelude.html#L92"><span class="sail-id">ones</span></a>())
+   <span class="sail-operator">&amp;</span> (<span class="sail-id">mant</span> <span class="sail-operator">==</span> <a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>()))
 }
 
 <span class="sail-keyword">val</span>      <span class="sail-id">f_is_neg_zero_H</span> : <span class="sail-id">bits</span>(<span class="sail-literal">16</span>) -&gt; <span class="sail-id">bool</span>
 <span class="sail-keyword">function</span> <span class="sail-id">f_is_neg_zero_H</span>   <span class="sail-id">xf16</span> = {
-  <span class="sail-keyword">let</span> (<span class="sail-id">sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>) = <a href="sail-riscv/./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">xf16</span>);
-  (  (<span class="sail-id">sign</span> <span class="sail-operator">==</span> <a href="sail-riscv/./prelude.html#L92"><span class="sail-id">ones</span></a>())
-   <span class="sail-operator">&amp;</span> (<span class="sail-id">exp</span>  <span class="sail-operator">==</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>())
-   <span class="sail-operator">&amp;</span> (<span class="sail-id">mant</span> <span class="sail-operator">==</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>()))
+  <span class="sail-keyword">let</span> (<span class="sail-id">sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>) = <a href="./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">xf16</span>);
+  (  (<span class="sail-id">sign</span> <span class="sail-operator">==</span> <a href="./prelude.html#L92"><span class="sail-id">ones</span></a>())
+   <span class="sail-operator">&amp;</span> (<span class="sail-id">exp</span>  <span class="sail-operator">==</span> <a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>())
+   <span class="sail-operator">&amp;</span> (<span class="sail-id">mant</span> <span class="sail-operator">==</span> <a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>()))
 }
 
 <span class="sail-keyword">val</span>      <span class="sail-id">f_is_pos_zero_H</span> : <span class="sail-id">bits</span>(<span class="sail-literal">16</span>) -&gt; <span class="sail-id">bool</span>
 <span class="sail-keyword">function</span> <span class="sail-id">f_is_pos_zero_H</span>   <span class="sail-id">xf16</span> = {
-  <span class="sail-keyword">let</span> (<span class="sail-id">sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>) = <a href="sail-riscv/./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">xf16</span>);
-  (  (<span class="sail-id">sign</span> <span class="sail-operator">==</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>())
-   <span class="sail-operator">&amp;</span> (<span class="sail-id">exp</span>  <span class="sail-operator">==</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>())
-   <span class="sail-operator">&amp;</span> (<span class="sail-id">mant</span> <span class="sail-operator">==</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>()))
+  <span class="sail-keyword">let</span> (<span class="sail-id">sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>) = <a href="./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">xf16</span>);
+  (  (<span class="sail-id">sign</span> <span class="sail-operator">==</span> <a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>())
+   <span class="sail-operator">&amp;</span> (<span class="sail-id">exp</span>  <span class="sail-operator">==</span> <a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>())
+   <span class="sail-operator">&amp;</span> (<span class="sail-id">mant</span> <span class="sail-operator">==</span> <a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>()))
 }
 
 <span class="sail-keyword">val</span>      <span class="sail-id">f_is_SNaN_H</span> : <span class="sail-id">bits</span>(<span class="sail-literal">16</span>) -&gt; <span class="sail-id">bool</span>
 <span class="sail-keyword">function</span> <span class="sail-id">f_is_SNaN_H</span>   <span class="sail-id">xf16</span> = {
-  <span class="sail-keyword">let</span> (<span class="sail-id">sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>) = <a href="sail-riscv/./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">xf16</span>);
-  (  (<span class="sail-id">exp</span> <span class="sail-operator">==</span> <a href="sail-riscv/./prelude.html#L92"><span class="sail-id">ones</span></a>())
+  <span class="sail-keyword">let</span> (<span class="sail-id">sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>) = <a href="./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">xf16</span>);
+  (  (<span class="sail-id">exp</span> <span class="sail-operator">==</span> <a href="./prelude.html#L92"><span class="sail-id">ones</span></a>())
    <span class="sail-operator">&amp;</span> (<span class="sail-id">mant</span> [<span class="sail-literal">9</span>] <span class="sail-operator">==</span> <span class="sail-literal">bitzero</span>)
-   <span class="sail-operator">&amp;</span> (<span class="sail-id">mant</span> <span class="sail-operator">!=</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>()))
+   <span class="sail-operator">&amp;</span> (<span class="sail-id">mant</span> <span class="sail-operator">!=</span> <a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>()))
 }
 
 <span class="sail-keyword">val</span>      <span class="sail-id">f_is_QNaN_H</span> : <span class="sail-id">bits</span>(<span class="sail-literal">16</span>) -&gt; <span class="sail-id">bool</span>
 <span class="sail-keyword">function</span> <span class="sail-id">f_is_QNaN_H</span>   <span class="sail-id">xf16</span> = {
-  <span class="sail-keyword">let</span> (<span class="sail-id">sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>) = <a href="sail-riscv/./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">xf16</span>);
-  (  (<span class="sail-id">exp</span> <span class="sail-operator">==</span> <a href="sail-riscv/./prelude.html#L92"><span class="sail-id">ones</span></a>())
+  <span class="sail-keyword">let</span> (<span class="sail-id">sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>) = <a href="./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">xf16</span>);
+  (  (<span class="sail-id">exp</span> <span class="sail-operator">==</span> <a href="./prelude.html#L92"><span class="sail-id">ones</span></a>())
    <span class="sail-operator">&amp;</span> (<span class="sail-id">mant</span> [<span class="sail-literal">9</span>] <span class="sail-operator">==</span> <span class="sail-literal">bitone</span>))
 }
 
 <span class="sail-comment">/* Either QNaN or SNan */</span>
 <span class="sail-keyword">val</span>      <span class="sail-id">f_is_NaN_H</span> : <span class="sail-id">bits</span>(<span class="sail-literal">16</span>) -&gt; <span class="sail-id">bool</span>
 <span class="sail-keyword">function</span> <span class="sail-id">f_is_NaN_H</span>   <span class="sail-id">xf16</span> = {
-  <span class="sail-keyword">let</span> (<span class="sail-id">sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>) = <a href="sail-riscv/./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">xf16</span>);
-  (  (<span class="sail-id">exp</span> <span class="sail-operator">==</span> <a href="sail-riscv/./prelude.html#L92"><span class="sail-id">ones</span></a>())
-   <span class="sail-operator">&amp;</span> (<span class="sail-id">mant</span> <span class="sail-operator">!=</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>()))
+  <span class="sail-keyword">let</span> (<span class="sail-id">sign</span>, <span class="sail-id">exp</span>, <span class="sail-id">mant</span>) = <a href="./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">xf16</span>);
+  (  (<span class="sail-id">exp</span> <span class="sail-operator">==</span> <a href="./prelude.html#L92"><span class="sail-id">ones</span></a>())
+   <span class="sail-operator">&amp;</span> (<span class="sail-id">mant</span> <span class="sail-operator">!=</span> <a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>()))
 }
 
 <span class="sail-keyword">val</span>      <span class="sail-id">fle_H</span> : (<span class="sail-id">bits</span>(<span class="sail-literal">16</span>), <span class="sail-id">bits</span> (<span class="sail-literal">16</span>), <span class="sail-id">bool</span>) -&gt; (<span class="sail-id">bool</span>, <span class="sail-id">bits</span>(<span class="sail-literal">5</span>))
 <span class="sail-keyword">function</span> <span class="sail-id">fle_H</span>   (<span class="sail-id">v1</span>,       <span class="sail-id">v2</span>,        <span class="sail-id">is_quiet</span>) = {
-  <span class="sail-keyword">let</span> (<span class="sail-id">s1</span>, <span class="sail-id">e1</span>, <span class="sail-id">m1</span>) = <a href="sail-riscv/./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">v1</span>);
-  <span class="sail-keyword">let</span> (<span class="sail-id">s2</span>, <span class="sail-id">e2</span>, <span class="sail-id">m2</span>) = <a href="sail-riscv/./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">v2</span>);
+  <span class="sail-keyword">let</span> (<span class="sail-id">s1</span>, <span class="sail-id">e1</span>, <span class="sail-id">m1</span>) = <a href="./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">v1</span>);
+  <span class="sail-keyword">let</span> (<span class="sail-id">s2</span>, <span class="sail-id">e2</span>, <span class="sail-id">m2</span>) = <a href="./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">v2</span>);
 
-  <span class="sail-keyword">let</span> <span class="sail-id">v1Is0</span>    = <a href="sail-riscv/./riscv_insts_zfh.html#L93"><span class="sail-id">f_is_neg_zero_H</span></a>(<span class="sail-id">v1</span>) <span class="sail-operator">|</span> <a href="sail-riscv/./riscv_insts_zfh.html#L101"><span class="sail-id">f_is_pos_zero_H</span></a>(<span class="sail-id">v1</span>);
-  <span class="sail-keyword">let</span> <span class="sail-id">v2Is0</span>    = <a href="sail-riscv/./riscv_insts_zfh.html#L93"><span class="sail-id">f_is_neg_zero_H</span></a>(<span class="sail-id">v2</span>) <span class="sail-operator">|</span> <a href="sail-riscv/./riscv_insts_zfh.html#L101"><span class="sail-id">f_is_pos_zero_H</span></a>(<span class="sail-id">v2</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">v1Is0</span>    = <a href="./riscv_insts_zfh.html#L93"><span class="sail-id">f_is_neg_zero_H</span></a>(<span class="sail-id">v1</span>) <span class="sail-operator">|</span> <a href="./riscv_insts_zfh.html#L101"><span class="sail-id">f_is_pos_zero_H</span></a>(<span class="sail-id">v1</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">v2Is0</span>    = <a href="./riscv_insts_zfh.html#L93"><span class="sail-id">f_is_neg_zero_H</span></a>(<span class="sail-id">v2</span>) <span class="sail-operator">|</span> <a href="./riscv_insts_zfh.html#L101"><span class="sail-id">f_is_pos_zero_H</span></a>(<span class="sail-id">v2</span>);
 
   <span class="sail-keyword">let</span> <span class="sail-id">result</span> : <span class="sail-id">bool</span> =
     <span class="sail-keyword">if</span> (<span class="sail-id">s1</span> <span class="sail-operator">==</span> <span class="sail-literal">0b0</span>) <span class="sail-operator">&amp;</span> (<span class="sail-id">s2</span> <span class="sail-operator">==</span> <span class="sail-literal">0b0</span>) <span class="sail-keyword">then</span>
@@ -174,13 +174,13 @@
       <span class="sail-keyword">else</span> <span class="sail-id">unsigned</span> (<span class="sail-id">e1</span>)  <span class="sail-operator">&gt;</span>  <span class="sail-id">unsigned</span> (<span class="sail-id">e2</span>);
 
   <span class="sail-keyword">let</span> <span class="sail-id">fflags</span> = <span class="sail-keyword">if</span> <span class="sail-id">is_quiet</span> <span class="sail-keyword">then</span>
-                 <span class="sail-keyword">if</span>   (<a href="sail-riscv/./riscv_insts_zfh.html#L109"><span class="sail-id">f_is_SNaN_H</span></a>(<span class="sail-id">v1</span>) <span class="sail-operator">|</span> <a href="sail-riscv/./riscv_insts_zfh.html#L109"><span class="sail-id">f_is_SNaN_H</span></a>(<span class="sail-id">v2</span>))
-                 <span class="sail-keyword">then</span> <a href="sail-riscv/./riscv_insts_fext.html#L69"><span class="sail-id">nvFlag</span></a>()
-                 <span class="sail-keyword">else</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>()
+                 <span class="sail-keyword">if</span>   (<a href="./riscv_insts_zfh.html#L109"><span class="sail-id">f_is_SNaN_H</span></a>(<span class="sail-id">v1</span>) <span class="sail-operator">|</span> <a href="./riscv_insts_zfh.html#L109"><span class="sail-id">f_is_SNaN_H</span></a>(<span class="sail-id">v2</span>))
+                 <span class="sail-keyword">then</span> <a href="./riscv_insts_fext.html#L69"><span class="sail-id">nvFlag</span></a>()
+                 <span class="sail-keyword">else</span> <a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>()
                <span class="sail-keyword">else</span>
-                 <span class="sail-keyword">if</span>   (<a href="sail-riscv/./riscv_insts_zfh.html#L125"><span class="sail-id">f_is_NaN_H</span></a>(<span class="sail-id">v1</span>) <span class="sail-operator">|</span> <a href="sail-riscv/./riscv_insts_zfh.html#L125"><span class="sail-id">f_is_NaN_H</span></a>(<span class="sail-id">v2</span>))
-                 <span class="sail-keyword">then</span> <a href="sail-riscv/./riscv_insts_fext.html#L69"><span class="sail-id">nvFlag</span></a>()
-                 <span class="sail-keyword">else</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>();
+                 <span class="sail-keyword">if</span>   (<a href="./riscv_insts_zfh.html#L125"><span class="sail-id">f_is_NaN_H</span></a>(<span class="sail-id">v1</span>) <span class="sail-operator">|</span> <a href="./riscv_insts_zfh.html#L125"><span class="sail-id">f_is_NaN_H</span></a>(<span class="sail-id">v2</span>))
+                 <span class="sail-keyword">then</span> <a href="./riscv_insts_fext.html#L69"><span class="sail-id">nvFlag</span></a>()
+                 <span class="sail-keyword">else</span> <a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>();
 
   (<span class="sail-id">result</span>, <span class="sail-id">fflags</span>)
 }
@@ -188,10 +188,10 @@
 <span class="sail-comment">/* **************************************************************** */</span>
 <span class="sail-comment">/* Helper functions for 'encdec()'                                  */</span>
 <span class="sail-comment">// Full half support.
-</span><span class="sail-keyword">function</span> <span class="sail-id">haveHalfFPU</span>() -&gt; <span class="sail-id">bool</span> = <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zfh</span>) <span class="sail-operator">|</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zhinx</span>)
+</span><span class="sail-keyword">function</span> <span class="sail-id">haveHalfFPU</span>() -&gt; <span class="sail-id">bool</span> = <a href="./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zfh</span>) <span class="sail-operator">|</span> <a href="./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zhinx</span>)
 <span class="sail-comment">// Support for conversion of halves to/from single &amp; double, but no actual
 </span><span class="sail-comment">// calculations with halves.
-</span><span class="sail-keyword">function</span> <span class="sail-id">haveHalfMin</span>() -&gt; <span class="sail-id">bool</span> = <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>() <span class="sail-operator">|</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zfhmin</span>) <span class="sail-operator">|</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zhinxmin</span>)
+</span><span class="sail-keyword">function</span> <span class="sail-id">haveHalfMin</span>() -&gt; <span class="sail-id">bool</span> = <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>() <span class="sail-operator">|</span> <a href="./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zfhmin</span>) <span class="sail-operator">|</span> <a href="./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zhinxmin</span>)
 
 <span class="sail-comment">/* ****************************************************************** */</span>
 <span class="sail-comment">/* Floating-point loads                                               */</span>
@@ -211,36 +211,36 @@
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_BIN_RM_TYPE_H</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FADD_H</span>)
 &lt;-&gt; <span class="sail-literal">0b000_0010</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs2</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-id">encdec_rounding_mode</span> (<span class="sail-id">rm</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_BIN_RM_TYPE_H</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FSUB_H</span>)
 &lt;-&gt; <span class="sail-literal">0b000_0110</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs2</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-id">encdec_rounding_mode</span> (<span class="sail-id">rm</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_BIN_RM_TYPE_H</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FMUL_H</span>)
 &lt;-&gt; <span class="sail-literal">0b000_1010</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs2</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-id">encdec_rounding_mode</span> (<span class="sail-id">rm</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_BIN_RM_TYPE_H</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FDIV_H</span>)
 &lt;-&gt; <span class="sail-literal">0b000_1110</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs2</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-id">encdec_rounding_mode</span> (<span class="sail-id">rm</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
 
 <span class="sail-comment">/* Execution semantics ================================ */</span>
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">F_BIN_RM_TYPE_H</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">op</span>)) = {
   <span class="sail-keyword">let</span> <span class="sail-id">rs1_val_16b</span> = <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rs1</span>);
   <span class="sail-keyword">let</span> <span class="sail-id">rs2_val_16b</span> = <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rs2</span>);
-  <span class="sail-keyword">match</span> (<a href="sail-riscv/./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
+  <span class="sail-keyword">match</span> (<a href="./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
     <span class="sail-id">None</span>() =&gt; <span class="sail-keyword">return</span> <span class="sail-id">Illegal_Instruction</span>(),
     <span class="sail-id">Some</span>(<span class="sail-id">rm'</span>) =&gt; {
       <span class="sail-keyword">let</span> <span class="sail-id">rm_3b</span> = <span class="sail-id">encdec_rounding_mode</span>(<span class="sail-id">rm'</span>);
       <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_16b</span>) : (<span class="sail-id">bits</span>(<span class="sail-literal">5</span>), <span class="sail-id">bits</span>(<span class="sail-literal">16</span>)) = <span class="sail-keyword">match</span> <span class="sail-id">op</span> {
-        <span class="sail-id">FADD_H</span>  =&gt; <a href="sail-riscv/./riscv_softfloat_interface.html#L52"><span class="sail-id">riscv_f16Add</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_16b</span>, <span class="sail-id">rs2_val_16b</span>),
-        <span class="sail-id">FSUB_H</span>  =&gt; <a href="sail-riscv/./riscv_softfloat_interface.html#L59"><span class="sail-id">riscv_f16Sub</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_16b</span>, <span class="sail-id">rs2_val_16b</span>),
-        <span class="sail-id">FMUL_H</span>  =&gt; <a href="sail-riscv/./riscv_softfloat_interface.html#L66"><span class="sail-id">riscv_f16Mul</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_16b</span>, <span class="sail-id">rs2_val_16b</span>),
-        <span class="sail-id">FDIV_H</span>  =&gt; <a href="sail-riscv/./riscv_softfloat_interface.html#L73"><span class="sail-id">riscv_f16Div</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_16b</span>, <span class="sail-id">rs2_val_16b</span>)
+        <span class="sail-id">FADD_H</span>  =&gt; <a href="./riscv_softfloat_interface.html#L52"><span class="sail-id">riscv_f16Add</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_16b</span>, <span class="sail-id">rs2_val_16b</span>),
+        <span class="sail-id">FSUB_H</span>  =&gt; <a href="./riscv_softfloat_interface.html#L59"><span class="sail-id">riscv_f16Sub</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_16b</span>, <span class="sail-id">rs2_val_16b</span>),
+        <span class="sail-id">FMUL_H</span>  =&gt; <a href="./riscv_softfloat_interface.html#L66"><span class="sail-id">riscv_f16Mul</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_16b</span>, <span class="sail-id">rs2_val_16b</span>),
+        <span class="sail-id">FDIV_H</span>  =&gt; <a href="./riscv_softfloat_interface.html#L73"><span class="sail-id">riscv_f16Div</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_16b</span>, <span class="sail-id">rs2_val_16b</span>)
       };
-      <a href="sail-riscv/./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
+      <a href="./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
       <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rd</span>) = <span class="sail-id">rd_val_16b</span>;
       <span class="sail-id">RETIRE_SUCCESS</span>
     }
@@ -274,19 +274,19 @@
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_MADD_TYPE_H</span>(<span class="sail-id">rs3</span>, <span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FMADD_H</span>)
 &lt;-&gt; <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs3</span>) @ <span class="sail-literal">0b10</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs2</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-id">encdec_rounding_mode</span> (<span class="sail-id">rm</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b100_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_MADD_TYPE_H</span>(<span class="sail-id">rs3</span>, <span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FMSUB_H</span>)
 &lt;-&gt; <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs3</span>) @ <span class="sail-literal">0b10</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs2</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-id">encdec_rounding_mode</span> (<span class="sail-id">rm</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b100_0111</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_MADD_TYPE_H</span>(<span class="sail-id">rs3</span>, <span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FNMSUB_H</span>)
 &lt;-&gt; <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs3</span>) @ <span class="sail-literal">0b10</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs2</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-id">encdec_rounding_mode</span> (<span class="sail-id">rm</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b100_1011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_MADD_TYPE_H</span>(<span class="sail-id">rs3</span>, <span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FNMADD_H</span>)
 &lt;-&gt; <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs3</span>) @ <span class="sail-literal">0b10</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs2</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-id">encdec_rounding_mode</span> (<span class="sail-id">rm</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b100_1111</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
 
 <span class="sail-comment">/* Execution semantics ================================ */</span>
 
@@ -294,18 +294,18 @@
   <span class="sail-keyword">let</span> <span class="sail-id">rs1_val_16b</span> = <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rs1</span>);
   <span class="sail-keyword">let</span> <span class="sail-id">rs2_val_16b</span> = <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rs2</span>);
   <span class="sail-keyword">let</span> <span class="sail-id">rs3_val_16b</span> = <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rs3</span>);
-  <span class="sail-keyword">match</span> (<a href="sail-riscv/./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
+  <span class="sail-keyword">match</span> (<a href="./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
     <span class="sail-id">None</span>() =&gt; <span class="sail-id">Illegal_Instruction</span>(),
     <span class="sail-id">Some</span>(<span class="sail-id">rm'</span>) =&gt; {
       <span class="sail-keyword">let</span> <span class="sail-id">rm_3b</span> = <span class="sail-id">encdec_rounding_mode</span>(<span class="sail-id">rm'</span>);
       <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_16b</span>) : (<span class="sail-id">bits</span>(<span class="sail-literal">5</span>), <span class="sail-id">bits</span>(<span class="sail-literal">16</span>)) =
         <span class="sail-keyword">match</span> <span class="sail-id">op</span> {
-          <span class="sail-id">FMADD_H</span>  =&gt; <a href="sail-riscv/./riscv_softfloat_interface.html#L139"><span class="sail-id">riscv_f16MulAdd</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_16b</span>, <span class="sail-id">rs2_val_16b</span>, <span class="sail-id">rs3_val_16b</span>),
-          <span class="sail-id">FMSUB_H</span>  =&gt; <a href="sail-riscv/./riscv_softfloat_interface.html#L139"><span class="sail-id">riscv_f16MulAdd</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_16b</span>, <span class="sail-id">rs2_val_16b</span>, <a href="sail-riscv/./riscv_insts_zfh.html#L38"><span class="sail-id">negate_H</span></a> (<span class="sail-id">rs3_val_16b</span>)),
-          <span class="sail-id">FNMSUB_H</span> =&gt; <a href="sail-riscv/./riscv_softfloat_interface.html#L139"><span class="sail-id">riscv_f16MulAdd</span></a> (<span class="sail-id">rm_3b</span>, <a href="sail-riscv/./riscv_insts_zfh.html#L38"><span class="sail-id">negate_H</span></a> (<span class="sail-id">rs1_val_16b</span>), <span class="sail-id">rs2_val_16b</span>, <span class="sail-id">rs3_val_16b</span>),
-          <span class="sail-id">FNMADD_H</span> =&gt; <a href="sail-riscv/./riscv_softfloat_interface.html#L139"><span class="sail-id">riscv_f16MulAdd</span></a> (<span class="sail-id">rm_3b</span>, <a href="sail-riscv/./riscv_insts_zfh.html#L38"><span class="sail-id">negate_H</span></a> (<span class="sail-id">rs1_val_16b</span>), <span class="sail-id">rs2_val_16b</span>, <a href="sail-riscv/./riscv_insts_zfh.html#L38"><span class="sail-id">negate_H</span></a> (<span class="sail-id">rs3_val_16b</span>))
+          <span class="sail-id">FMADD_H</span>  =&gt; <a href="./riscv_softfloat_interface.html#L139"><span class="sail-id">riscv_f16MulAdd</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_16b</span>, <span class="sail-id">rs2_val_16b</span>, <span class="sail-id">rs3_val_16b</span>),
+          <span class="sail-id">FMSUB_H</span>  =&gt; <a href="./riscv_softfloat_interface.html#L139"><span class="sail-id">riscv_f16MulAdd</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_16b</span>, <span class="sail-id">rs2_val_16b</span>, <a href="./riscv_insts_zfh.html#L38"><span class="sail-id">negate_H</span></a> (<span class="sail-id">rs3_val_16b</span>)),
+          <span class="sail-id">FNMSUB_H</span> =&gt; <a href="./riscv_softfloat_interface.html#L139"><span class="sail-id">riscv_f16MulAdd</span></a> (<span class="sail-id">rm_3b</span>, <a href="./riscv_insts_zfh.html#L38"><span class="sail-id">negate_H</span></a> (<span class="sail-id">rs1_val_16b</span>), <span class="sail-id">rs2_val_16b</span>, <span class="sail-id">rs3_val_16b</span>),
+          <span class="sail-id">FNMADD_H</span> =&gt; <a href="./riscv_softfloat_interface.html#L139"><span class="sail-id">riscv_f16MulAdd</span></a> (<span class="sail-id">rm_3b</span>, <a href="./riscv_insts_zfh.html#L38"><span class="sail-id">negate_H</span></a> (<span class="sail-id">rs1_val_16b</span>), <span class="sail-id">rs2_val_16b</span>, <a href="./riscv_insts_zfh.html#L38"><span class="sail-id">negate_H</span></a> (<span class="sail-id">rs3_val_16b</span>))
         };
-      <a href="sail-riscv/./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
+      <a href="./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
       <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rd</span>) = <span class="sail-id">rd_val_16b</span>;
       <span class="sail-id">RETIRE_SUCCESS</span>
     }
@@ -341,44 +341,44 @@
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_BIN_F_TYPE_H</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-id">FSGNJ_H</span>)
   &lt;-&gt; <span class="sail-literal">0b001_0010</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs2</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-literal">0b000</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_BIN_F_TYPE_H</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-id">FSGNJN_H</span>)
   &lt;-&gt; <span class="sail-literal">0b001_0010</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs2</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-literal">0b001</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_BIN_F_TYPE_H</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-id">FSGNJX_H</span>)
   &lt;-&gt; <span class="sail-literal">0b001_0010</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs2</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-literal">0b010</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_BIN_F_TYPE_H</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-id">FMIN_H</span>)
   &lt;-&gt; <span class="sail-literal">0b001_0110</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs2</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-literal">0b000</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_BIN_F_TYPE_H</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-id">FMAX_H</span>)
   &lt;-&gt; <span class="sail-literal">0b001_0110</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs2</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-literal">0b001</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_BIN_X_TYPE_H</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-id">FEQ_H</span>)
   &lt;-&gt; <span class="sail-literal">0b101_0010</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs2</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-literal">0b010</span> @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_BIN_X_TYPE_H</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-id">FLT_H</span>)
   &lt;-&gt; <span class="sail-literal">0b101_0010</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs2</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-literal">0b001</span> @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_BIN_X_TYPE_H</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-id">FLE_H</span>)
   &lt;-&gt; <span class="sail-literal">0b101_0010</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs2</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-literal">0b000</span> @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
 
 <span class="sail-comment">/* Execution semantics ================================ */</span>
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">F_BIN_F_TYPE_H</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-id">FSGNJ_H</span>)) = {
   <span class="sail-keyword">let</span> <span class="sail-id">rs1_val_H</span>    = <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rs1</span>);
   <span class="sail-keyword">let</span> <span class="sail-id">rs2_val_H</span>    = <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rs2</span>);
-  <span class="sail-keyword">let</span> (<span class="sail-id">s1</span>, <span class="sail-id">e1</span>, <span class="sail-id">m1</span>) = <a href="sail-riscv/./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">rs1_val_H</span>);
-  <span class="sail-keyword">let</span> (<span class="sail-id">s2</span>, <span class="sail-id">e2</span>, <span class="sail-id">m2</span>) = <a href="sail-riscv/./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">rs2_val_H</span>);
-  <span class="sail-keyword">let</span> <span class="sail-id">rd_val_H</span>     = <a href="sail-riscv/./riscv_insts_zfh.html#L35"><span class="sail-id">fmake_H</span></a> (<span class="sail-id">s2</span>, <span class="sail-id">e1</span>, <span class="sail-id">m1</span>);
+  <span class="sail-keyword">let</span> (<span class="sail-id">s1</span>, <span class="sail-id">e1</span>, <span class="sail-id">m1</span>) = <a href="./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">rs1_val_H</span>);
+  <span class="sail-keyword">let</span> (<span class="sail-id">s2</span>, <span class="sail-id">e2</span>, <span class="sail-id">m2</span>) = <a href="./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">rs2_val_H</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">rd_val_H</span>     = <a href="./riscv_insts_zfh.html#L35"><span class="sail-id">fmake_H</span></a> (<span class="sail-id">s2</span>, <span class="sail-id">e1</span>, <span class="sail-id">m1</span>);
 
   <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rd</span>) = <span class="sail-id">rd_val_H</span>;
   <span class="sail-id">RETIRE_SUCCESS</span>
@@ -387,9 +387,9 @@
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">F_BIN_F_TYPE_H</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-id">FSGNJN_H</span>)) = {
   <span class="sail-keyword">let</span> <span class="sail-id">rs1_val_H</span>    = <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rs1</span>);
   <span class="sail-keyword">let</span> <span class="sail-id">rs2_val_H</span>    = <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rs2</span>);
-  <span class="sail-keyword">let</span> (<span class="sail-id">s1</span>, <span class="sail-id">e1</span>, <span class="sail-id">m1</span>) = <a href="sail-riscv/./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">rs1_val_H</span>);
-  <span class="sail-keyword">let</span> (<span class="sail-id">s2</span>, <span class="sail-id">e2</span>, <span class="sail-id">m2</span>) = <a href="sail-riscv/./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">rs2_val_H</span>);
-  <span class="sail-keyword">let</span> <span class="sail-id">rd_val_H</span>     = <a href="sail-riscv/./riscv_insts_zfh.html#L35"><span class="sail-id">fmake_H</span></a> (<span class="sail-literal">0b1</span> <span class="sail-operator">^</span> <span class="sail-id">s2</span>, <span class="sail-id">e1</span>, <span class="sail-id">m1</span>);
+  <span class="sail-keyword">let</span> (<span class="sail-id">s1</span>, <span class="sail-id">e1</span>, <span class="sail-id">m1</span>) = <a href="./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">rs1_val_H</span>);
+  <span class="sail-keyword">let</span> (<span class="sail-id">s2</span>, <span class="sail-id">e2</span>, <span class="sail-id">m2</span>) = <a href="./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">rs2_val_H</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">rd_val_H</span>     = <a href="./riscv_insts_zfh.html#L35"><span class="sail-id">fmake_H</span></a> (<span class="sail-literal">0b1</span> <span class="sail-operator">^</span> <span class="sail-id">s2</span>, <span class="sail-id">e1</span>, <span class="sail-id">m1</span>);
 
   <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rd</span>) = <span class="sail-id">rd_val_H</span>;
   <span class="sail-id">RETIRE_SUCCESS</span>
@@ -398,9 +398,9 @@
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">F_BIN_F_TYPE_H</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-id">FSGNJX_H</span>)) = {
   <span class="sail-keyword">let</span> <span class="sail-id">rs1_val_H</span>    = <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rs1</span>);
   <span class="sail-keyword">let</span> <span class="sail-id">rs2_val_H</span>    = <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rs2</span>);
-  <span class="sail-keyword">let</span> (<span class="sail-id">s1</span>, <span class="sail-id">e1</span>, <span class="sail-id">m1</span>) = <a href="sail-riscv/./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">rs1_val_H</span>);
-  <span class="sail-keyword">let</span> (<span class="sail-id">s2</span>, <span class="sail-id">e2</span>, <span class="sail-id">m2</span>) = <a href="sail-riscv/./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">rs2_val_H</span>);
-  <span class="sail-keyword">let</span> <span class="sail-id">rd_val_H</span>     = <a href="sail-riscv/./riscv_insts_zfh.html#L35"><span class="sail-id">fmake_H</span></a> (<span class="sail-id">s1</span> <span class="sail-operator">^</span> <span class="sail-id">s2</span>, <span class="sail-id">e1</span>, <span class="sail-id">m1</span>);
+  <span class="sail-keyword">let</span> (<span class="sail-id">s1</span>, <span class="sail-id">e1</span>, <span class="sail-id">m1</span>) = <a href="./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">rs1_val_H</span>);
+  <span class="sail-keyword">let</span> (<span class="sail-id">s2</span>, <span class="sail-id">e2</span>, <span class="sail-id">m2</span>) = <a href="./riscv_insts_zfh.html#L32"><span class="sail-id">fsplit_H</span></a> (<span class="sail-id">rs2_val_H</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">rd_val_H</span>     = <a href="./riscv_insts_zfh.html#L35"><span class="sail-id">fmake_H</span></a> (<span class="sail-id">s1</span> <span class="sail-operator">^</span> <span class="sail-id">s2</span>, <span class="sail-id">e1</span>, <span class="sail-id">m1</span>);
 
   <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rd</span>) = <span class="sail-id">rd_val_H</span>;
   <span class="sail-id">RETIRE_SUCCESS</span>
@@ -411,17 +411,17 @@
   <span class="sail-keyword">let</span> <span class="sail-id">rs2_val_H</span> = <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rs2</span>);
 
   <span class="sail-keyword">let</span> <span class="sail-id">is_quiet</span>  = <span class="sail-literal">true</span>;
-  <span class="sail-keyword">let</span> (<span class="sail-id">rs1_lt_rs2</span>, <span class="sail-id">fflags</span>) = <a href="sail-riscv/./riscv_insts_zfh.html#L132"><span class="sail-id">fle_H</span></a> (<span class="sail-id">rs1_val_H</span>, <span class="sail-id">rs2_val_H</span>, <span class="sail-id">is_quiet</span>);
+  <span class="sail-keyword">let</span> (<span class="sail-id">rs1_lt_rs2</span>, <span class="sail-id">fflags</span>) = <a href="./riscv_insts_zfh.html#L132"><span class="sail-id">fle_H</span></a> (<span class="sail-id">rs1_val_H</span>, <span class="sail-id">rs2_val_H</span>, <span class="sail-id">is_quiet</span>);
 
-  <span class="sail-keyword">let</span> <span class="sail-id">rd_val_H</span>  = <span class="sail-keyword">if</span>      (<a href="sail-riscv/./riscv_insts_zfh.html#L125"><span class="sail-id">f_is_NaN_H</span></a>(<span class="sail-id">rs1_val_H</span>) <span class="sail-operator">&amp;</span> <a href="sail-riscv/./riscv_insts_zfh.html#L125"><span class="sail-id">f_is_NaN_H</span></a>(<span class="sail-id">rs2_val_H</span>))           <span class="sail-keyword">then</span> <a href="sail-riscv/./riscv_fdext_regs.html#L32"><span class="sail-id">canonical_NaN_H</span></a>()
-                  <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_insts_zfh.html#L125"><span class="sail-id">f_is_NaN_H</span></a>(<span class="sail-id">rs1_val_H</span>)                                     <span class="sail-keyword">then</span> <span class="sail-id">rs2_val_H</span>
-                  <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_insts_zfh.html#L125"><span class="sail-id">f_is_NaN_H</span></a>(<span class="sail-id">rs2_val_H</span>)                                     <span class="sail-keyword">then</span> <span class="sail-id">rs1_val_H</span>
-                  <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> (<a href="sail-riscv/./riscv_insts_zfh.html#L93"><span class="sail-id">f_is_neg_zero_H</span></a>(<span class="sail-id">rs1_val_H</span>) <span class="sail-operator">&amp;</span> <a href="sail-riscv/./riscv_insts_zfh.html#L101"><span class="sail-id">f_is_pos_zero_H</span></a>(<span class="sail-id">rs2_val_H</span>)) <span class="sail-keyword">then</span> <span class="sail-id">rs1_val_H</span>
-                  <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> (<a href="sail-riscv/./riscv_insts_zfh.html#L93"><span class="sail-id">f_is_neg_zero_H</span></a>(<span class="sail-id">rs2_val_H</span>) <span class="sail-operator">&amp;</span> <a href="sail-riscv/./riscv_insts_zfh.html#L101"><span class="sail-id">f_is_pos_zero_H</span></a>(<span class="sail-id">rs1_val_H</span>)) <span class="sail-keyword">then</span> <span class="sail-id">rs2_val_H</span>
+  <span class="sail-keyword">let</span> <span class="sail-id">rd_val_H</span>  = <span class="sail-keyword">if</span>      (<a href="./riscv_insts_zfh.html#L125"><span class="sail-id">f_is_NaN_H</span></a>(<span class="sail-id">rs1_val_H</span>) <span class="sail-operator">&amp;</span> <a href="./riscv_insts_zfh.html#L125"><span class="sail-id">f_is_NaN_H</span></a>(<span class="sail-id">rs2_val_H</span>))           <span class="sail-keyword">then</span> <a href="./riscv_fdext_regs.html#L32"><span class="sail-id">canonical_NaN_H</span></a>()
+                  <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="./riscv_insts_zfh.html#L125"><span class="sail-id">f_is_NaN_H</span></a>(<span class="sail-id">rs1_val_H</span>)                                     <span class="sail-keyword">then</span> <span class="sail-id">rs2_val_H</span>
+                  <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="./riscv_insts_zfh.html#L125"><span class="sail-id">f_is_NaN_H</span></a>(<span class="sail-id">rs2_val_H</span>)                                     <span class="sail-keyword">then</span> <span class="sail-id">rs1_val_H</span>
+                  <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> (<a href="./riscv_insts_zfh.html#L93"><span class="sail-id">f_is_neg_zero_H</span></a>(<span class="sail-id">rs1_val_H</span>) <span class="sail-operator">&amp;</span> <a href="./riscv_insts_zfh.html#L101"><span class="sail-id">f_is_pos_zero_H</span></a>(<span class="sail-id">rs2_val_H</span>)) <span class="sail-keyword">then</span> <span class="sail-id">rs1_val_H</span>
+                  <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> (<a href="./riscv_insts_zfh.html#L93"><span class="sail-id">f_is_neg_zero_H</span></a>(<span class="sail-id">rs2_val_H</span>) <span class="sail-operator">&amp;</span> <a href="./riscv_insts_zfh.html#L101"><span class="sail-id">f_is_pos_zero_H</span></a>(<span class="sail-id">rs1_val_H</span>)) <span class="sail-keyword">then</span> <span class="sail-id">rs2_val_H</span>
                   <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <span class="sail-id">rs1_lt_rs2</span>                                                <span class="sail-keyword">then</span> <span class="sail-id">rs1_val_H</span>
                   <span class="sail-keyword">else</span> <span class="sail-comment">/* (not rs1_lt_rs2) */</span>                                            <span class="sail-id">rs2_val_H</span>;
 
-  <a href="sail-riscv/./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
+  <a href="./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
   <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rd</span>) = <span class="sail-id">rd_val_H</span>;
   <span class="sail-id">RETIRE_SUCCESS</span>
 }
@@ -431,17 +431,17 @@
   <span class="sail-keyword">let</span> <span class="sail-id">rs2_val_H</span> = <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rs2</span>);
 
   <span class="sail-keyword">let</span> <span class="sail-id">is_quiet</span>  = <span class="sail-literal">true</span>;
-  <span class="sail-keyword">let</span> (<span class="sail-id">rs2_lt_rs1</span>, <span class="sail-id">fflags</span>) = <a href="sail-riscv/./riscv_insts_zfh.html#L132"><span class="sail-id">fle_H</span></a> (<span class="sail-id">rs2_val_H</span>, <span class="sail-id">rs1_val_H</span>, <span class="sail-id">is_quiet</span>);
+  <span class="sail-keyword">let</span> (<span class="sail-id">rs2_lt_rs1</span>, <span class="sail-id">fflags</span>) = <a href="./riscv_insts_zfh.html#L132"><span class="sail-id">fle_H</span></a> (<span class="sail-id">rs2_val_H</span>, <span class="sail-id">rs1_val_H</span>, <span class="sail-id">is_quiet</span>);
 
-  <span class="sail-keyword">let</span> <span class="sail-id">rd_val_H</span>  = <span class="sail-keyword">if</span>      (<a href="sail-riscv/./riscv_insts_zfh.html#L125"><span class="sail-id">f_is_NaN_H</span></a>(<span class="sail-id">rs1_val_H</span>) <span class="sail-operator">&amp;</span> <a href="sail-riscv/./riscv_insts_zfh.html#L125"><span class="sail-id">f_is_NaN_H</span></a>(<span class="sail-id">rs2_val_H</span>))           <span class="sail-keyword">then</span> <a href="sail-riscv/./riscv_fdext_regs.html#L32"><span class="sail-id">canonical_NaN_H</span></a>()
-                  <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_insts_zfh.html#L125"><span class="sail-id">f_is_NaN_H</span></a>(<span class="sail-id">rs1_val_H</span>)                                     <span class="sail-keyword">then</span> <span class="sail-id">rs2_val_H</span>
-                  <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_insts_zfh.html#L125"><span class="sail-id">f_is_NaN_H</span></a>(<span class="sail-id">rs2_val_H</span>)                                     <span class="sail-keyword">then</span> <span class="sail-id">rs1_val_H</span>
-                  <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> (<a href="sail-riscv/./riscv_insts_zfh.html#L93"><span class="sail-id">f_is_neg_zero_H</span></a>(<span class="sail-id">rs1_val_H</span>) <span class="sail-operator">&amp;</span> <a href="sail-riscv/./riscv_insts_zfh.html#L101"><span class="sail-id">f_is_pos_zero_H</span></a>(<span class="sail-id">rs2_val_H</span>)) <span class="sail-keyword">then</span> <span class="sail-id">rs2_val_H</span>
-                  <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> (<a href="sail-riscv/./riscv_insts_zfh.html#L93"><span class="sail-id">f_is_neg_zero_H</span></a>(<span class="sail-id">rs2_val_H</span>) <span class="sail-operator">&amp;</span> <a href="sail-riscv/./riscv_insts_zfh.html#L101"><span class="sail-id">f_is_pos_zero_H</span></a>(<span class="sail-id">rs1_val_H</span>)) <span class="sail-keyword">then</span> <span class="sail-id">rs1_val_H</span>
+  <span class="sail-keyword">let</span> <span class="sail-id">rd_val_H</span>  = <span class="sail-keyword">if</span>      (<a href="./riscv_insts_zfh.html#L125"><span class="sail-id">f_is_NaN_H</span></a>(<span class="sail-id">rs1_val_H</span>) <span class="sail-operator">&amp;</span> <a href="./riscv_insts_zfh.html#L125"><span class="sail-id">f_is_NaN_H</span></a>(<span class="sail-id">rs2_val_H</span>))           <span class="sail-keyword">then</span> <a href="./riscv_fdext_regs.html#L32"><span class="sail-id">canonical_NaN_H</span></a>()
+                  <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="./riscv_insts_zfh.html#L125"><span class="sail-id">f_is_NaN_H</span></a>(<span class="sail-id">rs1_val_H</span>)                                     <span class="sail-keyword">then</span> <span class="sail-id">rs2_val_H</span>
+                  <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="./riscv_insts_zfh.html#L125"><span class="sail-id">f_is_NaN_H</span></a>(<span class="sail-id">rs2_val_H</span>)                                     <span class="sail-keyword">then</span> <span class="sail-id">rs1_val_H</span>
+                  <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> (<a href="./riscv_insts_zfh.html#L93"><span class="sail-id">f_is_neg_zero_H</span></a>(<span class="sail-id">rs1_val_H</span>) <span class="sail-operator">&amp;</span> <a href="./riscv_insts_zfh.html#L101"><span class="sail-id">f_is_pos_zero_H</span></a>(<span class="sail-id">rs2_val_H</span>)) <span class="sail-keyword">then</span> <span class="sail-id">rs2_val_H</span>
+                  <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> (<a href="./riscv_insts_zfh.html#L93"><span class="sail-id">f_is_neg_zero_H</span></a>(<span class="sail-id">rs2_val_H</span>) <span class="sail-operator">&amp;</span> <a href="./riscv_insts_zfh.html#L101"><span class="sail-id">f_is_pos_zero_H</span></a>(<span class="sail-id">rs1_val_H</span>)) <span class="sail-keyword">then</span> <span class="sail-id">rs1_val_H</span>
                   <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <span class="sail-id">rs2_lt_rs1</span>                                                <span class="sail-keyword">then</span> <span class="sail-id">rs1_val_H</span>
                   <span class="sail-keyword">else</span> <span class="sail-comment">/* (not rs2_lt_rs1) */</span>                                            <span class="sail-id">rs2_val_H</span>;
 
-  <a href="sail-riscv/./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
+  <a href="./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
   <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rd</span>) = <span class="sail-id">rd_val_H</span>;
   <span class="sail-id">RETIRE_SUCCESS</span>
 }
@@ -451,10 +451,10 @@
   <span class="sail-keyword">let</span> <span class="sail-id">rs2_val_H</span> = <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rs2</span>);
 
   <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val</span>) : (<span class="sail-id">bits_fflags</span>, <span class="sail-id">bool</span>) =
-      <a href="sail-riscv/./riscv_softfloat_interface.html#L429"><span class="sail-id">riscv_f16Eq</span></a> (<span class="sail-id">rs1_val_H</span>, <span class="sail-id">rs2_val_H</span>);
+      <a href="./riscv_softfloat_interface.html#L429"><span class="sail-id">riscv_f16Eq</span></a> (<span class="sail-id">rs1_val_H</span>, <span class="sail-id">rs2_val_H</span>);
 
-  <a href="sail-riscv/./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
-  <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href="sail-riscv/./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<a href="sail-riscv/./prelude.html#L112"><span class="sail-id">bool_to_bits</span></a>(<span class="sail-id">rd_val</span>));
+  <a href="./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
+  <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href="./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<a href="./prelude.html#L112"><span class="sail-id">bool_to_bits</span></a>(<span class="sail-id">rd_val</span>));
   <span class="sail-id">RETIRE_SUCCESS</span>
 }
 
@@ -463,10 +463,10 @@
   <span class="sail-keyword">let</span> <span class="sail-id">rs2_val_H</span> = <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rs2</span>);
 
   <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val</span>) : (<span class="sail-id">bits_fflags</span>, <span class="sail-id">bool</span>) =
-      <a href="sail-riscv/./riscv_softfloat_interface.html#L401"><span class="sail-id">riscv_f16Lt</span></a> (<span class="sail-id">rs1_val_H</span>, <span class="sail-id">rs2_val_H</span>);
+      <a href="./riscv_softfloat_interface.html#L401"><span class="sail-id">riscv_f16Lt</span></a> (<span class="sail-id">rs1_val_H</span>, <span class="sail-id">rs2_val_H</span>);
 
-  <a href="sail-riscv/./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
-  <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href="sail-riscv/./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<a href="sail-riscv/./prelude.html#L112"><span class="sail-id">bool_to_bits</span></a>(<span class="sail-id">rd_val</span>));
+  <a href="./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
+  <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href="./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<a href="./prelude.html#L112"><span class="sail-id">bool_to_bits</span></a>(<span class="sail-id">rd_val</span>));
   <span class="sail-id">RETIRE_SUCCESS</span>
 }
 
@@ -475,10 +475,10 @@
   <span class="sail-keyword">let</span> <span class="sail-id">rs2_val_H</span> = <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rs2</span>);
 
   <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val</span>) : (<span class="sail-id">bits_fflags</span>, <span class="sail-id">bool</span>) =
-      <a href="sail-riscv/./riscv_softfloat_interface.html#L415"><span class="sail-id">riscv_f16Le</span></a> (<span class="sail-id">rs1_val_H</span>, <span class="sail-id">rs2_val_H</span>);
+      <a href="./riscv_softfloat_interface.html#L415"><span class="sail-id">riscv_f16Le</span></a> (<span class="sail-id">rs1_val_H</span>, <span class="sail-id">rs2_val_H</span>);
 
-  <a href="sail-riscv/./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
-  <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href="sail-riscv/./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<a href="sail-riscv/./prelude.html#L112"><span class="sail-id">bool_to_bits</span></a>(<span class="sail-id">rd_val</span>));
+  <a href="./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
+  <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href="./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<a href="./prelude.html#L112"><span class="sail-id">bool_to_bits</span></a>(<span class="sail-id">rd_val</span>));
   <span class="sail-id">RETIRE_SUCCESS</span>
 }
 
@@ -523,39 +523,39 @@
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_UN_RM_FF_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FSQRT_H</span>)
 &lt;-&gt; <span class="sail-literal">0b010_1110</span> @ <span class="sail-literal">0b00000</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-id">encdec_rounding_mode</span> (<span class="sail-id">rm</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_UN_RM_FX_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FCVT_W_H</span>)
 &lt;-&gt; <span class="sail-literal">0b110_0010</span> @ <span class="sail-literal">0b00000</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-id">encdec_rounding_mode</span> (<span class="sail-id">rm</span>) @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_UN_RM_FX_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FCVT_WU_H</span>)
 &lt;-&gt; <span class="sail-literal">0b110_0010</span> @ <span class="sail-literal">0b00001</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-id">encdec_rounding_mode</span> (<span class="sail-id">rm</span>) @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_UN_RM_XF_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FCVT_H_W</span>)
 &lt;-&gt; <span class="sail-literal">0b110_1010</span> @ <span class="sail-literal">0b00000</span> @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-id">encdec_rounding_mode</span> (<span class="sail-id">rm</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_UN_RM_XF_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FCVT_H_WU</span>)
 &lt;-&gt; <span class="sail-literal">0b110_1010</span> @ <span class="sail-literal">0b00001</span> @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-id">encdec_rounding_mode</span> (<span class="sail-id">rm</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_UN_RM_FF_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FCVT_H_S</span>)
 &lt;-&gt; <span class="sail-literal">0b010_0010</span> @ <span class="sail-literal">0b00000</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-id">encdec_rounding_mode</span> (<span class="sail-id">rm</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L171"><span class="sail-id">haveHalfMin</span></a>()
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L171"><span class="sail-id">haveHalfMin</span></a>()
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_UN_RM_FF_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FCVT_H_D</span>)
 &lt;-&gt; <span class="sail-literal">0b010_0010</span> @ <span class="sail-literal">0b00001</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-id">encdec_rounding_mode</span> (<span class="sail-id">rm</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L171"><span class="sail-id">haveHalfMin</span></a>() <span class="sail-operator">&amp;</span> (<a href="sail-riscv/./riscv_insts_dext.html#L229"><span class="sail-id">haveDoubleFPU</span></a>() <span class="sail-operator">&amp;</span> <a href="sail-riscv/./riscv_insts_dext.html#L234"><span class="sail-id">validDoubleRegs</span></a>([<span class="sail-id">rs1</span>]))
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L171"><span class="sail-id">haveHalfMin</span></a>() <span class="sail-operator">&amp;</span> (<a href="./riscv_insts_dext.html#L229"><span class="sail-id">haveDoubleFPU</span></a>() <span class="sail-operator">&amp;</span> <a href="./riscv_insts_dext.html#L234"><span class="sail-id">validDoubleRegs</span></a>([<span class="sail-id">rs1</span>]))
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_UN_RM_FF_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FCVT_S_H</span>)
 &lt;-&gt; <span class="sail-literal">0b010_0000</span> @ <span class="sail-literal">0b00010</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-id">encdec_rounding_mode</span> (<span class="sail-id">rm</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L171"><span class="sail-id">haveHalfMin</span></a>()
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L171"><span class="sail-id">haveHalfMin</span></a>()
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_UN_RM_FF_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FCVT_D_H</span>)
 &lt;-&gt; <span class="sail-literal">0b010_0001</span> @ <span class="sail-literal">0b00010</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-id">encdec_rounding_mode</span> (<span class="sail-id">rm</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L171"><span class="sail-id">haveHalfMin</span></a>() <span class="sail-operator">&amp;</span> (<a href="sail-riscv/./riscv_insts_dext.html#L229"><span class="sail-id">haveDoubleFPU</span></a>() <span class="sail-operator">&amp;</span> <a href="sail-riscv/./riscv_insts_dext.html#L234"><span class="sail-id">validDoubleRegs</span></a>([<span class="sail-id">rd</span>]))
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L171"><span class="sail-id">haveHalfMin</span></a>() <span class="sail-operator">&amp;</span> (<a href="./riscv_insts_dext.html#L229"><span class="sail-id">haveDoubleFPU</span></a>() <span class="sail-operator">&amp;</span> <a href="./riscv_insts_dext.html#L234"><span class="sail-id">validDoubleRegs</span></a>([<span class="sail-id">rd</span>]))
 
 <span class="sail-comment">// TODO:
 </span><span class="sail-comment">/* FCVT_H_Q, FCVT_Q_H : Will be added with Q Extension */</span>
@@ -564,31 +564,31 @@
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_UN_RM_FX_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FCVT_L_H</span>)
 &lt;-&gt; <span class="sail-literal">0b110_0010</span> @ <span class="sail-literal">0b00010</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-id">encdec_rounding_mode</span> (<span class="sail-id">rm</span>) @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>() <span class="sail-operator">&amp;</span> <span class="sail-id">xlen</span> <span class="sail-operator">&gt;=</span> <span class="sail-literal">64</span>
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>() <span class="sail-operator">&amp;</span> <span class="sail-id">xlen</span> <span class="sail-operator">&gt;=</span> <span class="sail-literal">64</span>
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_UN_RM_FX_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FCVT_LU_H</span>)
 &lt;-&gt; <span class="sail-literal">0b110_0010</span> @ <span class="sail-literal">0b00011</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-id">encdec_rounding_mode</span> (<span class="sail-id">rm</span>) @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>() <span class="sail-operator">&amp;</span> <span class="sail-id">xlen</span> <span class="sail-operator">&gt;=</span> <span class="sail-literal">64</span>
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>() <span class="sail-operator">&amp;</span> <span class="sail-id">xlen</span> <span class="sail-operator">&gt;=</span> <span class="sail-literal">64</span>
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_UN_RM_XF_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FCVT_H_L</span>)
 &lt;-&gt; <span class="sail-literal">0b110_1010</span> @ <span class="sail-literal">0b00010</span> @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-id">encdec_rounding_mode</span> (<span class="sail-id">rm</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>() <span class="sail-operator">&amp;</span> <span class="sail-id">xlen</span> <span class="sail-operator">&gt;=</span> <span class="sail-literal">64</span>
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>() <span class="sail-operator">&amp;</span> <span class="sail-id">xlen</span> <span class="sail-operator">&gt;=</span> <span class="sail-literal">64</span>
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_UN_RM_XF_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FCVT_H_LU</span>)
 &lt;-&gt; <span class="sail-literal">0b110_1010</span> @ <span class="sail-literal">0b00011</span> @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-id">encdec_rounding_mode</span> (<span class="sail-id">rm</span>) @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>() <span class="sail-operator">&amp;</span> <span class="sail-id">xlen</span> <span class="sail-operator">&gt;=</span> <span class="sail-literal">64</span>
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>() <span class="sail-operator">&amp;</span> <span class="sail-id">xlen</span> <span class="sail-operator">&gt;=</span> <span class="sail-literal">64</span>
 
 <span class="sail-comment">/* Execution semantics ================================ */</span>
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">F_UN_RM_FF_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FSQRT_H</span>)) = {
   <span class="sail-keyword">let</span> <span class="sail-id">rs1_val_H</span> = <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rs1</span>);
-  <span class="sail-keyword">match</span> (<a href="sail-riscv/./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
+  <span class="sail-keyword">match</span> (<a href="./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
     <span class="sail-id">None</span>() =&gt; <span class="sail-id">Illegal_Instruction</span>(),
     <span class="sail-id">Some</span>(<span class="sail-id">rm'</span>) =&gt; {
       <span class="sail-keyword">let</span> <span class="sail-id">rm_3b</span> = <span class="sail-id">encdec_rounding_mode</span>(<span class="sail-id">rm'</span>);
-      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_H</span>) = <a href="sail-riscv/./riscv_softfloat_interface.html#L163"><span class="sail-id">riscv_f16Sqrt</span></a>   (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_H</span>);
+      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_H</span>) = <a href="./riscv_softfloat_interface.html#L163"><span class="sail-id">riscv_f16Sqrt</span></a>   (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_H</span>);
 
-      <a href="sail-riscv/./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
+      <a href="./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
       <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rd</span>) = <span class="sail-id">rd_val_H</span>;
       <span class="sail-id">RETIRE_SUCCESS</span>
     }
@@ -597,14 +597,14 @@
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">F_UN_RM_FX_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FCVT_W_H</span>)) = {
   <span class="sail-keyword">let</span> <span class="sail-id">rs1_val_H</span> = <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rs1</span>);
-  <span class="sail-keyword">match</span> (<a href="sail-riscv/./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
+  <span class="sail-keyword">match</span> (<a href="./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
     <span class="sail-id">None</span>() =&gt; <span class="sail-id">Illegal_Instruction</span>(),
     <span class="sail-id">Some</span>(<span class="sail-id">rm'</span>) =&gt; {
       <span class="sail-keyword">let</span> <span class="sail-id">rm_3b</span> = <span class="sail-id">encdec_rounding_mode</span>(<span class="sail-id">rm'</span>);
-      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_W</span>) = <a href="sail-riscv/./riscv_softfloat_interface.html#L187"><span class="sail-id">riscv_f16ToI32</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_H</span>);
+      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_W</span>) = <a href="./riscv_softfloat_interface.html#L187"><span class="sail-id">riscv_f16ToI32</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_H</span>);
 
-      <a href="sail-riscv/./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
-      <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href="sail-riscv/./prelude.html#L85"><span class="sail-id">sign_extend</span></a> (<span class="sail-id">rd_val_W</span>);
+      <a href="./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
+      <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href="./prelude.html#L85"><span class="sail-id">sign_extend</span></a> (<span class="sail-id">rd_val_W</span>);
       <span class="sail-id">RETIRE_SUCCESS</span>
     }
   }
@@ -612,14 +612,14 @@
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">F_UN_RM_FX_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FCVT_WU_H</span>)) = {
   <span class="sail-keyword">let</span> <span class="sail-id">rs1_val_H</span> = <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rs1</span>);
-  <span class="sail-keyword">match</span> (<a href="sail-riscv/./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
+  <span class="sail-keyword">match</span> (<a href="./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
     <span class="sail-id">None</span>() =&gt; <span class="sail-id">Illegal_Instruction</span>(),
     <span class="sail-id">Some</span>(<span class="sail-id">rm'</span>) =&gt; {
       <span class="sail-keyword">let</span> <span class="sail-id">rm_3b</span> = <span class="sail-id">encdec_rounding_mode</span>(<span class="sail-id">rm'</span>);
-      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_WU</span>) = <a href="sail-riscv/./riscv_softfloat_interface.html#L194"><span class="sail-id">riscv_f16ToUi32</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_H</span>);
+      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_WU</span>) = <a href="./riscv_softfloat_interface.html#L194"><span class="sail-id">riscv_f16ToUi32</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_H</span>);
 
-      <a href="sail-riscv/./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
-      <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href="sail-riscv/./prelude.html#L85"><span class="sail-id">sign_extend</span></a> (<span class="sail-id">rd_val_WU</span>);
+      <a href="./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
+      <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href="./prelude.html#L85"><span class="sail-id">sign_extend</span></a> (<span class="sail-id">rd_val_WU</span>);
       <span class="sail-id">RETIRE_SUCCESS</span>
     }
   }
@@ -627,13 +627,13 @@
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">F_UN_RM_XF_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FCVT_H_W</span>)) = {
   <span class="sail-keyword">let</span> <span class="sail-id">rs1_val_W</span> = <span class="sail-id">X</span>(<span class="sail-id">rs1</span>) [<span class="sail-literal">31</span>..<span class="sail-literal">0</span>];
-  <span class="sail-keyword">match</span> (<a href="sail-riscv/./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
+  <span class="sail-keyword">match</span> (<a href="./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
     <span class="sail-id">None</span>() =&gt; <span class="sail-id">Illegal_Instruction</span>(),
     <span class="sail-id">Some</span>(<span class="sail-id">rm'</span>) =&gt; {
       <span class="sail-keyword">let</span> <span class="sail-id">rm_3b</span> = <span class="sail-id">encdec_rounding_mode</span>(<span class="sail-id">rm'</span>);
-      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_H</span>) = <a href="sail-riscv/./riscv_softfloat_interface.html#L201"><span class="sail-id">riscv_i32ToF16</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_W</span>);
+      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_H</span>) = <a href="./riscv_softfloat_interface.html#L201"><span class="sail-id">riscv_i32ToF16</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_W</span>);
 
-      <a href="sail-riscv/./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
+      <a href="./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
       <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rd</span>) = <span class="sail-id">rd_val_H</span>;
       <span class="sail-id">RETIRE_SUCCESS</span>
     }
@@ -642,13 +642,13 @@
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">F_UN_RM_XF_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FCVT_H_WU</span>)) = {
   <span class="sail-keyword">let</span> <span class="sail-id">rs1_val_WU</span> = <span class="sail-id">X</span>(<span class="sail-id">rs1</span>) [<span class="sail-literal">31</span>..<span class="sail-literal">0</span>];
-  <span class="sail-keyword">match</span> (<a href="sail-riscv/./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
+  <span class="sail-keyword">match</span> (<a href="./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
     <span class="sail-id">None</span>() =&gt; <span class="sail-id">Illegal_Instruction</span>(),
     <span class="sail-id">Some</span>(<span class="sail-id">rm'</span>) =&gt; {
       <span class="sail-keyword">let</span> <span class="sail-id">rm_3b</span> = <span class="sail-id">encdec_rounding_mode</span>(<span class="sail-id">rm'</span>);
-      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_H</span>) = <a href="sail-riscv/./riscv_softfloat_interface.html#L208"><span class="sail-id">riscv_ui32ToF16</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_WU</span>);
+      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_H</span>) = <a href="./riscv_softfloat_interface.html#L208"><span class="sail-id">riscv_ui32ToF16</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_WU</span>);
 
-      <a href="sail-riscv/./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
+      <a href="./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
       <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rd</span>) = <span class="sail-id">rd_val_H</span>;
       <span class="sail-id">RETIRE_SUCCESS</span>
     }
@@ -657,13 +657,13 @@
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">F_UN_RM_FF_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FCVT_H_S</span>)) = {
   <span class="sail-keyword">let</span> <span class="sail-id">rs1_val_S</span> = <span class="sail-id">F_or_X_S</span>(<span class="sail-id">rs1</span>);
-  <span class="sail-keyword">match</span> (<a href="sail-riscv/./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
+  <span class="sail-keyword">match</span> (<a href="./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
     <span class="sail-id">None</span>() =&gt; <span class="sail-id">Illegal_Instruction</span>(),
     <span class="sail-id">Some</span>(<span class="sail-id">rm'</span>) =&gt; {
       <span class="sail-keyword">let</span> <span class="sail-id">rm_3b</span> = <span class="sail-id">encdec_rounding_mode</span>(<span class="sail-id">rm'</span>);
-      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_H</span>) = <a href="sail-riscv/./riscv_softfloat_interface.html#L377"><span class="sail-id">riscv_f32ToF16</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_S</span>);
+      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_H</span>) = <a href="./riscv_softfloat_interface.html#L377"><span class="sail-id">riscv_f32ToF16</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_S</span>);
 
-      <a href="sail-riscv/./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
+      <a href="./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
       <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rd</span>) = <span class="sail-id">rd_val_H</span>;
       <span class="sail-id">RETIRE_SUCCESS</span>
     }
@@ -672,13 +672,13 @@
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">F_UN_RM_FF_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FCVT_H_D</span>)) = {
   <span class="sail-keyword">let</span> <span class="sail-id">rs1_val_D</span> = <span class="sail-id">F_or_X_D</span>(<span class="sail-id">rs1</span>);
-  <span class="sail-keyword">match</span> (<a href="sail-riscv/./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
+  <span class="sail-keyword">match</span> (<a href="./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
     <span class="sail-id">None</span>() =&gt; <span class="sail-id">Illegal_Instruction</span>(),
     <span class="sail-id">Some</span>(<span class="sail-id">rm'</span>) =&gt; {
       <span class="sail-keyword">let</span> <span class="sail-id">rm_3b</span> = <span class="sail-id">encdec_rounding_mode</span>(<span class="sail-id">rm'</span>);
-      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_H</span>) = <a href="sail-riscv/./riscv_softfloat_interface.html#L384"><span class="sail-id">riscv_f64ToF16</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_D</span>);
+      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_H</span>) = <a href="./riscv_softfloat_interface.html#L384"><span class="sail-id">riscv_f64ToF16</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_D</span>);
 
-      <a href="sail-riscv/./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
+      <a href="./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
       <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rd</span>) = <span class="sail-id">rd_val_H</span>;
       <span class="sail-id">RETIRE_SUCCESS</span>
     }
@@ -687,13 +687,13 @@
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">F_UN_RM_FF_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FCVT_S_H</span>)) = {
   <span class="sail-keyword">let</span> <span class="sail-id">rs1_val_H</span> = <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rs1</span>);
-  <span class="sail-keyword">match</span> (<a href="sail-riscv/./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
+  <span class="sail-keyword">match</span> (<a href="./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
     <span class="sail-id">None</span>() =&gt; <span class="sail-id">Illegal_Instruction</span>(),
     <span class="sail-id">Some</span>(<span class="sail-id">rm'</span>) =&gt; {
       <span class="sail-keyword">let</span> <span class="sail-id">rm_3b</span> = <span class="sail-id">encdec_rounding_mode</span>(<span class="sail-id">rm'</span>);
-      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_S</span>) = <a href="sail-riscv/./riscv_softfloat_interface.html#L356"><span class="sail-id">riscv_f16ToF32</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_H</span>);
+      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_S</span>) = <a href="./riscv_softfloat_interface.html#L356"><span class="sail-id">riscv_f16ToF32</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_H</span>);
 
-      <a href="sail-riscv/./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
+      <a href="./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
       <span class="sail-id">F_or_X_S</span>(<span class="sail-id">rd</span>) = <span class="sail-id">rd_val_S</span>;
       <span class="sail-id">RETIRE_SUCCESS</span>
     }
@@ -702,13 +702,13 @@
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">F_UN_RM_FF_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FCVT_D_H</span>)) = {
   <span class="sail-keyword">let</span> <span class="sail-id">rs1_val_H</span> = <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rs1</span>);
-  <span class="sail-keyword">match</span> (<a href="sail-riscv/./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
+  <span class="sail-keyword">match</span> (<a href="./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
     <span class="sail-id">None</span>() =&gt; <span class="sail-id">Illegal_Instruction</span>(),
     <span class="sail-id">Some</span>(<span class="sail-id">rm'</span>) =&gt; {
       <span class="sail-keyword">let</span> <span class="sail-id">rm_3b</span> = <span class="sail-id">encdec_rounding_mode</span>(<span class="sail-id">rm'</span>);
-      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_D</span>) = <a href="sail-riscv/./riscv_softfloat_interface.html#L363"><span class="sail-id">riscv_f16ToF64</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_H</span>);
+      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_D</span>) = <a href="./riscv_softfloat_interface.html#L363"><span class="sail-id">riscv_f16ToF64</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_H</span>);
 
-      <a href="sail-riscv/./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
+      <a href="./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
       <span class="sail-id">F_or_X_D</span>(<span class="sail-id">rd</span>) = <span class="sail-id">rd_val_D</span>;
       <span class="sail-id">RETIRE_SUCCESS</span>
     }
@@ -718,14 +718,14 @@
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">F_UN_RM_FX_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FCVT_L_H</span>)) = {
   <span class="sail-keyword">assert</span>(<span class="sail-id">xlen</span> <span class="sail-operator">&gt;=</span> <span class="sail-literal">64</span>);
   <span class="sail-keyword">let</span> <span class="sail-id">rs1_val_H</span> = <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rs1</span>);
-  <span class="sail-keyword">match</span> (<a href="sail-riscv/./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
+  <span class="sail-keyword">match</span> (<a href="./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
     <span class="sail-id">None</span>() =&gt; <span class="sail-id">Illegal_Instruction</span>(),
     <span class="sail-id">Some</span>(<span class="sail-id">rm'</span>) =&gt; {
       <span class="sail-keyword">let</span> <span class="sail-id">rm_3b</span> = <span class="sail-id">encdec_rounding_mode</span>(<span class="sail-id">rm'</span>);
-      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_L</span>) = <a href="sail-riscv/./riscv_softfloat_interface.html#L215"><span class="sail-id">riscv_f16ToI64</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_H</span>);
+      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_L</span>) = <a href="./riscv_softfloat_interface.html#L215"><span class="sail-id">riscv_f16ToI64</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_H</span>);
 
-      <a href="sail-riscv/./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
-      <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href="sail-riscv/./prelude.html#L85"><span class="sail-id">sign_extend</span></a>(<span class="sail-id">rd_val_L</span>);
+      <a href="./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
+      <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href="./prelude.html#L85"><span class="sail-id">sign_extend</span></a>(<span class="sail-id">rd_val_L</span>);
       <span class="sail-id">RETIRE_SUCCESS</span>
     }
   }
@@ -734,14 +734,14 @@
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">F_UN_RM_FX_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FCVT_LU_H</span>)) = {
   <span class="sail-keyword">assert</span>(<span class="sail-id">xlen</span> <span class="sail-operator">&gt;=</span> <span class="sail-literal">64</span>);
   <span class="sail-keyword">let</span> <span class="sail-id">rs1_val_H</span> = <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rs1</span>);
-  <span class="sail-keyword">match</span> (<a href="sail-riscv/./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
+  <span class="sail-keyword">match</span> (<a href="./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
     <span class="sail-id">None</span>() =&gt; <span class="sail-id">Illegal_Instruction</span>(),
     <span class="sail-id">Some</span>(<span class="sail-id">rm'</span>) =&gt; {
       <span class="sail-keyword">let</span> <span class="sail-id">rm_3b</span> = <span class="sail-id">encdec_rounding_mode</span>(<span class="sail-id">rm'</span>);
-      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_LU</span>) = <a href="sail-riscv/./riscv_softfloat_interface.html#L222"><span class="sail-id">riscv_f16ToUi64</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_H</span>);
+      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_LU</span>) = <a href="./riscv_softfloat_interface.html#L222"><span class="sail-id">riscv_f16ToUi64</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_H</span>);
 
-      <a href="sail-riscv/./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
-      <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href="sail-riscv/./prelude.html#L85"><span class="sail-id">sign_extend</span></a>(<span class="sail-id">rd_val_LU</span>);
+      <a href="./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
+      <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href="./prelude.html#L85"><span class="sail-id">sign_extend</span></a>(<span class="sail-id">rd_val_LU</span>);
       <span class="sail-id">RETIRE_SUCCESS</span>
     }
   }
@@ -750,13 +750,13 @@
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">F_UN_RM_XF_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FCVT_H_L</span>)) = {
   <span class="sail-keyword">assert</span>(<span class="sail-id">xlen</span> <span class="sail-operator">&gt;=</span> <span class="sail-literal">64</span>);
   <span class="sail-keyword">let</span> <span class="sail-id">rs1_val_L</span> = <span class="sail-id">X</span>(<span class="sail-id">rs1</span>)[<span class="sail-literal">63</span>..<span class="sail-literal">0</span>];
-  <span class="sail-keyword">match</span> (<a href="sail-riscv/./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
+  <span class="sail-keyword">match</span> (<a href="./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
     <span class="sail-id">None</span>() =&gt; <span class="sail-id">Illegal_Instruction</span>(),
     <span class="sail-id">Some</span>(<span class="sail-id">rm'</span>) =&gt; {
       <span class="sail-keyword">let</span> <span class="sail-id">rm_3b</span> = <span class="sail-id">encdec_rounding_mode</span>(<span class="sail-id">rm'</span>);
-      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_H</span>) = <a href="sail-riscv/./riscv_softfloat_interface.html#L229"><span class="sail-id">riscv_i64ToF16</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_L</span>);
+      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_H</span>) = <a href="./riscv_softfloat_interface.html#L229"><span class="sail-id">riscv_i64ToF16</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_L</span>);
 
-      <a href="sail-riscv/./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
+      <a href="./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
       <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rd</span>) = <span class="sail-id">rd_val_H</span>;
       <span class="sail-id">RETIRE_SUCCESS</span>
     }
@@ -766,13 +766,13 @@
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">F_UN_RM_XF_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rm</span>, <span class="sail-id">rd</span>, <span class="sail-id">FCVT_H_LU</span>)) = {
   <span class="sail-keyword">assert</span>(<span class="sail-id">xlen</span> <span class="sail-operator">&gt;=</span> <span class="sail-literal">64</span>);
   <span class="sail-keyword">let</span> <span class="sail-id">rs1_val_LU</span> = <span class="sail-id">X</span>(<span class="sail-id">rs1</span>)[<span class="sail-literal">63</span>..<span class="sail-literal">0</span>];
-  <span class="sail-keyword">match</span> (<a href="sail-riscv/./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
+  <span class="sail-keyword">match</span> (<a href="./riscv_insts_fext.html#L53"><span class="sail-id">select_instr_or_fcsr_rm</span></a> (<span class="sail-id">rm</span>)) {
     <span class="sail-id">None</span>() =&gt; <span class="sail-id">Illegal_Instruction</span>(),
     <span class="sail-id">Some</span>(<span class="sail-id">rm'</span>) =&gt; {
       <span class="sail-keyword">let</span> <span class="sail-id">rm_3b</span> = <span class="sail-id">encdec_rounding_mode</span>(<span class="sail-id">rm'</span>);
-      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_H</span>) = <a href="sail-riscv/./riscv_softfloat_interface.html#L236"><span class="sail-id">riscv_ui64ToF16</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_LU</span>);
+      <span class="sail-keyword">let</span> (<span class="sail-id">fflags</span>, <span class="sail-id">rd_val_H</span>) = <a href="./riscv_softfloat_interface.html#L236"><span class="sail-id">riscv_ui64ToF16</span></a> (<span class="sail-id">rm_3b</span>, <span class="sail-id">rs1_val_LU</span>);
 
-      <a href="sail-riscv/./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
+      <a href="./riscv_fdext_regs.html#L440"><span class="sail-id">accrue_fflags</span></a>(<span class="sail-id">fflags</span>);
       <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rd</span>) = <span class="sail-id">rd_val_H</span>;
       <span class="sail-id">RETIRE_SUCCESS</span>
     }
@@ -831,15 +831,15 @@
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_UN_X_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-id">FCLASS_H</span>)
   &lt;-&gt; <span class="sail-literal">0b111_0010</span> @ <span class="sail-literal">0b00000</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-literal">0b001</span> @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
+  <span class="sail-keyword">when</span> <a href="./riscv_insts_zfh.html#L168"><span class="sail-id">haveHalfFPU</span></a>()
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_UN_X_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-id">FMV_X_H</span>)
   &lt;-&gt; <span class="sail-literal">0b111_0010</span> @ <span class="sail-literal">0b00000</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-literal">0b000</span> @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zfhmin</span>)
+  <span class="sail-keyword">when</span> <a href="./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zfhmin</span>)
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">F_UN_F_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-id">FMV_H_X</span>)
   &lt;-&gt; <span class="sail-literal">0b111_1010</span> @ <span class="sail-literal">0b00000</span> @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-literal">0b000</span> @ <span class="sail-id">encdec_freg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b101_0011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zfhmin</span>)
+  <span class="sail-keyword">when</span> <a href="./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zfhmin</span>)
 
 <span class="sail-comment">/* Execution semantics ================================ */</span>
 
@@ -847,25 +847,25 @@
   <span class="sail-keyword">let</span> <span class="sail-id">rs1_val_H</span> = <span class="sail-id">F_or_X_H</span>(<span class="sail-id">rs1</span>);
 
   <span class="sail-keyword">let</span> <span class="sail-id">rd_val_10b</span> : <span class="sail-id">bits</span> (<span class="sail-literal">10</span>) =
-    <span class="sail-keyword">if</span>      <a href="sail-riscv/./riscv_insts_zfh.html#L45"><span class="sail-id">f_is_neg_inf_H</span></a>     (<span class="sail-id">rs1_val_H</span>) <span class="sail-keyword">then</span> <span class="sail-literal">0b_00_0000_0001</span>
-    <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_insts_zfh.html#L53"><span class="sail-id">f_is_neg_norm_H</span></a>    (<span class="sail-id">rs1_val_H</span>) <span class="sail-keyword">then</span> <span class="sail-literal">0b_00_0000_0010</span>
-    <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_insts_zfh.html#L61"><span class="sail-id">f_is_neg_subnorm_H</span></a> (<span class="sail-id">rs1_val_H</span>) <span class="sail-keyword">then</span> <span class="sail-literal">0b_00_0000_0100</span>
-    <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_insts_zfh.html#L93"><span class="sail-id">f_is_neg_zero_H</span></a>    (<span class="sail-id">rs1_val_H</span>) <span class="sail-keyword">then</span> <span class="sail-literal">0b_00_0000_1000</span>
-    <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_insts_zfh.html#L101"><span class="sail-id">f_is_pos_zero_H</span></a>    (<span class="sail-id">rs1_val_H</span>) <span class="sail-keyword">then</span> <span class="sail-literal">0b_00_0001_0000</span>
-    <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_insts_zfh.html#L69"><span class="sail-id">f_is_pos_subnorm_H</span></a> (<span class="sail-id">rs1_val_H</span>) <span class="sail-keyword">then</span> <span class="sail-literal">0b_00_0010_0000</span>
-    <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_insts_zfh.html#L77"><span class="sail-id">f_is_pos_norm_H</span></a>    (<span class="sail-id">rs1_val_H</span>) <span class="sail-keyword">then</span> <span class="sail-literal">0b_00_0100_0000</span>
-    <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_insts_zfh.html#L85"><span class="sail-id">f_is_pos_inf_H</span></a>     (<span class="sail-id">rs1_val_H</span>) <span class="sail-keyword">then</span> <span class="sail-literal">0b_00_1000_0000</span>
-    <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_insts_zfh.html#L109"><span class="sail-id">f_is_SNaN_H</span></a>        (<span class="sail-id">rs1_val_H</span>) <span class="sail-keyword">then</span> <span class="sail-literal">0b_01_0000_0000</span>
-    <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_insts_zfh.html#L117"><span class="sail-id">f_is_QNaN_H</span></a>        (<span class="sail-id">rs1_val_H</span>) <span class="sail-keyword">then</span> <span class="sail-literal">0b_10_0000_0000</span>
-    <span class="sail-keyword">else</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>();
+    <span class="sail-keyword">if</span>      <a href="./riscv_insts_zfh.html#L45"><span class="sail-id">f_is_neg_inf_H</span></a>     (<span class="sail-id">rs1_val_H</span>) <span class="sail-keyword">then</span> <span class="sail-literal">0b_00_0000_0001</span>
+    <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="./riscv_insts_zfh.html#L53"><span class="sail-id">f_is_neg_norm_H</span></a>    (<span class="sail-id">rs1_val_H</span>) <span class="sail-keyword">then</span> <span class="sail-literal">0b_00_0000_0010</span>
+    <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="./riscv_insts_zfh.html#L61"><span class="sail-id">f_is_neg_subnorm_H</span></a> (<span class="sail-id">rs1_val_H</span>) <span class="sail-keyword">then</span> <span class="sail-literal">0b_00_0000_0100</span>
+    <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="./riscv_insts_zfh.html#L93"><span class="sail-id">f_is_neg_zero_H</span></a>    (<span class="sail-id">rs1_val_H</span>) <span class="sail-keyword">then</span> <span class="sail-literal">0b_00_0000_1000</span>
+    <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="./riscv_insts_zfh.html#L101"><span class="sail-id">f_is_pos_zero_H</span></a>    (<span class="sail-id">rs1_val_H</span>) <span class="sail-keyword">then</span> <span class="sail-literal">0b_00_0001_0000</span>
+    <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="./riscv_insts_zfh.html#L69"><span class="sail-id">f_is_pos_subnorm_H</span></a> (<span class="sail-id">rs1_val_H</span>) <span class="sail-keyword">then</span> <span class="sail-literal">0b_00_0010_0000</span>
+    <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="./riscv_insts_zfh.html#L77"><span class="sail-id">f_is_pos_norm_H</span></a>    (<span class="sail-id">rs1_val_H</span>) <span class="sail-keyword">then</span> <span class="sail-literal">0b_00_0100_0000</span>
+    <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="./riscv_insts_zfh.html#L85"><span class="sail-id">f_is_pos_inf_H</span></a>     (<span class="sail-id">rs1_val_H</span>) <span class="sail-keyword">then</span> <span class="sail-literal">0b_00_1000_0000</span>
+    <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="./riscv_insts_zfh.html#L109"><span class="sail-id">f_is_SNaN_H</span></a>        (<span class="sail-id">rs1_val_H</span>) <span class="sail-keyword">then</span> <span class="sail-literal">0b_01_0000_0000</span>
+    <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="./riscv_insts_zfh.html#L117"><span class="sail-id">f_is_QNaN_H</span></a>        (<span class="sail-id">rs1_val_H</span>) <span class="sail-keyword">then</span> <span class="sail-literal">0b_10_0000_0000</span>
+    <span class="sail-keyword">else</span> <a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>();
 
-  <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href="sail-riscv/./prelude.html#L86"><span class="sail-id">zero_extend</span></a> (<span class="sail-id">rd_val_10b</span>);
+  <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href="./prelude.html#L86"><span class="sail-id">zero_extend</span></a> (<span class="sail-id">rd_val_10b</span>);
   <span class="sail-id">RETIRE_SUCCESS</span>
 }
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">F_UN_X_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-id">FMV_X_H</span>)) = {
   <span class="sail-keyword">let</span> <span class="sail-id">rs1_val_H</span>            = <span class="sail-id">F</span>(<span class="sail-id">rs1</span>)[<span class="sail-literal">15</span>..<span class="sail-literal">0</span>];
-  <span class="sail-keyword">let</span> <span class="sail-id">rd_val_X</span>  : <span class="sail-id">xlenbits</span> = <a href="sail-riscv/./prelude.html#L85"><span class="sail-id">sign_extend</span></a>(<span class="sail-id">rs1_val_H</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">rd_val_X</span>  : <span class="sail-id">xlenbits</span> = <a href="./prelude.html#L85"><span class="sail-id">sign_extend</span></a>(<span class="sail-id">rs1_val_H</span>);
   <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <span class="sail-id">rd_val_X</span>;
   <span class="sail-id">RETIRE_SUCCESS</span>
 }
@@ -873,7 +873,7 @@
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">F_UN_F_TYPE_H</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-id">FMV_H_X</span>)) = {
   <span class="sail-keyword">let</span> <span class="sail-id">rs1_val_X</span>            = <span class="sail-id">X</span>(<span class="sail-id">rs1</span>);
   <span class="sail-keyword">let</span> <span class="sail-id">rd_val_H</span>             = <span class="sail-id">rs1_val_X</span> [<span class="sail-literal">15</span>..<span class="sail-literal">0</span>];
-  <span class="sail-id">F</span>(<span class="sail-id">rd</span>) = <a href="sail-riscv/./riscv_fdext_regs.html#L40"><span class="sail-id">nan_box</span></a> (<span class="sail-id">rd_val_H</span>);
+  <span class="sail-id">F</span>(<span class="sail-id">rd</span>) = <a href="./riscv_fdext_regs.html#L40"><span class="sail-id">nan_box</span></a> (<span class="sail-id">rd_val_H</span>);
   <span class="sail-id">RETIRE_SUCCESS</span>
 }
 

@@ -29,13 +29,13 @@
 <span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
 <span class="sail-comment">/*=======================================================================================*/</span>
 
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zcmop</span>) = <a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zcmop</span>) <span class="sail-operator">&amp;</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zca</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zcmop</span>) = <a href="./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zcmop</span>) <span class="sail-operator">&amp;</span> <a href="./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zca</span>)
 
 <span class="sail-keyword">union</span> <span class="sail-keyword">clause</span> <span class="sail-id">instruction</span> = <span class="sail-id">ZCMOP</span> : (<span class="sail-id">bits</span>(<span class="sail-literal">3</span>))
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec_compressed</span> = <span class="sail-id">ZCMOP</span>(<span class="sail-id">mop</span>)
   &lt;-&gt; <span class="sail-literal">0b01100</span> @ <span class="sail-id">mop</span> : <span class="sail-id">bits</span>(<span class="sail-literal">3</span>) @ <span class="sail-literal">0b100000</span> @ <span class="sail-literal">0b01</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcmop</span>)
+  <span class="sail-keyword">when</span> <a href="./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcmop</span>)
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">assembly</span> = <span class="sail-id">ZCMOP</span>(<span class="sail-id">mop</span>)
   &lt;-&gt; <span class="sail-string">"c.mop."</span> <span class="sail-operator">^</span> <span class="sail-id">dec_bits_4</span>(<span class="sail-id">mop</span> @ <span class="sail-literal">0b1</span>)

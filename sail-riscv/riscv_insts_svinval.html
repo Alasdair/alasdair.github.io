@@ -29,16 +29,16 @@
 <span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
 <span class="sail-comment">/*=======================================================================================*/</span>
 
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Svinval</span>) = <a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Svinval</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Svinval</span>) = <a href="./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Svinval</span>)
 
 <span class="sail-keyword">union</span> <span class="sail-keyword">clause</span> <span class="sail-id">instruction</span> = <span class="sail-id">SINVAL_VMA</span> : (<span class="sail-id">regidx</span>, <span class="sail-id">regidx</span>)
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">SINVAL_VMA</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rs2</span>)
   &lt;-&gt; <span class="sail-literal">0b0001011</span> @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rs2</span>) @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-literal">0b000</span> @ <span class="sail-literal">0b00000</span> @ <span class="sail-literal">0b1110011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Svinval</span>)
+  <span class="sail-keyword">when</span> <a href="./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Svinval</span>)
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> <span class="sail-id">SINVAL_VMA</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rs2</span>) = {
-  <a href="sail-riscv/./riscv_insts_begin.html#L18"><span class="sail-id">execute</span></a>(<span class="sail-id">SFENCE_VMA</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rs2</span>))
+  <a href="./riscv_insts_begin.html#L18"><span class="sail-id">execute</span></a>(<span class="sail-id">SFENCE_VMA</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rs2</span>))
 }
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">assembly</span> = <span class="sail-id">SINVAL_VMA</span>(<span class="sail-id">rs1</span>, <span class="sail-id">rs2</span>)
@@ -50,10 +50,10 @@
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">SFENCE_W_INVAL</span>()
   &lt;-&gt; <span class="sail-literal">0b0001100</span> @ <span class="sail-literal">0b00000</span> @ <span class="sail-literal">0b00000</span> @ <span class="sail-literal">0b000</span> @ <span class="sail-literal">0b00000</span> @ <span class="sail-literal">0b1110011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Svinval</span>)
+  <span class="sail-keyword">when</span> <a href="./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Svinval</span>)
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> <span class="sail-id">SFENCE_W_INVAL</span>() = {
-  <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_sys_regs.html#L13"><span class="sail-id">cur_privilege</span></a> <span class="sail-operator">==</span> <span class="sail-id">User</span>
+  <span class="sail-keyword">if</span> <a href="./riscv_sys_regs.html#L13"><span class="sail-id">cur_privilege</span></a> <span class="sail-operator">==</span> <span class="sail-id">User</span>
   <span class="sail-keyword">then</span> <span class="sail-id">Illegal_Instruction</span>()
   <span class="sail-keyword">else</span> <span class="sail-id">RETIRE_SUCCESS</span> <span class="sail-comment">// Implemented as no-op as all memory operations are visible immediately the current Sail model
 </span>}
@@ -66,10 +66,10 @@
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">SFENCE_INVAL_IR</span>()
   &lt;-&gt; <span class="sail-literal">0b0001100</span> @ <span class="sail-literal">0b00001</span> @ <span class="sail-literal">0b00000</span> @ <span class="sail-literal">0b000</span> @ <span class="sail-literal">0b00000</span> @ <span class="sail-literal">0b1110011</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Svinval</span>)
+  <span class="sail-keyword">when</span> <a href="./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Svinval</span>)
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> <span class="sail-id">SFENCE_INVAL_IR</span>() = {
-  <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_sys_regs.html#L13"><span class="sail-id">cur_privilege</span></a> <span class="sail-operator">==</span> <span class="sail-id">User</span>
+  <span class="sail-keyword">if</span> <a href="./riscv_sys_regs.html#L13"><span class="sail-id">cur_privilege</span></a> <span class="sail-operator">==</span> <span class="sail-id">User</span>
   <span class="sail-keyword">then</span> <span class="sail-id">Illegal_Instruction</span>()
   <span class="sail-keyword">else</span> <span class="sail-id">RETIRE_SUCCESS</span> <span class="sail-comment">// Implemented as no-op as all memory operations are visible immediately in current Sail model
 </span>}

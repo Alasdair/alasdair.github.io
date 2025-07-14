@@ -57,23 +57,23 @@
 <span class="sail-comment">// Overloads for easier use of callbacks
 </span><span class="sail-keyword">function</span> <span class="sail-id">csr_name_write_callback</span>(<span class="sail-id">name</span> : <span class="sail-id">string</span>, <span class="sail-id">value</span> : <span class="sail-id">xlenbits</span>) -&gt; <span class="sail-id">unit</span> = {
   <span class="sail-keyword">let</span> <span class="sail-id">csr</span> = <span class="sail-id">csr_name_map</span>(<span class="sail-id">name</span>);
-  <a href="sail-riscv/./riscv_callbacks.html#L26"><span class="sail-id">csr_full_write_callback</span></a>(<span class="sail-id">name</span>, <span class="sail-id">csr</span>, <span class="sail-id">value</span>);
+  <a href="./riscv_callbacks.html#L26"><span class="sail-id">csr_full_write_callback</span></a>(<span class="sail-id">name</span>, <span class="sail-id">csr</span>, <span class="sail-id">value</span>);
 }
 <span class="sail-keyword">function</span> <span class="sail-id">csr_id_write_callback</span>(<span class="sail-id">csr</span> : <span class="sail-id">csreg</span>, <span class="sail-id">value</span> : <span class="sail-id">xlenbits</span>) -&gt; <span class="sail-id">unit</span> = {
   <span class="sail-keyword">let</span> <span class="sail-id">name</span> = <span class="sail-id">csr_name_map</span>(<span class="sail-id">csr</span>);
-  <a href="sail-riscv/./riscv_callbacks.html#L26"><span class="sail-id">csr_full_write_callback</span></a>(<span class="sail-id">name</span>, <span class="sail-id">csr</span>, <span class="sail-id">value</span>);
+  <a href="./riscv_callbacks.html#L26"><span class="sail-id">csr_full_write_callback</span></a>(<span class="sail-id">name</span>, <span class="sail-id">csr</span>, <span class="sail-id">value</span>);
 }
 <span class="sail-keyword">function</span> <span class="sail-id">csr_name_read_callback</span>(<span class="sail-id">name</span> : <span class="sail-id">string</span>, <span class="sail-id">value</span> : <span class="sail-id">xlenbits</span>) -&gt; <span class="sail-id">unit</span> = {
   <span class="sail-keyword">let</span> <span class="sail-id">csr</span> = <span class="sail-id">csr_name_map</span>(<span class="sail-id">name</span>);
-  <a href="sail-riscv/./riscv_callbacks.html#L29"><span class="sail-id">csr_full_read_callback</span></a>(<span class="sail-id">name</span>, <span class="sail-id">csr</span>, <span class="sail-id">value</span>);
+  <a href="./riscv_callbacks.html#L29"><span class="sail-id">csr_full_read_callback</span></a>(<span class="sail-id">name</span>, <span class="sail-id">csr</span>, <span class="sail-id">value</span>);
 }
 <span class="sail-keyword">function</span> <span class="sail-id">csr_id_read_callback</span>(<span class="sail-id">csr</span> : <span class="sail-id">csreg</span>, <span class="sail-id">value</span> : <span class="sail-id">xlenbits</span>) -&gt; <span class="sail-id">unit</span> = {
   <span class="sail-keyword">let</span> <span class="sail-id">name</span> = <span class="sail-id">csr_name_map</span>(<span class="sail-id">csr</span>);
-  <a href="sail-riscv/./riscv_callbacks.html#L29"><span class="sail-id">csr_full_read_callback</span></a>(<span class="sail-id">name</span>, <span class="sail-id">csr</span>, <span class="sail-id">value</span>);
+  <a href="./riscv_callbacks.html#L29"><span class="sail-id">csr_full_read_callback</span></a>(<span class="sail-id">name</span>, <span class="sail-id">csr</span>, <span class="sail-id">value</span>);
 }
 
-<span class="sail-keyword">overload</span> <span class="sail-id">csr_write_callback</span> = {<a href="sail-riscv/./riscv_callbacks.html#L35"><span class="sail-id">csr_name_write_callback</span></a>, <a href="sail-riscv/./riscv_callbacks.html#L39"><span class="sail-id">csr_id_write_callback</span></a>, <span class="sail-id">csr_full_write_callback</span>}
-<span class="sail-keyword">overload</span> <span class="sail-id">csr_read_callback</span> = {<span class="sail-id">csr_name_read_callback</span>, <a href="sail-riscv/./riscv_callbacks.html#L47"><span class="sail-id">csr_id_read_callback</span></a>, <span class="sail-id">csr_full_read_callback</span>}
+<span class="sail-keyword">overload</span> <span class="sail-id">csr_write_callback</span> = {<a href="./riscv_callbacks.html#L35"><span class="sail-id">csr_name_write_callback</span></a>, <a href="./riscv_callbacks.html#L39"><span class="sail-id">csr_id_write_callback</span></a>, <span class="sail-id">csr_full_write_callback</span>}
+<span class="sail-keyword">overload</span> <span class="sail-id">csr_read_callback</span> = {<span class="sail-id">csr_name_read_callback</span>, <a href="./riscv_callbacks.html#L47"><span class="sail-id">csr_id_read_callback</span></a>, <span class="sail-id">csr_full_read_callback</span>}
 
 <span class="sail-keyword">function</span> <span class="sail-id">long_csr_write_callback</span>(<span class="sail-id">name</span> : <span class="sail-id">string</span>, <span class="sail-id">name_high</span> : <span class="sail-id">string</span>, <span class="sail-id">value</span> : <span class="sail-id">bits</span>(<span class="sail-literal">64</span>)) -&gt; <span class="sail-id">unit</span> = {
   <span class="sail-id">csr_write_callback</span>(<span class="sail-id">name</span>, <span class="sail-id">value</span>[<span class="sail-id">xlen</span> <span class="sail-operator">-</span> <span class="sail-literal">1</span> .. <span class="sail-literal">0</span>]);

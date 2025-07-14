@@ -43,20 +43,20 @@
 </span>                         <span class="sail-comment">// may decode to a 16-bit compressed instruction.
 </span>}
 
-<span class="sail-keyword">register</span> <a href="sail-riscv/./rvfi_dii.html#L23"><span class="sail-id">rvfi_instruction</span></a> : <span class="sail-id">RVFI_DII_Instruction_Packet</span>
+<span class="sail-keyword">register</span> <a href="./rvfi_dii.html#L23"><span class="sail-id">rvfi_instruction</span></a> : <span class="sail-id">RVFI_DII_Instruction_Packet</span>
 
 <span class="sail-keyword">val</span> <span class="sail-id">rvfi_set_instr_packet</span> : <span class="sail-id">bits</span>(<span class="sail-literal">64</span>) -&gt; <span class="sail-id">unit</span>
 
 <span class="sail-keyword">function</span> <span class="sail-id">rvfi_set_instr_packet</span>(<span class="sail-id">p</span>) =
-  <a href="sail-riscv/./rvfi_dii.html#L23"><span class="sail-id">rvfi_instruction</span></a> = <span class="sail-id">Mk_RVFI_DII_Instruction_Packet</span>(<span class="sail-id">p</span>)
+  <a href="./rvfi_dii.html#L23"><span class="sail-id">rvfi_instruction</span></a> = <span class="sail-id">Mk_RVFI_DII_Instruction_Packet</span>(<span class="sail-id">p</span>)
 
 <span class="sail-keyword">val</span> <span class="sail-id">rvfi_get_cmd</span> : <span class="sail-id">unit</span> -&gt; <span class="sail-id">bits</span>(<span class="sail-literal">8</span>)
 
-<span class="sail-keyword">function</span> <span class="sail-id">rvfi_get_cmd</span> () = <a href="sail-riscv/./rvfi_dii.html#L23"><span class="sail-id">rvfi_instruction</span></a>[<span class="sail-id">rvfi_cmd</span>]
+<span class="sail-keyword">function</span> <span class="sail-id">rvfi_get_cmd</span> () = <a href="./rvfi_dii.html#L23"><span class="sail-id">rvfi_instruction</span></a>[<span class="sail-id">rvfi_cmd</span>]
 
 <span class="sail-keyword">val</span> <span class="sail-id">rvfi_get_insn</span> : <span class="sail-id">unit</span> -&gt; <span class="sail-id">bits</span>(<span class="sail-literal">32</span>)
 
-<span class="sail-keyword">function</span> <span class="sail-id">rvfi_get_insn</span> () = <a href="sail-riscv/./rvfi_dii.html#L23"><span class="sail-id">rvfi_instruction</span></a>[<span class="sail-id">rvfi_insn</span>]
+<span class="sail-keyword">function</span> <span class="sail-id">rvfi_get_insn</span> () = <a href="./rvfi_dii.html#L23"><span class="sail-id">rvfi_instruction</span></a>[<span class="sail-id">rvfi_insn</span>]
 
 <span class="sail-keyword">val</span> <span class="sail-id">print_instr_packet</span> : <span class="sail-id">bits</span>(<span class="sail-literal">64</span>) -&gt; <span class="sail-id">unit</span>
 
@@ -172,27 +172,27 @@
 </span>  <span class="sail-id">rvfi_mem_addr</span> : <span class="sail-literal">703</span> .. <span class="sail-literal">640</span>,
 }
 
-<span class="sail-keyword">register</span> <a href="sail-riscv/./rvfi_dii.html#L152"><span class="sail-id">rvfi_inst_data</span></a> : <span class="sail-id">RVFI_DII_Execution_Packet_InstMetaData</span>
-<span class="sail-keyword">register</span> <a href="sail-riscv/./rvfi_dii.html#L153"><span class="sail-id">rvfi_pc_data</span></a> : <span class="sail-id">RVFI_DII_Execution_Packet_PC</span>
-<span class="sail-keyword">register</span> <a href="sail-riscv/./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a> : <span class="sail-id">RVFI_DII_Execution_Packet_Ext_Integer</span>
-<span class="sail-keyword">register</span> <a href="sail-riscv/./rvfi_dii.html#L155"><span class="sail-id">rvfi_int_data_present</span></a> : <span class="sail-id">bool</span>
-<span class="sail-keyword">register</span> <a href="sail-riscv/./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a> : <span class="sail-id">RVFI_DII_Execution_Packet_Ext_MemAccess</span>
-<span class="sail-keyword">register</span> <a href="sail-riscv/./rvfi_dii.html#L157"><span class="sail-id">rvfi_mem_data_present</span></a> : <span class="sail-id">bool</span>
+<span class="sail-keyword">register</span> <a href="./rvfi_dii.html#L152"><span class="sail-id">rvfi_inst_data</span></a> : <span class="sail-id">RVFI_DII_Execution_Packet_InstMetaData</span>
+<span class="sail-keyword">register</span> <a href="./rvfi_dii.html#L153"><span class="sail-id">rvfi_pc_data</span></a> : <span class="sail-id">RVFI_DII_Execution_Packet_PC</span>
+<span class="sail-keyword">register</span> <a href="./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a> : <span class="sail-id">RVFI_DII_Execution_Packet_Ext_Integer</span>
+<span class="sail-keyword">register</span> <a href="./rvfi_dii.html#L155"><span class="sail-id">rvfi_int_data_present</span></a> : <span class="sail-id">bool</span>
+<span class="sail-keyword">register</span> <a href="./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a> : <span class="sail-id">RVFI_DII_Execution_Packet_Ext_MemAccess</span>
+<span class="sail-keyword">register</span> <a href="./rvfi_dii.html#L157"><span class="sail-id">rvfi_mem_data_present</span></a> : <span class="sail-id">bool</span>
 
 <span class="sail-comment">// Reset the trace
 </span><span class="sail-keyword">val</span> <span class="sail-id">rvfi_zero_exec_packet</span> : <span class="sail-id">unit</span> -&gt; <span class="sail-id">unit</span>
 
 <span class="sail-keyword">function</span> <span class="sail-id">rvfi_zero_exec_packet</span> () = {
-  <a href="sail-riscv/./rvfi_dii.html#L152"><span class="sail-id">rvfi_inst_data</span></a> = <span class="sail-id">Mk_RVFI_DII_Execution_Packet_InstMetaData</span>(<a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>());
-  <a href="sail-riscv/./rvfi_dii.html#L153"><span class="sail-id">rvfi_pc_data</span></a> = <span class="sail-id">Mk_RVFI_DII_Execution_Packet_PC</span>(<a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>());
-  <a href="sail-riscv/./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a> = <span class="sail-id">Mk_RVFI_DII_Execution_Packet_Ext_Integer</span>(<a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>());
+  <a href="./rvfi_dii.html#L152"><span class="sail-id">rvfi_inst_data</span></a> = <span class="sail-id">Mk_RVFI_DII_Execution_Packet_InstMetaData</span>(<a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>());
+  <a href="./rvfi_dii.html#L153"><span class="sail-id">rvfi_pc_data</span></a> = <span class="sail-id">Mk_RVFI_DII_Execution_Packet_PC</span>(<a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>());
+  <a href="./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a> = <span class="sail-id">Mk_RVFI_DII_Execution_Packet_Ext_Integer</span>(<a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>());
   <span class="sail-comment">// magic = "int-data" -&gt; 0x617461642d746e69 (big-endian)
-</span>  <a href="sail-riscv/./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a> = <span class="sail-id">update_magic</span>(<a href="sail-riscv/./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>, <span class="sail-literal">0x617461642d746e69</span>);
-  <a href="sail-riscv/./rvfi_dii.html#L155"><span class="sail-id">rvfi_int_data_present</span></a> = <span class="sail-literal">false</span>;
-  <a href="sail-riscv/./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a> = <span class="sail-id">Mk_RVFI_DII_Execution_Packet_Ext_MemAccess</span>(<a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>());
+</span>  <a href="./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a> = <span class="sail-id">update_magic</span>(<a href="./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>, <span class="sail-literal">0x617461642d746e69</span>);
+  <a href="./rvfi_dii.html#L155"><span class="sail-id">rvfi_int_data_present</span></a> = <span class="sail-literal">false</span>;
+  <a href="./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a> = <span class="sail-id">Mk_RVFI_DII_Execution_Packet_Ext_MemAccess</span>(<a href="./prelude.html#L89"><span class="sail-id">zeros</span></a>());
   <span class="sail-comment">// magic = "mem-data" -&gt; 0x617461642d6d656d (big-endian)
-</span>  <a href="sail-riscv/./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a> = <span class="sail-id">update_magic</span>(<a href="sail-riscv/./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>, <span class="sail-literal">0x617461642d6d656d</span>);
-  <a href="sail-riscv/./rvfi_dii.html#L157"><span class="sail-id">rvfi_mem_data_present</span></a> = <span class="sail-literal">false</span>;
+</span>  <a href="./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a> = <span class="sail-id">update_magic</span>(<a href="./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>, <span class="sail-literal">0x617461642d6d656d</span>);
+  <a href="./rvfi_dii.html#L157"><span class="sail-id">rvfi_mem_data_present</span></a> = <span class="sail-literal">false</span>;
 }
 
 <span class="sail-comment">// FIXME: most of these will no longer be necessary once we use the c2 sail backend.
@@ -200,18 +200,18 @@
 <span class="sail-keyword">val</span> <span class="sail-id">rvfi_halt_exec_packet</span> : <span class="sail-id">unit</span> -&gt; <span class="sail-id">unit</span>
 
 <span class="sail-keyword">function</span> <span class="sail-id">rvfi_halt_exec_packet</span> () =
-  <a href="sail-riscv/./rvfi_dii.html#L152"><span class="sail-id">rvfi_inst_data</span></a>[<span class="sail-id">rvfi_halt</span>] = <span class="sail-literal">0x01</span>
+  <a href="./rvfi_dii.html#L152"><span class="sail-id">rvfi_inst_data</span></a>[<span class="sail-id">rvfi_halt</span>] = <span class="sail-literal">0x01</span>
 
 <span class="sail-keyword">val</span> <span class="sail-id">rvfi_get_int_data</span> : <span class="sail-id">unit</span> -&gt; <span class="sail-id">bits</span>(<span class="sail-literal">320</span>)
 <span class="sail-keyword">function</span> <span class="sail-id">rvfi_get_int_data</span> () = {
-  <span class="sail-keyword">assert</span>(<a href="sail-riscv/./rvfi_dii.html#L155"><span class="sail-id">rvfi_int_data_present</span></a>, <span class="sail-string">"reading uninitialized data"</span>);
-  <span class="sail-keyword">return</span> <a href="sail-riscv/./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>.<span class="sail-id">bits</span>;
+  <span class="sail-keyword">assert</span>(<a href="./rvfi_dii.html#L155"><span class="sail-id">rvfi_int_data_present</span></a>, <span class="sail-string">"reading uninitialized data"</span>);
+  <span class="sail-keyword">return</span> <a href="./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>.<span class="sail-id">bits</span>;
 }
 
 <span class="sail-keyword">val</span> <span class="sail-id">rvfi_get_mem_data</span> : <span class="sail-id">unit</span> -&gt; <span class="sail-id">bits</span>(<span class="sail-literal">704</span>)
 <span class="sail-keyword">function</span> <span class="sail-id">rvfi_get_mem_data</span> () = {
-  <span class="sail-keyword">assert</span>(<a href="sail-riscv/./rvfi_dii.html#L157"><span class="sail-id">rvfi_mem_data_present</span></a>, <span class="sail-string">"reading uninitialized data"</span>);
-  <span class="sail-keyword">return</span> <a href="sail-riscv/./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>.<span class="sail-id">bits</span>;
+  <span class="sail-keyword">assert</span>(<a href="./rvfi_dii.html#L157"><span class="sail-id">rvfi_mem_data_present</span></a>, <span class="sail-string">"reading uninitialized data"</span>);
+  <span class="sail-keyword">return</span> <a href="./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>.<span class="sail-id">bits</span>;
 }
 
 <span class="sail-keyword">val</span> <span class="sail-id">rvfi_encode_width_mask</span> : <span class="sail-keyword">forall</span> <span class="sail-ty-var">'n</span>, <span class="sail-literal">0</span> <span class="sail-operator">&lt;</span> <span class="sail-ty-var">'n</span> <span class="sail-operator">&lt;=</span> <span class="sail-literal">32</span>. <span class="sail-id">int</span>(<span class="sail-ty-var">'n</span>) -&gt; <span class="sail-id">bits</span>(<span class="sail-literal">32</span>)
@@ -222,70 +222,70 @@
 <span class="sail-keyword">val</span> <span class="sail-id">print_rvfi_exec</span> : <span class="sail-id">unit</span> -&gt; <span class="sail-id">unit</span>
 
 <span class="sail-keyword">function</span> <span class="sail-id">print_rvfi_exec</span> () = {
-  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_intr     : "</span>, <a href="sail-riscv/./rvfi_dii.html#L152"><span class="sail-id">rvfi_inst_data</span></a>[<span class="sail-id">rvfi_intr</span>]);
-  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_halt     : "</span>, <a href="sail-riscv/./rvfi_dii.html#L152"><span class="sail-id">rvfi_inst_data</span></a>[<span class="sail-id">rvfi_halt</span>]);
-  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_trap     : "</span>, <a href="sail-riscv/./rvfi_dii.html#L152"><span class="sail-id">rvfi_inst_data</span></a>[<span class="sail-id">rvfi_trap</span>]);
-  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_rd_addr  : "</span>, <a href="sail-riscv/./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>[<span class="sail-id">rvfi_rd_addr</span>]);
-  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_rs2_addr : "</span>, <a href="sail-riscv/./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>[<span class="sail-id">rvfi_rs2_addr</span>]);
-  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_rs1_addr : "</span>, <a href="sail-riscv/./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>[<span class="sail-id">rvfi_rs1_addr</span>]);
-  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_mem_wmask: "</span>, <a href="sail-riscv/./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_wmask</span>]);
-  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_mem_rmask: "</span>, <a href="sail-riscv/./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_rmask</span>]);
-  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_mem_wdata: "</span>, <a href="sail-riscv/./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_wdata</span>]);
-  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_mem_rdata: "</span>, <a href="sail-riscv/./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_rdata</span>]);
-  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_mem_addr : "</span>, <a href="sail-riscv/./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_addr</span>]);
-  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_rd_wdata : "</span>, <a href="sail-riscv/./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>[<span class="sail-id">rvfi_rd_wdata</span>]);
-  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_rs2_data : "</span>, <a href="sail-riscv/./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>[<span class="sail-id">rvfi_rs2_rdata</span>]);
-  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_rs1_data : "</span>, <a href="sail-riscv/./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>[<span class="sail-id">rvfi_rs1_rdata</span>]);
-  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_insn     : "</span>, <a href="sail-riscv/./rvfi_dii.html#L152"><span class="sail-id">rvfi_inst_data</span></a>[<span class="sail-id">rvfi_insn</span>]);
-  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_pc_wdata : "</span>, <a href="sail-riscv/./rvfi_dii.html#L153"><span class="sail-id">rvfi_pc_data</span></a>[<span class="sail-id">rvfi_pc_wdata</span>]);
-  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_pc_rdata : "</span>, <a href="sail-riscv/./rvfi_dii.html#L153"><span class="sail-id">rvfi_pc_data</span></a>[<span class="sail-id">rvfi_pc_rdata</span>]);
-  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_order    : "</span>, <a href="sail-riscv/./rvfi_dii.html#L152"><span class="sail-id">rvfi_inst_data</span></a>[<span class="sail-id">rvfi_order</span>]);
+  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_intr     : "</span>, <a href="./rvfi_dii.html#L152"><span class="sail-id">rvfi_inst_data</span></a>[<span class="sail-id">rvfi_intr</span>]);
+  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_halt     : "</span>, <a href="./rvfi_dii.html#L152"><span class="sail-id">rvfi_inst_data</span></a>[<span class="sail-id">rvfi_halt</span>]);
+  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_trap     : "</span>, <a href="./rvfi_dii.html#L152"><span class="sail-id">rvfi_inst_data</span></a>[<span class="sail-id">rvfi_trap</span>]);
+  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_rd_addr  : "</span>, <a href="./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>[<span class="sail-id">rvfi_rd_addr</span>]);
+  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_rs2_addr : "</span>, <a href="./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>[<span class="sail-id">rvfi_rs2_addr</span>]);
+  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_rs1_addr : "</span>, <a href="./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>[<span class="sail-id">rvfi_rs1_addr</span>]);
+  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_mem_wmask: "</span>, <a href="./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_wmask</span>]);
+  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_mem_rmask: "</span>, <a href="./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_rmask</span>]);
+  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_mem_wdata: "</span>, <a href="./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_wdata</span>]);
+  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_mem_rdata: "</span>, <a href="./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_rdata</span>]);
+  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_mem_addr : "</span>, <a href="./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_addr</span>]);
+  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_rd_wdata : "</span>, <a href="./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>[<span class="sail-id">rvfi_rd_wdata</span>]);
+  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_rs2_data : "</span>, <a href="./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>[<span class="sail-id">rvfi_rs2_rdata</span>]);
+  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_rs1_data : "</span>, <a href="./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>[<span class="sail-id">rvfi_rs1_rdata</span>]);
+  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_insn     : "</span>, <a href="./rvfi_dii.html#L152"><span class="sail-id">rvfi_inst_data</span></a>[<span class="sail-id">rvfi_insn</span>]);
+  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_pc_wdata : "</span>, <a href="./rvfi_dii.html#L153"><span class="sail-id">rvfi_pc_data</span></a>[<span class="sail-id">rvfi_pc_wdata</span>]);
+  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_pc_rdata : "</span>, <a href="./rvfi_dii.html#L153"><span class="sail-id">rvfi_pc_data</span></a>[<span class="sail-id">rvfi_pc_rdata</span>]);
+  <span class="sail-id">print_bits</span>(<span class="sail-string">"rvfi_order    : "</span>, <a href="./rvfi_dii.html#L152"><span class="sail-id">rvfi_inst_data</span></a>[<span class="sail-id">rvfi_order</span>]);
 }
 
 <span class="sail-comment">/* RVFI records */</span>
 <span class="sail-keyword">val</span> <span class="sail-id">rvfi_write</span> : <span class="sail-keyword">forall</span> <span class="sail-ty-var">'n</span>, <span class="sail-literal">0</span> <span class="sail-operator">&lt;</span> <span class="sail-ty-var">'n</span> <span class="sail-operator">&lt;=</span> <span class="sail-id">max_mem_access</span> . (<span class="sail-id">xlenbits</span>, <span class="sail-id">int</span>(<span class="sail-ty-var">'n</span>), <span class="sail-id">bits</span>(<span class="sail-literal">8</span> <span class="sail-operator">*</span> <span class="sail-ty-var">'n</span>)) -&gt; <span class="sail-id">unit</span>
 <span class="sail-keyword">function</span> <span class="sail-id">rvfi_write</span> (<span class="sail-id">paddr</span>, <span class="sail-id">width</span>, <span class="sail-id">value</span>) = {
-  <a href="sail-riscv/./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_addr</span>] = <a href="sail-riscv/./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">paddr</span>);
-  <a href="sail-riscv/./rvfi_dii.html#L157"><span class="sail-id">rvfi_mem_data_present</span></a> = <span class="sail-literal">true</span>;
+  <a href="./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_addr</span>] = <a href="./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">paddr</span>);
+  <a href="./rvfi_dii.html#L157"><span class="sail-id">rvfi_mem_data_present</span></a> = <span class="sail-literal">true</span>;
   <span class="sail-keyword">if</span> <span class="sail-id">width</span> <span class="sail-operator">&lt;=</span> <span class="sail-literal">16</span> <span class="sail-keyword">then</span> {
     <span class="sail-comment">/* TODO: report tag bit for capability writes and extend mask by one bit. */</span>
-    <a href="sail-riscv/./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_wdata</span>] = <span class="sail-id">sail_zero_extend</span>(<span class="sail-id">value</span>, <span class="sail-literal">256</span>);
-    <a href="sail-riscv/./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_wmask</span>] = <a href="sail-riscv/./rvfi_dii.html#L196"><span class="sail-id">rvfi_encode_width_mask</span></a>(<span class="sail-id">width</span>);
+    <a href="./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_wdata</span>] = <span class="sail-id">sail_zero_extend</span>(<span class="sail-id">value</span>, <span class="sail-literal">256</span>);
+    <a href="./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_wmask</span>] = <a href="./rvfi_dii.html#L196"><span class="sail-id">rvfi_encode_width_mask</span></a>(<span class="sail-id">width</span>);
   } <span class="sail-keyword">else</span> {
-    <a href="sail-riscv/./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"Expected at most 16 bytes here!"</span>);
+    <a href="./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"Expected at most 16 bytes here!"</span>);
   };
 }
 
 <span class="sail-keyword">val</span> <span class="sail-id">rvfi_read</span> : <span class="sail-keyword">forall</span> <span class="sail-ty-var">'n</span>, <span class="sail-ty-var">'n</span> <span class="sail-operator">&gt;</span> <span class="sail-literal">0</span>. (<span class="sail-id">xlenbits</span>, <span class="sail-id">int</span>(<span class="sail-ty-var">'n</span>), <span class="sail-id">bits</span>(<span class="sail-literal">8</span> <span class="sail-operator">*</span> <span class="sail-ty-var">'n</span>)) -&gt; <span class="sail-id">unit</span>
 <span class="sail-keyword">function</span> <span class="sail-id">rvfi_read</span> (<span class="sail-id">paddr</span>, <span class="sail-id">width</span>, <span class="sail-id">value</span>) = {
-  <a href="sail-riscv/./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_addr</span>] = <a href="sail-riscv/./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">paddr</span>);
-  <a href="sail-riscv/./rvfi_dii.html#L157"><span class="sail-id">rvfi_mem_data_present</span></a> = <span class="sail-literal">true</span>;
+  <a href="./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_addr</span>] = <a href="./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">paddr</span>);
+  <a href="./rvfi_dii.html#L157"><span class="sail-id">rvfi_mem_data_present</span></a> = <span class="sail-literal">true</span>;
   <span class="sail-keyword">if</span> <span class="sail-id">width</span> <span class="sail-operator">&lt;=</span> <span class="sail-literal">16</span> <span class="sail-keyword">then</span> {
     <span class="sail-comment">/* TODO: report tag bit for capability writes and extend mask by one bit. */</span>
-    <a href="sail-riscv/./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_rdata</span>] = <span class="sail-id">sail_zero_extend</span>(<span class="sail-id">value</span>, <span class="sail-literal">256</span>);
-    <a href="sail-riscv/./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_rmask</span>] = <a href="sail-riscv/./rvfi_dii.html#L196"><span class="sail-id">rvfi_encode_width_mask</span></a>(<span class="sail-id">width</span>)
+    <a href="./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_rdata</span>] = <span class="sail-id">sail_zero_extend</span>(<span class="sail-id">value</span>, <span class="sail-literal">256</span>);
+    <a href="./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_rmask</span>] = <a href="./rvfi_dii.html#L196"><span class="sail-id">rvfi_encode_width_mask</span></a>(<span class="sail-id">width</span>)
   } <span class="sail-keyword">else</span> {
-    <a href="sail-riscv/./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"Expected at most 16 bytes here!"</span>)
+    <a href="./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"Expected at most 16 bytes here!"</span>)
   };
 }
 
 <span class="sail-keyword">val</span> <span class="sail-id">rvfi_mem_exception</span> : <span class="sail-id">xlenbits</span> -&gt; <span class="sail-id">unit</span>
 <span class="sail-keyword">function</span> <span class="sail-id">rvfi_mem_exception</span> (<span class="sail-id">paddr</span>) = {
   <span class="sail-comment">/* Log only the memory address (without the value) if the write fails. */</span>
-  <a href="sail-riscv/./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_addr</span>] = <a href="sail-riscv/./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">paddr</span>);
-  <a href="sail-riscv/./rvfi_dii.html#L157"><span class="sail-id">rvfi_mem_data_present</span></a> = <span class="sail-literal">true</span>;
+  <a href="./rvfi_dii.html#L156"><span class="sail-id">rvfi_mem_data</span></a>[<span class="sail-id">rvfi_mem_addr</span>] = <a href="./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">paddr</span>);
+  <a href="./rvfi_dii.html#L157"><span class="sail-id">rvfi_mem_data_present</span></a> = <span class="sail-literal">true</span>;
 }
 
 <span class="sail-keyword">val</span> <span class="sail-id">rvfi_wX</span> : <span class="sail-keyword">forall</span> <span class="sail-ty-var">'n</span>, <span class="sail-literal">0</span> <span class="sail-operator">&lt;=</span> <span class="sail-ty-var">'n</span> <span class="sail-operator">&lt;</span> <span class="sail-literal">32</span>. (<span class="sail-id">int</span>(<span class="sail-ty-var">'n</span>), <span class="sail-id">xlenbits</span>) -&gt; <span class="sail-id">unit</span>
 <span class="sail-keyword">function</span> <span class="sail-id">rvfi_wX</span> (<span class="sail-id">r</span>,<span class="sail-id">v</span>) = {
-  <a href="sail-riscv/./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>[<span class="sail-id">rvfi_rd_wdata</span>] = <a href="sail-riscv/./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">v</span>);
-  <a href="sail-riscv/./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>[<span class="sail-id">rvfi_rd_addr</span>] = <a href="sail-riscv/./prelude.html#L118"><span class="sail-id">to_bits</span></a>(<span class="sail-literal">8</span>, <span class="sail-id">r</span>);
-  <a href="sail-riscv/./rvfi_dii.html#L155"><span class="sail-id">rvfi_int_data_present</span></a> = <span class="sail-literal">true</span>;
+  <a href="./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>[<span class="sail-id">rvfi_rd_wdata</span>] = <a href="./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">v</span>);
+  <a href="./rvfi_dii.html#L154"><span class="sail-id">rvfi_int_data</span></a>[<span class="sail-id">rvfi_rd_addr</span>] = <a href="./prelude.html#L118"><span class="sail-id">to_bits</span></a>(<span class="sail-literal">8</span>, <span class="sail-id">r</span>);
+  <a href="./rvfi_dii.html#L155"><span class="sail-id">rvfi_int_data_present</span></a> = <span class="sail-literal">true</span>;
 }
 
 <span class="sail-keyword">val</span> <span class="sail-id">rvfi_trap</span> : <span class="sail-id">unit</span> -&gt; <span class="sail-id">unit</span>
 <span class="sail-keyword">function</span> <span class="sail-id">rvfi_trap</span> () =
-  <a href="sail-riscv/./rvfi_dii.html#L152"><span class="sail-id">rvfi_inst_data</span></a>[<span class="sail-id">rvfi_trap</span>] = <span class="sail-literal">0x01</span>
+  <a href="./rvfi_dii.html#L152"><span class="sail-id">rvfi_inst_data</span></a>[<span class="sail-id">rvfi_trap</span>] = <span class="sail-literal">0x01</span>
 </pre>
 </div>
 </div>

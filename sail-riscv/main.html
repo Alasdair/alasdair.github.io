@@ -42,20 +42,20 @@
 
 <span class="sail-pragma">$else
 </span>
-<span class="sail-keyword">function</span> <span class="sail-id">get_entry_point</span>() = <a href="sail-riscv/./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-literal">0x1000</span>)
+<span class="sail-keyword">function</span> <span class="sail-id">get_entry_point</span>() = <a href="./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-literal">0x1000</span>)
 
 <span class="sail-pragma">$endif
 </span>
 <span class="sail-keyword">function</span> <span class="sail-id">main</span>() : <span class="sail-id">unit</span> -&gt; <span class="sail-id">unit</span> = {
-  <a href="sail-riscv/./riscv_regs.html#L11"><span class="sail-id">PC</span></a> = <a href="sail-riscv/./main.html#L22"><span class="sail-id">get_entry_point</span></a>();
-  <span class="sail-id">print_bits</span>(<span class="sail-string">"PC = "</span>, <a href="sail-riscv/./riscv_regs.html#L11"><span class="sail-id">PC</span></a>);
+  <a href="./riscv_regs.html#L11"><span class="sail-id">PC</span></a> = <a href="./main.html#L22"><span class="sail-id">get_entry_point</span></a>();
+  <span class="sail-id">print_bits</span>(<span class="sail-string">"PC = "</span>, <a href="./riscv_regs.html#L11"><span class="sail-id">PC</span></a>);
 
   <span class="sail-keyword">try</span> {
-    <a href="sail-riscv/./riscv_model.html#L19"><span class="sail-id">init_model</span></a>(<span class="sail-string">""</span>);
+    <a href="./riscv_model.html#L19"><span class="sail-id">init_model</span></a>(<span class="sail-string">""</span>);
     <span class="sail-id">sail_end_cycle</span>();
-    <a href="sail-riscv/./riscv_step.html#L247"><span class="sail-id">loop</span></a>()
+    <a href="./riscv_step.html#L247"><span class="sail-id">loop</span></a>()
   } <span class="sail-keyword">catch</span> {
-    <span class="sail-id">Error_not_implemented</span>(<span class="sail-id">s</span>) =&gt; <a href="sail-riscv/./prelude.html#L64"><span class="sail-id">print_string</span></a>(<span class="sail-string">"Error: Not implemented: "</span>, <span class="sail-id">s</span>),
+    <span class="sail-id">Error_not_implemented</span>(<span class="sail-id">s</span>) =&gt; <a href="./prelude.html#L64"><span class="sail-id">print_string</span></a>(<span class="sail-string">"Error: Not implemented: "</span>, <span class="sail-id">s</span>),
     <span class="sail-id">Error_internal_error</span>() =&gt; <span class="sail-id">print</span>(<span class="sail-string">"Error: internal error"</span>)
   }
 }

@@ -31,9 +31,9 @@
 
 <span class="sail-comment">// Cache Block Operations - Management
 </span>
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zicbom</span>) = <a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zicbom</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zicbom</span>) = <a href="./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zicbom</span>)
 
-<span class="sail-keyword">function</span> <span class="sail-id">cbo_clean_flush_enabled</span>(<span class="sail-id">p</span> : <span class="sail-id">Privilege</span>) -&gt; <span class="sail-id">bool</span> = <a href="sail-riscv/./riscv_sys_control.html#L34"><span class="sail-id">feature_enabled_for_priv</span></a>(<span class="sail-id">p</span>, <a href="sail-riscv/./riscv_sys_regs.html#L410"><span class="sail-id">menvcfg</span></a>[<span class="sail-id">CBCFE</span>][<span class="sail-literal">0</span>], <a href="sail-riscv/./riscv_sys_regs.html#L411"><span class="sail-id">senvcfg</span></a>[<span class="sail-id">CBCFE</span>][<span class="sail-literal">0</span>])
+<span class="sail-keyword">function</span> <span class="sail-id">cbo_clean_flush_enabled</span>(<span class="sail-id">p</span> : <span class="sail-id">Privilege</span>) -&gt; <span class="sail-id">bool</span> = <a href="./riscv_sys_control.html#L34"><span class="sail-id">feature_enabled_for_priv</span></a>(<span class="sail-id">p</span>, <a href="./riscv_sys_regs.html#L410"><span class="sail-id">menvcfg</span></a>[<span class="sail-id">CBCFE</span>][<span class="sail-literal">0</span>], <a href="./riscv_sys_regs.html#L411"><span class="sail-id">senvcfg</span></a>[<span class="sail-id">CBCFE</span>][<span class="sail-literal">0</span>])
 
 <span class="sail-comment">/* ****************************************************************** */</span>
 <span class="sail-keyword">union</span> <span class="sail-keyword">clause</span> <span class="sail-id">instruction</span> = <span class="sail-id">ZICBOM</span> : (<span class="sail-id">cbop_zicbom</span>, <span class="sail-id">regidx</span>)
@@ -46,7 +46,7 @@
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">ZICBOM</span>(<span class="sail-id">cbop</span>, <span class="sail-id">rs1</span>)
   &lt;-&gt; <span class="sail-id">encdec_cbop</span>(<span class="sail-id">cbop</span>) @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-literal">0b010</span> @ <span class="sail-literal">0b00000</span> @ <span class="sail-literal">0b0001111</span>
-  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zicbom</span>)
+  <span class="sail-keyword">when</span> <a href="./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zicbom</span>)
 
 <span class="sail-keyword">mapping</span> <span class="sail-id">cbop_mnemonic</span> : <span class="sail-id">cbop_zicbom</span> &lt;-&gt; <span class="sail-id">string</span> = {
   <span class="sail-id">CBO_CLEAN</span> &lt;-&gt; <span class="sail-string">"cbo.clean"</span>,
@@ -64,7 +64,7 @@
   <span class="sail-id">CBIE_ILLEGAL</span>    &lt;-&gt; <span class="sail-literal">0b00</span>,
   <span class="sail-id">CBIE_EXEC_FLUSH</span> &lt;-&gt; <span class="sail-literal">0b01</span>,
   <span class="sail-id">CBIE_EXEC_INVAL</span> &lt;-&gt; <span class="sail-literal">0b11</span>,
-  <span class="sail-keyword">backwards</span> <span class="sail-literal">0b10</span>   =&gt; <a href="sail-riscv/./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"reserved CBIE"</span>),
+  <span class="sail-keyword">backwards</span> <span class="sail-literal">0b10</span>   =&gt; <a href="./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"reserved CBIE"</span>),
 }
 
 <span class="sail-comment">// Illegal-Virtual will be needed by the hypervisor mode, but is currently unused.
@@ -72,10 +72,10 @@
 
 <span class="sail-comment">// Select the cbop to perform based on the privilege.
 </span><span class="sail-keyword">function</span> <span class="sail-id">cbop_priv_check</span>(<span class="sail-id">p</span>: <span class="sail-id">Privilege</span>) -&gt; <span class="sail-id">checked_cbop</span> = {
-  <span class="sail-keyword">let</span> <span class="sail-id">mCBIE</span> : <span class="sail-id">cbie</span> = <span class="sail-id">encdec_cbie</span>(<a href="sail-riscv/./riscv_sys_regs.html#L410"><span class="sail-id">menvcfg</span></a>[<span class="sail-id">CBIE</span>]);
-  <span class="sail-keyword">let</span> <span class="sail-id">sCBIE</span> : <span class="sail-id">cbie</span> = <span class="sail-keyword">if</span>   <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_S</span>)
-                     <span class="sail-keyword">then</span> <span class="sail-id">encdec_cbie</span>(<a href="sail-riscv/./riscv_sys_regs.html#L411"><span class="sail-id">senvcfg</span></a>[<span class="sail-id">CBIE</span>])
-                     <span class="sail-keyword">else</span> <span class="sail-id">encdec_cbie</span>(<a href="sail-riscv/./riscv_sys_regs.html#L410"><span class="sail-id">menvcfg</span></a>[<span class="sail-id">CBIE</span>]);
+  <span class="sail-keyword">let</span> <span class="sail-id">mCBIE</span> : <span class="sail-id">cbie</span> = <span class="sail-id">encdec_cbie</span>(<a href="./riscv_sys_regs.html#L410"><span class="sail-id">menvcfg</span></a>[<span class="sail-id">CBIE</span>]);
+  <span class="sail-keyword">let</span> <span class="sail-id">sCBIE</span> : <span class="sail-id">cbie</span> = <span class="sail-keyword">if</span>   <a href="./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_S</span>)
+                     <span class="sail-keyword">then</span> <span class="sail-id">encdec_cbie</span>(<a href="./riscv_sys_regs.html#L411"><span class="sail-id">senvcfg</span></a>[<span class="sail-id">CBIE</span>])
+                     <span class="sail-keyword">else</span> <span class="sail-id">encdec_cbie</span>(<a href="./riscv_sys_regs.html#L410"><span class="sail-id">menvcfg</span></a>[<span class="sail-id">CBIE</span>]);
   <span class="sail-keyword">match</span> (<span class="sail-id">p</span>, <span class="sail-id">mCBIE</span>, <span class="sail-id">sCBIE</span>) {
     (<span class="sail-id">Machine</span>, _,               _              ) =&gt; <span class="sail-id">CBOP_INVAL_INVAL</span>,
     (_,       <span class="sail-id">CBIE_ILLEGAL</span>,    _              ) =&gt; <span class="sail-id">CBOP_ILLEGAL</span>,      <span class="sail-comment">// (priv_mode != M) &amp;&amp; mCBIE == 00
@@ -93,15 +93,15 @@
 
   <span class="sail-comment">// Offset from rs1 to the beginning of the cache block. This is 0 if rs1
 </span>  <span class="sail-comment">// is aligned to the cache block, or negative if rs1 is misaligned.
-</span>  <span class="sail-keyword">let</span> <span class="sail-id">negative_offset</span> = (<span class="sail-id">rs1_val</span> <span class="sail-operator">&amp;</span> <span class="sail-id">~</span>(<a href="sail-riscv/./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<a href="sail-riscv/./prelude.html#L92"><span class="sail-id">ones</span></a>(<span class="sail-id">plat_cache_block_size_exp</span>)))) <span class="sail-operator">-</span> <span class="sail-id">rs1_val</span>;
+</span>  <span class="sail-keyword">let</span> <span class="sail-id">negative_offset</span> = (<span class="sail-id">rs1_val</span> <span class="sail-operator">&amp;</span> <span class="sail-id">~</span>(<a href="./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<a href="./prelude.html#L92"><span class="sail-id">ones</span></a>(<span class="sail-id">plat_cache_block_size_exp</span>)))) <span class="sail-operator">-</span> <span class="sail-id">rs1_val</span>;
 
   <span class="sail-comment">// TODO: This is incorrect since CHERI only requires at least one byte
 </span>  <span class="sail-comment">// to be in bounds here, whereas `ext_data_get_addr()` checks that all bytes
 </span>  <span class="sail-comment">// are in bounds. We will need to add a new function, parameter or access type.
-</span>  <span class="sail-keyword">match</span> <a href="sail-riscv/./riscv_addr_checks.html#L57"><span class="sail-id">ext_data_get_addr</span></a>(<span class="sail-id">rs1</span>, <span class="sail-id">negative_offset</span>, <span class="sail-id">Read</span>(<span class="sail-id">Data</span>), <span class="sail-id">cache_block_size</span>) {
+</span>  <span class="sail-keyword">match</span> <a href="./riscv_addr_checks.html#L57"><span class="sail-id">ext_data_get_addr</span></a>(<span class="sail-id">rs1</span>, <span class="sail-id">negative_offset</span>, <span class="sail-id">Read</span>(<span class="sail-id">Data</span>), <span class="sail-id">cache_block_size</span>) {
     <span class="sail-id">Ext_DataAddr_Error</span>(<span class="sail-id">e</span>) =&gt; <span class="sail-id">Ext_DataAddr_Check_Failure</span>(<span class="sail-id">e</span>),
     <span class="sail-id">Ext_DataAddr_OK</span>(<span class="sail-id">vaddr</span>) =&gt; {
-      <span class="sail-keyword">let</span> <span class="sail-id">res</span> : <span class="sail-id">option</span>(<span class="sail-id">ExceptionType</span>) = <span class="sail-keyword">match</span> <a href="sail-riscv/./riscv_vmem.html#L356"><span class="sail-id">translateAddr</span></a>(<span class="sail-id">vaddr</span>, <span class="sail-id">Read</span>(<span class="sail-id">Data</span>)) {
+      <span class="sail-keyword">let</span> <span class="sail-id">res</span> : <span class="sail-id">option</span>(<span class="sail-id">ExceptionType</span>) = <span class="sail-keyword">match</span> <a href="./riscv_vmem.html#L356"><span class="sail-id">translateAddr</span></a>(<span class="sail-id">vaddr</span>, <span class="sail-id">Read</span>(<span class="sail-id">Data</span>)) {
         <span class="sail-id">Ok</span>(<span class="sail-id">paddr</span>, _) =&gt; {
           <span class="sail-comment">// "A cache-block management instruction is permitted to access the
 </span>          <span class="sail-comment">// specified cache block whenever a load instruction or store instruction
@@ -117,9 +117,9 @@
 </span>          <span class="sail-comment">// so it doesn't matter that we use Read here. In future we will use
 </span>          <span class="sail-comment">// the proper Cache access type when it is available. See
 </span>          <span class="sail-comment">// https://github.com/riscv/sail-riscv/pull/792
-</span>          <span class="sail-keyword">let</span> <span class="sail-id">ep</span> = <a href="sail-riscv/./riscv_sys_control.html#L11"><span class="sail-id">effectivePrivilege</span></a>(<span class="sail-id">Read</span>(<span class="sail-id">Data</span>), <a href="sail-riscv/./riscv_sys_regs.html#L263"><span class="sail-id">mstatus</span></a>, <a href="sail-riscv/./riscv_sys_regs.html#L13"><span class="sail-id">cur_privilege</span></a>);
-          <span class="sail-keyword">let</span> <span class="sail-id">exc_read</span> = <a href="sail-riscv/./riscv_mem.html#L99"><span class="sail-id">phys_access_check</span></a>(<span class="sail-id">Read</span>(<span class="sail-id">Data</span>), <span class="sail-id">ep</span>, <span class="sail-id">paddr</span>, <span class="sail-id">cache_block_size</span>);
-          <span class="sail-keyword">let</span> <span class="sail-id">exc_write</span> = <a href="sail-riscv/./riscv_mem.html#L99"><span class="sail-id">phys_access_check</span></a>(<span class="sail-id">Write</span>(<span class="sail-id">Data</span>), <span class="sail-id">ep</span>, <span class="sail-id">paddr</span>, <span class="sail-id">cache_block_size</span>);
+</span>          <span class="sail-keyword">let</span> <span class="sail-id">ep</span> = <a href="./riscv_sys_control.html#L11"><span class="sail-id">effectivePrivilege</span></a>(<span class="sail-id">Read</span>(<span class="sail-id">Data</span>), <a href="./riscv_sys_regs.html#L263"><span class="sail-id">mstatus</span></a>, <a href="./riscv_sys_regs.html#L13"><span class="sail-id">cur_privilege</span></a>);
+          <span class="sail-keyword">let</span> <span class="sail-id">exc_read</span> = <a href="./riscv_mem.html#L99"><span class="sail-id">phys_access_check</span></a>(<span class="sail-id">Read</span>(<span class="sail-id">Data</span>), <span class="sail-id">ep</span>, <span class="sail-id">paddr</span>, <span class="sail-id">cache_block_size</span>);
+          <span class="sail-keyword">let</span> <span class="sail-id">exc_write</span> = <a href="./riscv_mem.html#L99"><span class="sail-id">phys_access_check</span></a>(<span class="sail-id">Write</span>(<span class="sail-id">Data</span>), <span class="sail-id">ep</span>, <span class="sail-id">paddr</span>, <span class="sail-id">cache_block_size</span>);
           <span class="sail-keyword">match</span> (<span class="sail-id">exc_read</span>, <span class="sail-id">exc_write</span>) {
             <span class="sail-comment">// Access is permitted if read OR write are allowed. If neither
 </span>            <span class="sail-comment">// are allowed then we always report a store exception.
@@ -144,7 +144,7 @@
             <span class="sail-id">E_SAMO_Page_Fault</span>() =&gt; <span class="sail-id">E_SAMO_Page_Fault</span>(),
             <span class="sail-comment">// No other exceptions should be generated since we're not checking
 </span>            <span class="sail-comment">// for fetch access and it's can't be misaligned.
-</span>            _ =&gt; <a href="sail-riscv/./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"unexpected exception for cmo.clean/inval"</span>),
+</span>            _ =&gt; <a href="./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"unexpected exception for cmo.clean/inval"</span>),
           };
           <span class="sail-comment">// vaddr is the aligned address, but errors report the address that
 </span>          <span class="sail-comment">// was encoded in the instruction. We subtract the negative offset
@@ -158,21 +158,21 @@
 }
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span>(<span class="sail-id">ZICBOM</span>(<span class="sail-id">CBO_CLEAN</span>, <span class="sail-id">rs1</span>)) =
-  <span class="sail-keyword">if</span>   <a href="sail-riscv/./riscv_insts_zicbom.html#L13"><span class="sail-id">cbo_clean_flush_enabled</span></a>(<a href="sail-riscv/./riscv_sys_regs.html#L13"><span class="sail-id">cur_privilege</span></a>)
-  <span class="sail-keyword">then</span> <a href="sail-riscv/./riscv_insts_zicbom.html#L67"><span class="sail-id">process_clean_inval</span></a>(<span class="sail-id">rs1</span>, <span class="sail-id">CBO_CLEAN</span>)
+  <span class="sail-keyword">if</span>   <a href="./riscv_insts_zicbom.html#L13"><span class="sail-id">cbo_clean_flush_enabled</span></a>(<a href="./riscv_sys_regs.html#L13"><span class="sail-id">cur_privilege</span></a>)
+  <span class="sail-keyword">then</span> <a href="./riscv_insts_zicbom.html#L67"><span class="sail-id">process_clean_inval</span></a>(<span class="sail-id">rs1</span>, <span class="sail-id">CBO_CLEAN</span>)
   <span class="sail-keyword">else</span> <span class="sail-id">Illegal_Instruction</span>()
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span>(<span class="sail-id">ZICBOM</span>(<span class="sail-id">CBO_FLUSH</span>, <span class="sail-id">rs1</span>)) =
-  <span class="sail-keyword">if</span>   <a href="sail-riscv/./riscv_insts_zicbom.html#L13"><span class="sail-id">cbo_clean_flush_enabled</span></a>(<a href="sail-riscv/./riscv_sys_regs.html#L13"><span class="sail-id">cur_privilege</span></a>)
-  <span class="sail-keyword">then</span> <a href="sail-riscv/./riscv_insts_zicbom.html#L67"><span class="sail-id">process_clean_inval</span></a>(<span class="sail-id">rs1</span>, <span class="sail-id">CBO_FLUSH</span>)
+  <span class="sail-keyword">if</span>   <a href="./riscv_insts_zicbom.html#L13"><span class="sail-id">cbo_clean_flush_enabled</span></a>(<a href="./riscv_sys_regs.html#L13"><span class="sail-id">cur_privilege</span></a>)
+  <span class="sail-keyword">then</span> <a href="./riscv_insts_zicbom.html#L67"><span class="sail-id">process_clean_inval</span></a>(<span class="sail-id">rs1</span>, <span class="sail-id">CBO_FLUSH</span>)
   <span class="sail-keyword">else</span> <span class="sail-id">Illegal_Instruction</span>()
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span>(<span class="sail-id">ZICBOM</span>(<span class="sail-id">CBO_INVAL</span>, <span class="sail-id">rs1</span>)) =
-  <span class="sail-keyword">match</span> <a href="sail-riscv/./riscv_insts_zicbom.html#L51"><span class="sail-id">cbop_priv_check</span></a>(<a href="sail-riscv/./riscv_sys_regs.html#L13"><span class="sail-id">cur_privilege</span></a>) {
+  <span class="sail-keyword">match</span> <a href="./riscv_insts_zicbom.html#L51"><span class="sail-id">cbop_priv_check</span></a>(<a href="./riscv_sys_regs.html#L13"><span class="sail-id">cur_privilege</span></a>) {
     <span class="sail-id">CBOP_ILLEGAL</span>         =&gt; <span class="sail-id">Illegal_Instruction</span>(),
-    <span class="sail-id">CBOP_ILLEGAL_VIRTUAL</span> =&gt; <a href="sail-riscv/./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"unimplemented"</span>),
-    <span class="sail-id">CBOP_INVAL_INVAL</span>     =&gt; <a href="sail-riscv/./riscv_insts_zicbom.html#L67"><span class="sail-id">process_clean_inval</span></a>(<span class="sail-id">rs1</span>, <span class="sail-id">CBO_INVAL</span>),
-    <span class="sail-id">CBOP_INVAL_FLUSH</span>     =&gt; <a href="sail-riscv/./riscv_insts_zicbom.html#L67"><span class="sail-id">process_clean_inval</span></a>(<span class="sail-id">rs1</span>, <span class="sail-id">CBO_FLUSH</span>),
+    <span class="sail-id">CBOP_ILLEGAL_VIRTUAL</span> =&gt; <a href="./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"unimplemented"</span>),
+    <span class="sail-id">CBOP_INVAL_INVAL</span>     =&gt; <a href="./riscv_insts_zicbom.html#L67"><span class="sail-id">process_clean_inval</span></a>(<span class="sail-id">rs1</span>, <span class="sail-id">CBO_INVAL</span>),
+    <span class="sail-id">CBOP_INVAL_FLUSH</span>     =&gt; <a href="./riscv_insts_zicbom.html#L67"><span class="sail-id">process_clean_inval</span></a>(<span class="sail-id">rs1</span>, <span class="sail-id">CBO_FLUSH</span>),
   }
 </pre>
 </div>

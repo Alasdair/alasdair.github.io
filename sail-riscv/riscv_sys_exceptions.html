@@ -43,13 +43,13 @@
 <span class="sail-comment">/* used for traps and ECALL */</span>
 <span class="sail-keyword">function</span> <span class="sail-id">prepare_trap_vector</span>(<span class="sail-id">p</span> : <span class="sail-id">Privilege</span>, <span class="sail-id">cause</span> : <span class="sail-id">Mcause</span>) -&gt; <span class="sail-id">xlenbits</span> = {
   <span class="sail-keyword">let</span> <span class="sail-id">tvec</span> : <span class="sail-id">Mtvec</span> = <span class="sail-keyword">match</span> <span class="sail-id">p</span> {
-                       <span class="sail-id">Machine</span>    =&gt; <a href="sail-riscv/./riscv_sys_regs.html#L545"><span class="sail-id">mtvec</span></a>,
-                       <span class="sail-id">Supervisor</span> =&gt; <a href="sail-riscv/./riscv_sys_regs.html#L853"><span class="sail-id">stvec</span></a>,
-                       <span class="sail-id">User</span>       =&gt; <a href="sail-riscv/./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"Invalid privilege level"</span>),
+                       <span class="sail-id">Machine</span>    =&gt; <a href="./riscv_sys_regs.html#L545"><span class="sail-id">mtvec</span></a>,
+                       <span class="sail-id">Supervisor</span> =&gt; <a href="./riscv_sys_regs.html#L853"><span class="sail-id">stvec</span></a>,
+                       <span class="sail-id">User</span>       =&gt; <a href="./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"Invalid privilege level"</span>),
                      };
-  <span class="sail-keyword">match</span> <a href="sail-riscv/./riscv_sys_regs.html#L567"><span class="sail-id">tvec_addr</span></a>(<span class="sail-id">tvec</span>, <span class="sail-id">cause</span>) {
+  <span class="sail-keyword">match</span> <a href="./riscv_sys_regs.html#L567"><span class="sail-id">tvec_addr</span></a>(<span class="sail-id">tvec</span>, <span class="sail-id">cause</span>) {
     <span class="sail-id">Some</span>(<span class="sail-id">epc</span>) =&gt; <span class="sail-id">epc</span>,
-    <span class="sail-id">None</span>()    =&gt; <a href="sail-riscv/./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"Invalid tvec mode"</span>)
+    <span class="sail-id">None</span>()    =&gt; <a href="./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"Invalid tvec mode"</span>)
   }
 }
 
@@ -63,42 +63,42 @@
 <span class="sail-keyword">val</span> <span class="sail-id">get_xepc</span> : <span class="sail-id">Privilege</span> -&gt; <span class="sail-id">xlenbits</span>
 <span class="sail-keyword">function</span> <span class="sail-id">get_xepc</span>(<span class="sail-id">p</span>) =
   <span class="sail-keyword">match</span> <span class="sail-id">p</span> {
-    <span class="sail-id">Machine</span>    =&gt; <a href="sail-riscv/./riscv_sys_regs.html#L592"><span class="sail-id">align_pc</span></a>(<a href="sail-riscv/./riscv_sys_regs.html#L580"><span class="sail-id">mepc</span></a>),
-    <span class="sail-id">Supervisor</span> =&gt; <a href="sail-riscv/./riscv_sys_regs.html#L592"><span class="sail-id">align_pc</span></a>(<a href="sail-riscv/./riscv_sys_regs.html#L855"><span class="sail-id">sepc</span></a>),
-    <span class="sail-id">User</span>       =&gt; <a href="sail-riscv/./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"Invalid privilege level"</span>),
+    <span class="sail-id">Machine</span>    =&gt; <a href="./riscv_sys_regs.html#L592"><span class="sail-id">align_pc</span></a>(<a href="./riscv_sys_regs.html#L580"><span class="sail-id">mepc</span></a>),
+    <span class="sail-id">Supervisor</span> =&gt; <a href="./riscv_sys_regs.html#L592"><span class="sail-id">align_pc</span></a>(<a href="./riscv_sys_regs.html#L855"><span class="sail-id">sepc</span></a>),
+    <span class="sail-id">User</span>       =&gt; <a href="./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"Invalid privilege level"</span>),
   }
 
 <span class="sail-keyword">val</span> <span class="sail-id">set_xepc</span> : (<span class="sail-id">Privilege</span>, <span class="sail-id">xlenbits</span>) -&gt; <span class="sail-id">xlenbits</span>
 <span class="sail-keyword">function</span> <span class="sail-id">set_xepc</span>(<span class="sail-id">p</span>, <span class="sail-id">value</span>) = {
-  <span class="sail-keyword">let</span> <span class="sail-id">target</span> = <a href="sail-riscv/./riscv_sys_regs.html#L584"><span class="sail-id">legalize_xepc</span></a>(<span class="sail-id">value</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">target</span> = <a href="./riscv_sys_regs.html#L584"><span class="sail-id">legalize_xepc</span></a>(<span class="sail-id">value</span>);
   <span class="sail-keyword">match</span> <span class="sail-id">p</span> {
-    <span class="sail-id">Machine</span>    =&gt; <a href="sail-riscv/./riscv_sys_regs.html#L580"><span class="sail-id">mepc</span></a> = <span class="sail-id">target</span>,
-    <span class="sail-id">Supervisor</span> =&gt; <a href="sail-riscv/./riscv_sys_regs.html#L855"><span class="sail-id">sepc</span></a> = <span class="sail-id">target</span>,
-    <span class="sail-id">User</span>       =&gt; <a href="sail-riscv/./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"Invalid privilege level"</span>),
+    <span class="sail-id">Machine</span>    =&gt; <a href="./riscv_sys_regs.html#L580"><span class="sail-id">mepc</span></a> = <span class="sail-id">target</span>,
+    <span class="sail-id">Supervisor</span> =&gt; <a href="./riscv_sys_regs.html#L855"><span class="sail-id">sepc</span></a> = <span class="sail-id">target</span>,
+    <span class="sail-id">User</span>       =&gt; <a href="./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"Invalid privilege level"</span>),
   };
   <span class="sail-id">target</span>
 }
 
 <span class="sail-keyword">val</span> <span class="sail-id">prepare_xret_target</span> : (<span class="sail-id">Privilege</span>) -&gt; <span class="sail-id">xlenbits</span>
 <span class="sail-keyword">function</span> <span class="sail-id">prepare_xret_target</span>(<span class="sail-id">p</span>) =
-  <a href="sail-riscv/./riscv_sys_exceptions.html#L41"><span class="sail-id">get_xepc</span></a>(<span class="sail-id">p</span>)
+  <a href="./riscv_sys_exceptions.html#L41"><span class="sail-id">get_xepc</span></a>(<span class="sail-id">p</span>)
 
 <span class="sail-comment">/* other trap-related CSRs */</span>
 
 <span class="sail-keyword">function</span> <span class="sail-id">get_mtvec</span>() -&gt; <span class="sail-id">xlenbits</span> =
-  <a href="sail-riscv/./riscv_sys_regs.html#L545"><span class="sail-id">mtvec</span></a>.<span class="sail-id">bits</span>
+  <a href="./riscv_sys_regs.html#L545"><span class="sail-id">mtvec</span></a>.<span class="sail-id">bits</span>
 
 <span class="sail-keyword">function</span> <span class="sail-id">get_stvec</span>() -&gt; <span class="sail-id">xlenbits</span> =
-  <a href="sail-riscv/./riscv_sys_regs.html#L853"><span class="sail-id">stvec</span></a>.<span class="sail-id">bits</span>
+  <a href="./riscv_sys_regs.html#L853"><span class="sail-id">stvec</span></a>.<span class="sail-id">bits</span>
 
 <span class="sail-keyword">function</span> <span class="sail-id">set_mtvec</span>(<span class="sail-id">value</span> : <span class="sail-id">xlenbits</span>) -&gt; <span class="sail-id">xlenbits</span> = {
-  <a href="sail-riscv/./riscv_sys_regs.html#L545"><span class="sail-id">mtvec</span></a> = <a href="sail-riscv/./riscv_sys_regs.html#L547"><span class="sail-id">legalize_tvec</span></a>(<a href="sail-riscv/./riscv_sys_regs.html#L545"><span class="sail-id">mtvec</span></a>, <span class="sail-id">value</span>);
-  <a href="sail-riscv/./riscv_sys_regs.html#L545"><span class="sail-id">mtvec</span></a>.<span class="sail-id">bits</span>
+  <a href="./riscv_sys_regs.html#L545"><span class="sail-id">mtvec</span></a> = <a href="./riscv_sys_regs.html#L547"><span class="sail-id">legalize_tvec</span></a>(<a href="./riscv_sys_regs.html#L545"><span class="sail-id">mtvec</span></a>, <span class="sail-id">value</span>);
+  <a href="./riscv_sys_regs.html#L545"><span class="sail-id">mtvec</span></a>.<span class="sail-id">bits</span>
 }
 
 <span class="sail-keyword">function</span> <span class="sail-id">set_stvec</span>(<span class="sail-id">value</span> : <span class="sail-id">xlenbits</span>) -&gt; <span class="sail-id">xlenbits</span> = {
-  <a href="sail-riscv/./riscv_sys_regs.html#L853"><span class="sail-id">stvec</span></a> = <a href="sail-riscv/./riscv_sys_regs.html#L547"><span class="sail-id">legalize_tvec</span></a>(<a href="sail-riscv/./riscv_sys_regs.html#L853"><span class="sail-id">stvec</span></a>, <span class="sail-id">value</span>);
-  <a href="sail-riscv/./riscv_sys_regs.html#L853"><span class="sail-id">stvec</span></a>.<span class="sail-id">bits</span>
+  <a href="./riscv_sys_regs.html#L853"><span class="sail-id">stvec</span></a> = <a href="./riscv_sys_regs.html#L547"><span class="sail-id">legalize_tvec</span></a>(<a href="./riscv_sys_regs.html#L853"><span class="sail-id">stvec</span></a>, <span class="sail-id">value</span>);
+  <a href="./riscv_sys_regs.html#L853"><span class="sail-id">stvec</span></a>.<span class="sail-id">bits</span>
 }
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">csr_name_map</span> = <span class="sail-literal">0x105</span>  &lt;-&gt; <span class="sail-string">"stvec"</span>
@@ -106,20 +106,20 @@
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">csr_name_map</span> = <span class="sail-literal">0x305</span>  &lt;-&gt; <span class="sail-string">"mtvec"</span>
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">csr_name_map</span> = <span class="sail-literal">0x341</span>  &lt;-&gt; <span class="sail-string">"mepc"</span>
 
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">is_CSR_defined</span>(<span class="sail-literal">0x105</span>) = <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_S</span>) <span class="sail-comment">// stvec
-</span><span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">is_CSR_defined</span>(<span class="sail-literal">0x141</span>) = <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_S</span>) <span class="sail-comment">// sepc
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">is_CSR_defined</span>(<span class="sail-literal">0x105</span>) = <a href="./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_S</span>) <span class="sail-comment">// stvec
+</span><span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">is_CSR_defined</span>(<span class="sail-literal">0x141</span>) = <a href="./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_S</span>) <span class="sail-comment">// sepc
 </span><span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">is_CSR_defined</span>(<span class="sail-literal">0x305</span>) = <span class="sail-literal">true</span> <span class="sail-comment">// mtvec
 </span><span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">is_CSR_defined</span>(<span class="sail-literal">0x341</span>) = <span class="sail-literal">true</span> <span class="sail-comment">// mepc
 </span>
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">read_CSR</span>(<span class="sail-literal">0x105</span>) = <a href="sail-riscv/./riscv_sys_exceptions.html#L68"><span class="sail-id">get_stvec</span></a>()
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">read_CSR</span>(<span class="sail-literal">0x141</span>) = <a href="sail-riscv/./riscv_sys_exceptions.html#L41"><span class="sail-id">get_xepc</span></a>(<span class="sail-id">Supervisor</span>)
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">read_CSR</span>(<span class="sail-literal">0x305</span>) = <a href="sail-riscv/./riscv_sys_exceptions.html#L65"><span class="sail-id">get_mtvec</span></a>()
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">read_CSR</span>(<span class="sail-literal">0x341</span>) = <a href="sail-riscv/./riscv_sys_exceptions.html#L41"><span class="sail-id">get_xepc</span></a>(<span class="sail-id">Machine</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">read_CSR</span>(<span class="sail-literal">0x105</span>) = <a href="./riscv_sys_exceptions.html#L68"><span class="sail-id">get_stvec</span></a>()
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">read_CSR</span>(<span class="sail-literal">0x141</span>) = <a href="./riscv_sys_exceptions.html#L41"><span class="sail-id">get_xepc</span></a>(<span class="sail-id">Supervisor</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">read_CSR</span>(<span class="sail-literal">0x305</span>) = <a href="./riscv_sys_exceptions.html#L65"><span class="sail-id">get_mtvec</span></a>()
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">read_CSR</span>(<span class="sail-literal">0x341</span>) = <a href="./riscv_sys_exceptions.html#L41"><span class="sail-id">get_xepc</span></a>(<span class="sail-id">Machine</span>)
 
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">write_CSR</span>(<span class="sail-literal">0x105</span>, <span class="sail-id">value</span>) = { <a href="sail-riscv/./riscv_sys_exceptions.html#L76"><span class="sail-id">set_stvec</span></a>(<span class="sail-id">value</span>) }
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">write_CSR</span>(<span class="sail-literal">0x141</span>, <span class="sail-id">value</span>) = { <a href="sail-riscv/./riscv_sys_exceptions.html#L49"><span class="sail-id">set_xepc</span></a>(<span class="sail-id">Supervisor</span>, <span class="sail-id">value</span>) }
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">write_CSR</span>(<span class="sail-literal">0x305</span>, <span class="sail-id">value</span>) = { <a href="sail-riscv/./riscv_sys_exceptions.html#L71"><span class="sail-id">set_mtvec</span></a>(<span class="sail-id">value</span>) }
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">write_CSR</span>(<span class="sail-literal">0x341</span>, <span class="sail-id">value</span>) = { <a href="sail-riscv/./riscv_sys_exceptions.html#L49"><span class="sail-id">set_xepc</span></a>(<span class="sail-id">Machine</span>, <span class="sail-id">value</span>) }
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">write_CSR</span>(<span class="sail-literal">0x105</span>, <span class="sail-id">value</span>) = { <a href="./riscv_sys_exceptions.html#L76"><span class="sail-id">set_stvec</span></a>(<span class="sail-id">value</span>) }
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">write_CSR</span>(<span class="sail-literal">0x141</span>, <span class="sail-id">value</span>) = { <a href="./riscv_sys_exceptions.html#L49"><span class="sail-id">set_xepc</span></a>(<span class="sail-id">Supervisor</span>, <span class="sail-id">value</span>) }
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">write_CSR</span>(<span class="sail-literal">0x305</span>, <span class="sail-id">value</span>) = { <a href="./riscv_sys_exceptions.html#L71"><span class="sail-id">set_mtvec</span></a>(<span class="sail-id">value</span>) }
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">write_CSR</span>(<span class="sail-literal">0x341</span>, <span class="sail-id">value</span>) = { <a href="./riscv_sys_exceptions.html#L49"><span class="sail-id">set_xepc</span></a>(<span class="sail-id">Machine</span>, <span class="sail-id">value</span>) }
 </pre>
 </div>
 </div>

@@ -37,13 +37,13 @@
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">read_CSR</span>(<span class="sail-id">csr</span>) = {
    <span class="sail-comment">// This should be impossible because is_CSR_defined() should have returned false.
-</span>   <a href="sail-riscv/./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"Read from CSR that does not exist: "</span> <span class="sail-operator">^</span> <span class="sail-id">bits_str</span>(<span class="sail-id">csr</span>));
+</span>   <a href="./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"Read from CSR that does not exist: "</span> <span class="sail-operator">^</span> <span class="sail-id">bits_str</span>(<span class="sail-id">csr</span>));
 }
 <span class="sail-keyword">end</span> <span class="sail-id">read_CSR</span>
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">write_CSR</span>(<span class="sail-id">csr</span>, _) = {
    <span class="sail-comment">// This should be impossible because is_CSR_defined() should have returned false.
-</span>   <a href="sail-riscv/./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"Write to CSR that does not exist: "</span> <span class="sail-operator">^</span> <span class="sail-id">bits_str</span>(<span class="sail-id">csr</span>));
+</span>   <a href="./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"Write to CSR that does not exist: "</span> <span class="sail-operator">^</span> <span class="sail-id">bits_str</span>(<span class="sail-id">csr</span>));
 }
 <span class="sail-keyword">end</span> <span class="sail-id">write_CSR</span>
 </pre>

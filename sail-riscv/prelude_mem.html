@@ -88,7 +88,7 @@
    addresses regardless of the actual physical address width. */</span>
 <span class="sail-keyword">val</span> <span class="sail-id">physaddrbits_zero_extend</span> : <span class="sail-id">physaddrbits</span> -&gt; <span class="sail-id">bits</span>(<span class="sail-literal">64</span>)
 
-<span class="sail-keyword">function</span> <span class="sail-id">physaddrbits_zero_extend</span> <span class="sail-id">xs</span> = <a href="sail-riscv/./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">xs</span>)
+<span class="sail-keyword">function</span> <span class="sail-id">physaddrbits_zero_extend</span> <span class="sail-id">xs</span> = <a href="./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">xs</span>)
 
 <span class="sail-keyword">instantiation</span> <span class="sail-id">sail_mem_write</span> <span class="sail-keyword">with</span>
   <span class="sail-ty-var">'pa</span> = <span class="sail-id">physaddrbits</span>,
@@ -127,9 +127,9 @@
    * (not just for Lem) to consume the value along with the
    * metadata to ensure atomicity.
    */</span>
-  <span class="sail-keyword">match</span> <a href="sail-riscv/./prelude_mem.html#L70"><span class="sail-id">sail_mem_write</span></a>(<span class="sail-id">request</span>) {
+  <span class="sail-keyword">match</span> <a href="./prelude_mem.html#L70"><span class="sail-id">sail_mem_write</span></a>(<span class="sail-id">request</span>) {
     <span class="sail-id">Ok</span>(_) =&gt; {
-      <a href="sail-riscv/./prelude_mem_metadata.html#L17"><span class="sail-id">__WriteRAM_Meta</span></a>(<span class="sail-id">addr</span>, <span class="sail-id">width</span>, <span class="sail-id">meta</span>);
+      <a href="./prelude_mem_metadata.html#L17"><span class="sail-id">__WriteRAM_Meta</span></a>(<span class="sail-id">addr</span>, <span class="sail-id">width</span>, <span class="sail-id">meta</span>);
       <span class="sail-literal">true</span>
     },
     <span class="sail-id">Err</span>() =&gt; <span class="sail-literal">false</span>,
@@ -144,7 +144,7 @@
 
 <span class="sail-keyword">val</span> <span class="sail-id">read_ram</span> : <span class="sail-keyword">forall</span> <span class="sail-ty-var">'n</span>, <span class="sail-literal">0</span> <span class="sail-operator">&lt;</span> <span class="sail-ty-var">'n</span> <span class="sail-operator">&lt;=</span> <span class="sail-id">max_mem_access</span>.  (<span class="sail-id">read_kind</span>, <span class="sail-id">physaddr</span>, <span class="sail-id">int</span>(<span class="sail-ty-var">'n</span>), <span class="sail-id">bool</span>) -&gt; (<span class="sail-id">bits</span>(<span class="sail-literal">8</span> <span class="sail-operator">*</span> <span class="sail-ty-var">'n</span>), <span class="sail-id">mem_meta</span>)
 <span class="sail-keyword">function</span> <span class="sail-id">read_ram</span>(<span class="sail-id">rk</span>, <span class="sail-id">Physaddr</span>(<span class="sail-id">addr</span>), <span class="sail-id">width</span>, <span class="sail-id">read_meta</span>) = {
-  <span class="sail-keyword">let</span> <span class="sail-id">meta</span> = <span class="sail-keyword">if</span> <span class="sail-id">read_meta</span> <span class="sail-keyword">then</span> <a href="sail-riscv/./prelude_mem_metadata.html#L19"><span class="sail-id">__ReadRAM_Meta</span></a>(<span class="sail-id">addr</span>, <span class="sail-id">width</span>) <span class="sail-keyword">else</span> <span class="sail-id">default_meta</span>;
+  <span class="sail-keyword">let</span> <span class="sail-id">meta</span> = <span class="sail-keyword">if</span> <span class="sail-id">read_meta</span> <span class="sail-keyword">then</span> <a href="./prelude_mem_metadata.html#L19"><span class="sail-id">__ReadRAM_Meta</span></a>(<span class="sail-id">addr</span>, <span class="sail-id">width</span>) <span class="sail-keyword">else</span> <span class="sail-id">default_meta</span>;
   <span class="sail-keyword">let</span> <span class="sail-id">request</span> : <span class="sail-id">Mem_read_request</span>(<span class="sail-ty-var">'n</span>, <span class="sail-literal">64</span>, <span class="sail-id">physaddrbits</span>, <span class="sail-id">unit</span>, <span class="sail-id">RISCV_strong_access</span>) = <span class="sail-keyword">struct</span> {
     <span class="sail-id">access_kind</span> = <span class="sail-keyword">match</span> <span class="sail-id">rk</span> {
       <span class="sail-id">Read_plain</span> =&gt; <span class="sail-id">AK_explicit</span>(<span class="sail-keyword">struct</span> { <span class="sail-id">variety</span> = <span class="sail-id">AV_plain</span>, <span class="sail-id">strength</span> = <span class="sail-id">AS_normal</span> }),
@@ -161,7 +161,7 @@
     <span class="sail-id">size</span> = <span class="sail-id">width</span>,
     <span class="sail-id">tag</span> = <span class="sail-literal">false</span>,
   };
-  <span class="sail-keyword">match</span> <a href="sail-riscv/./prelude_mem.html#L119"><span class="sail-id">sail_mem_read</span></a>(<span class="sail-id">request</span>) {
+  <span class="sail-keyword">match</span> <a href="./prelude_mem.html#L119"><span class="sail-id">sail_mem_read</span></a>(<span class="sail-id">request</span>) {
     <span class="sail-id">Ok</span>((<span class="sail-id">value</span>, _)) =&gt; (<span class="sail-id">value</span>, <span class="sail-id">meta</span>),
     <span class="sail-id">Err</span>() =&gt; <span class="sail-keyword">exit</span>(),
   }
