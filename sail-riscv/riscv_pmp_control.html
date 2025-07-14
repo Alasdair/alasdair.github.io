@@ -76,16 +76,16 @@
       <span class="sail-comment">// "If PMP entry [i]'s A field is set to TOR, the entry matches
 </span>      <span class="sail-comment">//  any address y such that pmpaddr[i-1] &lt;= y &lt; pmpaddr[i]"
 </span>      <span class="sail-comment">// "If pmpaddr[i-1] &gt;= pmpaddr[i] and pmpcfg[i].A=TOR, then PMP entry i matches no addresses."
-</span>      <span class="sail-keyword">if</span> <span class="sail-id">prev_pmpaddr</span> <a href=".././prelude.html#L163"><span class="sail-operator">&gt;=_u</span></a> <span class="sail-id">pmpaddr</span>
+</span>      <span class="sail-keyword">if</span> <span class="sail-id">prev_pmpaddr</span> <a href="sail-riscv/./prelude.html#L163"><span class="sail-operator">&gt;=_u</span></a> <span class="sail-id">pmpaddr</span>
       <span class="sail-keyword">then</span> <span class="sail-id">PMP_NoMatch</span>
-      <span class="sail-keyword">else</span> <a href=".././riscv_pmp_control.html#L29"><span class="sail-id">pmpRangeMatch</span></a>(<span class="sail-id">unsigned</span>(<span class="sail-id">prev_pmpaddr</span>) <span class="sail-operator">*</span> <span class="sail-literal">4</span>, <span class="sail-id">unsigned</span>(<span class="sail-id">pmpaddr</span>) <span class="sail-operator">*</span> <span class="sail-literal">4</span>, <span class="sail-id">addr</span>, <span class="sail-id">width</span>)
+      <span class="sail-keyword">else</span> <a href="sail-riscv/./riscv_pmp_control.html#L29"><span class="sail-id">pmpRangeMatch</span></a>(<span class="sail-id">unsigned</span>(<span class="sail-id">prev_pmpaddr</span>) <span class="sail-operator">*</span> <span class="sail-literal">4</span>, <span class="sail-id">unsigned</span>(<span class="sail-id">pmpaddr</span>) <span class="sail-operator">*</span> <span class="sail-literal">4</span>, <span class="sail-id">addr</span>, <span class="sail-id">width</span>)
     },
     <span class="sail-id">NA4</span> =&gt; {
       <span class="sail-comment">// NA4 is not selectable when the PMP grain G &gt;= 1. See pmpWriteCfg().
 </span>      <span class="sail-keyword">assert</span>(<span class="sail-id">sys_pmp_grain</span> <span class="sail-operator">&lt;</span> <span class="sail-literal">1</span>, <span class="sail-string">"NA4 cannot be selected when PMP grain G &gt;= 1."</span>);
       <span class="sail-comment">// Match a 4-byte region.
 </span>      <span class="sail-keyword">let</span> <span class="sail-id">begin</span> = <span class="sail-id">unsigned</span>(<span class="sail-id">pmpaddr</span>) <span class="sail-operator">*</span> <span class="sail-literal">4</span>;
-      <a href=".././riscv_pmp_control.html#L29"><span class="sail-id">pmpRangeMatch</span></a>(<span class="sail-id">begin</span>, <span class="sail-id">begin</span> <span class="sail-operator">+</span> <span class="sail-literal">4</span>, <span class="sail-id">addr</span>, <span class="sail-id">width</span>)
+      <a href="sail-riscv/./riscv_pmp_control.html#L29"><span class="sail-id">pmpRangeMatch</span></a>(<span class="sail-id">begin</span>, <span class="sail-id">begin</span> <span class="sail-operator">+</span> <span class="sail-literal">4</span>, <span class="sail-id">addr</span>, <span class="sail-id">width</span>)
     },
     <span class="sail-id">NAPOT</span> =&gt; {
       <span class="sail-comment">// Example pmpaddr: 0b00010101111
@@ -97,7 +97,7 @@
 </span>      <span class="sail-keyword">let</span> <span class="sail-id">begin_words</span> = <span class="sail-id">unsigned</span>(<span class="sail-id">pmpaddr</span> <span class="sail-operator">&amp;</span> (<span class="sail-id">~</span>(<span class="sail-id">mask</span>)));
       <span class="sail-comment">// mask + 1:        0b00000100000
 </span>      <span class="sail-keyword">let</span> <span class="sail-id">end_words</span> = <span class="sail-id">begin_words</span> <span class="sail-operator">+</span> <span class="sail-id">unsigned</span>(<span class="sail-id">mask</span>) <span class="sail-operator">+</span> <span class="sail-literal">1</span>;
-      <a href=".././riscv_pmp_control.html#L29"><span class="sail-id">pmpRangeMatch</span></a>(<span class="sail-id">begin_words</span> <span class="sail-operator">*</span> <span class="sail-literal">4</span>, <span class="sail-id">end_words</span> <span class="sail-operator">*</span> <span class="sail-literal">4</span>, <span class="sail-id">addr</span>, <span class="sail-id">width</span>)
+      <a href="sail-riscv/./riscv_pmp_control.html#L29"><span class="sail-id">pmpRangeMatch</span></a>(<span class="sail-id">begin_words</span> <span class="sail-operator">*</span> <span class="sail-literal">4</span>, <span class="sail-id">end_words</span> <span class="sail-operator">*</span> <span class="sail-literal">4</span>, <span class="sail-id">addr</span>, <span class="sail-id">width</span>)
     },
   }
 }
@@ -119,30 +119,30 @@
   <span class="sail-id">priv</span> : <span class="sail-id">Privilege</span>,
 ) -&gt; <span class="sail-id">option</span>(<span class="sail-id">ExceptionType</span>) = {
 
-  <span class="sail-keyword">let</span> <span class="sail-id">width</span> : <span class="sail-id">xlenbits</span> = <a href=".././prelude.html#L118"><span class="sail-id">to_bits</span></a>(<span class="sail-id">width</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">width</span> : <span class="sail-id">xlenbits</span> = <a href="sail-riscv/./prelude.html#L118"><span class="sail-id">to_bits</span></a>(<span class="sail-id">width</span>);
 
   <span class="sail-keyword">foreach</span> (<span class="sail-id">i</span> <span class="sail-id">from</span> <span class="sail-literal">0</span> <span class="sail-id">to</span> <span class="sail-literal">63</span>) {
-    <span class="sail-keyword">let</span> <span class="sail-id">prev_pmpaddr</span> = <span class="sail-keyword">if</span> <span class="sail-id">i</span> <span class="sail-operator">&gt;</span> <span class="sail-literal">0</span> <span class="sail-keyword">then</span> <a href=".././riscv_pmp_regs.html#L65"><span class="sail-id">pmpReadAddrReg</span></a>(<span class="sail-id">i</span> <span class="sail-operator">-</span> <span class="sail-literal">1</span>) <span class="sail-keyword">else</span> <a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>();
-    <span class="sail-keyword">let</span> <span class="sail-id">cfg</span> = <a href=".././riscv_pmp_regs.html#L39"><span class="sail-id">pmpcfg_n</span></a>[<span class="sail-id">i</span>];
+    <span class="sail-keyword">let</span> <span class="sail-id">prev_pmpaddr</span> = <span class="sail-keyword">if</span> <span class="sail-id">i</span> <span class="sail-operator">&gt;</span> <span class="sail-literal">0</span> <span class="sail-keyword">then</span> <a href="sail-riscv/./riscv_pmp_regs.html#L65"><span class="sail-id">pmpReadAddrReg</span></a>(<span class="sail-id">i</span> <span class="sail-operator">-</span> <span class="sail-literal">1</span>) <span class="sail-keyword">else</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>();
+    <span class="sail-keyword">let</span> <span class="sail-id">cfg</span> = <a href="sail-riscv/./riscv_pmp_regs.html#L39"><span class="sail-id">pmpcfg_n</span></a>[<span class="sail-id">i</span>];
 
-    <span class="sail-keyword">match</span> <a href=".././riscv_pmp_control.html#L41"><span class="sail-id">pmpMatchAddr</span></a>(<span class="sail-id">addr</span>, <span class="sail-id">width</span>, <span class="sail-id">cfg</span>, <a href=".././riscv_pmp_regs.html#L65"><span class="sail-id">pmpReadAddrReg</span></a>(<span class="sail-id">i</span>), <span class="sail-id">prev_pmpaddr</span>) {
+    <span class="sail-keyword">match</span> <a href="sail-riscv/./riscv_pmp_control.html#L41"><span class="sail-id">pmpMatchAddr</span></a>(<span class="sail-id">addr</span>, <span class="sail-id">width</span>, <span class="sail-id">cfg</span>, <a href="sail-riscv/./riscv_pmp_regs.html#L65"><span class="sail-id">pmpReadAddrReg</span></a>(<span class="sail-id">i</span>), <span class="sail-id">prev_pmpaddr</span>) {
       <span class="sail-id">PMP_NoMatch</span>      =&gt; (),
-      <span class="sail-id">PMP_PartialMatch</span> =&gt; <span class="sail-keyword">return</span> <span class="sail-id">Some</span>(<a href=".././riscv_pmp_control.html#L84"><span class="sail-id">accessToFault</span></a>(<span class="sail-id">acc</span>)),
+      <span class="sail-id">PMP_PartialMatch</span> =&gt; <span class="sail-keyword">return</span> <span class="sail-id">Some</span>(<a href="sail-riscv/./riscv_pmp_control.html#L84"><span class="sail-id">accessToFault</span></a>(<span class="sail-id">acc</span>)),
       <span class="sail-id">PMP_Match</span>        =&gt; <span class="sail-keyword">return</span> (
-        <span class="sail-keyword">if</span> <a href=".././riscv_pmp_control.html#L13"><span class="sail-id">pmpCheckRWX</span></a>(<span class="sail-id">cfg</span>, <span class="sail-id">acc</span>) <span class="sail-operator">|</span> (<span class="sail-id">priv</span> <span class="sail-operator">==</span> <span class="sail-id">Machine</span> <span class="sail-operator">&amp;</span> <a href=".././prelude.html#L29"><span class="sail-id">not</span></a>(<a href=".././riscv_pmp_regs.html#L88"><span class="sail-id">pmpLocked</span></a>(<span class="sail-id">cfg</span>)))
+        <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_pmp_control.html#L13"><span class="sail-id">pmpCheckRWX</span></a>(<span class="sail-id">cfg</span>, <span class="sail-id">acc</span>) <span class="sail-operator">|</span> (<span class="sail-id">priv</span> <span class="sail-operator">==</span> <span class="sail-id">Machine</span> <span class="sail-operator">&amp;</span> <a href="sail-riscv/./prelude.html#L29"><span class="sail-id">not</span></a>(<a href="sail-riscv/./riscv_pmp_regs.html#L88"><span class="sail-id">pmpLocked</span></a>(<span class="sail-id">cfg</span>)))
         <span class="sail-keyword">then</span> <span class="sail-id">None</span>()
-        <span class="sail-keyword">else</span> <span class="sail-id">Some</span>(<a href=".././riscv_pmp_control.html#L84"><span class="sail-id">accessToFault</span></a>(<span class="sail-id">acc</span>))
+        <span class="sail-keyword">else</span> <span class="sail-id">Some</span>(<a href="sail-riscv/./riscv_pmp_control.html#L84"><span class="sail-id">accessToFault</span></a>(<span class="sail-id">acc</span>))
       ),
     };
   };
-  <span class="sail-keyword">if</span> <span class="sail-id">priv</span> <span class="sail-operator">==</span> <span class="sail-id">Machine</span> <span class="sail-keyword">then</span> <span class="sail-id">None</span>() <span class="sail-keyword">else</span> <span class="sail-id">Some</span>(<a href=".././riscv_pmp_control.html#L84"><span class="sail-id">accessToFault</span></a>(<span class="sail-id">acc</span>))
+  <span class="sail-keyword">if</span> <span class="sail-id">priv</span> <span class="sail-operator">==</span> <span class="sail-id">Machine</span> <span class="sail-keyword">then</span> <span class="sail-id">None</span>() <span class="sail-keyword">else</span> <span class="sail-id">Some</span>(<a href="sail-riscv/./riscv_pmp_control.html#L84"><span class="sail-id">accessToFault</span></a>(<span class="sail-id">acc</span>))
 }
 
 <span class="sail-keyword">function</span> <span class="sail-id">reset_pmp</span>() -&gt; <span class="sail-id">unit</span> = {
   <span class="sail-keyword">foreach</span> (<span class="sail-id">i</span> <span class="sail-id">from</span> <span class="sail-literal">0</span> <span class="sail-id">to</span> <span class="sail-literal">63</span>) {
     <span class="sail-comment">// On reset the PMP register's A and L bits are set to 0 unless the platform
 </span>    <span class="sail-comment">// mandates a different value.
-</span>    <a href=".././riscv_pmp_regs.html#L39"><span class="sail-id">pmpcfg_n</span></a>[<span class="sail-id">i</span>] = [<a href=".././riscv_pmp_regs.html#L39"><span class="sail-id">pmpcfg_n</span></a>[<span class="sail-id">i</span>] <span class="sail-keyword">with</span> <span class="sail-id">A</span> = <span class="sail-id">pmpAddrMatchType_encdec</span>(<span class="sail-id">OFF</span>), <span class="sail-id">L</span> = <span class="sail-literal">0b0</span>];
+</span>    <a href="sail-riscv/./riscv_pmp_regs.html#L39"><span class="sail-id">pmpcfg_n</span></a>[<span class="sail-id">i</span>] = [<a href="sail-riscv/./riscv_pmp_regs.html#L39"><span class="sail-id">pmpcfg_n</span></a>[<span class="sail-id">i</span>] <span class="sail-keyword">with</span> <span class="sail-id">A</span> = <span class="sail-id">pmpAddrMatchType_encdec</span>(<span class="sail-id">OFF</span>), <span class="sail-id">L</span> = <span class="sail-literal">0b0</span>];
   };
 }
 </pre>

@@ -32,12 +32,12 @@
 <span class="sail-comment">// Identifies the largest MMU address translation mode supported by this hart.
 </span><span class="sail-keyword">function</span> <span class="sail-id">mmu_type</span>() -&gt; <span class="sail-id">string</span> = {
   <span class="sail-keyword">if</span> <span class="sail-id">xlen</span> <span class="sail-operator">==</span> <span class="sail-literal">32</span> <span class="sail-keyword">then</span> {
-    <span class="sail-keyword">if</span> <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv32</span>) <span class="sail-keyword">then</span> <span class="sail-string">"sv32"</span> <span class="sail-keyword">else</span> <span class="sail-string">"none"</span>
+    <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv32</span>) <span class="sail-keyword">then</span> <span class="sail-string">"sv32"</span> <span class="sail-keyword">else</span> <span class="sail-string">"none"</span>
   } <span class="sail-keyword">else</span> {
     <span class="sail-keyword">assert</span>(<span class="sail-id">xlen</span> <span class="sail-operator">==</span> <span class="sail-literal">64</span>);
-    <span class="sail-keyword">if</span> <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv57</span>) <span class="sail-keyword">then</span> <span class="sail-string">"sv57"</span>
-    <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv48</span>) <span class="sail-keyword">then</span> <span class="sail-string">"sv48"</span>
-    <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv39</span>) <span class="sail-keyword">then</span> <span class="sail-string">"sv39"</span>
+    <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv57</span>) <span class="sail-keyword">then</span> <span class="sail-string">"sv57"</span>
+    <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv48</span>) <span class="sail-keyword">then</span> <span class="sail-string">"sv48"</span>
+    <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv39</span>) <span class="sail-keyword">then</span> <span class="sail-string">"sv39"</span>
     <span class="sail-keyword">else</span> <span class="sail-string">"none"</span>
   }
 }
@@ -97,7 +97,7 @@
 */</span>
 
 <span class="sail-keyword">function</span> <span class="sail-id">ext_wrap</span>(<span class="sail-id">ext</span> : <span class="sail-id">extension</span>, <span class="sail-id">fmt</span> : <span class="sail-id">ISA_Format</span>) -&gt; <span class="sail-id">string</span> = {
-  <span class="sail-keyword">if</span> <a href=".././prelude.html#L29"><span class="sail-id">not</span></a>(<a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">ext</span>)) <span class="sail-keyword">then</span> <span class="sail-keyword">return</span> <span class="sail-string">""</span>;
+  <span class="sail-keyword">if</span> <a href="sail-riscv/./prelude.html#L29"><span class="sail-id">not</span></a>(<a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">ext</span>)) <span class="sail-keyword">then</span> <span class="sail-keyword">return</span> <span class="sail-string">""</span>;
   <span class="sail-keyword">let</span> <span class="sail-id">s</span> = <span class="sail-id">extensionName</span>(<span class="sail-id">ext</span>);
   <span class="sail-keyword">match</span> <span class="sail-id">fmt</span> {
     <span class="sail-id">Canonical_Lowercase</span> =&gt;
@@ -116,7 +116,7 @@
 
   <span class="sail-comment">// The default Order dec means we start from the end
 </span>  <span class="sail-keyword">foreach</span> (<span class="sail-id">i</span> <span class="sail-id">from</span> (<span class="sail-id">length</span>(<span class="sail-id">extensions_ordered_for_isa_string</span>) <span class="sail-operator">-</span> <span class="sail-literal">1</span>) <span class="sail-id">downto</span> <span class="sail-literal">0</span>)
-    <span class="sail-id">isa_string</span> = <span class="sail-id">isa_string</span> <span class="sail-operator">^</span> <a href=".././riscv_device_tree.html#L76"><span class="sail-id">ext_wrap</span></a>(<span class="sail-id">extensions_ordered_for_isa_string</span>[<span class="sail-id">i</span>], <span class="sail-id">fmt</span>);
+    <span class="sail-id">isa_string</span> = <span class="sail-id">isa_string</span> <span class="sail-operator">^</span> <a href="sail-riscv/./riscv_device_tree.html#L76"><span class="sail-id">ext_wrap</span></a>(<span class="sail-id">extensions_ordered_for_isa_string</span>[<span class="sail-id">i</span>], <span class="sail-id">fmt</span>);
 
   <span class="sail-id">isa_string</span>
 }
@@ -125,14 +125,14 @@
 </span>
 <span class="sail-keyword">function</span> <span class="sail-id">generate_dts</span>() -&gt; <span class="sail-id">string</span> = {
   <span class="sail-keyword">let</span> <span class="sail-id">clock_freq</span> : <span class="sail-id">nat</span> = <span class="sail-keyword">config</span> <span class="sail-id">platform</span>.<span class="sail-id">clock_frequency</span>;
-  <span class="sail-keyword">let</span> <span class="sail-id">ram_base_hi</span> = <span class="sail-id">unsigned</span>(<a href=".././riscv_platform.html#L36"><span class="sail-id">plat_ram_base</span></a> <span class="sail-operator">&gt;&gt;</span> <span class="sail-literal">32</span>);
-  <span class="sail-keyword">let</span> <span class="sail-id">ram_base_lo</span> = <span class="sail-id">unsigned</span>(<a href=".././riscv_platform.html#L36"><span class="sail-id">plat_ram_base</span></a>[<span class="sail-literal">31</span> .. <span class="sail-literal">0</span>]);
-  <span class="sail-keyword">let</span> <span class="sail-id">ram_size_hi</span> = <span class="sail-id">unsigned</span>(<a href=".././riscv_platform.html#L37"><span class="sail-id">plat_ram_size</span></a> <span class="sail-operator">&gt;&gt;</span> <span class="sail-literal">32</span>);
-  <span class="sail-keyword">let</span> <span class="sail-id">ram_size_lo</span> = <span class="sail-id">unsigned</span>(<a href=".././riscv_platform.html#L37"><span class="sail-id">plat_ram_size</span></a>[<span class="sail-literal">31</span> .. <span class="sail-literal">0</span>]);
-  <span class="sail-keyword">let</span> <span class="sail-id">clint_base_hi</span> = <span class="sail-id">unsigned</span>(<a href=".././riscv_platform.html#L59"><span class="sail-id">plat_clint_base</span></a> <span class="sail-operator">&gt;&gt;</span> <span class="sail-literal">32</span>);
-  <span class="sail-keyword">let</span> <span class="sail-id">clint_base_lo</span> = <span class="sail-id">unsigned</span>(<a href=".././riscv_platform.html#L59"><span class="sail-id">plat_clint_base</span></a>[<span class="sail-literal">31</span> .. <span class="sail-literal">0</span>]);
-  <span class="sail-keyword">let</span> <span class="sail-id">clint_size_hi</span> = <span class="sail-id">unsigned</span>(<a href=".././riscv_platform.html#L60"><span class="sail-id">plat_clint_size</span></a> <span class="sail-operator">&gt;&gt;</span> <span class="sail-literal">32</span>);
-  <span class="sail-keyword">let</span> <span class="sail-id">clint_size_lo</span> = <span class="sail-id">unsigned</span>(<a href=".././riscv_platform.html#L60"><span class="sail-id">plat_clint_size</span></a>[<span class="sail-literal">31</span> .. <span class="sail-literal">0</span>]);
+  <span class="sail-keyword">let</span> <span class="sail-id">ram_base_hi</span> = <span class="sail-id">unsigned</span>(<a href="sail-riscv/./riscv_platform.html#L36"><span class="sail-id">plat_ram_base</span></a> <span class="sail-operator">&gt;&gt;</span> <span class="sail-literal">32</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">ram_base_lo</span> = <span class="sail-id">unsigned</span>(<a href="sail-riscv/./riscv_platform.html#L36"><span class="sail-id">plat_ram_base</span></a>[<span class="sail-literal">31</span> .. <span class="sail-literal">0</span>]);
+  <span class="sail-keyword">let</span> <span class="sail-id">ram_size_hi</span> = <span class="sail-id">unsigned</span>(<a href="sail-riscv/./riscv_platform.html#L37"><span class="sail-id">plat_ram_size</span></a> <span class="sail-operator">&gt;&gt;</span> <span class="sail-literal">32</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">ram_size_lo</span> = <span class="sail-id">unsigned</span>(<a href="sail-riscv/./riscv_platform.html#L37"><span class="sail-id">plat_ram_size</span></a>[<span class="sail-literal">31</span> .. <span class="sail-literal">0</span>]);
+  <span class="sail-keyword">let</span> <span class="sail-id">clint_base_hi</span> = <span class="sail-id">unsigned</span>(<a href="sail-riscv/./riscv_platform.html#L59"><span class="sail-id">plat_clint_base</span></a> <span class="sail-operator">&gt;&gt;</span> <span class="sail-literal">32</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">clint_base_lo</span> = <span class="sail-id">unsigned</span>(<a href="sail-riscv/./riscv_platform.html#L59"><span class="sail-id">plat_clint_base</span></a>[<span class="sail-literal">31</span> .. <span class="sail-literal">0</span>]);
+  <span class="sail-keyword">let</span> <span class="sail-id">clint_size_hi</span> = <span class="sail-id">unsigned</span>(<a href="sail-riscv/./riscv_platform.html#L60"><span class="sail-id">plat_clint_size</span></a> <span class="sail-operator">&gt;&gt;</span> <span class="sail-literal">32</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">clint_size_lo</span> = <span class="sail-id">unsigned</span>(<a href="sail-riscv/./riscv_platform.html#L60"><span class="sail-id">plat_clint_size</span></a>[<span class="sail-literal">31</span> .. <span class="sail-literal">0</span>]);
 
   <span class="sail-comment">// `hex_str` is used for the unit-addresses of the `memory@` and `clint@` nodes
 </span>  <span class="sail-comment">// instead of `hex_bits_str` since they cannot have leading zeros.  These addresses
@@ -157,12 +157,12 @@
 <span class="sail-operator">^</span> <span class="sail-string">"      reg = &lt;0&gt;;\n"</span>
 <span class="sail-operator">^</span> <span class="sail-string">"      status = \"okay\";\n"</span>
 <span class="sail-operator">^</span> <span class="sail-string">"      compatible = \"riscv\";\n"</span>
-<span class="sail-operator">^</span> <span class="sail-string">"      riscv,isa-base = \""</span> <span class="sail-operator">^</span> <a href=".././riscv_device_tree.html#L27"><span class="sail-id">generate_isa_base</span></a>() <span class="sail-operator">^</span> <span class="sail-string">"\";\n"</span>
+<span class="sail-operator">^</span> <span class="sail-string">"      riscv,isa-base = \""</span> <span class="sail-operator">^</span> <a href="sail-riscv/./riscv_device_tree.html#L27"><span class="sail-id">generate_isa_base</span></a>() <span class="sail-operator">^</span> <span class="sail-string">"\";\n"</span>
          <span class="sail-comment">// NOTE: The "riscv,isa" property is marked deprecated but is
 </span>         <span class="sail-comment">// probably still widely used.
-</span><span class="sail-operator">^</span> <span class="sail-string">"      riscv,isa = \""</span> <span class="sail-operator">^</span> <a href=".././riscv_device_tree.html#L88"><span class="sail-id">generate_isa_string</span></a>(<span class="sail-id">Canonical_Lowercase</span>) <span class="sail-operator">^</span> <span class="sail-string">"\";\n"</span>
-<span class="sail-operator">^</span> <span class="sail-string">"      riscv,isa-extensions = "</span> <span class="sail-operator">^</span> <a href=".././riscv_device_tree.html#L88"><span class="sail-id">generate_isa_string</span></a>(<span class="sail-id">DeviceTree_ISA_Extensions</span>) <span class="sail-operator">^</span> <span class="sail-string">";\n"</span>
-<span class="sail-operator">^</span> <span class="sail-string">"      mmu-type = \"riscv,"</span> <span class="sail-operator">^</span> <a href=".././riscv_device_tree.html#L10"><span class="sail-id">mmu_type</span></a>() <span class="sail-operator">^</span> <span class="sail-string">"\";\n"</span>
+</span><span class="sail-operator">^</span> <span class="sail-string">"      riscv,isa = \""</span> <span class="sail-operator">^</span> <a href="sail-riscv/./riscv_device_tree.html#L88"><span class="sail-id">generate_isa_string</span></a>(<span class="sail-id">Canonical_Lowercase</span>) <span class="sail-operator">^</span> <span class="sail-string">"\";\n"</span>
+<span class="sail-operator">^</span> <span class="sail-string">"      riscv,isa-extensions = "</span> <span class="sail-operator">^</span> <a href="sail-riscv/./riscv_device_tree.html#L88"><span class="sail-id">generate_isa_string</span></a>(<span class="sail-id">DeviceTree_ISA_Extensions</span>) <span class="sail-operator">^</span> <span class="sail-string">";\n"</span>
+<span class="sail-operator">^</span> <span class="sail-string">"      mmu-type = \"riscv,"</span> <span class="sail-operator">^</span> <a href="sail-riscv/./riscv_device_tree.html#L10"><span class="sail-id">mmu_type</span></a>() <span class="sail-operator">^</span> <span class="sail-string">"\";\n"</span>
 <span class="sail-operator">^</span> <span class="sail-string">"      clock-frequency = &lt;"</span> <span class="sail-operator">^</span> <span class="sail-id">dec_str</span>(<span class="sail-id">clock_freq</span>) <span class="sail-operator">^</span> <span class="sail-string">"&gt;;\n"</span>
 <span class="sail-operator">^</span> <span class="sail-string">"      CPU0_intc: interrupt-controller {\n"</span>
 <span class="sail-operator">^</span> <span class="sail-string">"        #address-cells = &lt;2&gt;;\n"</span>
@@ -172,7 +172,7 @@
 <span class="sail-operator">^</span> <span class="sail-string">"      };\n"</span>
 <span class="sail-operator">^</span> <span class="sail-string">"    };\n"</span>
 <span class="sail-operator">^</span> <span class="sail-string">"  };\n"</span>
-<span class="sail-operator">^</span> <span class="sail-string">"  memory@"</span> <span class="sail-operator">^</span> <span class="sail-id">string_drop</span>(<span class="sail-id">hex_str</span>(<span class="sail-id">unsigned</span>(<a href=".././riscv_platform.html#L36"><span class="sail-id">plat_ram_base</span></a>)), <span class="sail-literal">2</span>) <span class="sail-operator">^</span> <span class="sail-string">" {\n"</span>
+<span class="sail-operator">^</span> <span class="sail-string">"  memory@"</span> <span class="sail-operator">^</span> <span class="sail-id">string_drop</span>(<span class="sail-id">hex_str</span>(<span class="sail-id">unsigned</span>(<a href="sail-riscv/./riscv_platform.html#L36"><span class="sail-id">plat_ram_base</span></a>)), <span class="sail-literal">2</span>) <span class="sail-operator">^</span> <span class="sail-string">" {\n"</span>
 <span class="sail-operator">^</span> <span class="sail-string">"    device_type = \"memory\";\n"</span>
 <span class="sail-operator">^</span> <span class="sail-string">"    reg = &lt;"</span> <span class="sail-operator">^</span> <span class="sail-id">hex_str</span>(<span class="sail-id">ram_base_hi</span>) <span class="sail-operator">^</span> <span class="sail-string">" "</span> <span class="sail-operator">^</span> <span class="sail-id">hex_str</span>(<span class="sail-id">ram_base_lo</span>)
 <span class="sail-operator">^</span> <span class="sail-string">" "</span> <span class="sail-operator">^</span> <span class="sail-id">hex_str</span>(<span class="sail-id">ram_size_hi</span>) <span class="sail-operator">^</span> <span class="sail-string">" "</span> <span class="sail-operator">^</span> <span class="sail-id">hex_str</span>(<span class="sail-id">ram_size_lo</span>) <span class="sail-operator">^</span> <span class="sail-string">"&gt;;\n"</span>
@@ -182,7 +182,7 @@
 <span class="sail-operator">^</span> <span class="sail-string">"    #size-cells = &lt;2&gt;;\n"</span>
 <span class="sail-operator">^</span> <span class="sail-string">"    compatible = \"ucbbar,spike-bare-soc\", \"simple-bus\";\n"</span>
 <span class="sail-operator">^</span> <span class="sail-string">"    ranges;\n"</span>
-<span class="sail-operator">^</span> <span class="sail-string">"    clint@"</span> <span class="sail-operator">^</span> <span class="sail-id">string_drop</span>(<span class="sail-id">hex_str</span>(<span class="sail-id">unsigned</span>(<a href=".././riscv_platform.html#L59"><span class="sail-id">plat_clint_base</span></a>)), <span class="sail-literal">2</span>) <span class="sail-operator">^</span> <span class="sail-string">" {\n"</span>
+<span class="sail-operator">^</span> <span class="sail-string">"    clint@"</span> <span class="sail-operator">^</span> <span class="sail-id">string_drop</span>(<span class="sail-id">hex_str</span>(<span class="sail-id">unsigned</span>(<a href="sail-riscv/./riscv_platform.html#L59"><span class="sail-id">plat_clint_base</span></a>)), <span class="sail-literal">2</span>) <span class="sail-operator">^</span> <span class="sail-string">" {\n"</span>
 <span class="sail-operator">^</span> <span class="sail-string">"      compatible = \"riscv,clint0\";\n"</span>
 <span class="sail-operator">^</span> <span class="sail-string">"      interrupts-extended = &lt;&amp;CPU0_intc 3 &amp;CPU0_intc 7&gt;;\n"</span>
 <span class="sail-operator">^</span> <span class="sail-string">"      reg = &lt;"</span> <span class="sail-operator">^</span> <span class="sail-id">hex_str</span>(<span class="sail-id">clint_base_hi</span>) <span class="sail-operator">^</span> <span class="sail-string">" "</span> <span class="sail-operator">^</span> <span class="sail-id">hex_str</span>(<span class="sail-id">clint_base_lo</span>)
@@ -197,7 +197,7 @@
 
 <span class="sail-comment">// Generate a canonical ISA string for the configuration.
 </span><span class="sail-keyword">function</span> <span class="sail-id">generate_canonical_isa_string</span>() -&gt; <span class="sail-id">string</span> =
-  <a href=".././riscv_device_tree.html#L88"><span class="sail-id">generate_isa_string</span></a>(<span class="sail-id">Canonical_Lowercase</span>)
+  <a href="sail-riscv/./riscv_device_tree.html#L88"><span class="sail-id">generate_isa_string</span></a>(<span class="sail-id">Canonical_Lowercase</span>)
 </pre>
 </div>
 </div>

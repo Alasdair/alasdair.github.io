@@ -73,14 +73,14 @@
   <span class="sail-id">pte_size</span> : <span class="sail-id">int</span>(<span class="sail-ty-var">'n</span>),
   <span class="sail-id">pte</span>      : <span class="sail-id">bits</span>(<span class="sail-ty-var">'n</span> <span class="sail-operator">*</span> <span class="sail-literal">8</span>),
 ) -&gt; <span class="sail-id">MemoryOpResult</span>(<span class="sail-id">bool</span>) =
-  <a href=".././riscv_mem.html#L228"><span class="sail-id">mem_write_value_priv</span></a>(<span class="sail-id">paddr</span>, <span class="sail-id">pte_size</span>, <span class="sail-id">pte</span>, <span class="sail-id">Supervisor</span>, <span class="sail-literal">false</span>, <span class="sail-literal">false</span>, <span class="sail-literal">false</span>)
+  <a href="sail-riscv/./riscv_mem.html#L228"><span class="sail-id">mem_write_value_priv</span></a>(<span class="sail-id">paddr</span>, <span class="sail-id">pte_size</span>, <span class="sail-id">pte</span>, <span class="sail-id">Supervisor</span>, <span class="sail-literal">false</span>, <span class="sail-literal">false</span>, <span class="sail-literal">false</span>)
 
 <span class="sail-comment">// Read a Page Table Entry.
 </span><span class="sail-keyword">function</span> <span class="sail-id">read_pte</span> <span class="sail-keyword">forall</span> <span class="sail-ty-var">'n</span>, <span class="sail-ty-var">'n</span> <span class="sail-keyword">in</span> {<span class="sail-literal">4</span>, <span class="sail-literal">8</span>} . (
   <span class="sail-id">paddr</span>    : <span class="sail-id">physaddr</span>,
   <span class="sail-id">pte_size</span> : <span class="sail-id">int</span>(<span class="sail-ty-var">'n</span>),
 ) -&gt; <span class="sail-id">MemoryOpResult</span>(<span class="sail-id">bits</span>(<span class="sail-literal">8</span> <span class="sail-operator">*</span> <span class="sail-ty-var">'n</span>)) =
-  <a href=".././riscv_mem.html#L161"><span class="sail-id">mem_read_priv</span></a>(<span class="sail-id">Read</span>(<span class="sail-id">Data</span>), <span class="sail-id">Supervisor</span>, <span class="sail-id">paddr</span>, <span class="sail-id">pte_size</span>, <span class="sail-literal">false</span>, <span class="sail-literal">false</span>, <span class="sail-literal">false</span>)
+  <a href="sail-riscv/./riscv_mem.html#L161"><span class="sail-id">mem_read_priv</span></a>(<span class="sail-id">Read</span>(<span class="sail-id">Data</span>), <span class="sail-id">Supervisor</span>, <span class="sail-id">paddr</span>, <span class="sail-id">pte_size</span>, <span class="sail-literal">false</span>, <span class="sail-literal">false</span>, <span class="sail-literal">false</span>)
 
 <span class="sail-comment">// PRIVATE
 </span><span class="sail-comment">// 'v is the virtual address size.
@@ -116,7 +116,7 @@
   <span class="sail-keyword">let</span> <span class="sail-ty-var">'log_pte_size_bytes</span> = <span class="sail-keyword">if</span> <span class="sail-ty-var">'v</span> <span class="sail-operator">==</span> <span class="sail-literal">32</span> <span class="sail-keyword">then</span> <span class="sail-literal">2</span> <span class="sail-keyword">else</span> <span class="sail-literal">3</span>;
 
   <span class="sail-comment">// Address of PTE in page table. This is 34 bits for Sv32, otherwise 56 bits.
-</span>  <span class="sail-keyword">let</span> <span class="sail-id">pte_addr</span> = <span class="sail-id">pt_base</span> @ <span class="sail-id">vpn_i</span> @ <a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>(<span class="sail-ty-var">'log_pte_size_bytes</span>);
+</span>  <span class="sail-keyword">let</span> <span class="sail-id">pte_addr</span> = <span class="sail-id">pt_base</span> @ <span class="sail-id">vpn_i</span> @ <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>(<span class="sail-ty-var">'log_pte_size_bytes</span>);
 
 
   <span class="sail-comment">// Convert to a physical address (34 bits for RV32, 64 bits to RV64).
@@ -124,27 +124,27 @@
 </span>  <span class="sail-comment">// pte_addr of 56 bits and physaddr of 34 bits (because you can't
 </span>  <span class="sail-comment">// use Sv39+ on RV32).
 </span>  <span class="sail-keyword">assert</span>(<span class="sail-id">sv_width</span> <span class="sail-operator">==</span> <span class="sail-literal">32</span> <span class="sail-operator">|</span> <span class="sail-id">xlen</span> <span class="sail-operator">==</span> <span class="sail-literal">64</span>);
-  <span class="sail-keyword">let</span> <span class="sail-id">pte_addr</span> = <span class="sail-id">Physaddr</span>(<a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">pte_addr</span>));
+  <span class="sail-keyword">let</span> <span class="sail-id">pte_addr</span> = <span class="sail-id">Physaddr</span>(<a href="sail-riscv/./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">pte_addr</span>));
 
   <span class="sail-comment">// Read this-level PTE from mem (Step 2 of VATP)
-</span>  <span class="sail-keyword">match</span> <a href=".././riscv_vmem.html#L56"><span class="sail-id">read_pte</span></a>(<span class="sail-id">pte_addr</span>, 2 ^ <span class="sail-id">log_pte_size_bytes</span>) {
+</span>  <span class="sail-keyword">match</span> <a href="sail-riscv/./riscv_vmem.html#L56"><span class="sail-id">read_pte</span></a>(<span class="sail-id">pte_addr</span>, 2 ^ <span class="sail-id">log_pte_size_bytes</span>) {
     <span class="sail-id">Err</span>(_)  =&gt; <span class="sail-id">Err</span>(<span class="sail-id">PTW_Access</span>(), <span class="sail-id">ext_ptw</span>),
     <span class="sail-id">Ok</span>(<span class="sail-id">pte</span>) =&gt; {
       <span class="sail-keyword">let</span> <span class="sail-id">pte_flags</span> = <span class="sail-id">Mk_PTE_Flags</span>(<span class="sail-id">pte</span>[<span class="sail-literal">7</span> .. <span class="sail-literal">0</span>]);
-      <span class="sail-keyword">let</span> <span class="sail-id">pte_ext</span>   = <a href=".././riscv_vmem_pte.html#L46"><span class="sail-id">ext_bits_of_PTE</span></a>(<span class="sail-id">pte</span>);
+      <span class="sail-keyword">let</span> <span class="sail-id">pte_ext</span>   = <a href="sail-riscv/./riscv_vmem_pte.html#L46"><span class="sail-id">ext_bits_of_PTE</span></a>(<span class="sail-id">pte</span>);
 
-      <span class="sail-keyword">if</span> <a href=".././riscv_vmem_pte.html#L77"><span class="sail-id">pte_is_invalid</span></a>(<span class="sail-id">pte_flags</span>, <span class="sail-id">pte_ext</span>) <span class="sail-keyword">then</span>
+      <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_vmem_pte.html#L77"><span class="sail-id">pte_is_invalid</span></a>(<span class="sail-id">pte_flags</span>, <span class="sail-id">pte_ext</span>) <span class="sail-keyword">then</span>
         <span class="sail-comment">// Step 3 of VATP.
 </span>        <span class="sail-id">Err</span>(<span class="sail-id">PTW_Invalid_PTE</span>(), <span class="sail-id">ext_ptw</span>)
       <span class="sail-keyword">else</span> {
         <span class="sail-comment">// Step 4 of VATP.
-</span>        <span class="sail-keyword">let</span> <span class="sail-id">ppn</span> = <a href=".././riscv_vmem_pte.html#L52"><span class="sail-id">PPN_of_PTE</span></a>(<span class="sail-id">pte</span>); <span class="sail-comment">// 22 or 44.
+</span>        <span class="sail-keyword">let</span> <span class="sail-id">ppn</span> = <a href="sail-riscv/./riscv_vmem_pte.html#L52"><span class="sail-id">PPN_of_PTE</span></a>(<span class="sail-id">pte</span>); <span class="sail-comment">// 22 or 44.
 </span>        <span class="sail-keyword">let</span> <span class="sail-id">global</span> = <span class="sail-id">global</span> <span class="sail-operator">|</span> (<span class="sail-id">pte_flags</span>[<span class="sail-id">G</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>);
-        <span class="sail-keyword">if</span> <a href=".././riscv_vmem_pte.html#L67"><span class="sail-id">pte_is_non_leaf</span></a>(<span class="sail-id">pte_flags</span>) <span class="sail-keyword">then</span> {
+        <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_vmem_pte.html#L67"><span class="sail-id">pte_is_non_leaf</span></a>(<span class="sail-id">pte_flags</span>) <span class="sail-keyword">then</span> {
           <span class="sail-comment">// Non-Leaf PTE
 </span>          <span class="sail-keyword">if</span> <span class="sail-id">level</span> <span class="sail-operator">&gt;</span> <span class="sail-literal">0</span> <span class="sail-keyword">then</span>
             <span class="sail-comment">// follow the pointer to walk next level (i.e., go to Step 2)
-</span>            <a href=".././riscv_vmem.html#L78"><span class="sail-id">pt_walk</span></a>(<span class="sail-id">sv_width</span>, <span class="sail-id">vpn</span>, <span class="sail-id">ac</span>, <span class="sail-id">priv</span>, <span class="sail-id">mxr</span>, <span class="sail-id">do_sum</span>, <span class="sail-id">ppn</span>, <span class="sail-id">level</span> <span class="sail-operator">-</span> <span class="sail-literal">1</span>, <span class="sail-id">global</span>, <span class="sail-id">ext_ptw</span>)
+</span>            <a href="sail-riscv/./riscv_vmem.html#L78"><span class="sail-id">pt_walk</span></a>(<span class="sail-id">sv_width</span>, <span class="sail-id">vpn</span>, <span class="sail-id">ac</span>, <span class="sail-id">priv</span>, <span class="sail-id">mxr</span>, <span class="sail-id">do_sum</span>, <span class="sail-id">ppn</span>, <span class="sail-id">level</span> <span class="sail-operator">-</span> <span class="sail-literal">1</span>, <span class="sail-id">global</span>, <span class="sail-id">ext_ptw</span>)
           <span class="sail-keyword">else</span>
             <span class="sail-comment">// level 0 PTE, but contains a pointer instead of a leaf
 </span>            <span class="sail-id">Err</span>(<span class="sail-id">PTW_Invalid_PTE</span>(), <span class="sail-id">ext_ptw</span>)
@@ -154,13 +154,13 @@
           <span class="sail-keyword">if</span> <span class="sail-id">level</span> <span class="sail-operator">&gt;</span> <span class="sail-literal">0</span> <span class="sail-keyword">then</span> {
             <span class="sail-comment">// Check for misaligned superpage.
 </span>            <span class="sail-keyword">let</span> <span class="sail-id">low_bits</span> = <span class="sail-id">ppn_size_bits</span> <span class="sail-operator">*</span> <span class="sail-id">level</span>;
-            <span class="sail-keyword">if</span>   <span class="sail-id">ppn</span>[<span class="sail-id">low_bits</span> <span class="sail-operator">-</span> <span class="sail-literal">1</span> .. <span class="sail-literal">0</span>] <span class="sail-operator">!=</span> <a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>()
+            <span class="sail-keyword">if</span>   <span class="sail-id">ppn</span>[<span class="sail-id">low_bits</span> <span class="sail-operator">-</span> <span class="sail-literal">1</span> .. <span class="sail-literal">0</span>] <span class="sail-operator">!=</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>()
             <span class="sail-keyword">then</span> <span class="sail-keyword">return</span> <span class="sail-id">Err</span>(<span class="sail-id">PTW_Misaligned</span>(), <span class="sail-id">ext_ptw</span>);
           };
           <span class="sail-comment">// Steps 6, 7 (TODO: shadow stack protection), 8 of VATP.
-</span>          <span class="sail-keyword">match</span> <a href=".././riscv_vmem_pte.html#L100"><span class="sail-id">check_PTE_permission</span></a>(<span class="sail-id">ac</span>, <span class="sail-id">priv</span>, <span class="sail-id">mxr</span>, <span class="sail-id">do_sum</span>, <span class="sail-id">pte_flags</span>, <span class="sail-id">pte_ext</span>, <span class="sail-id">ext_ptw</span>) {
+</span>          <span class="sail-keyword">match</span> <a href="sail-riscv/./riscv_vmem_pte.html#L100"><span class="sail-id">check_PTE_permission</span></a>(<span class="sail-id">ac</span>, <span class="sail-id">priv</span>, <span class="sail-id">mxr</span>, <span class="sail-id">do_sum</span>, <span class="sail-id">pte_flags</span>, <span class="sail-id">pte_ext</span>, <span class="sail-id">ext_ptw</span>) {
             <span class="sail-id">PTE_Check_Failure</span>(<span class="sail-id">ext_ptw</span>, <span class="sail-id">ext_ptw_fail</span>) =&gt;
-              <span class="sail-id">Err</span>(<a href=".././riscv_vmem_ptw.html#L48"><span class="sail-id">ext_get_ptw_error</span></a>(<span class="sail-id">ext_ptw_fail</span>), <span class="sail-id">ext_ptw</span>),
+              <span class="sail-id">Err</span>(<a href="sail-riscv/./riscv_vmem_ptw.html#L48"><span class="sail-id">ext_get_ptw_error</span></a>(<span class="sail-id">ext_ptw_fail</span>), <span class="sail-id">ext_ptw</span>),
             <span class="sail-id">PTE_Check_Success</span>(<span class="sail-id">ext_ptw</span>) =&gt; {
               <span class="sail-keyword">let</span> <span class="sail-id">ppn</span> = <span class="sail-keyword">if</span> <span class="sail-id">level</span> <span class="sail-operator">&gt;</span> <span class="sail-literal">0</span> <span class="sail-keyword">then</span> {
                 <span class="sail-comment">// Compose final PA in superpage:
@@ -183,11 +183,11 @@
 </span><span class="sail-comment">// Architectural SATP CSR
 </span>
 <span class="sail-comment">// PUBLIC: see also riscv_insts_zicsr.sail and other CSR-related files
-</span><span class="sail-keyword">register</span> <a href=".././riscv_vmem.html#L163"><span class="sail-id">satp</span></a> : <span class="sail-id">xlenbits</span>
+</span><span class="sail-keyword">register</span> <a href="sail-riscv/./riscv_vmem.html#L163"><span class="sail-id">satp</span></a> : <span class="sail-id">xlenbits</span>
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">csr_name_map</span> = <span class="sail-literal">0x180</span>  &lt;-&gt; <span class="sail-string">"satp"</span>
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">is_CSR_defined</span>(<span class="sail-literal">0x180</span>) = <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_S</span>)
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">read_CSR</span>(<span class="sail-literal">0x180</span>) = <a href=".././riscv_vmem.html#L163"><span class="sail-id">satp</span></a>
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">write_CSR</span>(<span class="sail-literal">0x180</span>, <span class="sail-id">value</span>) = { <a href=".././riscv_vmem.html#L163"><span class="sail-id">satp</span></a> = <a href=".././riscv_sys_regs.html#L894"><span class="sail-id">legalize_satp</span></a>(<a href=".././riscv_sys_regs.html#L289"><span class="sail-id">cur_architecture</span></a>(), <a href=".././riscv_vmem.html#L163"><span class="sail-id">satp</span></a>, <span class="sail-id">value</span>); <a href=".././riscv_vmem.html#L163"><span class="sail-id">satp</span></a> }
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">is_CSR_defined</span>(<span class="sail-literal">0x180</span>) = <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_S</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">read_CSR</span>(<span class="sail-literal">0x180</span>) = <a href="sail-riscv/./riscv_vmem.html#L163"><span class="sail-id">satp</span></a>
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">write_CSR</span>(<span class="sail-literal">0x180</span>, <span class="sail-id">value</span>) = { <a href="sail-riscv/./riscv_vmem.html#L163"><span class="sail-id">satp</span></a> = <a href="sail-riscv/./riscv_sys_regs.html#L894"><span class="sail-id">legalize_satp</span></a>(<a href="sail-riscv/./riscv_sys_regs.html#L289"><span class="sail-id">cur_architecture</span></a>(), <a href="sail-riscv/./riscv_vmem.html#L163"><span class="sail-id">satp</span></a>, <span class="sail-id">value</span>); <a href="sail-riscv/./riscv_vmem.html#L163"><span class="sail-id">satp</span></a> }
 
 <span class="sail-comment">// ----------------
 </span><span class="sail-comment">// Fields of SATP
@@ -208,20 +208,20 @@
 </span><span class="sail-keyword">function</span> <span class="sail-id">translationMode</span>(<span class="sail-id">priv</span> : <span class="sail-id">Privilege</span>) -&gt; <span class="sail-id">SATPMode</span> = {
   <span class="sail-keyword">if</span> <span class="sail-id">priv</span> <span class="sail-operator">==</span> <span class="sail-id">Machine</span> <span class="sail-keyword">then</span> <span class="sail-id">Bare</span>
   <span class="sail-keyword">else</span> {
-    <span class="sail-keyword">let</span> <span class="sail-id">arch</span> = <span class="sail-id">architecture</span>(<a href=".././riscv_sys_regs.html#L199"><span class="sail-id">get_mstatus_SXL</span></a>(<a href=".././riscv_sys_regs.html#L263"><span class="sail-id">mstatus</span></a>));
+    <span class="sail-keyword">let</span> <span class="sail-id">arch</span> = <span class="sail-id">architecture</span>(<a href="sail-riscv/./riscv_sys_regs.html#L199"><span class="sail-id">get_mstatus_SXL</span></a>(<a href="sail-riscv/./riscv_sys_regs.html#L263"><span class="sail-id">mstatus</span></a>));
     <span class="sail-keyword">let</span> <span class="sail-id">mbits</span> : <span class="sail-id">satp_mode</span> = <span class="sail-keyword">match</span> <span class="sail-id">arch</span> {
       <span class="sail-id">RV64</span> =&gt; {
         <span class="sail-comment">// Can't have an effective architecture of RV64 on RV32.
 </span>        <span class="sail-keyword">assert</span>(<span class="sail-id">xlen</span> <span class="sail-operator">&gt;=</span> <span class="sail-literal">64</span>);
-        <span class="sail-id">Mk_Satp64</span>(<a href=".././riscv_vmem.html#L163"><span class="sail-id">satp</span></a>)[<span class="sail-id">Mode</span>]
+        <span class="sail-id">Mk_Satp64</span>(<a href="sail-riscv/./riscv_vmem.html#L163"><span class="sail-id">satp</span></a>)[<span class="sail-id">Mode</span>]
       },
-      <span class="sail-id">RV32</span> =&gt; <span class="sail-literal">0b000</span> @ <span class="sail-id">Mk_Satp32</span>(<a href=".././riscv_vmem.html#L163"><span class="sail-id">satp</span></a>[<span class="sail-literal">31</span>..<span class="sail-literal">0</span>])[<span class="sail-id">Mode</span>],
-      <span class="sail-id">RV128</span> =&gt; <a href=".././riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"RV128 not supported"</span>),
+      <span class="sail-id">RV32</span> =&gt; <span class="sail-literal">0b000</span> @ <span class="sail-id">Mk_Satp32</span>(<a href="sail-riscv/./riscv_vmem.html#L163"><span class="sail-id">satp</span></a>[<span class="sail-literal">31</span>..<span class="sail-literal">0</span>])[<span class="sail-id">Mode</span>],
+      <span class="sail-id">RV128</span> =&gt; <a href="sail-riscv/./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"RV128 not supported"</span>),
     };
-    <span class="sail-keyword">match</span> <a href=".././riscv_types.html#L252"><span class="sail-id">satpMode_of_bits</span></a>(<span class="sail-id">arch</span>, <span class="sail-id">mbits</span>) {
+    <span class="sail-keyword">match</span> <a href="sail-riscv/./riscv_types.html#L252"><span class="sail-id">satpMode_of_bits</span></a>(<span class="sail-id">arch</span>, <span class="sail-id">mbits</span>) {
       <span class="sail-id">Some</span>(<span class="sail-id">m</span>) =&gt; <span class="sail-id">m</span>,
       <span class="sail-comment">// The model does not support modifying SXL currently so this cannot happen.
-</span>      <span class="sail-id">None</span>()  =&gt; <a href=".././riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"invalid translation mode in satp"</span>)
+</span>      <span class="sail-id">None</span>()  =&gt; <a href="sail-riscv/./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"invalid translation mode in satp"</span>)
     }
   }
 }
@@ -251,32 +251,32 @@
 ) -&gt; <span class="sail-id">TR_Result</span>(<span class="sail-id">ppn_bits</span>(<span class="sail-ty-var">'v</span>), <span class="sail-id">PTW_Error</span>) = {
 
   <span class="sail-keyword">let</span> <span class="sail-id">pte_width</span> = <span class="sail-keyword">if</span> <span class="sail-id">sv_width</span> <span class="sail-operator">==</span> <span class="sail-literal">32</span> <span class="sail-keyword">then</span> <span class="sail-literal">4</span> <span class="sail-keyword">else</span> <span class="sail-literal">8</span>;
-  <span class="sail-keyword">let</span> <span class="sail-id">pte</span>       = <a href=".././riscv_vmem_tlb.html#L37"><span class="sail-id">tlb_get_pte</span></a>(<span class="sail-id">pte_width</span>, <span class="sail-id">ent</span>);  <span class="sail-comment">// Step 2 of VATP.
-</span>  <span class="sail-keyword">let</span> <span class="sail-id">ext_pte</span>   = <a href=".././riscv_vmem_pte.html#L46"><span class="sail-id">ext_bits_of_PTE</span></a>(<span class="sail-id">pte</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">pte</span>       = <a href="sail-riscv/./riscv_vmem_tlb.html#L37"><span class="sail-id">tlb_get_pte</span></a>(<span class="sail-id">pte_width</span>, <span class="sail-id">ent</span>);  <span class="sail-comment">// Step 2 of VATP.
+</span>  <span class="sail-keyword">let</span> <span class="sail-id">ext_pte</span>   = <a href="sail-riscv/./riscv_vmem_pte.html#L46"><span class="sail-id">ext_bits_of_PTE</span></a>(<span class="sail-id">pte</span>);
   <span class="sail-keyword">let</span> <span class="sail-id">pte_flags</span> = <span class="sail-id">Mk_PTE_Flags</span>(<span class="sail-id">pte</span>[<span class="sail-literal">7</span> .. <span class="sail-literal">0</span>]);
-  <span class="sail-keyword">let</span> <span class="sail-id">pte_check</span> = <a href=".././riscv_vmem_pte.html#L100"><span class="sail-id">check_PTE_permission</span></a>(<span class="sail-id">ac</span>, <span class="sail-id">priv</span>, <span class="sail-id">mxr</span>, <span class="sail-id">do_sum</span>, <span class="sail-id">pte_flags</span>,
+  <span class="sail-keyword">let</span> <span class="sail-id">pte_check</span> = <a href="sail-riscv/./riscv_vmem_pte.html#L100"><span class="sail-id">check_PTE_permission</span></a>(<span class="sail-id">ac</span>, <span class="sail-id">priv</span>, <span class="sail-id">mxr</span>, <span class="sail-id">do_sum</span>, <span class="sail-id">pte_flags</span>,
                                        <span class="sail-id">ext_pte</span>, <span class="sail-id">ext_ptw</span>);
 
   <span class="sail-keyword">match</span> <span class="sail-id">pte_check</span> {
     <span class="sail-id">PTE_Check_Failure</span>(<span class="sail-id">ext_ptw</span>, <span class="sail-id">ext_ptw_fail</span>) =&gt;
-      <span class="sail-id">Err</span>(<a href=".././riscv_vmem_ptw.html#L48"><span class="sail-id">ext_get_ptw_error</span></a>(<span class="sail-id">ext_ptw_fail</span>), <span class="sail-id">ext_ptw</span>),
+      <span class="sail-id">Err</span>(<a href="sail-riscv/./riscv_vmem_ptw.html#L48"><span class="sail-id">ext_get_ptw_error</span></a>(<span class="sail-id">ext_ptw_fail</span>), <span class="sail-id">ext_ptw</span>),
     <span class="sail-id">PTE_Check_Success</span>(<span class="sail-id">ext_ptw</span>) =&gt;
-      <span class="sail-keyword">match</span> <a href=".././riscv_vmem_pte.html#L140"><span class="sail-id">update_PTE_Bits</span></a>(<span class="sail-id">pte</span>, <span class="sail-id">ac</span>) {
-        <span class="sail-id">None</span>()     =&gt; <span class="sail-id">Ok</span>(<a href=".././riscv_vmem_tlb.html#L47"><span class="sail-id">tlb_get_ppn</span></a>(<span class="sail-id">sv_width</span>, <span class="sail-id">ent</span>, <span class="sail-id">vpn</span>), <span class="sail-id">ext_ptw</span>),
+      <span class="sail-keyword">match</span> <a href="sail-riscv/./riscv_vmem_pte.html#L140"><span class="sail-id">update_PTE_Bits</span></a>(<span class="sail-id">pte</span>, <span class="sail-id">ac</span>) {
+        <span class="sail-id">None</span>()     =&gt; <span class="sail-id">Ok</span>(<a href="sail-riscv/./riscv_vmem_tlb.html#L47"><span class="sail-id">tlb_get_ppn</span></a>(<span class="sail-id">sv_width</span>, <span class="sail-id">ent</span>, <span class="sail-id">vpn</span>), <span class="sail-id">ext_ptw</span>),
         <span class="sail-id">Some</span>(<span class="sail-id">pte'</span>) =&gt;
           <span class="sail-comment">// Step 9 of VATP. See riscv_platform.sail.
-</span>          <span class="sail-keyword">if</span> <a href=".././prelude.html#L29"><span class="sail-id">not</span></a>(<span class="sail-id">plat_enable_dirty_update</span>) <span class="sail-keyword">then</span>
+</span>          <span class="sail-keyword">if</span> <a href="sail-riscv/./prelude.html#L29"><span class="sail-id">not</span></a>(<span class="sail-id">plat_enable_dirty_update</span>) <span class="sail-keyword">then</span>
             <span class="sail-comment">// pte needs dirty/accessed update but that is not enabled
 </span>            <span class="sail-id">Err</span>(<span class="sail-id">PTW_PTE_Update</span>(), <span class="sail-id">ext_ptw</span>)
           <span class="sail-keyword">else</span> {
             <span class="sail-comment">// Writeback the PTE (which has new A/D bits)
-</span>            <a href=".././riscv_vmem_tlb.html#L86"><span class="sail-id">write_TLB</span></a>(<span class="sail-id">tlb_index</span>, <a href=".././riscv_vmem_tlb.html#L42"><span class="sail-id">tlb_set_pte</span></a>(<span class="sail-id">ent</span>, <span class="sail-id">pte'</span>));
-            <span class="sail-keyword">match</span> <a href=".././riscv_vmem.html#L48"><span class="sail-id">write_pte</span></a>(<span class="sail-id">ent</span>.<span class="sail-id">pteAddr</span>, <span class="sail-id">pte_width</span>, <span class="sail-id">pte'</span>) {
+</span>            <a href="sail-riscv/./riscv_vmem_tlb.html#L86"><span class="sail-id">write_TLB</span></a>(<span class="sail-id">tlb_index</span>, <a href="sail-riscv/./riscv_vmem_tlb.html#L42"><span class="sail-id">tlb_set_pte</span></a>(<span class="sail-id">ent</span>, <span class="sail-id">pte'</span>));
+            <span class="sail-keyword">match</span> <a href="sail-riscv/./riscv_vmem.html#L48"><span class="sail-id">write_pte</span></a>(<span class="sail-id">ent</span>.<span class="sail-id">pteAddr</span>, <span class="sail-id">pte_width</span>, <span class="sail-id">pte'</span>) {
               <span class="sail-id">Ok</span>(_)  =&gt; (),
-              <span class="sail-id">Err</span>(<span class="sail-id">e</span>) =&gt; <a href=".././riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>,
+              <span class="sail-id">Err</span>(<span class="sail-id">e</span>) =&gt; <a href="sail-riscv/./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>,
                                        <span class="sail-string">"invalid physical address in TLB"</span>)
             };
-            <span class="sail-id">Ok</span>(<a href=".././riscv_vmem_tlb.html#L47"><span class="sail-id">tlb_get_ppn</span></a>(<span class="sail-id">sv_width</span>, <span class="sail-id">ent</span>, <span class="sail-id">vpn</span>), <span class="sail-id">ext_ptw</span>)
+            <span class="sail-id">Ok</span>(<a href="sail-riscv/./riscv_vmem_tlb.html#L47"><span class="sail-id">tlb_get_ppn</span></a>(<span class="sail-id">sv_width</span>, <span class="sail-id">ent</span>, <span class="sail-id">vpn</span>), <span class="sail-id">ext_ptw</span>)
           }
       }
   }
@@ -298,29 +298,29 @@
 
   <span class="sail-comment">// Step 2 of VATP occurs in pt_walk().
 </span>  <span class="sail-keyword">let</span> <span class="sail-ty-var">'pte_width</span> = <span class="sail-keyword">if</span> <span class="sail-id">sv_width</span> <span class="sail-operator">==</span> <span class="sail-literal">32</span> <span class="sail-keyword">then</span> <span class="sail-literal">4</span> <span class="sail-keyword">else</span> <span class="sail-literal">8</span>;
-  <span class="sail-keyword">let</span> <span class="sail-id">ptw_result</span> = <a href=".././riscv_vmem.html#L78"><span class="sail-id">pt_walk</span></a>(<span class="sail-id">sv_width</span>, <span class="sail-id">vpn</span>, <span class="sail-id">ac</span>, <span class="sail-id">priv</span>, <span class="sail-id">mxr</span>, <span class="sail-id">do_sum</span>,
+  <span class="sail-keyword">let</span> <span class="sail-id">ptw_result</span> = <a href="sail-riscv/./riscv_vmem.html#L78"><span class="sail-id">pt_walk</span></a>(<span class="sail-id">sv_width</span>, <span class="sail-id">vpn</span>, <span class="sail-id">ac</span>, <span class="sail-id">priv</span>, <span class="sail-id">mxr</span>, <span class="sail-id">do_sum</span>,
                            <span class="sail-id">base_ppn</span>, <span class="sail-id">initial_level</span>, <span class="sail-literal">false</span>, <span class="sail-id">ext_ptw</span>);
   <span class="sail-keyword">match</span> <span class="sail-id">ptw_result</span> {
     <span class="sail-id">Err</span>(<span class="sail-id">f</span>, <span class="sail-id">ext_ptw</span>) =&gt; <span class="sail-id">Err</span>(<span class="sail-id">f</span>, <span class="sail-id">ext_ptw</span>),
     <span class="sail-id">Ok</span>(<span class="sail-keyword">struct</span> {<span class="sail-id">ppn</span>, <span class="sail-id">pte</span>, <span class="sail-id">pteAddr</span>, <span class="sail-id">level</span>, <span class="sail-id">global</span>}, <span class="sail-id">ext_ptw</span>) =&gt; {
-      <span class="sail-keyword">let</span> <span class="sail-id">ext_pte</span> = <a href=".././riscv_vmem_pte.html#L46"><span class="sail-id">ext_bits_of_PTE</span></a>(<span class="sail-id">pte</span>);
+      <span class="sail-keyword">let</span> <span class="sail-id">ext_pte</span> = <a href="sail-riscv/./riscv_vmem_pte.html#L46"><span class="sail-id">ext_bits_of_PTE</span></a>(<span class="sail-id">pte</span>);
       <span class="sail-comment">// Without TLBs, this 'match' expression can be replaced simply
 </span>      <span class="sail-comment">// by: 'Ok(ppn, ext_ptw)'    (see TLB NOTE above)
-</span>      <span class="sail-keyword">match</span> <a href=".././riscv_vmem_pte.html#L140"><span class="sail-id">update_PTE_Bits</span></a>(<span class="sail-id">pte</span>, <span class="sail-id">ac</span>) {
+</span>      <span class="sail-keyword">match</span> <a href="sail-riscv/./riscv_vmem_pte.html#L140"><span class="sail-id">update_PTE_Bits</span></a>(<span class="sail-id">pte</span>, <span class="sail-id">ac</span>) {
         <span class="sail-id">None</span>() =&gt; {
-          <a href=".././riscv_vmem_tlb.html#L131"><span class="sail-id">add_to_TLB</span></a>(<span class="sail-id">sv_width</span>, <span class="sail-id">asid</span>, <span class="sail-id">vpn</span>, <span class="sail-id">ppn</span>, <span class="sail-id">pte</span>, <span class="sail-id">pteAddr</span>, <span class="sail-id">level</span>, <span class="sail-id">global</span>);
+          <a href="sail-riscv/./riscv_vmem_tlb.html#L131"><span class="sail-id">add_to_TLB</span></a>(<span class="sail-id">sv_width</span>, <span class="sail-id">asid</span>, <span class="sail-id">vpn</span>, <span class="sail-id">ppn</span>, <span class="sail-id">pte</span>, <span class="sail-id">pteAddr</span>, <span class="sail-id">level</span>, <span class="sail-id">global</span>);
           <span class="sail-id">Ok</span>(<span class="sail-id">ppn</span>, <span class="sail-id">ext_ptw</span>)
         },
         <span class="sail-id">Some</span>(<span class="sail-id">pte</span>) =&gt;
           <span class="sail-comment">// Step 9 of VATP. See riscv_platform.sail.
-</span>          <span class="sail-keyword">if</span> <a href=".././prelude.html#L29"><span class="sail-id">not</span></a>(<span class="sail-id">plat_enable_dirty_update</span>) <span class="sail-keyword">then</span>
+</span>          <span class="sail-keyword">if</span> <a href="sail-riscv/./prelude.html#L29"><span class="sail-id">not</span></a>(<span class="sail-id">plat_enable_dirty_update</span>) <span class="sail-keyword">then</span>
             <span class="sail-comment">// pte needs dirty/accessed update but that is not enabled
 </span>            <span class="sail-id">Err</span>(<span class="sail-id">PTW_PTE_Update</span>(), <span class="sail-id">ext_ptw</span>)
           <span class="sail-keyword">else</span> {
             <span class="sail-comment">// Writeback the PTE (which has new A/D bits)
-</span>            <span class="sail-keyword">match</span> <a href=".././riscv_vmem.html#L48"><span class="sail-id">write_pte</span></a>(<span class="sail-id">pteAddr</span>, <span class="sail-id">pte_width</span>, <span class="sail-id">pte</span>) {
+</span>            <span class="sail-keyword">match</span> <a href="sail-riscv/./riscv_vmem.html#L48"><span class="sail-id">write_pte</span></a>(<span class="sail-id">pteAddr</span>, <span class="sail-id">pte_width</span>, <span class="sail-id">pte</span>) {
               <span class="sail-id">Ok</span>(_) =&gt; {
-                <a href=".././riscv_vmem_tlb.html#L131"><span class="sail-id">add_to_TLB</span></a>(<span class="sail-id">sv_width</span>, <span class="sail-id">asid</span>, <span class="sail-id">vpn</span>, <span class="sail-id">ppn</span>, <span class="sail-id">pte</span>, <span class="sail-id">pteAddr</span>, <span class="sail-id">level</span>, <span class="sail-id">global</span>);
+                <a href="sail-riscv/./riscv_vmem_tlb.html#L131"><span class="sail-id">add_to_TLB</span></a>(<span class="sail-id">sv_width</span>, <span class="sail-id">asid</span>, <span class="sail-id">vpn</span>, <span class="sail-id">ppn</span>, <span class="sail-id">pte</span>, <span class="sail-id">pteAddr</span>, <span class="sail-id">level</span>, <span class="sail-id">global</span>);
                 <span class="sail-id">Ok</span>(<span class="sail-id">ppn</span>, <span class="sail-id">ext_ptw</span>)
               },
               <span class="sail-id">Err</span>(<span class="sail-id">e</span>) =&gt;
@@ -355,10 +355,10 @@
 ) -&gt; <span class="sail-id">TR_Result</span>(<span class="sail-id">ppn_bits</span>(<span class="sail-ty-var">'v</span>), <span class="sail-id">PTW_Error</span>) = {
   <span class="sail-comment">// On first reading, assume lookup_TLB returns None(), since TLBs
 </span>  <span class="sail-comment">// are not part of RISC-V archticture spec (see TLB NOTE above)
-</span>  <span class="sail-keyword">match</span> <a href=".././riscv_vmem_tlb.html#L116"><span class="sail-id">lookup_TLB</span></a>(<span class="sail-id">sv_width</span>, <span class="sail-id">asid</span>, <span class="sail-id">vpn</span>) {
-    <span class="sail-id">Some</span>(<span class="sail-id">index</span>, <span class="sail-id">ent</span>) =&gt; <a href=".././riscv_vmem.html#L217"><span class="sail-id">translate_TLB_hit</span></a>(<span class="sail-id">sv_width</span>, <span class="sail-id">asid</span>, <span class="sail-id">vpn</span>, <span class="sail-id">ac</span>, <span class="sail-id">priv</span>,
+</span>  <span class="sail-keyword">match</span> <a href="sail-riscv/./riscv_vmem_tlb.html#L116"><span class="sail-id">lookup_TLB</span></a>(<span class="sail-id">sv_width</span>, <span class="sail-id">asid</span>, <span class="sail-id">vpn</span>) {
+    <span class="sail-id">Some</span>(<span class="sail-id">index</span>, <span class="sail-id">ent</span>) =&gt; <a href="sail-riscv/./riscv_vmem.html#L217"><span class="sail-id">translate_TLB_hit</span></a>(<span class="sail-id">sv_width</span>, <span class="sail-id">asid</span>, <span class="sail-id">vpn</span>, <span class="sail-id">ac</span>, <span class="sail-id">priv</span>,
                                           <span class="sail-id">mxr</span>, <span class="sail-id">do_sum</span>, <span class="sail-id">ext_ptw</span>, <span class="sail-id">index</span>, <span class="sail-id">ent</span>),
-    <span class="sail-id">None</span>()           =&gt; <a href=".././riscv_vmem.html#L263"><span class="sail-id">translate_TLB_miss</span></a>(<span class="sail-id">sv_width</span>, <span class="sail-id">asid</span>, <span class="sail-id">base_ppn</span>, <span class="sail-id">vpn</span>, <span class="sail-id">ac</span>, <span class="sail-id">priv</span>,
+    <span class="sail-id">None</span>()           =&gt; <a href="sail-riscv/./riscv_vmem.html#L263"><span class="sail-id">translate_TLB_miss</span></a>(<span class="sail-id">sv_width</span>, <span class="sail-id">asid</span>, <span class="sail-id">base_ppn</span>, <span class="sail-id">vpn</span>, <span class="sail-id">ac</span>, <span class="sail-id">priv</span>,
                                            <span class="sail-id">mxr</span>, <span class="sail-id">do_sum</span>, <span class="sail-id">ext_ptw</span>),
   }
 }
@@ -371,7 +371,7 @@
 ) -&gt; <span class="sail-id">bits</span>(<span class="sail-keyword">if</span> <span class="sail-ty-var">'v</span> <span class="sail-operator">==</span> <span class="sail-literal">32</span> <span class="sail-keyword">then</span> <span class="sail-literal">32</span> <span class="sail-keyword">else</span> <span class="sail-literal">64</span>) = {
   <span class="sail-comment">// Cannot use Sv39+ on RV32.
 </span>  <span class="sail-keyword">assert</span>(<span class="sail-ty-var">'v</span> <span class="sail-operator">==</span> <span class="sail-literal">32</span> <span class="sail-operator">|</span> <span class="sail-id">xlen</span> <span class="sail-operator">==</span> <span class="sail-literal">64</span>);
-  <span class="sail-keyword">if</span> <span class="sail-id">sv_width</span> <span class="sail-operator">==</span> <span class="sail-literal">32</span> <span class="sail-keyword">then</span> <a href=".././riscv_vmem.html#L163"><span class="sail-id">satp</span></a>[<span class="sail-literal">31</span> .. <span class="sail-literal">0</span>] <span class="sail-keyword">else</span> <a href=".././riscv_vmem.html#L163"><span class="sail-id">satp</span></a>
+  <span class="sail-keyword">if</span> <span class="sail-id">sv_width</span> <span class="sail-operator">==</span> <span class="sail-literal">32</span> <span class="sail-keyword">then</span> <a href="sail-riscv/./riscv_vmem.html#L163"><span class="sail-id">satp</span></a>[<span class="sail-literal">31</span> .. <span class="sail-literal">0</span>] <span class="sail-keyword">else</span> <a href="sail-riscv/./riscv_vmem.html#L163"><span class="sail-id">satp</span></a>
 }
 
 <span class="sail-comment">// Top-level addr-translation function
@@ -383,34 +383,34 @@
 
   <span class="sail-comment">// Effective privilege takes into account mstatus.PRV, mstatus.MPP
 </span>  <span class="sail-comment">// See riscv_sys_regs.sail for effectivePrivilege() and cur_privilege
-</span>  <span class="sail-keyword">let</span> <span class="sail-id">effPriv</span> = <a href=".././riscv_sys_control.html#L11"><span class="sail-id">effectivePrivilege</span></a>(<span class="sail-id">ac</span>, <a href=".././riscv_sys_regs.html#L263"><span class="sail-id">mstatus</span></a>, <a href=".././riscv_sys_regs.html#L13"><span class="sail-id">cur_privilege</span></a>);
+</span>  <span class="sail-keyword">let</span> <span class="sail-id">effPriv</span> = <a href="sail-riscv/./riscv_sys_control.html#L11"><span class="sail-id">effectivePrivilege</span></a>(<span class="sail-id">ac</span>, <a href="sail-riscv/./riscv_sys_regs.html#L263"><span class="sail-id">mstatus</span></a>, <a href="sail-riscv/./riscv_sys_regs.html#L13"><span class="sail-id">cur_privilege</span></a>);
 
-  <span class="sail-keyword">let</span> <span class="sail-id">mode</span> = <a href=".././riscv_vmem.html#L185"><span class="sail-id">translationMode</span></a>(<span class="sail-id">effPriv</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">mode</span> = <a href="sail-riscv/./riscv_vmem.html#L185"><span class="sail-id">translationMode</span></a>(<span class="sail-id">effPriv</span>);
 
-  <span class="sail-keyword">if</span> <span class="sail-id">mode</span> <span class="sail-operator">==</span> <span class="sail-id">Bare</span> <span class="sail-keyword">then</span> <span class="sail-keyword">return</span> <span class="sail-id">Ok</span>(<span class="sail-id">Physaddr</span>(<a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">bits_of</span>(<span class="sail-id">vAddr</span>))), <span class="sail-id">init_ext_ptw</span>);
+  <span class="sail-keyword">if</span> <span class="sail-id">mode</span> <span class="sail-operator">==</span> <span class="sail-id">Bare</span> <span class="sail-keyword">then</span> <span class="sail-keyword">return</span> <span class="sail-id">Ok</span>(<span class="sail-id">Physaddr</span>(<a href="sail-riscv/./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">bits_of</span>(<span class="sail-id">vAddr</span>))), <span class="sail-id">init_ext_ptw</span>);
 
   <span class="sail-comment">// Sv39 -&gt; 39, etc.
 </span>  <span class="sail-keyword">let</span> <span class="sail-id">sv_width</span> = <span class="sail-id">satp_mode_width</span>(<span class="sail-id">mode</span>);
 
   <span class="sail-comment">// For Sv32 on RV64, satp is 32 bits (SXLEN), not XLEN.
-</span>  <span class="sail-keyword">let</span> <span class="sail-id">satp_sxlen</span> = <a href=".././riscv_vmem.html#L346"><span class="sail-id">get_satp</span></a>(<span class="sail-id">sv_width</span>);
+</span>  <span class="sail-keyword">let</span> <span class="sail-id">satp_sxlen</span> = <a href="sail-riscv/./riscv_vmem.html#L346"><span class="sail-id">get_satp</span></a>(<span class="sail-id">sv_width</span>);
 
   <span class="sail-comment">// Cannot use Sv39+ on RV32.
 </span>  <span class="sail-keyword">assert</span>(<span class="sail-id">sv_width</span> <span class="sail-operator">==</span> <span class="sail-literal">32</span> <span class="sail-operator">|</span> <span class="sail-id">xlen</span> <span class="sail-operator">==</span> <span class="sail-literal">64</span>);
 
   <span class="sail-keyword">let</span> <span class="sail-id">svAddr</span> = <span class="sail-id">bits_of</span>(<span class="sail-id">vAddr</span>)[<span class="sail-id">sv_width</span> <span class="sail-operator">-</span> <span class="sail-literal">1</span> .. <span class="sail-literal">0</span>];
-  <span class="sail-keyword">if</span> <span class="sail-id">bits_of</span>(<span class="sail-id">vAddr</span>) <span class="sail-operator">!=</span> <a href=".././prelude.html#L85"><span class="sail-id">sign_extend</span></a>(<span class="sail-id">svAddr</span>) <span class="sail-keyword">then</span> {
-    <span class="sail-id">Err</span>(<a href=".././riscv_vmem_ptw.html#L52"><span class="sail-id">translationException</span></a>(<span class="sail-id">ac</span>, <span class="sail-id">PTW_Invalid_Addr</span>()), <span class="sail-id">init_ext_ptw</span>)
+  <span class="sail-keyword">if</span> <span class="sail-id">bits_of</span>(<span class="sail-id">vAddr</span>) <span class="sail-operator">!=</span> <a href="sail-riscv/./prelude.html#L85"><span class="sail-id">sign_extend</span></a>(<span class="sail-id">svAddr</span>) <span class="sail-keyword">then</span> {
+    <span class="sail-id">Err</span>(<a href="sail-riscv/./riscv_vmem_ptw.html#L52"><span class="sail-id">translationException</span></a>(<span class="sail-id">ac</span>, <span class="sail-id">PTW_Invalid_Addr</span>()), <span class="sail-id">init_ext_ptw</span>)
   } <span class="sail-keyword">else</span> {
-    <span class="sail-keyword">let</span> <span class="sail-id">mxr</span>    = <a href=".././riscv_sys_regs.html#L263"><span class="sail-id">mstatus</span></a>[<span class="sail-id">MXR</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>;
-    <span class="sail-keyword">let</span> <span class="sail-id">do_sum</span> = <a href=".././riscv_sys_regs.html#L263"><span class="sail-id">mstatus</span></a>[<span class="sail-id">SUM</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>;
-    <span class="sail-keyword">let</span> <span class="sail-id">asid</span>   = <a href=".././riscv_vmem.html#L175"><span class="sail-id">satp_to_asid</span></a>(<span class="sail-id">satp_sxlen</span>);
+    <span class="sail-keyword">let</span> <span class="sail-id">mxr</span>    = <a href="sail-riscv/./riscv_sys_regs.html#L263"><span class="sail-id">mstatus</span></a>[<span class="sail-id">MXR</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>;
+    <span class="sail-keyword">let</span> <span class="sail-id">do_sum</span> = <a href="sail-riscv/./riscv_sys_regs.html#L263"><span class="sail-id">mstatus</span></a>[<span class="sail-id">SUM</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>;
+    <span class="sail-keyword">let</span> <span class="sail-id">asid</span>   = <a href="sail-riscv/./riscv_vmem.html#L175"><span class="sail-id">satp_to_asid</span></a>(<span class="sail-id">satp_sxlen</span>);
 
     <span class="sail-comment">// Step 1 of VATP.
-</span>    <span class="sail-keyword">let</span> <span class="sail-id">base_ppn</span> = <a href=".././riscv_vmem.html#L180"><span class="sail-id">satp_to_ppn</span></a>(<span class="sail-id">satp_sxlen</span>);
+</span>    <span class="sail-keyword">let</span> <span class="sail-id">base_ppn</span> = <a href="sail-riscv/./riscv_vmem.html#L180"><span class="sail-id">satp_to_ppn</span></a>(<span class="sail-id">satp_sxlen</span>);
 
-    <span class="sail-keyword">let</span> <span class="sail-id">res</span> = <a href=".././riscv_vmem.html#L322"><span class="sail-id">translate</span></a>(<span class="sail-id">sv_width</span>,
-                        <a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">asid</span>),
+    <span class="sail-keyword">let</span> <span class="sail-id">res</span> = <a href="sail-riscv/./riscv_vmem.html#L322"><span class="sail-id">translate</span></a>(<span class="sail-id">sv_width</span>,
+                        <a href="sail-riscv/./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">asid</span>),
                         <span class="sail-id">base_ppn</span>,
                         <span class="sail-id">svAddr</span>[<span class="sail-id">sv_width</span> <span class="sail-operator">-</span> <span class="sail-literal">1</span> .. <span class="sail-id">pagesize_bits</span>],
                         <span class="sail-id">ac</span>, <span class="sail-id">effPriv</span>, <span class="sail-id">mxr</span>, <span class="sail-id">do_sum</span>,
@@ -425,9 +425,9 @@
         <span class="sail-comment">// On RV64 paddr can be 34 or 56 bits, so we zero extend to 64.
 </span>        <span class="sail-comment">// On RV32 paddr can only be 34 bits. Sail knows this due to
 </span>        <span class="sail-comment">// the assertion above.
-</span>        <span class="sail-id">Ok</span>(<span class="sail-id">Physaddr</span>(<a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">paddr</span>)), <span class="sail-id">ext_ptw</span>)
+</span>        <span class="sail-id">Ok</span>(<span class="sail-id">Physaddr</span>(<a href="sail-riscv/./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">paddr</span>)), <span class="sail-id">ext_ptw</span>)
       },
-      <span class="sail-id">Err</span>(<span class="sail-id">f</span>, <span class="sail-id">ext_ptw</span>)  =&gt; <span class="sail-id">Err</span>(<a href=".././riscv_vmem_ptw.html#L52"><span class="sail-id">translationException</span></a>(<span class="sail-id">ac</span>, <span class="sail-id">f</span>), <span class="sail-id">ext_ptw</span>)
+      <span class="sail-id">Err</span>(<span class="sail-id">f</span>, <span class="sail-id">ext_ptw</span>)  =&gt; <span class="sail-id">Err</span>(<a href="sail-riscv/./riscv_vmem_ptw.html#L52"><span class="sail-id">translationException</span></a>(<span class="sail-id">ac</span>, <span class="sail-id">f</span>), <span class="sail-id">ext_ptw</span>)
     }
   }
 }
@@ -436,7 +436,7 @@
 </span><span class="sail-comment">// Initialize Virtual Memory state
 </span>
 <span class="sail-comment">// PUBLIC: invoked from init_model()
-</span><span class="sail-keyword">function</span> <span class="sail-id">reset_vmem</span>() -&gt; <span class="sail-id">unit</span> = <a href=".././riscv_vmem_tlb.html#L83"><span class="sail-id">reset_TLB</span></a>()
+</span><span class="sail-keyword">function</span> <span class="sail-id">reset_vmem</span>() -&gt; <span class="sail-id">unit</span> = <a href="sail-riscv/./riscv_vmem_tlb.html#L83"><span class="sail-id">reset_TLB</span></a>()
 
 <span class="sail-comment">// ****************************************************************
 </pre>

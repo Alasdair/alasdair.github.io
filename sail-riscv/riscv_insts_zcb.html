@@ -29,22 +29,22 @@
 <span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
 <span class="sail-comment">/*=======================================================================================*/</span>
 
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zcb</span>) = <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zcb</span>) <span class="sail-operator">&amp;</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zca</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zcb</span>) = <a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zcb</span>) <span class="sail-operator">&amp;</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zca</span>)
 
 <span class="sail-keyword">union</span> <span class="sail-keyword">clause</span> <span class="sail-id">instruction</span> = <span class="sail-id">C_LBU</span> : (<span class="sail-id">bits</span>(<span class="sail-literal">2</span>), <span class="sail-id">cregidx</span>, <span class="sail-id">cregidx</span>)
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec_compressed</span> = <span class="sail-id">C_LBU</span>(<span class="sail-id">uimm1</span> @ <span class="sail-id">uimm0</span>, <span class="sail-id">rdc</span>, <span class="sail-id">rsc1</span>)
   &lt;-&gt; <span class="sail-literal">0b100</span> @ <span class="sail-literal">0b000</span> @ <span class="sail-id">encdec_creg</span>(<span class="sail-id">rsc1</span>) @ <span class="sail-id">uimm0</span> : <span class="sail-id">bits</span>(<span class="sail-literal">1</span>) @ <span class="sail-id">uimm1</span> : <span class="sail-id">bits</span>(<span class="sail-literal">1</span>) @ <span class="sail-id">encdec_creg</span>(<span class="sail-id">rdc</span>) @ <span class="sail-literal">0b00</span>
-  <span class="sail-keyword">when</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcb</span>)
+  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcb</span>)
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">assembly</span> = <span class="sail-id">C_LBU</span>(<span class="sail-id">uimm</span>, <span class="sail-id">rdc</span>, <span class="sail-id">rsc1</span>) &lt;-&gt;
   <span class="sail-string">"c.lbu"</span> <span class="sail-operator">^</span> <span class="sail-id">spc</span>() <span class="sail-operator">^</span> <span class="sail-id">creg_name</span>(<span class="sail-id">rdc</span>) <span class="sail-operator">^</span> <span class="sail-id">sep</span>() <span class="sail-operator">^</span> <span class="sail-id">hex_bits_2</span>(<span class="sail-id">uimm</span>) <span class="sail-operator">^</span> <span class="sail-id">opt_spc</span>() <span class="sail-operator">^</span> <span class="sail-string">"("</span> <span class="sail-operator">^</span> <span class="sail-id">opt_spc</span>() <span class="sail-operator">^</span> <span class="sail-id">creg_name</span>(<span class="sail-id">rsc1</span>) <span class="sail-operator">^</span> <span class="sail-id">opt_spc</span>() <span class="sail-operator">^</span> <span class="sail-string">")"</span>
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> <span class="sail-id">C_LBU</span>(<span class="sail-id">uimm</span>, <span class="sail-id">rdc</span>, <span class="sail-id">rsc1</span>) = {
-  <span class="sail-keyword">let</span> <span class="sail-id">imm</span> : <span class="sail-id">bits</span>(<span class="sail-literal">12</span>) = <a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">uimm</span>);
-  <span class="sail-keyword">let</span> <span class="sail-id">rd</span> = <a href=".././riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rdc</span>);
-  <span class="sail-keyword">let</span> <span class="sail-id">rs1</span> = <a href=".././riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsc1</span>);
-  <a href=".././riscv_insts_begin.html#L18"><span class="sail-id">execute</span></a>(<span class="sail-id">LOAD</span>(<span class="sail-id">imm</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-literal">true</span>, <span class="sail-literal">1</span>))
+  <span class="sail-keyword">let</span> <span class="sail-id">imm</span> : <span class="sail-id">bits</span>(<span class="sail-literal">12</span>) = <a href="sail-riscv/./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">uimm</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">rd</span> = <a href="sail-riscv/./riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rdc</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">rs1</span> = <a href="sail-riscv/./riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsc1</span>);
+  <a href="sail-riscv/./riscv_insts_begin.html#L18"><span class="sail-id">execute</span></a>(<span class="sail-id">LOAD</span>(<span class="sail-id">imm</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-literal">true</span>, <span class="sail-literal">1</span>))
 }
 
 <span class="sail-comment">/* ****************************************************************** */</span>
@@ -53,16 +53,16 @@
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec_compressed</span> = <span class="sail-id">C_LHU</span>(<span class="sail-id">uimm1</span> @ <span class="sail-literal">0b0</span>, <span class="sail-id">rdc</span>, <span class="sail-id">rsc1</span>)
   &lt;-&gt; <span class="sail-literal">0b100</span> @ <span class="sail-literal">0b001</span> @ <span class="sail-id">encdec_creg</span>(<span class="sail-id">rsc1</span>) @ <span class="sail-literal">0b0</span> @ <span class="sail-id">uimm1</span> : <span class="sail-id">bits</span>(<span class="sail-literal">1</span>) @ <span class="sail-id">encdec_creg</span>(<span class="sail-id">rdc</span>) @ <span class="sail-literal">0b00</span>
-  <span class="sail-keyword">when</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcb</span>)
+  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcb</span>)
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">assembly</span> = <span class="sail-id">C_LHU</span>(<span class="sail-id">uimm</span>, <span class="sail-id">rdc</span>, <span class="sail-id">rsc1</span>) &lt;-&gt;
   <span class="sail-string">"c.lhu"</span> <span class="sail-operator">^</span> <span class="sail-id">spc</span>() <span class="sail-operator">^</span> <span class="sail-id">creg_name</span>(<span class="sail-id">rdc</span>) <span class="sail-operator">^</span> <span class="sail-id">sep</span>() <span class="sail-operator">^</span> <span class="sail-id">hex_bits_2</span>(<span class="sail-id">uimm</span>) <span class="sail-operator">^</span> <span class="sail-id">opt_spc</span>() <span class="sail-operator">^</span> <span class="sail-string">"("</span> <span class="sail-operator">^</span> <span class="sail-id">opt_spc</span>() <span class="sail-operator">^</span> <span class="sail-id">creg_name</span>(<span class="sail-id">rsc1</span>) <span class="sail-operator">^</span> <span class="sail-id">opt_spc</span>() <span class="sail-operator">^</span> <span class="sail-string">")"</span>
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> <span class="sail-id">C_LHU</span>(<span class="sail-id">uimm</span>, <span class="sail-id">rdc</span>, <span class="sail-id">rsc1</span>) = {
-  <span class="sail-keyword">let</span> <span class="sail-id">imm</span> : <span class="sail-id">bits</span>(<span class="sail-literal">12</span>) = <a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">uimm</span>);
-  <span class="sail-keyword">let</span> <span class="sail-id">rd</span> = <a href=".././riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rdc</span>);
-  <span class="sail-keyword">let</span> <span class="sail-id">rs1</span> = <a href=".././riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsc1</span>);
-  <a href=".././riscv_insts_begin.html#L18"><span class="sail-id">execute</span></a>(<span class="sail-id">LOAD</span>(<span class="sail-id">imm</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-literal">true</span>, <span class="sail-literal">2</span>))
+  <span class="sail-keyword">let</span> <span class="sail-id">imm</span> : <span class="sail-id">bits</span>(<span class="sail-literal">12</span>) = <a href="sail-riscv/./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">uimm</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">rd</span> = <a href="sail-riscv/./riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rdc</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">rs1</span> = <a href="sail-riscv/./riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsc1</span>);
+  <a href="sail-riscv/./riscv_insts_begin.html#L18"><span class="sail-id">execute</span></a>(<span class="sail-id">LOAD</span>(<span class="sail-id">imm</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-literal">true</span>, <span class="sail-literal">2</span>))
 }
 
 <span class="sail-comment">/* ****************************************************************** */</span>
@@ -71,16 +71,16 @@
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec_compressed</span> = <span class="sail-id">C_LH</span>(<span class="sail-id">uimm1</span> @ <span class="sail-literal">0b0</span>, <span class="sail-id">rdc</span>, <span class="sail-id">rsc1</span>)
   &lt;-&gt; <span class="sail-literal">0b100</span> @ <span class="sail-literal">0b001</span> @ <span class="sail-id">encdec_creg</span>(<span class="sail-id">rsc1</span>) @ <span class="sail-literal">0b1</span> @ <span class="sail-id">uimm1</span> : <span class="sail-id">bits</span>(<span class="sail-literal">1</span>) @ <span class="sail-id">encdec_creg</span>(<span class="sail-id">rdc</span>) @ <span class="sail-literal">0b00</span>
-  <span class="sail-keyword">when</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcb</span>)
+  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcb</span>)
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">assembly</span> = <span class="sail-id">C_LH</span>(<span class="sail-id">uimm</span>, <span class="sail-id">rdc</span>, <span class="sail-id">rsc1</span>) &lt;-&gt;
   <span class="sail-string">"c.lh"</span> <span class="sail-operator">^</span> <span class="sail-id">spc</span>() <span class="sail-operator">^</span> <span class="sail-id">creg_name</span>(<span class="sail-id">rdc</span>) <span class="sail-operator">^</span> <span class="sail-id">sep</span>() <span class="sail-operator">^</span> <span class="sail-id">hex_bits_2</span>(<span class="sail-id">uimm</span>) <span class="sail-operator">^</span> <span class="sail-id">opt_spc</span>() <span class="sail-operator">^</span> <span class="sail-string">"("</span> <span class="sail-operator">^</span> <span class="sail-id">opt_spc</span>() <span class="sail-operator">^</span> <span class="sail-id">creg_name</span>(<span class="sail-id">rsc1</span>) <span class="sail-operator">^</span> <span class="sail-id">opt_spc</span>() <span class="sail-operator">^</span> <span class="sail-string">")"</span>
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> <span class="sail-id">C_LH</span>(<span class="sail-id">uimm</span>, <span class="sail-id">rdc</span>, <span class="sail-id">rsc1</span>) = {
-  <span class="sail-keyword">let</span> <span class="sail-id">imm</span> : <span class="sail-id">bits</span>(<span class="sail-literal">12</span>) = <a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">uimm</span>);
-  <span class="sail-keyword">let</span> <span class="sail-id">rd</span> = <a href=".././riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rdc</span>);
-  <span class="sail-keyword">let</span> <span class="sail-id">rs1</span> = <a href=".././riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsc1</span>);
-  <a href=".././riscv_insts_begin.html#L18"><span class="sail-id">execute</span></a>(<span class="sail-id">LOAD</span>(<span class="sail-id">imm</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-literal">false</span>, <span class="sail-literal">2</span>))
+  <span class="sail-keyword">let</span> <span class="sail-id">imm</span> : <span class="sail-id">bits</span>(<span class="sail-literal">12</span>) = <a href="sail-riscv/./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">uimm</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">rd</span> = <a href="sail-riscv/./riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rdc</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">rs1</span> = <a href="sail-riscv/./riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsc1</span>);
+  <a href="sail-riscv/./riscv_insts_begin.html#L18"><span class="sail-id">execute</span></a>(<span class="sail-id">LOAD</span>(<span class="sail-id">imm</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-literal">false</span>, <span class="sail-literal">2</span>))
 }
 
 <span class="sail-comment">/* ****************************************************************** */</span>
@@ -89,16 +89,16 @@
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec_compressed</span> = <span class="sail-id">C_SB</span>(<span class="sail-id">uimm1</span> @ <span class="sail-id">uimm0</span>, <span class="sail-id">rsc1</span>, <span class="sail-id">rsc2</span>)
   &lt;-&gt; <span class="sail-literal">0b100</span> @ <span class="sail-literal">0b010</span> @ <span class="sail-id">encdec_creg</span>(<span class="sail-id">rsc1</span>) @ <span class="sail-id">uimm0</span> : <span class="sail-id">bits</span>(<span class="sail-literal">1</span>) @ <span class="sail-id">uimm1</span> : <span class="sail-id">bits</span>(<span class="sail-literal">1</span>) @ <span class="sail-id">encdec_creg</span>(<span class="sail-id">rsc2</span>) @ <span class="sail-literal">0b00</span>
-  <span class="sail-keyword">when</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcb</span>)
+  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcb</span>)
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">assembly</span> = <span class="sail-id">C_SB</span>(<span class="sail-id">uimm</span>, <span class="sail-id">rsc1</span>, <span class="sail-id">rsc2</span>) &lt;-&gt;
   <span class="sail-string">"c.sb"</span> <span class="sail-operator">^</span> <span class="sail-id">spc</span>() <span class="sail-operator">^</span> <span class="sail-id">creg_name</span>(<span class="sail-id">rsc2</span>) <span class="sail-operator">^</span> <span class="sail-id">sep</span>() <span class="sail-operator">^</span> <span class="sail-id">hex_bits_2</span>(<span class="sail-id">uimm</span>) <span class="sail-operator">^</span> <span class="sail-id">opt_spc</span>() <span class="sail-operator">^</span> <span class="sail-string">"("</span> <span class="sail-operator">^</span> <span class="sail-id">opt_spc</span>() <span class="sail-operator">^</span> <span class="sail-id">creg_name</span>(<span class="sail-id">rsc1</span>) <span class="sail-operator">^</span> <span class="sail-id">opt_spc</span>() <span class="sail-operator">^</span> <span class="sail-string">")"</span>
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> <span class="sail-id">C_SB</span>(<span class="sail-id">uimm</span>, <span class="sail-id">rsc1</span>, <span class="sail-id">rsc2</span>) = {
-  <span class="sail-keyword">let</span> <span class="sail-id">imm</span> : <span class="sail-id">bits</span>(<span class="sail-literal">12</span>) = <a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">uimm</span>);
-  <span class="sail-keyword">let</span> <span class="sail-id">rs1</span> = <a href=".././riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsc1</span>);
-  <span class="sail-keyword">let</span> <span class="sail-id">rs2</span> = <a href=".././riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsc2</span>);
-  <a href=".././riscv_insts_begin.html#L18"><span class="sail-id">execute</span></a>(<span class="sail-id">STORE</span>(<span class="sail-id">imm</span>, <span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-literal">1</span>))
+  <span class="sail-keyword">let</span> <span class="sail-id">imm</span> : <span class="sail-id">bits</span>(<span class="sail-literal">12</span>) = <a href="sail-riscv/./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">uimm</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">rs1</span> = <a href="sail-riscv/./riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsc1</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">rs2</span> = <a href="sail-riscv/./riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsc2</span>);
+  <a href="sail-riscv/./riscv_insts_begin.html#L18"><span class="sail-id">execute</span></a>(<span class="sail-id">STORE</span>(<span class="sail-id">imm</span>, <span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-literal">1</span>))
 }
 
 <span class="sail-comment">/* ****************************************************************** */</span>
@@ -107,16 +107,16 @@
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec_compressed</span> = <span class="sail-id">C_SH</span>(<span class="sail-id">uimm1</span> @ <span class="sail-literal">0b0</span>, <span class="sail-id">rsc1</span>, <span class="sail-id">rsc2</span>)
   &lt;-&gt; <span class="sail-literal">0b100</span> @ <span class="sail-literal">0b011</span> @ <span class="sail-id">encdec_creg</span>(<span class="sail-id">rsc1</span>) @ <span class="sail-literal">0b0</span> @ <span class="sail-id">uimm1</span> : <span class="sail-id">bits</span>(<span class="sail-literal">1</span>) @ <span class="sail-id">encdec_creg</span>(<span class="sail-id">rsc2</span>) @ <span class="sail-literal">0b00</span>
-  <span class="sail-keyword">when</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcb</span>)
+  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcb</span>)
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">assembly</span> = <span class="sail-id">C_SH</span>(<span class="sail-id">uimm</span>, <span class="sail-id">rsc1</span>, <span class="sail-id">rsc2</span>) &lt;-&gt;
   <span class="sail-string">"c.sh"</span> <span class="sail-operator">^</span> <span class="sail-id">spc</span>() <span class="sail-operator">^</span> <span class="sail-id">creg_name</span>(<span class="sail-id">rsc2</span>) <span class="sail-operator">^</span> <span class="sail-id">sep</span>() <span class="sail-operator">^</span> <span class="sail-id">hex_bits_2</span>(<span class="sail-id">uimm</span>) <span class="sail-operator">^</span> <span class="sail-id">opt_spc</span>() <span class="sail-operator">^</span> <span class="sail-string">"("</span> <span class="sail-operator">^</span> <span class="sail-id">opt_spc</span>() <span class="sail-operator">^</span> <span class="sail-id">creg_name</span>(<span class="sail-id">rsc1</span>) <span class="sail-operator">^</span> <span class="sail-id">opt_spc</span>() <span class="sail-operator">^</span> <span class="sail-string">")"</span>
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> <span class="sail-id">C_SH</span>(<span class="sail-id">uimm</span>, <span class="sail-id">rsc1</span>, <span class="sail-id">rsc2</span>) = {
-  <span class="sail-keyword">let</span> <span class="sail-id">imm</span> : <span class="sail-id">bits</span>(<span class="sail-literal">12</span>) = <a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">uimm</span>);
-  <span class="sail-keyword">let</span> <span class="sail-id">rs1</span> = <a href=".././riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsc1</span>);
-  <span class="sail-keyword">let</span> <span class="sail-id">rs2</span> = <a href=".././riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsc2</span>);
-  <a href=".././riscv_insts_begin.html#L18"><span class="sail-id">execute</span></a>(<span class="sail-id">STORE</span>(<span class="sail-id">imm</span>, <span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-literal">2</span>))
+  <span class="sail-keyword">let</span> <span class="sail-id">imm</span> : <span class="sail-id">bits</span>(<span class="sail-literal">12</span>) = <a href="sail-riscv/./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">uimm</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">rs1</span> = <a href="sail-riscv/./riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsc1</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">rs2</span> = <a href="sail-riscv/./riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsc2</span>);
+  <a href="sail-riscv/./riscv_insts_begin.html#L18"><span class="sail-id">execute</span></a>(<span class="sail-id">STORE</span>(<span class="sail-id">imm</span>, <span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-literal">2</span>))
 }
 
 <span class="sail-comment">/* ****************************************************************** */</span>
@@ -125,14 +125,14 @@
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec_compressed</span> = <span class="sail-id">C_ZEXT_B</span>(<span class="sail-id">rsdc</span>)
   &lt;-&gt; <span class="sail-literal">0b100</span> @ <span class="sail-literal">0b111</span> @ <span class="sail-id">encdec_creg</span>(<span class="sail-id">rsdc</span>) @ <span class="sail-literal">0b11</span> @ <span class="sail-literal">0b000</span> @ <span class="sail-literal">0b01</span>
-  <span class="sail-keyword">when</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcb</span>)
+  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcb</span>)
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">assembly</span> = <span class="sail-id">C_ZEXT_B</span>(<span class="sail-id">rsdc</span>) &lt;-&gt;
   <span class="sail-string">"c.zext.b"</span> <span class="sail-operator">^</span> <span class="sail-id">spc</span>() <span class="sail-operator">^</span> <span class="sail-id">creg_name</span>(<span class="sail-id">rsdc</span>)
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> <span class="sail-id">C_ZEXT_B</span>(<span class="sail-id">rsdc</span>) = {
-  <span class="sail-keyword">let</span> <span class="sail-id">rsd</span> = <a href=".././riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsdc</span>);
-  <span class="sail-id">X</span>(<span class="sail-id">rsd</span>) = <a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">X</span>(<span class="sail-id">rsd</span>)[<span class="sail-literal">7</span>..<span class="sail-literal">0</span>]);
+  <span class="sail-keyword">let</span> <span class="sail-id">rsd</span> = <a href="sail-riscv/./riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsdc</span>);
+  <span class="sail-id">X</span>(<span class="sail-id">rsd</span>) = <a href="sail-riscv/./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<span class="sail-id">X</span>(<span class="sail-id">rsd</span>)[<span class="sail-literal">7</span>..<span class="sail-literal">0</span>]);
   <span class="sail-id">RETIRE_SUCCESS</span>
 }
 
@@ -142,14 +142,14 @@
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec_compressed</span> = <span class="sail-id">C_SEXT_B</span>(<span class="sail-id">rsdc</span>)
   &lt;-&gt; <span class="sail-literal">0b100</span> @ <span class="sail-literal">0b111</span> @ <span class="sail-id">encdec_creg</span>(<span class="sail-id">rsdc</span>) @ <span class="sail-literal">0b11</span> @ <span class="sail-literal">0b001</span> @ <span class="sail-literal">0b01</span>
-  <span class="sail-keyword">when</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcb</span>) <span class="sail-operator">&amp;</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zbb</span>)
+  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcb</span>) <span class="sail-operator">&amp;</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zbb</span>)
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">assembly</span> = <span class="sail-id">C_SEXT_B</span>(<span class="sail-id">rsdc</span>) &lt;-&gt;
   <span class="sail-string">"c.sext.b"</span> <span class="sail-operator">^</span> <span class="sail-id">spc</span>() <span class="sail-operator">^</span> <span class="sail-id">creg_name</span>(<span class="sail-id">rsdc</span>)
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> <span class="sail-id">C_SEXT_B</span>(<span class="sail-id">rsdc</span>) = {
-  <span class="sail-keyword">let</span> <span class="sail-id">rsd</span> = <a href=".././riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsdc</span>);
-  <a href=".././riscv_insts_begin.html#L18"><span class="sail-id">execute</span></a>(<span class="sail-id">ZBB_EXTOP</span>(<span class="sail-id">rsd</span>, <span class="sail-id">rsd</span>, <span class="sail-id">SEXTB</span>))
+  <span class="sail-keyword">let</span> <span class="sail-id">rsd</span> = <a href="sail-riscv/./riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsdc</span>);
+  <a href="sail-riscv/./riscv_insts_begin.html#L18"><span class="sail-id">execute</span></a>(<span class="sail-id">ZBB_EXTOP</span>(<span class="sail-id">rsd</span>, <span class="sail-id">rsd</span>, <span class="sail-id">SEXTB</span>))
 }
 
 <span class="sail-comment">/* ****************************************************************** */</span>
@@ -158,14 +158,14 @@
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec_compressed</span> = <span class="sail-id">C_ZEXT_H</span>(<span class="sail-id">rsdc</span>)
   &lt;-&gt; <span class="sail-literal">0b100</span> @ <span class="sail-literal">0b111</span> @ <span class="sail-id">encdec_creg</span>(<span class="sail-id">rsdc</span>) @ <span class="sail-literal">0b11</span> @ <span class="sail-literal">0b010</span> @ <span class="sail-literal">0b01</span>
-  <span class="sail-keyword">when</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcb</span>) <span class="sail-operator">&amp;</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zbb</span>)
+  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcb</span>) <span class="sail-operator">&amp;</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zbb</span>)
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">assembly</span> = <span class="sail-id">C_ZEXT_H</span>(<span class="sail-id">rsdc</span>) &lt;-&gt;
   <span class="sail-string">"c.zext.h"</span> <span class="sail-operator">^</span> <span class="sail-id">spc</span>() <span class="sail-operator">^</span> <span class="sail-id">creg_name</span>(<span class="sail-id">rsdc</span>)
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> <span class="sail-id">C_ZEXT_H</span>(<span class="sail-id">rsdc</span>) = {
-  <span class="sail-keyword">let</span> <span class="sail-id">rsd</span> = <a href=".././riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsdc</span>);
-  <a href=".././riscv_insts_begin.html#L18"><span class="sail-id">execute</span></a>(<span class="sail-id">ZBB_EXTOP</span>(<span class="sail-id">rsd</span>, <span class="sail-id">rsd</span>, <span class="sail-id">ZEXTH</span>))
+  <span class="sail-keyword">let</span> <span class="sail-id">rsd</span> = <a href="sail-riscv/./riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsdc</span>);
+  <a href="sail-riscv/./riscv_insts_begin.html#L18"><span class="sail-id">execute</span></a>(<span class="sail-id">ZBB_EXTOP</span>(<span class="sail-id">rsd</span>, <span class="sail-id">rsd</span>, <span class="sail-id">ZEXTH</span>))
 }
 
 <span class="sail-comment">/* ****************************************************************** */</span>
@@ -174,14 +174,14 @@
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec_compressed</span> = <span class="sail-id">C_SEXT_H</span>(<span class="sail-id">rsdc</span>)
   &lt;-&gt; <span class="sail-literal">0b100</span> @ <span class="sail-literal">0b111</span> @ <span class="sail-id">encdec_creg</span>(<span class="sail-id">rsdc</span>) @ <span class="sail-literal">0b11</span> @ <span class="sail-literal">0b011</span> @ <span class="sail-literal">0b01</span>
-  <span class="sail-keyword">when</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcb</span>) <span class="sail-operator">&amp;</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zbb</span>)
+  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcb</span>) <span class="sail-operator">&amp;</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zbb</span>)
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">assembly</span> = <span class="sail-id">C_SEXT_H</span>(<span class="sail-id">rsdc</span>) &lt;-&gt;
   <span class="sail-string">"c.sext.h"</span> <span class="sail-operator">^</span> <span class="sail-id">spc</span>() <span class="sail-operator">^</span> <span class="sail-id">creg_name</span>(<span class="sail-id">rsdc</span>)
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> <span class="sail-id">C_SEXT_H</span>(<span class="sail-id">rsdc</span>) = {
-  <span class="sail-keyword">let</span> <span class="sail-id">rsd</span> = <a href=".././riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsdc</span>);
-  <a href=".././riscv_insts_begin.html#L18"><span class="sail-id">execute</span></a>(<span class="sail-id">ZBB_EXTOP</span>(<span class="sail-id">rsd</span>, <span class="sail-id">rsd</span>,  <span class="sail-id">SEXTH</span>))
+  <span class="sail-keyword">let</span> <span class="sail-id">rsd</span> = <a href="sail-riscv/./riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsdc</span>);
+  <a href="sail-riscv/./riscv_insts_begin.html#L18"><span class="sail-id">execute</span></a>(<span class="sail-id">ZBB_EXTOP</span>(<span class="sail-id">rsd</span>, <span class="sail-id">rsd</span>,  <span class="sail-id">SEXTH</span>))
 }
 
 <span class="sail-comment">/* ****************************************************************** */</span>
@@ -190,14 +190,14 @@
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec_compressed</span> = <span class="sail-id">C_ZEXT_W</span>(<span class="sail-id">rsdc</span>)
   &lt;-&gt; <span class="sail-literal">0b100</span> @ <span class="sail-literal">0b111</span> @ <span class="sail-id">encdec_creg</span>(<span class="sail-id">rsdc</span>) @ <span class="sail-literal">0b11</span> @ <span class="sail-literal">0b100</span> @ <span class="sail-literal">0b01</span>
-  <span class="sail-keyword">when</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcb</span>) <span class="sail-operator">&amp;</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zba</span>) <span class="sail-operator">&amp;</span> <span class="sail-id">xlen</span> <span class="sail-operator">==</span> <span class="sail-literal">64</span>
+  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcb</span>) <span class="sail-operator">&amp;</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zba</span>) <span class="sail-operator">&amp;</span> <span class="sail-id">xlen</span> <span class="sail-operator">==</span> <span class="sail-literal">64</span>
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">assembly</span> = <span class="sail-id">C_ZEXT_W</span>(<span class="sail-id">rsdc</span>) &lt;-&gt;
   <span class="sail-string">"c.zext.w"</span> <span class="sail-operator">^</span> <span class="sail-id">spc</span>() <span class="sail-operator">^</span> <span class="sail-id">creg_name</span>(<span class="sail-id">rsdc</span>)
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> <span class="sail-id">C_ZEXT_W</span>(<span class="sail-id">rsdc</span>) = {
-  <span class="sail-keyword">let</span> <span class="sail-id">rsd</span> = <a href=".././riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsdc</span>);
-  <a href=".././riscv_insts_begin.html#L18"><span class="sail-id">execute</span></a> (<span class="sail-id">ZBA_RTYPEUW</span>(<span class="sail-id">zreg</span>, <span class="sail-id">rsd</span>, <span class="sail-id">rsd</span>, <span class="sail-literal">0b00</span>))
+  <span class="sail-keyword">let</span> <span class="sail-id">rsd</span> = <a href="sail-riscv/./riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsdc</span>);
+  <a href="sail-riscv/./riscv_insts_begin.html#L18"><span class="sail-id">execute</span></a> (<span class="sail-id">ZBA_RTYPEUW</span>(<span class="sail-id">zreg</span>, <span class="sail-id">rsd</span>, <span class="sail-id">rsd</span>, <span class="sail-literal">0b00</span>))
 }
 
 <span class="sail-comment">/* ****************************************************************** */</span>
@@ -206,13 +206,13 @@
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec_compressed</span> = <span class="sail-id">C_NOT</span>(<span class="sail-id">rsdc</span>)
   &lt;-&gt; <span class="sail-literal">0b100</span> @ <span class="sail-literal">0b111</span> @ <span class="sail-id">encdec_creg</span>(<span class="sail-id">rsdc</span>) @ <span class="sail-literal">0b11</span> @ <span class="sail-literal">0b101</span> @ <span class="sail-literal">0b01</span>
-  <span class="sail-keyword">when</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcb</span>)
+  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcb</span>)
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">assembly</span> = <span class="sail-id">C_NOT</span>(<span class="sail-id">rsdc</span>) &lt;-&gt;
   <span class="sail-string">"c.not"</span> <span class="sail-operator">^</span> <span class="sail-id">spc</span>() <span class="sail-operator">^</span> <span class="sail-id">creg_name</span>(<span class="sail-id">rsdc</span>)
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> <span class="sail-id">C_NOT</span>(<span class="sail-id">rsdc</span>) = {
-  <span class="sail-keyword">let</span> <span class="sail-id">r</span> = <a href=".././riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsdc</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">r</span> = <a href="sail-riscv/./riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsdc</span>);
   <span class="sail-id">X</span>(<span class="sail-id">r</span>) = <span class="sail-id">~</span>(<span class="sail-id">X</span>(<span class="sail-id">r</span>));
   <span class="sail-id">RETIRE_SUCCESS</span>
 }
@@ -223,15 +223,15 @@
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec_compressed</span> = <span class="sail-id">C_MUL</span>(<span class="sail-id">rsdc</span>, <span class="sail-id">rsc2</span>)
   &lt;-&gt; <span class="sail-literal">0b100</span> @ <span class="sail-literal">0b111</span> @ <span class="sail-id">encdec_creg</span>(<span class="sail-id">rsdc</span>) @ <span class="sail-literal">0b10</span> @ <span class="sail-id">encdec_creg</span>(<span class="sail-id">rsc2</span>) @ <span class="sail-literal">0b01</span>
-  <span class="sail-keyword">when</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcb</span>) <span class="sail-operator">&amp;</span> (<a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_M</span>) <span class="sail-operator">|</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zmmul</span>))
+  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zcb</span>) <span class="sail-operator">&amp;</span> (<a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_M</span>) <span class="sail-operator">|</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zmmul</span>))
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">assembly</span> = <span class="sail-id">C_MUL</span>(<span class="sail-id">rsdc</span>, <span class="sail-id">rsc2</span>) &lt;-&gt;
   <span class="sail-string">"c.mul"</span> <span class="sail-operator">^</span> <span class="sail-id">spc</span>() <span class="sail-operator">^</span> <span class="sail-id">creg_name</span>(<span class="sail-id">rsdc</span>) <span class="sail-operator">^</span> <span class="sail-id">sep</span>() <span class="sail-operator">^</span> <span class="sail-id">creg_name</span>(<span class="sail-id">rsc2</span>)
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> <span class="sail-id">C_MUL</span>(<span class="sail-id">rsdc</span>, <span class="sail-id">rsc2</span>) = {
-  <span class="sail-keyword">let</span> <span class="sail-id">rd</span> = <a href=".././riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsdc</span>);
-  <span class="sail-keyword">let</span> <span class="sail-id">rs</span> = <a href=".././riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsc2</span>);
-  <a href=".././riscv_insts_begin.html#L18"><span class="sail-id">execute</span></a>(<span class="sail-id">MUL</span>(<span class="sail-id">rs</span>, <span class="sail-id">rd</span>, <span class="sail-id">rd</span>, <span class="sail-keyword">struct</span> { <span class="sail-id">high</span> = <span class="sail-literal">false</span>, <span class="sail-id">signed_rs1</span> = <span class="sail-literal">true</span>, <span class="sail-id">signed_rs2</span> = <span class="sail-literal">true</span> }))
+  <span class="sail-keyword">let</span> <span class="sail-id">rd</span> = <a href="sail-riscv/./riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsdc</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">rs</span> = <a href="sail-riscv/./riscv_types.html#L36"><span class="sail-id">creg2reg_idx</span></a>(<span class="sail-id">rsc2</span>);
+  <a href="sail-riscv/./riscv_insts_begin.html#L18"><span class="sail-id">execute</span></a>(<span class="sail-id">MUL</span>(<span class="sail-id">rs</span>, <span class="sail-id">rd</span>, <span class="sail-id">rd</span>, <span class="sail-keyword">struct</span> { <span class="sail-id">high</span> = <span class="sail-literal">false</span>, <span class="sail-id">signed_rs1</span> = <span class="sail-literal">true</span>, <span class="sail-id">signed_rs2</span> = <span class="sail-literal">true</span> }))
 }
 </pre>
 </div>

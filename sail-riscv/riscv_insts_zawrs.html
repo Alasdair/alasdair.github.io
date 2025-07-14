@@ -31,7 +31,7 @@
 
 <span class="sail-comment">/* This file specifies the instructions in the 'Zawrs' extension.  */</span>
 
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zawrs</span>) = <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zawrs</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zawrs</span>) = <a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zawrs</span>)
 
 <span class="sail-comment">/* ****************************************************************** */</span>
 
@@ -43,7 +43,7 @@
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">WRS</span>(<span class="sail-id">op</span>)
   &lt;-&gt; <span class="sail-id">encdec_wrsop</span>(<span class="sail-id">op</span>) @ <span class="sail-literal">0b00000</span> @ <span class="sail-literal">0b000</span> @ <span class="sail-literal">0b00000</span> @ <span class="sail-literal">0b1110011</span>
-  <span class="sail-keyword">when</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zawrs</span>)
+  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zawrs</span>)
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">WRS</span>(<span class="sail-id">WRS_STO</span>)) =
   <span class="sail-id">Enter_Wait</span>(<span class="sail-id">WAIT_WRS_STO</span>)

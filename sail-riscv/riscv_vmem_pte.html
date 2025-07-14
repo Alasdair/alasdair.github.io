@@ -62,7 +62,7 @@
  * disposition), we allow extensions to use any constant value by overriding
  * this default_sv32_ext_pte value.
  */</span>
-<span class="sail-keyword">let</span> <span class="sail-id">default_sv32_ext_pte</span> : <span class="sail-id">pte_ext_bits</span> = <a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>()
+<span class="sail-keyword">let</span> <span class="sail-id">default_sv32_ext_pte</span> : <span class="sail-id">pte_ext_bits</span> = <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>()
 
 <span class="sail-comment">// PRIVATE: extract ext bits of PTE above the PPN.
 </span><span class="sail-keyword">val</span> <span class="sail-id">ext_bits_of_PTE</span> : <span class="sail-keyword">forall</span> <span class="sail-ty-var">'pte_size</span>, <span class="sail-ty-var">'pte_size</span> <span class="sail-keyword">in</span> {<span class="sail-literal">32</span>, <span class="sail-literal">64</span>}. <span class="sail-id">bits</span>(<span class="sail-ty-var">'pte_size</span>) -&gt; <span class="sail-id">PTE_Ext</span>
@@ -103,9 +103,9 @@
   <span class="sail-comment">// Note, the following requirements depend on the privileged spec version.
 </span>  <span class="sail-comment">// Early versions do not require this check. This will need to be behind
 </span>  <span class="sail-comment">// a flag when the Sail model allows specifying the spec version.
-</span>  <span class="sail-operator">|</span> (<span class="sail-id">pte_ext</span>[<span class="sail-id">N</span>] <span class="sail-operator">!=</span> <span class="sail-literal">0b0</span> <span class="sail-operator">&amp;</span> <a href=".././prelude.html#L29"><span class="sail-id">not</span></a>(<a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Svnapot</span>)))
-  <span class="sail-operator">|</span> (<span class="sail-id">pte_ext</span>[<span class="sail-id">PBMT</span>] <span class="sail-operator">!=</span> <a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>() <span class="sail-operator">&amp;</span> <a href=".././prelude.html#L29"><span class="sail-id">not</span></a>(<a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Svpbmt</span>)))
-  <span class="sail-operator">|</span> <span class="sail-id">pte_ext</span>[<span class="sail-id">reserved</span>] <span class="sail-operator">!=</span> <a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>()
+</span>  <span class="sail-operator">|</span> (<span class="sail-id">pte_ext</span>[<span class="sail-id">N</span>] <span class="sail-operator">!=</span> <span class="sail-literal">0b0</span> <span class="sail-operator">&amp;</span> <a href="sail-riscv/./prelude.html#L29"><span class="sail-id">not</span></a>(<a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Svnapot</span>)))
+  <span class="sail-operator">|</span> (<span class="sail-id">pte_ext</span>[<span class="sail-id">PBMT</span>] <span class="sail-operator">!=</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>() <span class="sail-operator">&amp;</span> <a href="sail-riscv/./prelude.html#L29"><span class="sail-id">not</span></a>(<a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Svpbmt</span>)))
+  <span class="sail-operator">|</span> <span class="sail-id">pte_ext</span>[<span class="sail-id">reserved</span>] <span class="sail-operator">!=</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>()
 
 <span class="sail-comment">// ----------------
 </span><span class="sail-comment">// Check access permissions in PTE
@@ -152,7 +152,7 @@
                                        <span class="sail-operator">&amp;</span> ((<span class="sail-id">pte_R</span> <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>)
                                           <span class="sail-operator">|</span> ((<span class="sail-id">pte_X</span> <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>) <span class="sail-operator">&amp;</span> <span class="sail-id">mxr</span>)),
       (<span class="sail-id">InstructionFetch</span>(),<span class="sail-id">Supervisor</span>) =&gt; (<span class="sail-id">pte_U</span> <span class="sail-operator">==</span> <span class="sail-literal">0b0</span>) <span class="sail-operator">&amp;</span> (<span class="sail-id">pte_X</span> <span class="sail-operator">==</span> <span class="sail-literal">0b1</span>),
-      (_,               <span class="sail-id">Machine</span>)    =&gt; <a href=".././riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>,
+      (_,               <span class="sail-id">Machine</span>)    =&gt; <a href="sail-riscv/./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>,
                                                       <span class="sail-string">"m-mode mem perm check"</span>)};
   <span class="sail-keyword">if</span> <span class="sail-id">success</span> <span class="sail-keyword">then</span> <span class="sail-id">PTE_Check_Success</span>(())
   <span class="sail-keyword">else</span>            <span class="sail-id">PTE_Check_Failure</span>((), ())

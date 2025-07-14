@@ -72,11 +72,11 @@
    * NOTE: vstart should NOT be zeroed out if trapping.
    */</span>
 
-  <a href=".././riscv_sys_regs.html#L966"><span class="sail-id">vtype</span></a>.<span class="sail-id">bits</span> = <span class="sail-literal">0b1</span> @ <a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>(<span class="sail-id">xlen</span> <span class="sail-operator">-</span> <span class="sail-literal">1</span>); <span class="sail-comment">/* set vtype.vill */</span>
-  <a href=".././riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a> = <a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>();
-  <span class="sail-id">csr_write_callback</span>(<span class="sail-string">"vtype"</span>, <a href=".././riscv_sys_regs.html#L966"><span class="sail-id">vtype</span></a>.<span class="sail-id">bits</span>);
-  <span class="sail-id">csr_write_callback</span>(<span class="sail-string">"vl"</span>, <a href=".././riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a>);
-  <a href=".././riscv_vext_control.html#L15"><span class="sail-id">set_vstart</span></a>(<a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>());
+  <a href="sail-riscv/./riscv_sys_regs.html#L966"><span class="sail-id">vtype</span></a>.<span class="sail-id">bits</span> = <span class="sail-literal">0b1</span> @ <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>(<span class="sail-id">xlen</span> <span class="sail-operator">-</span> <span class="sail-literal">1</span>); <span class="sail-comment">/* set vtype.vill */</span>
+  <a href="sail-riscv/./riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a> = <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>();
+  <span class="sail-id">csr_write_callback</span>(<span class="sail-string">"vtype"</span>, <a href="sail-riscv/./riscv_sys_regs.html#L966"><span class="sail-id">vtype</span></a>.<span class="sail-id">bits</span>);
+  <span class="sail-id">csr_write_callback</span>(<span class="sail-string">"vl"</span>, <a href="sail-riscv/./riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a>);
+  <a href="sail-riscv/./riscv_vext_control.html#L15"><span class="sail-id">set_vstart</span></a>(<a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>());
 }
 
 <span class="sail-keyword">let</span> <span class="sail-id">vl_use_ceil</span> : <span class="sail-id">bool</span> = <span class="sail-keyword">config</span> <span class="sail-id">extensions</span>.<span class="sail-id">V</span>.<span class="sail-id">vl_use_ceil</span>
@@ -93,7 +93,7 @@
     }
     <span class="sail-keyword">else</span> <span class="sail-id">VLMAX</span>;
 
-  <a href=".././prelude.html#L136"><span class="sail-id">to_bits_unsafe</span></a>(<span class="sail-id">xlen</span>, <span class="sail-id">new_vl</span>)
+  <a href="sail-riscv/./prelude.html#L136"><span class="sail-id">to_bits_unsafe</span></a>(<span class="sail-id">xlen</span>, <span class="sail-id">new_vl</span>)
 }
 
 <span class="sail-comment">/* *********************************** vsetvli *********************************** */</span>
@@ -101,48 +101,48 @@
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">VSETVLI</span>(<span class="sail-id">ma</span>, <span class="sail-id">ta</span>, <span class="sail-id">sew</span>, <span class="sail-id">lmul</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>)
   &lt;-&gt; <span class="sail-literal">0b0000</span> @ <span class="sail-id">ma</span> @ <span class="sail-id">ta</span> @ <span class="sail-id">sew</span> @ <span class="sail-id">lmul</span> @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-literal">0b111</span> @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b1010111</span>
-  <span class="sail-keyword">when</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_V</span>)
+  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_V</span>)
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> <span class="sail-id">VSETVLI</span>(<span class="sail-id">ma</span>, <span class="sail-id">ta</span>, <span class="sail-id">sew</span>, <span class="sail-id">lmul</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>) = {
-  <span class="sail-keyword">let</span> <span class="sail-id">LMUL_pow_ori</span>  = <a href=".././riscv_sys_regs.html#L1017"><span class="sail-id">get_lmul_pow</span></a>();
-  <span class="sail-keyword">let</span> <span class="sail-id">SEW_pow_ori</span>   = <a href=".././riscv_sys_regs.html#L997"><span class="sail-id">get_sew_pow</span></a>();
+  <span class="sail-keyword">let</span> <span class="sail-id">LMUL_pow_ori</span>  = <a href="sail-riscv/./riscv_sys_regs.html#L1017"><span class="sail-id">get_lmul_pow</span></a>();
+  <span class="sail-keyword">let</span> <span class="sail-id">SEW_pow_ori</span>   = <a href="sail-riscv/./riscv_sys_regs.html#L997"><span class="sail-id">get_sew_pow</span></a>();
   <span class="sail-keyword">let</span> <span class="sail-id">ratio_pow_ori</span> = <span class="sail-id">SEW_pow_ori</span> <span class="sail-operator">-</span> <span class="sail-id">LMUL_pow_ori</span>;
 
   <span class="sail-comment">/* check new SEW and LMUL are legal and calculate VLMAX */</span>
-  <span class="sail-keyword">if</span> <a href=".././riscv_sys_regs.html#L992"><span class="sail-id">is_invalid_lmul_pow</span></a>(<span class="sail-id">lmul</span>) <span class="sail-operator">|</span> <a href=".././riscv_sys_regs.html#L989"><span class="sail-id">is_invalid_sew_pow</span></a>(<span class="sail-id">sew</span>) <span class="sail-keyword">then</span> {
-    <a href=".././riscv_insts_vext_vset.html#L45"><span class="sail-id">handle_illegal_vtype</span></a>();
+  <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_sys_regs.html#L992"><span class="sail-id">is_invalid_lmul_pow</span></a>(<span class="sail-id">lmul</span>) <span class="sail-operator">|</span> <a href="sail-riscv/./riscv_sys_regs.html#L989"><span class="sail-id">is_invalid_sew_pow</span></a>(<span class="sail-id">sew</span>) <span class="sail-keyword">then</span> {
+    <a href="sail-riscv/./riscv_insts_vext_vset.html#L45"><span class="sail-id">handle_illegal_vtype</span></a>();
     <span class="sail-keyword">return</span> <span class="sail-id">RETIRE_SUCCESS</span>
   };
   <span class="sail-keyword">let</span> <span class="sail-id">LMUL_pow_new</span> = <span class="sail-id">lmul_pow_val</span>(<span class="sail-id">lmul</span>);
   <span class="sail-keyword">let</span> <span class="sail-id">SEW_pow_new</span> = <span class="sail-id">sew_pow_val</span>(<span class="sail-id">sew</span>);
 
-  <span class="sail-keyword">if</span> <span class="sail-id">SEW_pow_new</span> <span class="sail-operator">&gt;</span> (<span class="sail-id">LMUL_pow_new</span> <span class="sail-operator">+</span> <span class="sail-id">ELEN_pow</span>) <span class="sail-keyword">then</span> { <a href=".././riscv_insts_vext_vset.html#L45"><span class="sail-id">handle_illegal_vtype</span></a>(); <span class="sail-keyword">return</span> <span class="sail-id">RETIRE_SUCCESS</span> };
+  <span class="sail-keyword">if</span> <span class="sail-id">SEW_pow_new</span> <span class="sail-operator">&gt;</span> (<span class="sail-id">LMUL_pow_new</span> <span class="sail-operator">+</span> <span class="sail-id">ELEN_pow</span>) <span class="sail-keyword">then</span> { <a href="sail-riscv/./riscv_insts_vext_vset.html#L45"><span class="sail-id">handle_illegal_vtype</span></a>(); <span class="sail-keyword">return</span> <span class="sail-id">RETIRE_SUCCESS</span> };
   <span class="sail-keyword">let</span> <span class="sail-id">VLMAX</span> = 2 ^ (<span class="sail-id">VLEN_pow</span> <span class="sail-operator">+</span> <span class="sail-id">LMUL_pow_new</span> <span class="sail-operator">-</span> <span class="sail-id">SEW_pow_new</span>);
 
   <span class="sail-comment">/* set vl according to VLMAX and AVL */</span>
   <span class="sail-keyword">if</span> (<span class="sail-id">rs1</span> <span class="sail-operator">!=</span> <span class="sail-id">zreg</span>) <span class="sail-keyword">then</span> { <span class="sail-comment">/* normal stripmining */</span>
     <span class="sail-keyword">let</span> <span class="sail-id">rs1_val</span> = <span class="sail-id">X</span>(<span class="sail-id">rs1</span>);
     <span class="sail-keyword">let</span> <span class="sail-id">AVL</span> = <span class="sail-id">unsigned</span>(<span class="sail-id">rs1_val</span>);
-    <a href=".././riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a> = <a href=".././riscv_insts_vext_vset.html#L61"><span class="sail-id">calculate_new_vl</span></a>(<span class="sail-id">AVL</span>, <span class="sail-id">VLMAX</span>);
-    <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href=".././riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a>;
+    <a href="sail-riscv/./riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a> = <a href="sail-riscv/./riscv_insts_vext_vset.html#L61"><span class="sail-id">calculate_new_vl</span></a>(<span class="sail-id">AVL</span>, <span class="sail-id">VLMAX</span>);
+    <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href="sail-riscv/./riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a>;
   } <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> (<span class="sail-id">rd</span> <span class="sail-operator">!=</span> <span class="sail-id">zreg</span>) <span class="sail-keyword">then</span> { <span class="sail-comment">/* set vl to VLMAX */</span>
-    <a href=".././riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a> = <a href=".././prelude.html#L136"><span class="sail-id">to_bits_unsafe</span></a>(<span class="sail-id">xlen</span>, <span class="sail-id">VLMAX</span>);
-    <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href=".././riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a>;
+    <a href="sail-riscv/./riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a> = <a href="sail-riscv/./prelude.html#L136"><span class="sail-id">to_bits_unsafe</span></a>(<span class="sail-id">xlen</span>, <span class="sail-id">VLMAX</span>);
+    <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href="sail-riscv/./riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a>;
   } <span class="sail-keyword">else</span> { <span class="sail-comment">/* keep existing vl if it is compatible and vtype.ill is valid */</span>
     <span class="sail-keyword">let</span> <span class="sail-id">ratio_pow_new</span> = <span class="sail-id">SEW_pow_new</span> <span class="sail-operator">-</span> <span class="sail-id">LMUL_pow_new</span>;
-    <span class="sail-keyword">let</span> <span class="sail-id">is_legal_vset</span> = <span class="sail-id">ratio_pow_new</span> <span class="sail-operator">==</span> <span class="sail-id">ratio_pow_ori</span> <span class="sail-operator">&amp;</span> <a href=".././riscv_insts_vext_utils.html#L42"><span class="sail-id">valid_vtype</span></a>();
-    <span class="sail-keyword">if</span> <a href=".././prelude.html#L29"><span class="sail-id">not</span></a>(<span class="sail-id">is_legal_vset</span>) <span class="sail-keyword">then</span> { <a href=".././riscv_insts_vext_vset.html#L45"><span class="sail-id">handle_illegal_vtype</span></a>(); <span class="sail-keyword">return</span> <span class="sail-id">RETIRE_SUCCESS</span> }
+    <span class="sail-keyword">let</span> <span class="sail-id">is_legal_vset</span> = <span class="sail-id">ratio_pow_new</span> <span class="sail-operator">==</span> <span class="sail-id">ratio_pow_ori</span> <span class="sail-operator">&amp;</span> <a href="sail-riscv/./riscv_insts_vext_utils.html#L42"><span class="sail-id">valid_vtype</span></a>();
+    <span class="sail-keyword">if</span> <a href="sail-riscv/./prelude.html#L29"><span class="sail-id">not</span></a>(<span class="sail-id">is_legal_vset</span>) <span class="sail-keyword">then</span> { <a href="sail-riscv/./riscv_insts_vext_vset.html#L45"><span class="sail-id">handle_illegal_vtype</span></a>(); <span class="sail-keyword">return</span> <span class="sail-id">RETIRE_SUCCESS</span> }
   };
 
   <span class="sail-comment">/* set vtype */</span>
-  <a href=".././riscv_sys_regs.html#L966"><span class="sail-id">vtype</span></a>.<span class="sail-id">bits</span> = <span class="sail-literal">0b0</span> @ <a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>(<span class="sail-id">xlen</span> <span class="sail-operator">-</span> <span class="sail-literal">9</span>) @ <span class="sail-id">ma</span> @ <span class="sail-id">ta</span> @ <span class="sail-id">sew</span> @ <span class="sail-id">lmul</span>;
+  <a href="sail-riscv/./riscv_sys_regs.html#L966"><span class="sail-id">vtype</span></a>.<span class="sail-id">bits</span> = <span class="sail-literal">0b0</span> @ <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>(<span class="sail-id">xlen</span> <span class="sail-operator">-</span> <span class="sail-literal">9</span>) @ <span class="sail-id">ma</span> @ <span class="sail-id">ta</span> @ <span class="sail-id">sew</span> @ <span class="sail-id">lmul</span>;
 
   <span class="sail-comment">/* reset vstart to 0 */</span>
-  <a href=".././riscv_vext_control.html#L15"><span class="sail-id">set_vstart</span></a>(<a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>());
+  <a href="sail-riscv/./riscv_vext_control.html#L15"><span class="sail-id">set_vstart</span></a>(<a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>());
 
-  <span class="sail-id">csr_write_callback</span>(<span class="sail-string">"vtype"</span>, <a href=".././riscv_sys_regs.html#L966"><span class="sail-id">vtype</span></a>.<span class="sail-id">bits</span>);
-  <span class="sail-id">csr_write_callback</span>(<span class="sail-string">"vl"</span>, <a href=".././riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a>);
-  <span class="sail-id">csr_write_callback</span>(<span class="sail-string">"vstart"</span>, <a href=".././riscv_sys_regs.html#L952"><span class="sail-id">vstart</span></a>);
+  <span class="sail-id">csr_write_callback</span>(<span class="sail-string">"vtype"</span>, <a href="sail-riscv/./riscv_sys_regs.html#L966"><span class="sail-id">vtype</span></a>.<span class="sail-id">bits</span>);
+  <span class="sail-id">csr_write_callback</span>(<span class="sail-string">"vl"</span>, <a href="sail-riscv/./riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a>);
+  <span class="sail-id">csr_write_callback</span>(<span class="sail-string">"vstart"</span>, <a href="sail-riscv/./riscv_sys_regs.html#L952"><span class="sail-id">vstart</span></a>);
 
   <span class="sail-id">RETIRE_SUCCESS</span>
 }
@@ -155,17 +155,17 @@
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">VSETVL</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>)
   &lt;-&gt; <span class="sail-literal">0b1000000</span> @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rs2</span>) @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-literal">0b111</span> @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b1010111</span>
-  <span class="sail-keyword">when</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_V</span>)
+  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_V</span>)
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> <span class="sail-id">VSETVL</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>) = {
-  <span class="sail-keyword">let</span> <span class="sail-id">LMUL_pow_ori</span>  = <a href=".././riscv_sys_regs.html#L1017"><span class="sail-id">get_lmul_pow</span></a>();
-  <span class="sail-keyword">let</span> <span class="sail-id">SEW_pow_ori</span>   = <a href=".././riscv_sys_regs.html#L997"><span class="sail-id">get_sew_pow</span></a>();
+  <span class="sail-keyword">let</span> <span class="sail-id">LMUL_pow_ori</span>  = <a href="sail-riscv/./riscv_sys_regs.html#L1017"><span class="sail-id">get_lmul_pow</span></a>();
+  <span class="sail-keyword">let</span> <span class="sail-id">SEW_pow_ori</span>   = <a href="sail-riscv/./riscv_sys_regs.html#L997"><span class="sail-id">get_sew_pow</span></a>();
   <span class="sail-keyword">let</span> <span class="sail-id">ratio_pow_ori</span> = <span class="sail-id">SEW_pow_ori</span> <span class="sail-operator">-</span> <span class="sail-id">LMUL_pow_ori</span>;
 
   <span class="sail-keyword">let</span> <span class="sail-id">vtype_new</span> = <span class="sail-id">Mk_Vtype</span>(<span class="sail-id">X</span>(<span class="sail-id">rs2</span>));
 
-  <span class="sail-keyword">if</span>   <span class="sail-id">vtype_new</span>[<span class="sail-id">vill</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b1</span> <span class="sail-operator">|</span> <span class="sail-id">vtype_new</span>[<span class="sail-id">reserved</span>] <span class="sail-operator">!=</span> <a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>()
-  <span class="sail-keyword">then</span> { <a href=".././riscv_insts_vext_vset.html#L45"><span class="sail-id">handle_illegal_vtype</span></a>(); <span class="sail-keyword">return</span> <span class="sail-id">RETIRE_SUCCESS</span> };
+  <span class="sail-keyword">if</span>   <span class="sail-id">vtype_new</span>[<span class="sail-id">vill</span>] <span class="sail-operator">==</span> <span class="sail-literal">0b1</span> <span class="sail-operator">|</span> <span class="sail-id">vtype_new</span>[<span class="sail-id">reserved</span>] <span class="sail-operator">!=</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>()
+  <span class="sail-keyword">then</span> { <a href="sail-riscv/./riscv_insts_vext_vset.html#L45"><span class="sail-id">handle_illegal_vtype</span></a>(); <span class="sail-keyword">return</span> <span class="sail-id">RETIRE_SUCCESS</span> };
 
   <span class="sail-keyword">let</span> <span class="sail-id">ma</span>   = <span class="sail-id">vtype_new</span>[<span class="sail-id">vma</span>];
   <span class="sail-keyword">let</span> <span class="sail-id">ta</span>   = <span class="sail-id">vtype_new</span>[<span class="sail-id">vta</span>];
@@ -173,40 +173,40 @@
   <span class="sail-keyword">let</span> <span class="sail-id">lmul</span> = <span class="sail-id">vtype_new</span>[<span class="sail-id">vlmul</span>];
 
   <span class="sail-comment">/* check new SEW and LMUL are legal and calculate VLMAX */</span>
-  <span class="sail-keyword">if</span> <a href=".././riscv_sys_regs.html#L992"><span class="sail-id">is_invalid_lmul_pow</span></a>(<span class="sail-id">lmul</span>) <span class="sail-operator">|</span> <a href=".././riscv_sys_regs.html#L989"><span class="sail-id">is_invalid_sew_pow</span></a>(<span class="sail-id">sew</span>) <span class="sail-keyword">then</span> {
-    <a href=".././riscv_insts_vext_vset.html#L45"><span class="sail-id">handle_illegal_vtype</span></a>();
+  <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_sys_regs.html#L992"><span class="sail-id">is_invalid_lmul_pow</span></a>(<span class="sail-id">lmul</span>) <span class="sail-operator">|</span> <a href="sail-riscv/./riscv_sys_regs.html#L989"><span class="sail-id">is_invalid_sew_pow</span></a>(<span class="sail-id">sew</span>) <span class="sail-keyword">then</span> {
+    <a href="sail-riscv/./riscv_insts_vext_vset.html#L45"><span class="sail-id">handle_illegal_vtype</span></a>();
     <span class="sail-keyword">return</span> <span class="sail-id">RETIRE_SUCCESS</span>
   };
   <span class="sail-keyword">let</span> <span class="sail-id">LMUL_pow_new</span> = <span class="sail-id">lmul_pow_val</span>(<span class="sail-id">lmul</span>);
   <span class="sail-keyword">let</span> <span class="sail-id">SEW_pow_new</span> = <span class="sail-id">sew_pow_val</span>(<span class="sail-id">sew</span>);
 
-  <span class="sail-keyword">if</span> <span class="sail-id">SEW_pow_new</span> <span class="sail-operator">&gt;</span> (<span class="sail-id">LMUL_pow_new</span> <span class="sail-operator">+</span> <span class="sail-id">ELEN_pow</span>) <span class="sail-keyword">then</span> { <a href=".././riscv_insts_vext_vset.html#L45"><span class="sail-id">handle_illegal_vtype</span></a>(); <span class="sail-keyword">return</span> <span class="sail-id">RETIRE_SUCCESS</span> };
+  <span class="sail-keyword">if</span> <span class="sail-id">SEW_pow_new</span> <span class="sail-operator">&gt;</span> (<span class="sail-id">LMUL_pow_new</span> <span class="sail-operator">+</span> <span class="sail-id">ELEN_pow</span>) <span class="sail-keyword">then</span> { <a href="sail-riscv/./riscv_insts_vext_vset.html#L45"><span class="sail-id">handle_illegal_vtype</span></a>(); <span class="sail-keyword">return</span> <span class="sail-id">RETIRE_SUCCESS</span> };
   <span class="sail-keyword">let</span> <span class="sail-id">VLMAX</span> = 2 ^ (<span class="sail-id">VLEN_pow</span> <span class="sail-operator">+</span> <span class="sail-id">LMUL_pow_new</span> <span class="sail-operator">-</span> <span class="sail-id">SEW_pow_new</span>);
 
   <span class="sail-comment">/* set vl according to VLMAX and AVL */</span>
   <span class="sail-keyword">if</span> (<span class="sail-id">rs1</span> <span class="sail-operator">!=</span> <span class="sail-id">zreg</span>) <span class="sail-keyword">then</span> { <span class="sail-comment">/* normal stripmining */</span>
     <span class="sail-keyword">let</span> <span class="sail-id">rs1_val</span> = <span class="sail-id">X</span>(<span class="sail-id">rs1</span>);
     <span class="sail-keyword">let</span> <span class="sail-id">AVL</span> = <span class="sail-id">unsigned</span>(<span class="sail-id">rs1_val</span>);
-    <a href=".././riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a> = <a href=".././riscv_insts_vext_vset.html#L61"><span class="sail-id">calculate_new_vl</span></a>(<span class="sail-id">AVL</span>, <span class="sail-id">VLMAX</span>);
-    <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href=".././riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a>;
+    <a href="sail-riscv/./riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a> = <a href="sail-riscv/./riscv_insts_vext_vset.html#L61"><span class="sail-id">calculate_new_vl</span></a>(<span class="sail-id">AVL</span>, <span class="sail-id">VLMAX</span>);
+    <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href="sail-riscv/./riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a>;
   } <span class="sail-keyword">else</span> <span class="sail-keyword">if</span> (<span class="sail-id">rd</span> <span class="sail-operator">!=</span> <span class="sail-id">zreg</span>) <span class="sail-keyword">then</span> { <span class="sail-comment">/* set vl to VLMAX */</span>
-    <a href=".././riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a> = <a href=".././prelude.html#L136"><span class="sail-id">to_bits_unsafe</span></a>(<span class="sail-id">xlen</span>, <span class="sail-id">VLMAX</span>);
-    <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href=".././riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a>;
+    <a href="sail-riscv/./riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a> = <a href="sail-riscv/./prelude.html#L136"><span class="sail-id">to_bits_unsafe</span></a>(<span class="sail-id">xlen</span>, <span class="sail-id">VLMAX</span>);
+    <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href="sail-riscv/./riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a>;
   } <span class="sail-keyword">else</span> { <span class="sail-comment">/* keep existing vl if it is compatible and vtype.ill is valid */</span>
     <span class="sail-keyword">let</span> <span class="sail-id">ratio_pow_new</span> = <span class="sail-id">SEW_pow_new</span> <span class="sail-operator">-</span> <span class="sail-id">LMUL_pow_new</span>;
-    <span class="sail-keyword">let</span> <span class="sail-id">is_legal_vset</span> = <span class="sail-id">ratio_pow_new</span> <span class="sail-operator">==</span> <span class="sail-id">ratio_pow_ori</span> <span class="sail-operator">&amp;</span> <a href=".././riscv_insts_vext_utils.html#L42"><span class="sail-id">valid_vtype</span></a>();
-    <span class="sail-keyword">if</span> <a href=".././prelude.html#L29"><span class="sail-id">not</span></a>(<span class="sail-id">is_legal_vset</span>) <span class="sail-keyword">then</span> { <a href=".././riscv_insts_vext_vset.html#L45"><span class="sail-id">handle_illegal_vtype</span></a>(); <span class="sail-keyword">return</span> <span class="sail-id">RETIRE_SUCCESS</span> }
+    <span class="sail-keyword">let</span> <span class="sail-id">is_legal_vset</span> = <span class="sail-id">ratio_pow_new</span> <span class="sail-operator">==</span> <span class="sail-id">ratio_pow_ori</span> <span class="sail-operator">&amp;</span> <a href="sail-riscv/./riscv_insts_vext_utils.html#L42"><span class="sail-id">valid_vtype</span></a>();
+    <span class="sail-keyword">if</span> <a href="sail-riscv/./prelude.html#L29"><span class="sail-id">not</span></a>(<span class="sail-id">is_legal_vset</span>) <span class="sail-keyword">then</span> { <a href="sail-riscv/./riscv_insts_vext_vset.html#L45"><span class="sail-id">handle_illegal_vtype</span></a>(); <span class="sail-keyword">return</span> <span class="sail-id">RETIRE_SUCCESS</span> }
   };
 
   <span class="sail-comment">/* set vtype */</span>
-  <a href=".././riscv_sys_regs.html#L966"><span class="sail-id">vtype</span></a>.<span class="sail-id">bits</span> = <span class="sail-literal">0b0</span> @ <a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>(<span class="sail-id">xlen</span> <span class="sail-operator">-</span> <span class="sail-literal">9</span>) @ <span class="sail-id">ma</span> @ <span class="sail-id">ta</span> @ <span class="sail-id">sew</span> @ <span class="sail-id">lmul</span>;
+  <a href="sail-riscv/./riscv_sys_regs.html#L966"><span class="sail-id">vtype</span></a>.<span class="sail-id">bits</span> = <span class="sail-literal">0b0</span> @ <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>(<span class="sail-id">xlen</span> <span class="sail-operator">-</span> <span class="sail-literal">9</span>) @ <span class="sail-id">ma</span> @ <span class="sail-id">ta</span> @ <span class="sail-id">sew</span> @ <span class="sail-id">lmul</span>;
 
   <span class="sail-comment">/* reset vstart to 0 */</span>
-  <a href=".././riscv_vext_control.html#L15"><span class="sail-id">set_vstart</span></a>(<a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>());
+  <a href="sail-riscv/./riscv_vext_control.html#L15"><span class="sail-id">set_vstart</span></a>(<a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>());
 
-  <span class="sail-id">csr_write_callback</span>(<span class="sail-string">"vtype"</span>, <a href=".././riscv_sys_regs.html#L966"><span class="sail-id">vtype</span></a>.<span class="sail-id">bits</span>);
-  <span class="sail-id">csr_write_callback</span>(<span class="sail-string">"vl"</span>, <a href=".././riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a>);
-  <span class="sail-id">csr_write_callback</span>(<span class="sail-string">"vstart"</span>, <a href=".././riscv_sys_regs.html#L952"><span class="sail-id">vstart</span></a>);
+  <span class="sail-id">csr_write_callback</span>(<span class="sail-string">"vtype"</span>, <a href="sail-riscv/./riscv_sys_regs.html#L966"><span class="sail-id">vtype</span></a>.<span class="sail-id">bits</span>);
+  <span class="sail-id">csr_write_callback</span>(<span class="sail-string">"vl"</span>, <a href="sail-riscv/./riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a>);
+  <span class="sail-id">csr_write_callback</span>(<span class="sail-string">"vstart"</span>, <a href="sail-riscv/./riscv_sys_regs.html#L952"><span class="sail-id">vstart</span></a>);
 
   <span class="sail-id">RETIRE_SUCCESS</span>
 }
@@ -219,34 +219,34 @@
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">VSETIVLI</span>(<span class="sail-id">ma</span>, <span class="sail-id">ta</span>, <span class="sail-id">sew</span>, <span class="sail-id">lmul</span>, <span class="sail-id">uimm</span>, <span class="sail-id">rd</span>)
   &lt;-&gt; <span class="sail-literal">0b1100</span> @ <span class="sail-id">ma</span> @ <span class="sail-id">ta</span> @ <span class="sail-id">sew</span> @ <span class="sail-id">lmul</span> @ <span class="sail-id">uimm</span> @ <span class="sail-literal">0b111</span> @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b1010111</span>
-  <span class="sail-keyword">when</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_V</span>)
+  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_V</span>)
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> <span class="sail-id">VSETIVLI</span>(<span class="sail-id">ma</span>, <span class="sail-id">ta</span>, <span class="sail-id">sew</span>, <span class="sail-id">lmul</span>, <span class="sail-id">uimm</span>, <span class="sail-id">rd</span>) = {
   <span class="sail-comment">/* check new SEW and LMUL are legal and calculate VLMAX */</span>
-  <span class="sail-keyword">if</span> <a href=".././riscv_sys_regs.html#L992"><span class="sail-id">is_invalid_lmul_pow</span></a>(<span class="sail-id">lmul</span>) <span class="sail-operator">|</span> <a href=".././riscv_sys_regs.html#L989"><span class="sail-id">is_invalid_sew_pow</span></a>(<span class="sail-id">sew</span>) <span class="sail-keyword">then</span> {
-    <a href=".././riscv_insts_vext_vset.html#L45"><span class="sail-id">handle_illegal_vtype</span></a>();
+  <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_sys_regs.html#L992"><span class="sail-id">is_invalid_lmul_pow</span></a>(<span class="sail-id">lmul</span>) <span class="sail-operator">|</span> <a href="sail-riscv/./riscv_sys_regs.html#L989"><span class="sail-id">is_invalid_sew_pow</span></a>(<span class="sail-id">sew</span>) <span class="sail-keyword">then</span> {
+    <a href="sail-riscv/./riscv_insts_vext_vset.html#L45"><span class="sail-id">handle_illegal_vtype</span></a>();
     <span class="sail-keyword">return</span> <span class="sail-id">RETIRE_SUCCESS</span>
   };
   <span class="sail-keyword">let</span> <span class="sail-id">LMUL_pow_new</span> = <span class="sail-id">lmul_pow_val</span>(<span class="sail-id">lmul</span>);
   <span class="sail-keyword">let</span> <span class="sail-id">SEW_pow_new</span> = <span class="sail-id">sew_pow_val</span>(<span class="sail-id">sew</span>);
 
-  <span class="sail-keyword">if</span> <span class="sail-id">SEW_pow_new</span> <span class="sail-operator">&gt;</span> (<span class="sail-id">LMUL_pow_new</span> <span class="sail-operator">+</span> <span class="sail-id">ELEN_pow</span>) <span class="sail-keyword">then</span> { <a href=".././riscv_insts_vext_vset.html#L45"><span class="sail-id">handle_illegal_vtype</span></a>(); <span class="sail-keyword">return</span> <span class="sail-id">RETIRE_SUCCESS</span> };
+  <span class="sail-keyword">if</span> <span class="sail-id">SEW_pow_new</span> <span class="sail-operator">&gt;</span> (<span class="sail-id">LMUL_pow_new</span> <span class="sail-operator">+</span> <span class="sail-id">ELEN_pow</span>) <span class="sail-keyword">then</span> { <a href="sail-riscv/./riscv_insts_vext_vset.html#L45"><span class="sail-id">handle_illegal_vtype</span></a>(); <span class="sail-keyword">return</span> <span class="sail-id">RETIRE_SUCCESS</span> };
   <span class="sail-keyword">let</span> <span class="sail-id">VLMAX</span> = 2 ^ (<span class="sail-id">VLEN_pow</span> <span class="sail-operator">+</span> <span class="sail-id">LMUL_pow_new</span> <span class="sail-operator">-</span> <span class="sail-id">SEW_pow_new</span>);
 
   <span class="sail-comment">/* set vl according to VLMAX and AVL */</span>
   <span class="sail-keyword">let</span> <span class="sail-id">AVL</span> = <span class="sail-id">unsigned</span>(<span class="sail-id">uimm</span>); <span class="sail-comment">/* AVL is encoded as 5-bit zero-extended imm in the rs1 field */</span>
-  <a href=".././riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a> = <a href=".././riscv_insts_vext_vset.html#L61"><span class="sail-id">calculate_new_vl</span></a>(<span class="sail-id">AVL</span>, <span class="sail-id">VLMAX</span>);
-  <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href=".././riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a>;
+  <a href="sail-riscv/./riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a> = <a href="sail-riscv/./riscv_insts_vext_vset.html#L61"><span class="sail-id">calculate_new_vl</span></a>(<span class="sail-id">AVL</span>, <span class="sail-id">VLMAX</span>);
+  <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href="sail-riscv/./riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a>;
 
   <span class="sail-comment">/* set vtype */</span>
-  <a href=".././riscv_sys_regs.html#L966"><span class="sail-id">vtype</span></a>.<span class="sail-id">bits</span> = <span class="sail-literal">0b0</span> @ <a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>(<span class="sail-id">xlen</span> <span class="sail-operator">-</span> <span class="sail-literal">9</span>) @ <span class="sail-id">ma</span> @ <span class="sail-id">ta</span> @ <span class="sail-id">sew</span> @ <span class="sail-id">lmul</span>;
+  <a href="sail-riscv/./riscv_sys_regs.html#L966"><span class="sail-id">vtype</span></a>.<span class="sail-id">bits</span> = <span class="sail-literal">0b0</span> @ <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>(<span class="sail-id">xlen</span> <span class="sail-operator">-</span> <span class="sail-literal">9</span>) @ <span class="sail-id">ma</span> @ <span class="sail-id">ta</span> @ <span class="sail-id">sew</span> @ <span class="sail-id">lmul</span>;
 
   <span class="sail-comment">/* reset vstart to 0 */</span>
-  <a href=".././riscv_vext_control.html#L15"><span class="sail-id">set_vstart</span></a>(<a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>());
+  <a href="sail-riscv/./riscv_vext_control.html#L15"><span class="sail-id">set_vstart</span></a>(<a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>());
 
-  <span class="sail-id">csr_write_callback</span>(<span class="sail-string">"vtype"</span>, <a href=".././riscv_sys_regs.html#L966"><span class="sail-id">vtype</span></a>.<span class="sail-id">bits</span>);
-  <span class="sail-id">csr_write_callback</span>(<span class="sail-string">"vl"</span>, <a href=".././riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a>);
-  <span class="sail-id">csr_write_callback</span>(<span class="sail-string">"vstart"</span>, <a href=".././riscv_sys_regs.html#L952"><span class="sail-id">vstart</span></a>);
+  <span class="sail-id">csr_write_callback</span>(<span class="sail-string">"vtype"</span>, <a href="sail-riscv/./riscv_sys_regs.html#L966"><span class="sail-id">vtype</span></a>.<span class="sail-id">bits</span>);
+  <span class="sail-id">csr_write_callback</span>(<span class="sail-string">"vl"</span>, <a href="sail-riscv/./riscv_sys_regs.html#L953"><span class="sail-id">vl</span></a>);
+  <span class="sail-id">csr_write_callback</span>(<span class="sail-string">"vstart"</span>, <a href="sail-riscv/./riscv_sys_regs.html#L952"><span class="sail-id">vstart</span></a>);
 
   <span class="sail-id">RETIRE_SUCCESS</span>
 }

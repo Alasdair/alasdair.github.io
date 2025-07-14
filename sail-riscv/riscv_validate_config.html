@@ -30,7 +30,7 @@
 <span class="sail-comment">/*=======================================================================================*/</span>
 
 <span class="sail-keyword">function</span> <span class="sail-id">check_privs</span>() -&gt; <span class="sail-id">bool</span> = {
-  <span class="sail-keyword">if</span> <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_S</span>) <span class="sail-operator">&amp;</span> <a href=".././prelude.html#L29"><span class="sail-id">not</span></a>(<a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_U</span>))
+  <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_S</span>) <span class="sail-operator">&amp;</span> <a href="sail-riscv/./prelude.html#L29"><span class="sail-id">not</span></a>(<a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_U</span>))
   <span class="sail-keyword">then</span> {
     <span class="sail-id">print_endline</span>(<span class="sail-string">"User mode (U) should be enabled if supervisor mode (S) is enabled."</span>);
     <span class="sail-keyword">return</span> <span class="sail-literal">false</span>;
@@ -42,34 +42,34 @@
 </span><span class="sail-keyword">function</span> <span class="sail-id">check_mmu_config</span>() -&gt; <span class="sail-id">bool</span> = {
   <span class="sail-keyword">var</span> <span class="sail-id">valid</span> : <span class="sail-id">bool</span> = <span class="sail-literal">true</span>;
   <span class="sail-keyword">if</span> <span class="sail-id">xlen</span> <span class="sail-operator">==</span> <span class="sail-literal">64</span> <span class="sail-keyword">then</span> {
-    <span class="sail-keyword">if</span> <a href=".././prelude.html#L29"><span class="sail-id">not</span></a>(<a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_S</span>)) <span class="sail-operator">&amp;</span> (<a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv57</span>) <span class="sail-operator">|</span> <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv48</span>) <span class="sail-operator">|</span> <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv39</span>))
+    <span class="sail-keyword">if</span> <a href="sail-riscv/./prelude.html#L29"><span class="sail-id">not</span></a>(<a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_S</span>)) <span class="sail-operator">&amp;</span> (<a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv57</span>) <span class="sail-operator">|</span> <a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv48</span>) <span class="sail-operator">|</span> <a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv39</span>))
     <span class="sail-keyword">then</span> {
       <span class="sail-id">valid</span> = <span class="sail-literal">false</span>;
       <span class="sail-id">print_endline</span>(<span class="sail-string">"Supervisor mode (S) disabled but one of (Sv57, Sv48, Sv39) is enabled: cannot support address translation without supervisor mode."</span>);
     };
-    <span class="sail-keyword">if</span> <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv57</span>) <span class="sail-operator">&amp;</span> <a href=".././prelude.html#L29"><span class="sail-id">not</span></a>(<a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv48</span>))
+    <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv57</span>) <span class="sail-operator">&amp;</span> <a href="sail-riscv/./prelude.html#L29"><span class="sail-id">not</span></a>(<a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv48</span>))
     <span class="sail-keyword">then</span> {
       <span class="sail-id">valid</span> = <span class="sail-literal">false</span>;
       <span class="sail-id">print_endline</span>(<span class="sail-string">"Sv57 is enabled but Sv48 is disabled: supporting Sv57 requires supporting Sv48."</span>);
     };
-    <span class="sail-keyword">if</span> <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv48</span>) <span class="sail-operator">&amp;</span> <a href=".././prelude.html#L29"><span class="sail-id">not</span></a>(<a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv39</span>))
+    <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv48</span>) <span class="sail-operator">&amp;</span> <a href="sail-riscv/./prelude.html#L29"><span class="sail-id">not</span></a>(<a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv39</span>))
     <span class="sail-keyword">then</span> {
       <span class="sail-id">valid</span> = <span class="sail-literal">false</span>;
       <span class="sail-id">print_endline</span>(<span class="sail-string">"Sv48 is enabled but Sv39 is disabled: supporting Sv48 requires supporting Sv39."</span>);
     };
-    <span class="sail-keyword">if</span> <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv32</span>)
+    <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv32</span>)
     <span class="sail-keyword">then</span> {
       <span class="sail-id">valid</span> = <span class="sail-literal">false</span>;
       <span class="sail-id">print_endline</span>(<span class="sail-string">"Sv32 is enabled: Sv32 is not supported on RV64."</span>);
     };
   } <span class="sail-keyword">else</span> {
     <span class="sail-keyword">assert</span>(<span class="sail-id">xlen</span> <span class="sail-operator">==</span> <span class="sail-literal">32</span>);
-    <span class="sail-keyword">if</span> <a href=".././prelude.html#L29"><span class="sail-id">not</span></a>(<a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_S</span>)) <span class="sail-operator">&amp;</span> <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv32</span>)
+    <span class="sail-keyword">if</span> <a href="sail-riscv/./prelude.html#L29"><span class="sail-id">not</span></a>(<a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_S</span>)) <span class="sail-operator">&amp;</span> <a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv32</span>)
     <span class="sail-keyword">then</span> {
       <span class="sail-id">valid</span> = <span class="sail-literal">false</span>;
       <span class="sail-id">print_endline</span>(<span class="sail-string">"Supervisor mode (S) is disabled but Sv32 is enabled: cannot support address translation without supervisor mode."</span>);
     };
-    <span class="sail-keyword">if</span> <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv39</span>) <span class="sail-operator">|</span> <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv48</span>) <span class="sail-operator">|</span>  <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv57</span>)
+    <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv39</span>) <span class="sail-operator">|</span> <a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv48</span>) <span class="sail-operator">|</span>  <a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Sv57</span>)
     <span class="sail-keyword">then</span> {
       <span class="sail-id">valid</span> = <span class="sail-literal">false</span>;
       <span class="sail-id">print_endline</span>(<span class="sail-string">"One or more of Sv39/Sv48/Sv57 is enabled: these are not supported on RV32."</span>);
@@ -89,30 +89,30 @@
 }
 
 <span class="sail-keyword">function</span> <span class="sail-id">has_overlap</span>(<span class="sail-id">a_lo</span> : <span class="sail-id">nat</span>, <span class="sail-id">a_hi</span> : <span class="sail-id">nat</span>, <span class="sail-id">b_lo</span> : <span class="sail-id">nat</span>, <span class="sail-id">b_hi</span> : <span class="sail-id">nat</span>) -&gt; <span class="sail-id">bool</span> = {
-  <a href=".././prelude.html#L29"><span class="sail-id">not</span></a>((<span class="sail-id">a_lo</span> <span class="sail-operator">&lt;</span> <span class="sail-id">b_lo</span> <span class="sail-operator">&amp;</span> <span class="sail-id">a_hi</span> <span class="sail-operator">&lt;</span> <span class="sail-id">b_lo</span>) <span class="sail-operator">|</span> (<span class="sail-id">b_lo</span> <span class="sail-operator">&lt;</span> <span class="sail-id">a_lo</span> <span class="sail-operator">&amp;</span> <span class="sail-id">b_hi</span> <span class="sail-operator">&lt;</span> <span class="sail-id">a_lo</span>))
+  <a href="sail-riscv/./prelude.html#L29"><span class="sail-id">not</span></a>((<span class="sail-id">a_lo</span> <span class="sail-operator">&lt;</span> <span class="sail-id">b_lo</span> <span class="sail-operator">&amp;</span> <span class="sail-id">a_hi</span> <span class="sail-operator">&lt;</span> <span class="sail-id">b_lo</span>) <span class="sail-operator">|</span> (<span class="sail-id">b_lo</span> <span class="sail-operator">&lt;</span> <span class="sail-id">a_lo</span> <span class="sail-operator">&amp;</span> <span class="sail-id">b_hi</span> <span class="sail-operator">&lt;</span> <span class="sail-id">a_lo</span>))
 }
 
 <span class="sail-comment">// This will change when we have a more general memory layout.
 </span><span class="sail-keyword">function</span> <span class="sail-id">check_mem_layout</span>() -&gt; <span class="sail-id">bool</span> = {
   <span class="sail-keyword">var</span> <span class="sail-id">valid</span> : <span class="sail-id">bool</span> = <span class="sail-literal">true</span>;
   <span class="sail-comment">// Memory regions should not overlap. There are currently only three: ram, rom and clint.
-</span>  <span class="sail-keyword">let</span> <span class="sail-id">ram_lo</span> = <span class="sail-id">unsigned</span>(<a href=".././riscv_platform.html#L36"><span class="sail-id">plat_ram_base</span></a>);
-  <span class="sail-keyword">let</span> <span class="sail-id">ram_hi</span> = <span class="sail-id">unsigned</span>(<a href=".././riscv_platform.html#L36"><span class="sail-id">plat_ram_base</span></a>) <span class="sail-operator">+</span> <span class="sail-id">unsigned</span>(<a href=".././riscv_platform.html#L37"><span class="sail-id">plat_ram_size</span></a>);
-  <span class="sail-keyword">let</span> <span class="sail-id">rom_lo</span> = <span class="sail-id">unsigned</span>(<a href=".././riscv_platform.html#L53"><span class="sail-id">plat_rom_base</span></a>);
-  <span class="sail-keyword">let</span> <span class="sail-id">rom_hi</span> = <span class="sail-id">unsigned</span>(<a href=".././riscv_platform.html#L53"><span class="sail-id">plat_rom_base</span></a>) <span class="sail-operator">+</span> <span class="sail-id">unsigned</span>(<a href=".././riscv_platform.html#L54"><span class="sail-id">plat_rom_size</span></a>);
-  <span class="sail-keyword">let</span> <span class="sail-id">clint_lo</span> = <span class="sail-id">unsigned</span>(<a href=".././riscv_platform.html#L59"><span class="sail-id">plat_clint_base</span></a>);
-  <span class="sail-keyword">let</span> <span class="sail-id">clint_hi</span> = <span class="sail-id">unsigned</span>(<a href=".././riscv_platform.html#L59"><span class="sail-id">plat_clint_base</span></a>) <span class="sail-operator">+</span> <span class="sail-id">unsigned</span>(<a href=".././riscv_platform.html#L60"><span class="sail-id">plat_clint_size</span></a>);
-  <span class="sail-keyword">if</span> <a href=".././riscv_validate_config.html#L68"><span class="sail-id">has_overlap</span></a>(<span class="sail-id">rom_lo</span>, <span class="sail-id">rom_hi</span>, <span class="sail-id">ram_lo</span>, <span class="sail-id">ram_hi</span>)
+</span>  <span class="sail-keyword">let</span> <span class="sail-id">ram_lo</span> = <span class="sail-id">unsigned</span>(<a href="sail-riscv/./riscv_platform.html#L36"><span class="sail-id">plat_ram_base</span></a>);
+  <span class="sail-keyword">let</span> <span class="sail-id">ram_hi</span> = <span class="sail-id">unsigned</span>(<a href="sail-riscv/./riscv_platform.html#L36"><span class="sail-id">plat_ram_base</span></a>) <span class="sail-operator">+</span> <span class="sail-id">unsigned</span>(<a href="sail-riscv/./riscv_platform.html#L37"><span class="sail-id">plat_ram_size</span></a>);
+  <span class="sail-keyword">let</span> <span class="sail-id">rom_lo</span> = <span class="sail-id">unsigned</span>(<a href="sail-riscv/./riscv_platform.html#L53"><span class="sail-id">plat_rom_base</span></a>);
+  <span class="sail-keyword">let</span> <span class="sail-id">rom_hi</span> = <span class="sail-id">unsigned</span>(<a href="sail-riscv/./riscv_platform.html#L53"><span class="sail-id">plat_rom_base</span></a>) <span class="sail-operator">+</span> <span class="sail-id">unsigned</span>(<a href="sail-riscv/./riscv_platform.html#L54"><span class="sail-id">plat_rom_size</span></a>);
+  <span class="sail-keyword">let</span> <span class="sail-id">clint_lo</span> = <span class="sail-id">unsigned</span>(<a href="sail-riscv/./riscv_platform.html#L59"><span class="sail-id">plat_clint_base</span></a>);
+  <span class="sail-keyword">let</span> <span class="sail-id">clint_hi</span> = <span class="sail-id">unsigned</span>(<a href="sail-riscv/./riscv_platform.html#L59"><span class="sail-id">plat_clint_base</span></a>) <span class="sail-operator">+</span> <span class="sail-id">unsigned</span>(<a href="sail-riscv/./riscv_platform.html#L60"><span class="sail-id">plat_clint_size</span></a>);
+  <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_validate_config.html#L68"><span class="sail-id">has_overlap</span></a>(<span class="sail-id">rom_lo</span>, <span class="sail-id">rom_hi</span>, <span class="sail-id">ram_lo</span>, <span class="sail-id">ram_hi</span>)
   <span class="sail-keyword">then</span> {
     <span class="sail-id">valid</span> = <span class="sail-literal">false</span>;
     <span class="sail-id">print_endline</span>(<span class="sail-string">"The RAM and ROM regions overlap."</span>);
   };
-  <span class="sail-keyword">if</span> <a href=".././riscv_validate_config.html#L68"><span class="sail-id">has_overlap</span></a>(<span class="sail-id">clint_lo</span>, <span class="sail-id">clint_hi</span>, <span class="sail-id">rom_lo</span>, <span class="sail-id">rom_hi</span>)
+  <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_validate_config.html#L68"><span class="sail-id">has_overlap</span></a>(<span class="sail-id">clint_lo</span>, <span class="sail-id">clint_hi</span>, <span class="sail-id">rom_lo</span>, <span class="sail-id">rom_hi</span>)
   <span class="sail-keyword">then</span> {
     <span class="sail-id">valid</span> = <span class="sail-literal">false</span>;
     <span class="sail-id">print_endline</span>(<span class="sail-string">"The Clint and ROM regions overlap."</span>);
   };
-  <span class="sail-keyword">if</span> <a href=".././riscv_validate_config.html#L68"><span class="sail-id">has_overlap</span></a>(<span class="sail-id">clint_lo</span>, <span class="sail-id">clint_hi</span>, <span class="sail-id">ram_lo</span>, <span class="sail-id">ram_hi</span>)
+  <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_validate_config.html#L68"><span class="sail-id">has_overlap</span></a>(<span class="sail-id">clint_lo</span>, <span class="sail-id">clint_hi</span>, <span class="sail-id">ram_lo</span>, <span class="sail-id">ram_hi</span>)
   <span class="sail-keyword">then</span> {
     <span class="sail-id">valid</span> = <span class="sail-literal">false</span>;
     <span class="sail-id">print_endline</span>(<span class="sail-string">"The Clint and RAM regions overlap."</span>);
@@ -133,11 +133,11 @@
 }
 
 <span class="sail-keyword">function</span> <span class="sail-id">config_is_valid</span>() -&gt; <span class="sail-id">bool</span> = {
-    <a href=".././riscv_validate_config.html#L9"><span class="sail-id">check_privs</span></a>()
-  <span class="sail-operator">&amp;</span> <a href=".././riscv_validate_config.html#L19"><span class="sail-id">check_mmu_config</span></a>()
-  <span class="sail-operator">&amp;</span> <a href=".././riscv_validate_config.html#L73"><span class="sail-id">check_mem_layout</span></a>()
-  <span class="sail-operator">&amp;</span> <a href=".././riscv_validate_config.html#L58"><span class="sail-id">check_vlen_elen</span></a>()
-  <span class="sail-operator">&amp;</span> <a href=".././riscv_validate_config.html#L102"><span class="sail-id">check_pmp</span></a>()
+    <a href="sail-riscv/./riscv_validate_config.html#L9"><span class="sail-id">check_privs</span></a>()
+  <span class="sail-operator">&amp;</span> <a href="sail-riscv/./riscv_validate_config.html#L19"><span class="sail-id">check_mmu_config</span></a>()
+  <span class="sail-operator">&amp;</span> <a href="sail-riscv/./riscv_validate_config.html#L73"><span class="sail-id">check_mem_layout</span></a>()
+  <span class="sail-operator">&amp;</span> <a href="sail-riscv/./riscv_validate_config.html#L58"><span class="sail-id">check_vlen_elen</span></a>()
+  <span class="sail-operator">&amp;</span> <a href="sail-riscv/./riscv_validate_config.html#L102"><span class="sail-id">check_pmp</span></a>()
 }
 </pre>
 </div>

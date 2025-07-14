@@ -29,16 +29,16 @@
 <span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
 <span class="sail-comment">/*=======================================================================================*/</span>
 
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zicond</span>) = <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zicond</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zicond</span>) = <a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zicond</span>)
 
 <span class="sail-keyword">union</span> <span class="sail-keyword">clause</span> <span class="sail-id">instruction</span> = <span class="sail-id">ZICOND_RTYPE</span> : (<span class="sail-id">regidx</span>, <span class="sail-id">regidx</span>, <span class="sail-id">regidx</span>, <span class="sail-id">zicondop</span>)
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">ZICOND_RTYPE</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-id">CZERO_EQZ</span>)
   &lt;-&gt; <span class="sail-literal">0b0000111</span> @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rs2</span>) @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-literal">0b101</span> @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b0110011</span>
-  <span class="sail-keyword">when</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zicond</span>)
+  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zicond</span>)
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">ZICOND_RTYPE</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-id">CZERO_NEZ</span>)
   &lt;-&gt; <span class="sail-literal">0b0000111</span> @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rs2</span>) @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-literal">0b111</span> @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b0110011</span>
-  <span class="sail-keyword">when</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zicond</span>)
+  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zicond</span>)
 
 <span class="sail-keyword">mapping</span> <span class="sail-id">zicond_mnemonic</span> : <span class="sail-id">zicondop</span> &lt;-&gt; <span class="sail-id">string</span> = {
   <span class="sail-id">CZERO_EQZ</span> &lt;-&gt; <span class="sail-string">"czero.eqz"</span>,
@@ -51,7 +51,7 @@
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">ZICOND_RTYPE</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-id">CZERO_EQZ</span>)) = {
   <span class="sail-keyword">let</span> <span class="sail-id">value</span> = <span class="sail-id">X</span>(<span class="sail-id">rs1</span>);
   <span class="sail-keyword">let</span> <span class="sail-id">condition</span> = <span class="sail-id">X</span>(<span class="sail-id">rs2</span>);
-  <span class="sail-keyword">let</span> <span class="sail-id">result</span> : <span class="sail-id">xlenbits</span> = <span class="sail-keyword">if</span> <span class="sail-id">condition</span> <span class="sail-operator">==</span> <a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>() <span class="sail-keyword">then</span> <a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>() <span class="sail-keyword">else</span> <span class="sail-id">value</span>;
+  <span class="sail-keyword">let</span> <span class="sail-id">result</span> : <span class="sail-id">xlenbits</span> = <span class="sail-keyword">if</span> <span class="sail-id">condition</span> <span class="sail-operator">==</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>() <span class="sail-keyword">then</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>() <span class="sail-keyword">else</span> <span class="sail-id">value</span>;
   <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <span class="sail-id">result</span>;
   <span class="sail-id">RETIRE_SUCCESS</span>
 }
@@ -59,7 +59,7 @@
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> (<span class="sail-id">ZICOND_RTYPE</span>(<span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>, <span class="sail-id">CZERO_NEZ</span>)) = {
   <span class="sail-keyword">let</span> <span class="sail-id">value</span> = <span class="sail-id">X</span>(<span class="sail-id">rs1</span>);
   <span class="sail-keyword">let</span> <span class="sail-id">condition</span> = <span class="sail-id">X</span>(<span class="sail-id">rs2</span>);
-  <span class="sail-keyword">let</span> <span class="sail-id">result</span> : <span class="sail-id">xlenbits</span> = <span class="sail-keyword">if</span> <span class="sail-id">condition</span> <span class="sail-operator">!=</span> <a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>() <span class="sail-keyword">then</span> <a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>() <span class="sail-keyword">else</span> <span class="sail-id">value</span>;
+  <span class="sail-keyword">let</span> <span class="sail-id">result</span> : <span class="sail-id">xlenbits</span> = <span class="sail-keyword">if</span> <span class="sail-id">condition</span> <span class="sail-operator">!=</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>() <span class="sail-keyword">then</span> <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>() <span class="sail-keyword">else</span> <span class="sail-id">value</span>;
   <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <span class="sail-id">result</span>;
   <span class="sail-id">RETIRE_SUCCESS</span>
 }

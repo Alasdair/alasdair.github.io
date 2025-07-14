@@ -38,18 +38,18 @@
  * some manner, but for now, we just keep a reordered definition to improve simulator
  * performance.
  */</span>
-  <span class="sail-keyword">let</span> <span class="sail-id">t</span> : <span class="sail-id">xlenbits</span> = <span class="sail-id">X</span>(<span class="sail-id">rs1</span>) <span class="sail-operator">+</span> <a href=".././prelude.html#L85"><span class="sail-id">sign_extend</span></a>(<span class="sail-id">imm</span>);
+  <span class="sail-keyword">let</span> <span class="sail-id">t</span> : <span class="sail-id">xlenbits</span> = <span class="sail-id">X</span>(<span class="sail-id">rs1</span>) <span class="sail-operator">+</span> <a href="sail-riscv/./prelude.html#L85"><span class="sail-id">sign_extend</span></a>(<span class="sail-id">imm</span>);
   <span class="sail-comment">/* Extensions get the first checks on the prospective target address. */</span>
-  <span class="sail-keyword">match</span> <a href=".././riscv_addr_checks.html#L40"><span class="sail-id">ext_control_check_addr</span></a>(<span class="sail-id">t</span>) {
+  <span class="sail-keyword">match</span> <a href="sail-riscv/./riscv_addr_checks.html#L40"><span class="sail-id">ext_control_check_addr</span></a>(<span class="sail-id">t</span>) {
     <span class="sail-id">Ext_ControlAddr_Error</span>(<span class="sail-id">e</span>) =&gt;
       <span class="sail-id">Ext_ControlAddr_Check_Failure</span>(<span class="sail-id">e</span>),
     <span class="sail-id">Ext_ControlAddr_OK</span>(<span class="sail-id">addr</span>) =&gt; {
       <span class="sail-keyword">let</span> <span class="sail-id">target</span> = [<span class="sail-id">bits_of</span>(<span class="sail-id">addr</span>) <span class="sail-keyword">with</span> <span class="sail-literal">0</span> = <span class="sail-literal">bitzero</span>];  <span class="sail-comment">/* clear addr[0] */</span>
-      <span class="sail-keyword">if</span> <a href=".././prelude.html#L111"><span class="sail-id">bit_to_bool</span></a>(<span class="sail-id">target</span>[<span class="sail-literal">1</span>]) <span class="sail-operator">&amp;</span> <a href=".././prelude.html#L29"><span class="sail-id">not</span></a>(<a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zca</span>)) <span class="sail-keyword">then</span> {
+      <span class="sail-keyword">if</span> <a href="sail-riscv/./prelude.html#L111"><span class="sail-id">bit_to_bool</span></a>(<span class="sail-id">target</span>[<span class="sail-literal">1</span>]) <span class="sail-operator">&amp;</span> <a href="sail-riscv/./prelude.html#L29"><span class="sail-id">not</span></a>(<a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zca</span>)) <span class="sail-keyword">then</span> {
         <span class="sail-id">Memory_Exception</span>(<span class="sail-id">addr</span>, <span class="sail-id">E_Fetch_Addr_Align</span>())
       } <span class="sail-keyword">else</span> {
-        <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href=".././riscv_pc_access.html#L21"><span class="sail-id">get_next_pc</span></a>();
-        <a href=".././riscv_pc_access.html#L24"><span class="sail-id">set_next_pc</span></a>(<span class="sail-id">target</span>);
+        <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href="sail-riscv/./riscv_pc_access.html#L21"><span class="sail-id">get_next_pc</span></a>();
+        <a href="sail-riscv/./riscv_pc_access.html#L24"><span class="sail-id">set_next_pc</span></a>(<span class="sail-id">target</span>);
         <span class="sail-id">RETIRE_SUCCESS</span>
       }
     }

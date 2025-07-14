@@ -31,49 +31,49 @@
 
 <span class="sail-comment">// Cache Block Operations - Zero
 </span>
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zicboz</span>) = <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zicboz</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zicboz</span>) = <a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zicboz</span>)
 
-<span class="sail-keyword">function</span> <span class="sail-id">cbo_zero_enabled</span>(<span class="sail-id">p</span> : <span class="sail-id">Privilege</span>) -&gt; <span class="sail-id">bool</span> = <a href=".././riscv_sys_control.html#L34"><span class="sail-id">feature_enabled_for_priv</span></a>(<span class="sail-id">p</span>, <a href=".././riscv_sys_regs.html#L410"><span class="sail-id">menvcfg</span></a>[<span class="sail-id">CBZE</span>][<span class="sail-literal">0</span>], <a href=".././riscv_sys_regs.html#L411"><span class="sail-id">senvcfg</span></a>[<span class="sail-id">CBZE</span>][<span class="sail-literal">0</span>])
+<span class="sail-keyword">function</span> <span class="sail-id">cbo_zero_enabled</span>(<span class="sail-id">p</span> : <span class="sail-id">Privilege</span>) -&gt; <span class="sail-id">bool</span> = <a href="sail-riscv/./riscv_sys_control.html#L34"><span class="sail-id">feature_enabled_for_priv</span></a>(<span class="sail-id">p</span>, <a href="sail-riscv/./riscv_sys_regs.html#L410"><span class="sail-id">menvcfg</span></a>[<span class="sail-id">CBZE</span>][<span class="sail-literal">0</span>], <a href="sail-riscv/./riscv_sys_regs.html#L411"><span class="sail-id">senvcfg</span></a>[<span class="sail-id">CBZE</span>][<span class="sail-literal">0</span>])
 
 <span class="sail-comment">/* ****************************************************************** */</span>
 <span class="sail-keyword">union</span> <span class="sail-keyword">clause</span> <span class="sail-id">instruction</span> = <span class="sail-id">ZICBOZ</span> : (<span class="sail-id">regidx</span>)
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">ZICBOZ</span>(<span class="sail-id">rs1</span>)
   &lt;-&gt; <span class="sail-literal">0b000000000100</span> @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-literal">0b010</span> @ <span class="sail-literal">0b00000</span> @ <span class="sail-literal">0b0001111</span>
-  <span class="sail-keyword">when</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zicboz</span>)
+  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zicboz</span>)
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">assembly</span> = <span class="sail-id">ZICBOZ</span>(<span class="sail-id">rs1</span>)
   &lt;-&gt; <span class="sail-string">"cbo.zero"</span> <span class="sail-operator">^</span> <span class="sail-id">spc</span>() <span class="sail-operator">^</span> <span class="sail-string">"("</span> <span class="sail-operator">^</span> <span class="sail-id">opt_spc</span>() <span class="sail-operator">^</span> <span class="sail-id">reg_name</span>(<span class="sail-id">rs1</span>) <span class="sail-operator">^</span> <span class="sail-id">opt_spc</span>() <span class="sail-operator">^</span> <span class="sail-string">")"</span>
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span>(<span class="sail-id">ZICBOZ</span>(<span class="sail-id">rs1</span>)) = {
-  <span class="sail-keyword">if</span> <a href=".././riscv_insts_zicboz.html#L13"><span class="sail-id">cbo_zero_enabled</span></a>(<a href=".././riscv_sys_regs.html#L13"><span class="sail-id">cur_privilege</span></a>) <span class="sail-keyword">then</span> {
+  <span class="sail-keyword">if</span> <a href="sail-riscv/./riscv_insts_zicboz.html#L13"><span class="sail-id">cbo_zero_enabled</span></a>(<a href="sail-riscv/./riscv_sys_regs.html#L13"><span class="sail-id">cur_privilege</span></a>) <span class="sail-keyword">then</span> {
     <span class="sail-keyword">let</span> <span class="sail-id">rs1_val</span> = <span class="sail-id">X</span>(<span class="sail-id">rs1</span>);
     <span class="sail-keyword">let</span> <span class="sail-id">cache_block_size</span> = 2 ^ <span class="sail-id">plat_cache_block_size_exp</span>;
 
     <span class="sail-comment">// Offset from rs1 to the beginning of the cache block. This is 0 if rs1
 </span>    <span class="sail-comment">// is aligned to the cache block, or negative if rs1 is misaligned.
-</span>    <span class="sail-keyword">let</span> <span class="sail-id">negative_offset</span> = (<span class="sail-id">rs1_val</span> <span class="sail-operator">&amp;</span> <span class="sail-id">~</span>(<a href=".././prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<a href=".././prelude.html#L92"><span class="sail-id">ones</span></a>(<span class="sail-id">plat_cache_block_size_exp</span>)))) <span class="sail-operator">-</span> <span class="sail-id">rs1_val</span>;
+</span>    <span class="sail-keyword">let</span> <span class="sail-id">negative_offset</span> = (<span class="sail-id">rs1_val</span> <span class="sail-operator">&amp;</span> <span class="sail-id">~</span>(<a href="sail-riscv/./prelude.html#L86"><span class="sail-id">zero_extend</span></a>(<a href="sail-riscv/./prelude.html#L92"><span class="sail-id">ones</span></a>(<span class="sail-id">plat_cache_block_size_exp</span>)))) <span class="sail-operator">-</span> <span class="sail-id">rs1_val</span>;
 
-    <span class="sail-keyword">match</span> <a href=".././riscv_addr_checks.html#L57"><span class="sail-id">ext_data_get_addr</span></a>(<span class="sail-id">rs1</span>, <span class="sail-id">negative_offset</span>, <span class="sail-id">Write</span>(<span class="sail-id">Data</span>), <span class="sail-id">cache_block_size</span>) {
+    <span class="sail-keyword">match</span> <a href="sail-riscv/./riscv_addr_checks.html#L57"><span class="sail-id">ext_data_get_addr</span></a>(<span class="sail-id">rs1</span>, <span class="sail-id">negative_offset</span>, <span class="sail-id">Write</span>(<span class="sail-id">Data</span>), <span class="sail-id">cache_block_size</span>) {
       <span class="sail-id">Ext_DataAddr_Error</span>(<span class="sail-id">e</span>) =&gt; <span class="sail-id">Ext_DataAddr_Check_Failure</span>(<span class="sail-id">e</span>),
       <span class="sail-id">Ext_DataAddr_OK</span>(<span class="sail-id">vaddr</span>) =&gt; {
         <span class="sail-comment">// "An implementation may update the bytes in any order and with any granularity
 </span>        <span class="sail-comment">//  and atomicity, including individual bytes."
 </span>        <span class="sail-comment">//
 </span>        <span class="sail-comment">// This implementation does a single atomic write.
-</span>        <span class="sail-keyword">match</span> <a href=".././riscv_vmem.html#L356"><span class="sail-id">translateAddr</span></a>(<span class="sail-id">vaddr</span>, <span class="sail-id">Write</span>(<span class="sail-id">Data</span>)) {
+</span>        <span class="sail-keyword">match</span> <a href="sail-riscv/./riscv_vmem.html#L356"><span class="sail-id">translateAddr</span></a>(<span class="sail-id">vaddr</span>, <span class="sail-id">Write</span>(<span class="sail-id">Data</span>)) {
           <span class="sail-comment">// vaddr is the aligned address, but errors report the address that
 </span>          <span class="sail-comment">// was encoded in the instruction. We subtract the negative offset
 </span>          <span class="sail-comment">// (add the positive offset) to get it. Normally this will be
 </span>          <span class="sail-comment">// equal to rs1, but pointer masking can change that.
 </span>          <span class="sail-id">Err</span>(<span class="sail-id">e</span>, _) =&gt; <span class="sail-id">Memory_Exception</span>(<span class="sail-id">vaddr</span> <span class="sail-operator">-</span> <span class="sail-id">negative_offset</span>, <span class="sail-id">e</span>),
           <span class="sail-id">Ok</span>(<span class="sail-id">paddr</span>, _) =&gt; {
-            <span class="sail-keyword">match</span> <a href=".././riscv_mem.html#L169"><span class="sail-id">mem_write_ea</span></a>(<span class="sail-id">paddr</span>, <span class="sail-id">cache_block_size</span>, <span class="sail-literal">false</span>, <span class="sail-literal">false</span>, <span class="sail-literal">false</span>) {
+            <span class="sail-keyword">match</span> <a href="sail-riscv/./riscv_mem.html#L169"><span class="sail-id">mem_write_ea</span></a>(<span class="sail-id">paddr</span>, <span class="sail-id">cache_block_size</span>, <span class="sail-literal">false</span>, <span class="sail-literal">false</span>, <span class="sail-literal">false</span>) {
               <span class="sail-id">Err</span>(<span class="sail-id">e</span>) =&gt; <span class="sail-id">Memory_Exception</span>(<span class="sail-id">vaddr</span> <span class="sail-operator">-</span> <span class="sail-id">negative_offset</span>, <span class="sail-id">e</span>),
               <span class="sail-id">Ok</span>(_)  =&gt; {
-                <span class="sail-keyword">match</span> <a href=".././riscv_mem.html#L241"><span class="sail-id">mem_write_value</span></a>(<span class="sail-id">paddr</span>, <span class="sail-id">cache_block_size</span>, <a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>(), <span class="sail-literal">false</span>, <span class="sail-literal">false</span>, <span class="sail-literal">false</span>) {
+                <span class="sail-keyword">match</span> <a href="sail-riscv/./riscv_mem.html#L241"><span class="sail-id">mem_write_value</span></a>(<span class="sail-id">paddr</span>, <span class="sail-id">cache_block_size</span>, <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>(), <span class="sail-literal">false</span>, <span class="sail-literal">false</span>, <span class="sail-literal">false</span>) {
                   <span class="sail-id">Ok</span>(<span class="sail-literal">true</span>)  =&gt; <span class="sail-id">RETIRE_SUCCESS</span>,
-                  <span class="sail-id">Ok</span>(<span class="sail-literal">false</span>) =&gt; <a href=".././riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"store got false from mem_write_value"</span>),
+                  <span class="sail-id">Ok</span>(<span class="sail-literal">false</span>) =&gt; <a href="sail-riscv/./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"store got false from mem_write_value"</span>),
                   <span class="sail-id">Err</span>(<span class="sail-id">e</span>)    =&gt; <span class="sail-id">Memory_Exception</span>(<span class="sail-id">vaddr</span> <span class="sail-operator">-</span> <span class="sail-id">negative_offset</span>, <span class="sail-id">e</span>)
                 }
               }

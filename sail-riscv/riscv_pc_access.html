@@ -38,26 +38,26 @@
   to fetch.
  */</span>
 <span class="sail-keyword">val</span> <span class="sail-id">get_arch_pc</span> : <span class="sail-id">unit</span> -&gt; <span class="sail-id">xlenbits</span>
-<span class="sail-keyword">function</span> <span class="sail-id">get_arch_pc</span>() = <a href=".././riscv_regs.html#L11"><span class="sail-id">PC</span></a>
+<span class="sail-keyword">function</span> <span class="sail-id">get_arch_pc</span>() = <a href="sail-riscv/./riscv_regs.html#L11"><span class="sail-id">PC</span></a>
 
 <span class="sail-keyword">val</span> <span class="sail-id">get_next_pc</span> : <span class="sail-id">unit</span> -&gt; <span class="sail-id">xlenbits</span>
-<span class="sail-keyword">function</span> <span class="sail-id">get_next_pc</span>() = <a href=".././riscv_regs.html#L12"><span class="sail-id">nextPC</span></a>
+<span class="sail-keyword">function</span> <span class="sail-id">get_next_pc</span>() = <a href="sail-riscv/./riscv_regs.html#L12"><span class="sail-id">nextPC</span></a>
 
 <span class="sail-keyword">val</span> <span class="sail-id">set_next_pc</span> : <span class="sail-id">xlenbits</span> -&gt; <span class="sail-id">unit</span>
 <span class="sail-keyword">function</span> <span class="sail-id">set_next_pc</span>(<span class="sail-id">pc</span>) = {
   <span class="sail-id">sail_branch_announce</span>(<span class="sail-id">xlen</span>, <span class="sail-id">pc</span>);
-  <a href=".././riscv_regs.html#L12"><span class="sail-id">nextPC</span></a> = <span class="sail-id">pc</span>
+  <a href="sail-riscv/./riscv_regs.html#L12"><span class="sail-id">nextPC</span></a> = <span class="sail-id">pc</span>
 }
 
 <span class="sail-keyword">val</span> <span class="sail-id">tick_pc</span> : <span class="sail-id">unit</span> -&gt; <span class="sail-id">unit</span>
 <span class="sail-keyword">function</span> <span class="sail-id">tick_pc</span>() = {
-  <a href=".././riscv_regs.html#L11"><span class="sail-id">PC</span></a> = <a href=".././riscv_regs.html#L12"><span class="sail-id">nextPC</span></a>;
-  <a href=".././riscv_callbacks.html#L20"><span class="sail-id">pc_write_callback</span></a>(<a href=".././riscv_regs.html#L11"><span class="sail-id">PC</span></a>);
+  <a href="sail-riscv/./riscv_regs.html#L11"><span class="sail-id">PC</span></a> = <a href="sail-riscv/./riscv_regs.html#L12"><span class="sail-id">nextPC</span></a>;
+  <a href="sail-riscv/./riscv_callbacks.html#L20"><span class="sail-id">pc_write_callback</span></a>(<a href="sail-riscv/./riscv_regs.html#L11"><span class="sail-id">PC</span></a>);
 }
 
 <span class="sail-comment">// For forcing PC from C. This is ugly.
 </span><span class="sail-keyword">function</span> <span class="sail-id">force_pc</span>(<span class="sail-id">pc</span> : <span class="sail-id">bits</span>(<span class="sail-literal">64</span>)) -&gt; <span class="sail-id">unit</span> = {
-  <a href=".././riscv_regs.html#L11"><span class="sail-id">PC</span></a> = <span class="sail-id">truncate</span>(<span class="sail-id">pc</span>, <span class="sail-id">xlen</span>);
+  <a href="sail-riscv/./riscv_regs.html#L11"><span class="sail-id">PC</span></a> = <span class="sail-id">truncate</span>(<span class="sail-id">pc</span>, <span class="sail-id">xlen</span>);
 }
 </pre>
 </div>

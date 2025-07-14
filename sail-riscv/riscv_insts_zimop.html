@@ -29,18 +29,18 @@
 <span class="sail-comment">/*  SPDX-License-Identifier: BSD-2-Clause                                                */</span>
 <span class="sail-comment">/*=======================================================================================*/</span>
 
-<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zimop</span>) = <a href=".././riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zimop</span>)
+<span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">currentlyEnabled</span>(<span class="sail-id">Ext_Zimop</span>) = <a href="sail-riscv/./riscv_extensions.html#L20"><span class="sail-id">hartSupports</span></a>(<span class="sail-id">Ext_Zimop</span>)
 
 <span class="sail-keyword">union</span> <span class="sail-keyword">clause</span> <span class="sail-id">instruction</span> = <span class="sail-id">ZIMOP_MOP_R</span> : (<span class="sail-id">bits</span>(<span class="sail-literal">5</span>), <span class="sail-id">regidx</span>, <span class="sail-id">regidx</span>)
 <span class="sail-keyword">union</span> <span class="sail-keyword">clause</span> <span class="sail-id">instruction</span> = <span class="sail-id">ZIMOP_MOP_RR</span> : (<span class="sail-id">bits</span>(<span class="sail-literal">3</span>), <span class="sail-id">regidx</span>, <span class="sail-id">regidx</span>, <span class="sail-id">regidx</span>)
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">ZIMOP_MOP_R</span>(<span class="sail-id">mop_30</span> @ <span class="sail-id">mop_27_26</span> @ <span class="sail-id">mop_21_20</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>)
   &lt;-&gt; <span class="sail-literal">0b1</span> @ <span class="sail-id">mop_30</span> : <span class="sail-id">bits</span>(<span class="sail-literal">1</span>) @ <span class="sail-literal">0b00</span> @ <span class="sail-id">mop_27_26</span> : <span class="sail-id">bits</span>(<span class="sail-literal">2</span>) @ <span class="sail-literal">0b0111</span> @ <span class="sail-id">mop_21_20</span> : <span class="sail-id">bits</span>(<span class="sail-literal">2</span>) @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-literal">0b100</span> @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b1110011</span>
-  <span class="sail-keyword">when</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zimop</span>)
+  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zimop</span>)
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">encdec</span> = <span class="sail-id">ZIMOP_MOP_RR</span>(<span class="sail-id">mop_30</span> @ <span class="sail-id">mop_27_26</span>, <span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>)
   &lt;-&gt; <span class="sail-literal">0b1</span> @ <span class="sail-id">mop_30</span> : <span class="sail-id">bits</span>(<span class="sail-literal">1</span>) @ <span class="sail-literal">0b00</span> @ <span class="sail-id">mop_27_26</span> : <span class="sail-id">bits</span>(<span class="sail-literal">2</span>) @ <span class="sail-literal">0b1</span> @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rs2</span>) @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rs1</span>) @ <span class="sail-literal">0b100</span> @ <span class="sail-id">encdec_reg</span>(<span class="sail-id">rd</span>) @ <span class="sail-literal">0b1110011</span>
-  <span class="sail-keyword">when</span> <a href=".././riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zimop</span>)
+  <span class="sail-keyword">when</span> <a href="sail-riscv/./riscv_extensions.html#L31"><span class="sail-id">currentlyEnabled</span></a>(<span class="sail-id">Ext_Zimop</span>)
 
 <span class="sail-keyword">mapping</span> <span class="sail-keyword">clause</span> <span class="sail-id">assembly</span> = <span class="sail-id">ZIMOP_MOP_R</span>(<span class="sail-id">mop</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>)
   &lt;-&gt;  <span class="sail-string">"mop.r."</span> <span class="sail-operator">^</span> <span class="sail-id">dec_bits_5</span>(<span class="sail-id">mop</span>) <span class="sail-operator">^</span> <span class="sail-id">spc</span>() <span class="sail-operator">^</span> <span class="sail-id">reg_name</span>(<span class="sail-id">rd</span>) <span class="sail-operator">^</span> <span class="sail-id">sep</span>() <span class="sail-operator">^</span> <span class="sail-id">reg_name</span>(<span class="sail-id">rs1</span>)
@@ -49,12 +49,12 @@
   &lt;-&gt; <span class="sail-string">"mop.rr."</span> <span class="sail-operator">^</span> <span class="sail-id">dec_bits_3</span>(<span class="sail-id">mop</span>) <span class="sail-operator">^</span> <span class="sail-id">spc</span>() <span class="sail-operator">^</span> <span class="sail-id">reg_name</span>(<span class="sail-id">rd</span>) <span class="sail-operator">^</span> <span class="sail-id">sep</span>() <span class="sail-operator">^</span> <span class="sail-id">reg_name</span>(<span class="sail-id">rs1</span>) <span class="sail-operator">^</span> <span class="sail-id">sep</span>() <span class="sail-operator">^</span> <span class="sail-id">reg_name</span>(<span class="sail-id">rs2</span>)
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> <span class="sail-id">ZIMOP_MOP_R</span>(<span class="sail-id">mop</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>) = {
-  <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>();
+  <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>();
   <span class="sail-id">RETIRE_SUCCESS</span>
 }
 
 <span class="sail-keyword">function</span> <span class="sail-keyword">clause</span> <span class="sail-id">execute</span> <span class="sail-id">ZIMOP_MOP_RR</span>(<span class="sail-id">mop</span>, <span class="sail-id">rs2</span>, <span class="sail-id">rs1</span>, <span class="sail-id">rd</span>) = {
-  <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href=".././prelude.html#L89"><span class="sail-id">zeros</span></a>();
+  <span class="sail-id">X</span>(<span class="sail-id">rd</span>) = <a href="sail-riscv/./prelude.html#L89"><span class="sail-id">zeros</span></a>();
   <span class="sail-id">RETIRE_SUCCESS</span>
 }
 </pre>

@@ -49,7 +49,7 @@
 <span class="sail-keyword">function</span> <span class="sail-id">regidx_offset</span>(<span class="sail-id">Regidx</span>(<span class="sail-id">r</span>) : <span class="sail-id">regidx</span>, <span class="sail-id">o</span> : <span class="sail-id">bits</span>(<span class="sail-literal">5</span>)) -&gt; <span class="sail-id">regidx</span> = <span class="sail-id">Regidx</span>(<span class="sail-id">r</span> <span class="sail-operator">+</span> <span class="sail-id">o</span>)
 <span class="sail-keyword">function</span> <span class="sail-id">regidx_offset_range</span>(<span class="sail-id">Regidx</span>(<span class="sail-id">r</span>) : <span class="sail-id">regidx</span>, <span class="sail-id">o</span> : <span class="sail-id">range</span>(<span class="sail-literal">0</span>, <span class="sail-literal">31</span>)) -&gt; <span class="sail-id">regidx</span> = <span class="sail-id">Regidx</span>(<span class="sail-id">r</span> <span class="sail-operator">+</span> <span class="sail-id">o</span>)
 <span class="sail-keyword">function</span> <span class="sail-id">regidx_bits</span>(<span class="sail-id">Regidx</span>(<span class="sail-id">b</span>) : <span class="sail-id">regidx</span>) -&gt; <span class="sail-id">bits</span>(<span class="sail-literal">5</span>) = <span class="sail-id">b</span>
-<span class="sail-keyword">overload</span> <span class="sail-keyword">operator</span> <span class="sail-operator">+</span> = { <span class="sail-id">regidx_offset</span>, <a href=".././riscv_types.html#L27"><span class="sail-id">regidx_offset_range</span></a> }
+<span class="sail-keyword">overload</span> <span class="sail-keyword">operator</span> <span class="sail-operator">+</span> = { <span class="sail-id">regidx_offset</span>, <a href="sail-riscv/./riscv_types.html#L27"><span class="sail-id">regidx_offset_range</span></a> }
 <span class="sail-comment">/* register file indexing */</span>
 
 <span class="sail-keyword">newtype</span> <span class="sail-id">regno</span> = <span class="sail-id">Regno</span> : <span class="sail-id">range</span>(<span class="sail-literal">0</span>, <span class="sail-literal">31</span>)
@@ -72,7 +72,7 @@
   <span class="sail-id">RV32</span>  &lt;-&gt; <span class="sail-literal">0b01</span>,
   <span class="sail-id">RV64</span>  &lt;-&gt; <span class="sail-literal">0b10</span>,
   <span class="sail-id">RV128</span> &lt;-&gt; <span class="sail-literal">0b11</span>,
-  <span class="sail-keyword">backwards</span> <span class="sail-literal">0b00</span> =&gt; <a href=".././riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"architecture(0b00) is invalid"</span>)
+  <span class="sail-keyword">backwards</span> <span class="sail-literal">0b00</span> =&gt; <a href="sail-riscv/./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"architecture(0b00) is invalid"</span>)
 }
 
 <span class="sail-comment">/* privilege levels */</span>
@@ -84,7 +84,7 @@
   <span class="sail-id">User</span>       &lt;-&gt; <span class="sail-literal">0b00</span>,
   <span class="sail-id">Supervisor</span> &lt;-&gt; <span class="sail-literal">0b01</span>,
   <span class="sail-id">Machine</span>    &lt;-&gt; <span class="sail-literal">0b11</span>,
-  <span class="sail-keyword">backwards</span> <span class="sail-literal">0b10</span> =&gt; <a href=".././riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"Invalid privilege level: "</span> <span class="sail-operator">^</span> <span class="sail-id">BitStr</span>(<span class="sail-literal">0b10</span>))
+  <span class="sail-keyword">backwards</span> <span class="sail-literal">0b10</span> =&gt; <a href="sail-riscv/./riscv_errors.html#L20"><span class="sail-id">internal_error</span></a>(<span class="sail-id">__FILE__</span>, <span class="sail-id">__LINE__</span>, <span class="sail-string">"Invalid privilege level: "</span> <span class="sail-operator">^</span> <span class="sail-id">BitStr</span>(<span class="sail-literal">0b10</span>))
 }
 
 <span class="sail-keyword">function</span> <span class="sail-id">privLevel_to_bits</span>(<span class="sail-id">p</span> : <span class="sail-id">Privilege</span>) -&gt; <span class="sail-id">priv_level</span> = <span class="sail-id">privLevel_bits</span>(<span class="sail-id">p</span>)
@@ -97,7 +97,7 @@
     <span class="sail-id">Machine</span>    =&gt; <span class="sail-string">"M"</span>
   }
 
-<span class="sail-keyword">overload</span> <span class="sail-id">to_str</span> = {<a href=".././riscv_types.html#L70"><span class="sail-id">privLevel_to_str</span></a>}
+<span class="sail-keyword">overload</span> <span class="sail-id">to_str</span> = {<a href="sail-riscv/./riscv_types.html#L70"><span class="sail-id">privLevel_to_str</span></a>}
 
 <span class="sail-comment">/* memory access types */</span>
 
@@ -185,7 +185,7 @@
     <span class="sail-id">E_SAMO_Page_Fault</span>()    =&gt; <span class="sail-literal">0x0f</span>,
 
     <span class="sail-comment">/* extensions */</span>
-    <span class="sail-id">E_Extension</span>(<span class="sail-id">e</span>)         =&gt; <a href=".././riscv_types_ext.html#L61"><span class="sail-id">ext_exc_type_to_bits</span></a>(<span class="sail-id">e</span>)
+    <span class="sail-id">E_Extension</span>(<span class="sail-id">e</span>)         =&gt; <a href="sail-riscv/./riscv_types_ext.html#L61"><span class="sail-id">ext_exc_type_to_bits</span></a>(<span class="sail-id">e</span>)
   }
 
 <span class="sail-keyword">val</span> <span class="sail-id">num_of_ExceptionType</span> : <span class="sail-id">ExceptionType</span> -&gt; {<span class="sail-ty-var">'n</span>, (<span class="sail-literal">0</span> <span class="sail-operator">&lt;=</span> <span class="sail-ty-var">'n</span> <span class="sail-operator">&lt;</span> <span class="sail-id">xlen</span>). <span class="sail-id">int</span>(<span class="sail-ty-var">'n</span>)}
@@ -209,7 +209,7 @@
     <span class="sail-id">E_SAMO_Page_Fault</span>()    =&gt; <span class="sail-literal">15</span>,
 
     <span class="sail-comment">/* extensions */</span>
-    <span class="sail-id">E_Extension</span>(<span class="sail-id">e</span>)         =&gt; <a href=".././riscv_types_ext.html#L65"><span class="sail-id">num_of_ext_exc_type</span></a>(<span class="sail-id">e</span>)
+    <span class="sail-id">E_Extension</span>(<span class="sail-id">e</span>)         =&gt; <a href="sail-riscv/./riscv_types_ext.html#L65"><span class="sail-id">num_of_ext_exc_type</span></a>(<span class="sail-id">e</span>)
 
   }
 
@@ -234,10 +234,10 @@
     <span class="sail-id">E_SAMO_Page_Fault</span>()    =&gt; <span class="sail-string">"store/amo-page-fault"</span>,
 
     <span class="sail-comment">/* extensions */</span>
-    <span class="sail-id">E_Extension</span>(<span class="sail-id">e</span>)         =&gt; <a href=".././riscv_types_ext.html#L69"><span class="sail-id">ext_exc_type_to_str</span></a>(<span class="sail-id">e</span>)
+    <span class="sail-id">E_Extension</span>(<span class="sail-id">e</span>)         =&gt; <a href="sail-riscv/./riscv_types_ext.html#L69"><span class="sail-id">ext_exc_type_to_str</span></a>(<span class="sail-id">e</span>)
   }
 
-<span class="sail-keyword">overload</span> <span class="sail-id">to_str</span> = {<a href=".././riscv_types.html#L194"><span class="sail-id">exceptionType_to_str</span></a>}
+<span class="sail-keyword">overload</span> <span class="sail-id">to_str</span> = {<a href="sail-riscv/./riscv_types.html#L194"><span class="sail-id">exceptionType_to_str</span></a>}
 
 <span class="sail-comment">/* trap modes */</span>
 

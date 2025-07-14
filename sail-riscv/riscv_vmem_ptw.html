@@ -76,7 +76,7 @@
                               <span class="sail-id">f</span> : <span class="sail-id">PTW_Error</span>)
                              -&gt; <span class="sail-id">ExceptionType</span> = {
   <span class="sail-keyword">match</span> (<span class="sail-id">a</span>, <span class="sail-id">f</span>) {
-    (_, <span class="sail-id">PTW_Ext_Error</span>(<span class="sail-id">e</span>))        =&gt; <span class="sail-id">E_Extension</span>(<a href=".././riscv_types_ext.html#L56"><span class="sail-id">ext_translate_exception</span></a>(<span class="sail-id">e</span>)),
+    (_, <span class="sail-id">PTW_Ext_Error</span>(<span class="sail-id">e</span>))        =&gt; <span class="sail-id">E_Extension</span>(<a href="sail-riscv/./riscv_types_ext.html#L56"><span class="sail-id">ext_translate_exception</span></a>(<span class="sail-id">e</span>)),
     (<span class="sail-id">ReadWrite</span>(_), <span class="sail-id">PTW_Access</span>()) =&gt; <span class="sail-id">E_SAMO_Access_Fault</span>(),
     (<span class="sail-id">ReadWrite</span>(_), _)            =&gt; <span class="sail-id">E_SAMO_Page_Fault</span>(),
     (<span class="sail-id">Read</span>(_), <span class="sail-id">PTW_Access</span>())      =&gt; <span class="sail-id">E_Load_Access_Fault</span>(),

@@ -31,22 +31,22 @@
 
 <span class="sail-comment">// Chip reset. This only does the minimum resets required by the RISC-V spec.
 </span><span class="sail-keyword">function</span> <span class="sail-id">reset</span>() -&gt; <span class="sail-id">unit</span> = {
-  <a href=".././riscv_sys_control.html#L351"><span class="sail-id">reset_sys</span></a>();
-  <a href=".././riscv_vmem.html#L416"><span class="sail-id">reset_vmem</span></a>();
+  <a href="sail-riscv/./riscv_sys_control.html#L351"><span class="sail-id">reset_sys</span></a>();
+  <a href="sail-riscv/./riscv_vmem.html#L416"><span class="sail-id">reset_vmem</span></a>();
 
   <span class="sail-comment">// To allow model extensions (code outside this repo) to perform additional reset.
-</span>  <a href=".././riscv_step_ext.html#L16"><span class="sail-id">ext_reset</span></a>();
+</span>  <a href="sail-riscv/./riscv_step_ext.html#L16"><span class="sail-id">ext_reset</span></a>();
 }
 
 <span class="sail-comment">// Initialize model state. This is only called once; not for every chip reset.
 </span><span class="sail-keyword">function</span> <span class="sail-id">init_model</span>(<span class="sail-id">config_filename</span> : <span class="sail-id">string</span>) -&gt; <span class="sail-id">unit</span> = {
-  <span class="sail-keyword">assert</span>(<a href=".././riscv_validate_config.html#L112"><span class="sail-id">config_is_valid</span></a>(), (<span class="sail-keyword">if</span>   <span class="sail-id">config_filename</span> <span class="sail-operator">==</span> <span class="sail-string">""</span>
+  <span class="sail-keyword">assert</span>(<a href="sail-riscv/./riscv_validate_config.html#L112"><span class="sail-id">config_is_valid</span></a>(), (<span class="sail-keyword">if</span>   <span class="sail-id">config_filename</span> <span class="sail-operator">==</span> <span class="sail-string">""</span>
                              <span class="sail-keyword">then</span> <span class="sail-string">"Default config"</span>
                              <span class="sail-keyword">else</span> <span class="sail-string">"Config in "</span> <span class="sail-operator">^</span> <span class="sail-id">config_filename</span>)
                              <span class="sail-operator">^</span> <span class="sail-string">" is invalid."</span>);
-  <a href=".././riscv_step.html#L11"><span class="sail-id">hart_state</span></a> = <span class="sail-id">HART_ACTIVE</span>();
-  <a href=".././riscv_platform.html#L438"><span class="sail-id">init_platform</span></a>();
-  <a href=".././riscv_model.html#L10"><span class="sail-id">reset</span></a>();
+  <a href="sail-riscv/./riscv_step.html#L11"><span class="sail-id">hart_state</span></a> = <span class="sail-id">HART_ACTIVE</span>();
+  <a href="sail-riscv/./riscv_platform.html#L438"><span class="sail-id">init_platform</span></a>();
+  <a href="sail-riscv/./riscv_model.html#L10"><span class="sail-id">reset</span></a>();
 }
 </pre>
 </div>
